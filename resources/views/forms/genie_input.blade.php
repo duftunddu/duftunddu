@@ -18,7 +18,7 @@
 
                 {{-- Perceiver Table --}}
                 <div class="card">
-                    <div class="card-header">{{ __('Perceiver Entry')}}</div>
+                    <div class="card-header">{{ __('Perceiver Entry Hope')}}</div>
 
                     <div class="card-body">
                         
