@@ -1,0 +1,157 @@
+.side-note
+  z-index: 999
+  position: absolute
+  right: 10px
+  bottom: 10px
+  font-weight: 300
+  font-size: .7em
+  color: #888
+  a
+    cursor: default
+    text-decoration: underline
+    color: inherit
+    font-weight: 500
+    transition: color 300ms ease
+    &:hover
+      color: #555
+    
+// ---------------------------------------------
+
+$accentColor: #e34040
+
+$navBarColor: #222 // #222
+$linkColor: #eee
+$linkDDcolor: #aaa
+// layouts
+// -- desktop
+$navBarHeight_D: 50px
+$linkWidth_D: 10vw
+$linkFontSize_D: .8em
+// -- mobile
+$navBarHeight_M: 70px
+$linkWidth_M: 15vw
+$linkFontSize_M: .8em
+
+=flex($justify, $align)
+  display: flex
+  justify-content: $justify
+  align-items: $align
+
+=linkStyle()
+  box-sizing: border-box
+  cursor: default
+  user-select: none
+  +flex(center, center)
+  width: $linkWidth_D
+  height: $navBarHeight_D
+  color: $linkColor
+  font-size: $linkFontSize_D
+  text-shadow: 1px 1px rgba(black,.4)
+  text-transform: uppercase
+  background: none
+  border: none
+  transition: background 300ms ease
+  &:hover
+    background: lighten($navBarColor, 5%)
+  &.accent
+    background: $accentColor
+  
+.browserAlert
+  color: black
+  text-align: center
+  font-size: 2em
+  position: absolute
+  top: 50%
+  width: 100%
+  display: none
+    
+.nav
+  position: fixed
+  width: 100%
+  background: $navBarColor
+  height: $navBarHeight_D
+  
+body
+  font-family: Arial, sans-serif
+ 
+.nav ul.links 
+  z-index: 0
+  width: 100wh
+  list-style: none
+  +flex(flex-start, flex-start)
+  flex-direction: row
+  >li, ul>li:nth-of-type(1)
+    +linkStyle()
+    z-index: 1
+  ul
+    flex-direction: column
+    >li:nth-of-type(n+2)
+      +linkStyle()
+      color: $linkDDcolor
+      background: $navBarColor
+      z-index: -1
+      // mouse-events: none
+      // pointer-events: none
+      visibility: hidden
+      opacity: 0
+      height: 0
+      transition: all 300ms ease
+    &:hover
+      li:nth-of-type(n+2)
+        opacity: 1
+        visibility: visible
+        height: $navBarHeight_D
+
+      
+.content
+  color: #aaa
+  width: 100wh
+  height: 100vh
+  +flex(center, center)
+  flex-direction: column
+  
+  .clicked
+    color: #ccc // not active
+    margin-top: 30px
+    border-top: 1px solid #ddd
+    border-bottom: 1px solid #ddd
+    width: 350px
+    height: 100px
+    +flex(center, center)
+    &.active
+      color: $accentColor
+
+// --------------------------- layouts ----------------------------
+
+// desktop
+@media (min-width:720px)
+  .nav
+    height: $navBarHeight_D
+    ul.links
+      li, ul>li:nth-of-type(n+1)
+        font-size: $linkFontSize_D
+        width: $linkWidth_D
+      li
+        height: $navBarHeight_D
+      ul>li:nth-of-type(1)
+        height: $navBarHeight_D
+      ul:hover
+        >li:nth-of-type(n+2)
+          height: $navBarHeight_D
+
+// mobile
+@media (max-width:720px)
+  .nav
+    height: $navBarHeight_M
+    ul.links
+      justify-content: center
+      li, ul>li:nth-of-type(n+1)
+        font-size: $linkFontSize_M
+        width: $linkWidth_M
+      li
+        height: $navBarHeight_M
+      ul>li:nth-of-type(1)
+        height: $navBarHeight_M
+      ul:hover
+        >li:nth-of-type(n+2)
+          height: $navBarHeight_M
