@@ -49,7 +49,7 @@
                                 <label for="name" class="col-md-4 col-from-label text-md-right">{{ __('Fragrance Name:')}}</label>
 
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('')}}" required>
+                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name')}}" required autocomplete="name" autofocus>
 
                                     @error('name')
                                     <span class="invalid-feeback" role="alert">
@@ -65,7 +65,7 @@
 
                                 <div class="col-md-6">
 
-                                    <select id="type" type="type" class="form-control @error('type') is-invalid @enderror" name="type" value="{{ old('type')}}" required>
+                                    <select id="type" type="type" class="form-control @error('type') is-invalid @enderror" name="type" value="{{ old('type')}}" required autocomplete="Eau de Toilette">
                                         <option value="" selected>-- Select Type --</option>
                                         <option value="1">
                                             {{'Perfume (Parfum)'}}
@@ -210,7 +210,7 @@
 
                                 <div class="col-md-6">
 
-                                    <select id="ingredient_id" type="ingredient_id" class="form-control @error('ingredient_id') is-invalid @enderror" name="ingredient_id" value="{{ old('')}}" required>
+                                    <select id="ingredient_id" type="ingredient_id" class="form-control @error('ingredient_id') is-invalid @enderror" name="ingredient" value="{{ old('')}}" required>
                                         <option value="" selected="selected" disabled="disabled">-- Select Ingredient --</option>
                                         @foreach($ingredients as $ingredient)
                                             <option value="{{$ingredient->id}}">{{$ingredient->name}}</option>
@@ -232,7 +232,7 @@
 
                                 <div class="col-md-6">
 
-                                    <select id="note" type="note" class="form-control @error('note') is-invalid @enderror" name="note" value="{{ old('')}}" required>
+                                    <select id="note" type="note" class="form-control @error('note') is-invalid @enderror" name="note" value="{{ old('')}}" required autocomplete="Top">
                                         <option value="" selected="selected" disabled="disabled">-- Select Note --</option>
                                         <option value="1">
                                             {{'Top'}}
@@ -285,15 +285,14 @@
 
                     <br>
 
-                    {{-- Submit --}}
+                    {{-- Button: Submit --}}
                     <div class="form-group row mb-0">
-                        <div class="col-md-6 offset-md-4">
+                        <div class="col-md-6 offset-md-8">
                             <button type="submit" class="btn btn-primary">
                                 {{ __('Submit') }}
                             </button>
                         </div>
                     </div>
-                    
                 </form>
             </div>
         </div>

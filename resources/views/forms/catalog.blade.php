@@ -33,14 +33,14 @@
             }
 
             .full-height {
-                height: 130vh;
+                height: 115vh;
             }
 
             .flex-left {
                 align-items: left;
                 display: flex;
                 justify-content: left;
-                padding-top: 100px;
+                padding-top: 70px;
                 padding-left: 100px;
             }
 
@@ -64,7 +64,7 @@
 
             .links > a {
                 color: #636b6f;
-                padding: 0 25px;
+                /* padding: 0 25px; */
                 font-size: 13px;
                 font-weight: 600;
                 letter-spacing: .1rem;
@@ -74,6 +74,10 @@
 
             .m-b-md {
                 margin-bottom: 30px;
+            }
+
+            h2{
+                color:#905969;
             }
         </style>
     </head>
@@ -102,40 +106,38 @@
                 <div class="heading">
                     <h1>{{_('The AI Powered Fragrance Genie')}}</h1>
                 </div>
-
+                
+                <br>
+                
                 <div class="links">
 
-                    <a href="{{ url('genie_input')}}"><h2>{{('All Active Reigons')}}</h2></a>
-                    <a href="{{ url('genie_input')}}"><h2>{{('All Fragrances')}}</h2></a>
-                    <a href="{{ url('genie_input')}}"><h2>{{('All Brands')}}</h2></a>
-                    <a href="{{ url('genie_input')}}"><h2>{{('Users')}}</h2></a>
+                    <a href="{{ url('catalog')}}"><h2>{{_('All Active Reigons')}}</h2></a>
+                    <a href="{{ url('catalog')}}"><h2>{{_('All Fragrances')}}</h2></a>
+                    <a href="{{ url('catalog')}}"><h2>{{_('All Brands')}}</h2></a>
+                    {{-- <a href="{{ url('catalog')}}"><h2>{{_('Users')}}</h2></a> --}}
                     
                     <br>
 
-                    <a href="{{ url('genie_input')}}"><h2>{{('Become a brand ambassador')}}</h2></a>
-                    <a href="{{ url('genie_input')}}"><h2>{{('Advertise on DUft Und Du')}}</h2></a>
-                    
-                </div>
+                    <a href="{{ url('search_engine')}}"><h2>{{_('Search Engine')}}</h2></a>
 
-                <div class="heading m-b-md">
-                    
-                    <h3>{{_('Premium features coming soon.')}}</h3>
+
+                    <br>
+
+                    <a href="{{ url('catalog')}}"><h2>{{_('Advertise on Duft Und Du')}}</h2></a>
+                    <a href="{{ url('catalog')}}"><h2>{{_('Become a brand ambassador')}}</h2></a>
                     
                     <br>
                     
-                    <div class="links">
-                    <a href="{{ url('about_us')}}"><h2>{{('About Us')}}</h2></a>
-                    </div>
+                    <a><h2 style="color:#636b6f">{{_('PREMIUM FEATURES COMING SOON')}}</h2></a>
+                    
+                    <br>
+                    
+                    <a href="{{ url('about_us')}}"><h2>{{_('About Us')}}</h2></a>
+                    
+                </div>
 
                 </div>
 
-            </div>
-        </div>
-
-        {{-- About Us --}}
-        <div class="flex-left position-ref">
-            <div class="content">
-                
             </div>
         </div>
         

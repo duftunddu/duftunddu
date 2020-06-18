@@ -2,6 +2,12 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Accord;
+use App\Fragrance;
+use App\Fragrance_Brand;
+use Illuminate\Support\Facades\DB;
+
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -18,40 +24,30 @@ class Controller extends BaseController
  //     return view('brand_entry');
  // }
 
- // public function brand($request)
- // {
- //     var_dump($request);
- //     return view('brand');
- // }
-
- public function brand(Request $request)
- {
-  echo ($request->BrandName);
-  return view('brand');
- }
-
- public function brand_entry_try()
- {
-  return view('forms.brand_entry_try');
- }
 
  public function about_us()
  {
   return view('forms.about_us');
  }
 
- function try () {
-  return view('forms.try');
- }
-
- public function range_slider()
- {
-  return view('forms.range_slider');
- }
-
  public function catalog()
  {
   return view('forms.catalog');
+ }
+ 
+ public function try () {
+   $accords = accord::all();
+
+  return view('forms.try',
+  ['accords' => $accords]
+ );
+ }
+
+ public function try_output (Request $request) {
+  $accords = $request->accord_ids;
+  var_dump($accords);
+  return;
+  return view('forms.try_output');
  }
 
 }

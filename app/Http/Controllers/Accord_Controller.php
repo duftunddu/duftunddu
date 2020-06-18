@@ -8,11 +8,24 @@ use Illuminate\Support\Facades\DB;
 
 class Accord_Controller extends Controller
 {
+
+ /**
+  * Create a new controller instance.
+  *
+  * @return void
+  */
+ 
+  public function __construct()
+ {
+   $this->middleware('auth');
+ }
+
  /**
   * Display a listing of the resource.
   *
   * @return \Illuminate\Http\Response
   */
+  
  public function index()
  {
   return view('forms.accord_entry');
@@ -41,14 +54,10 @@ class Accord_Controller extends Controller
    'name' => 'required',
   ]);
 
-  //   $accords = accord::all();
-  //   foreach ($accords as $accord) {
-  //    accord::firstOrCreate(['name' => $accord->name]);
-  //   }
-
   DB::transaction(function () use ($request) {
    $new       = new accord();
-   $new->name = $request->input('name');
+  //  $new->name = $request->input('name');
+   $new = accord::firstOrNew(['name' => $request->name]);
    $new->save();
   });
 

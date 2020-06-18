@@ -2,7 +2,11 @@
 {{-- @extends('layouts.nav_bar') --}}
 <link href="{{ asset('css/paragraph.css') }}" rel="stylesheet">
 
+<title>{{_('About Us - The AI Powered Fragrance Genie')}}</title>
+
+
 @section('content')
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-10">

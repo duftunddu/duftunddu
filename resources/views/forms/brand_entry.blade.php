@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+<title>{{('Brand Entry - Duft Und Du')}}</title>
+
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
@@ -94,6 +96,8 @@
                                     </button>
                                 </div>
                             </div>
+                            
+                        </form>
                     </div>
                 </div>
             </div>

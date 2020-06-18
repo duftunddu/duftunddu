@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+<title>{{('Genie Input - Duft Und Du')}}</title>
+
 <link href="{{ asset('css/range_slider.css') }}" rel="stylesheet">
 <script src="{{ asset('js/range_slider.js') }}" defer></script>
 
@@ -18,7 +20,7 @@
 
                 {{-- Perceiver Table --}}
                 <div class="card">
-                    <div class="card-header">{{ __('Perceiver Entry Hope')}}</div>
+                    <div class="card-header">{{ __('Perceiver Entry')}}</div>
 
                     <div class="card-body">
                         
@@ -38,7 +40,7 @@
                                             {{'Female'}}
                                         </option>
                                         <option value="3">
-                                            {{'Unisex'}}
+                                            {{'Other'}}
                                         </option>
                                     </select>
 
@@ -221,8 +223,6 @@
                                     <input type="range" min="0" max="100" value="0" class="slider" id="sweat" name="sweat" required>
                                     <label>{{_('Value: ')}}<span id="value"></span></label>
                                     
-                                    {{-- <input id="sweat" type="range" min="-100" max="0" value="0" class="range black" name="sweat" value="{{ old('sweat')}}" /> --}}
-
                                     @error('sweat')
                                     <span class="invalid-feeback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -247,7 +247,7 @@
                             </div>
 
                             {{-- Body Shape --}}
-                            <div class="form-group row">
+                            {{-- <div class="form-group row">
                                 <label for="body shape" class="col-md-4 col-from-label text-md-right">{{ __('Body Shape:')}}</label>
 
                                 <div class="col-md-6">
@@ -277,8 +277,24 @@
                                     </span>
                                     @enderror
                                 </div>
+                            </div> --}}
+
+                            {{-- FIX THIS --}}
+                            <div class="form-group row">
+                                <label for="body shape" class="col-md-4 col-from-label text-md-right">{{ __('Weight(kg):')}}</label>
+
+                                <div class="col-md-6">
+                                    <input id="body shape" type="text" class="form-control @error('body shape') is-invalid @enderror" name="body shape" value="{{ old('body shape')}}" required>
+
+                                    @error('body shape')
+                                    <span class="invalid-feeback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
                             </div>
 
+                            
                             {{-- Weight --}}
 
                             {{-- Country --}}
@@ -395,10 +411,10 @@
                                 <div class="col-md-6">
 
                                     <select id="fragrance_id" type="fragrance_id" class="form-control @error('fragrance_id') is-invalid @enderror" name="fragrance_id" value="{{ old('')}}" required>
+                                        <option value ="" selected="selected" disabled="disabled">-- Select Fragrance --</option>
                                         @foreach($fragrances as $fragrance)
                                             <option value="{{$fragrance->id}}">{{$fragrance->name}}</option>
                                         @endforeach
-
                                     </select>
 
                                     @error('fragrance_id')

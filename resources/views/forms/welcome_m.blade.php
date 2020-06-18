@@ -23,31 +23,49 @@
             }
 
             .full-height {
-                height: 130vh;
+                height: 70vh;
             }
 
             .flex-center1 {
+                background-image: url("../images/welcome_div1.jpg");
+                background-attachment: fixed;
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: -8vh -13.2vh;
+
                 align-items: left;
                 display: flex;
                 justify-content: left;
-                padding-top: 7.73vw;
-                padding-left: 10.1vw;
+                padding-top: 8.1vh;
+                padding-left: 4.7vh;
             }
 
             .flex-center2 {
+                background-image: url('https://industry.ehl.edu/hubfs/HI_Blog%20Header%20Pictures/AI_in_recruitment.jpg');
+                background-attachment: fixed;
+                /* background-size: cover; */
+                /* background-repeat: no-repeat; */
+                /* background-size: 100% 100%; */
+
                 align-items: left;
                 display: flex;
                 justify-content: left;
-                padding-top: 7.73vw;
-                padding-left: 10.1vw;
+                padding-top: 7.73vh;
+                padding-left: 10.1vh;
             }
             
             .flex-center3 {
+                background-image: url('https://cdn.shopify.com/s/files/1/1600/9217/products/Gem-Cut-Decanter-Detail.jpg?v=1498771896');
+                background-attachment: fixed;
+                /* background-size: cover; */
+                /* background-repeat: no-repeat;
+                background-size: 100% 100%; */
+
                 align-items: left;
                 display: flex;
                 justify-content: left;
-                padding-top: 7.73vw;
-                padding-left: 10.1vw;
+                padding-top: 7.73vh;
+                padding-left: 10.1vh;
             }
 
             .position-ref {
@@ -56,8 +74,8 @@
 
             .top-right {
                 position: absolute;
-                right: 0.75vw;
-                top: 1.36vw;
+                right: 0.75vh;
+                top: 1.36vh;
             }
 
             .content {
@@ -66,62 +84,35 @@
             }
 
             .title {
-                font-size: 6.3vw;
-                /* background:rgba(255,255,255,0.1);  */
+                font-size: 6.3vh;   
             }
 
             .links > a {
-                /* padding: 0 1.88vw; */
-                font-size: 0.98vw;
+                /* padding: 0 1.88vh; */
+                font-size: 0.98vh;
                 font-weight: 600;
-                letter-spacing: 0.12vw;
+                letter-spacing: 0.12vh;
                 text-decoration: none;
                 text-transform: uppercase;
                 color:#905969;
             }
 
-            .flex-center1{
-                background-image: url("../images/welcome_div1.jpg");
-                background-attachment: fixed;
-                background-size: cover;
-                background-repeat: no-repeat;
-                background-position: 0vw -13.2vw;
-                /* background-size: 100% 100%; */
-                
-            }
-
-            .flex-center2{
-                background-image: url('https://industry.ehl.edu/hubfs/HI_Blog%20Header%20Pictures/AI_in_recruitment.jpg');
-                background-attachment: fixed;
-                /* background-size: cover; */
-                /* background-repeat: no-repeat; */
-                /* background-size: 100% 100%; */
-            }
-
-            .flex-center3{
-                background-image: url('https://cdn.shopify.com/s/files/1/1600/9217/products/Gem-Cut-Decanter-Detail.jpg?v=1498771896');
-                background-attachment: fixed;
-                /* background-size: cover; */
-                /* background-repeat: no-repeat;
-                background-size: 100% 100%; */
-            }
-
             .heading{
-                font-size: 1.3vw;
+                font-size: 1.3vh;
             }
 
             h1{
-                letter-spacing: 0.2vw;
+                letter-spacing: 0.2vh;
             }
 
             p{
-                font-size: 1.45vw;
+                font-size: 1.45vh;
                 font-weight: bold;
-                letter-spacing: 0.06vw;
+                letter-spacing: 0.06vh;
             }
 
             .m-b-md {
-                margin-bottom: 2.26vw;
+                margin-bottom: 2.26vh;
             }
 
         </style>
@@ -157,7 +148,7 @@
 
                 <div class="links">
 
-                    <a><h2>{{_('Lets grant your wish to smell good ')}}
+                    <a><h2 style="color:#905969">{{_('Lets grant your wish to smell good ')}}
                         <br>{{_('Lets grant your wish to smell good ')}}
                     
                     
@@ -170,7 +161,7 @@
                     <br>
                     
                     <a href="{{ url('catalog')}}"><h2>{{_('sds')}}</h2>                        
-                    <h2> {{_('Browse our Catalog of Services')}}</h2></a>    
+                    <h2 style="color:#905969"> {{_('Browse our Catalog of Services')}}</h2></a>    
                     
                     <p>{{_('Search through all the fragrances and brands with their composition')}}
                         <br>{{_('Apply for Advetisements & Brand Ambassadors')}}</p>
@@ -181,7 +172,7 @@
                     
                     <br>
                     
-                    <a href="{{ url('about_us')}}"><h2>{{_('About Us')}}</h2></a>
+                    <a href="{{ url('about_us')}}"><h2 style="color:#905969">{{_('About Us')}}</h2></a>
 
                 </div>
 
@@ -206,7 +197,7 @@
 
                 <div class="links">
 
-                    <a href="{{ url('genie_input')}}"><h2>{{_('Lets grant your wish to smell good')}}</h2></a>
+                    <a href="{{ url('genie_input')}}"><h2 style="color:#905969">{{_('Lets grant your wish to smell good')}}</h2></a>
                     
                     <p>{{_('The AI Powered Fragrance Genie tells you other fragrances')}}
                         <br>{{_('which you will like based on your preferences')}}
@@ -215,19 +206,18 @@
                     <br>
                     
                     <a href="{{ url('catalog')}}"><h2>{{_('')}}</h2>                        
-                    <h2> {{_('Browse our Catalog of Services')}}</h2></a>    
+                    <h2 style="color:#905969"> {{_('Browse our Catalog of Services')}}</h2></a>    
                     
                     <p>{{_('Search through all the fragrances and brands with their composition')}}
                         <br>{{_('Apply for Advetisements & Brand Ambassadors')}}</p>
     
                     <br><br>
                     
-                
-                    <a><h2 style="color: #636b6f;">{{_('PREMIUM FEATURES COMING SOON')}}</h2></a>
+                    <a><h2 style="color: #636b6f">{{_('PREMIUM FEATURES COMING SOON')}}</h2></a>
                     
                     <br>
                     
-                    <a href="{{ url('about_us')}}"><h2>{{_('About Us')}}</h2></a>
+                    <a href="{{ url('about_us')}}"><h2 style="color:#905969">{{_('About Us')}}</h2></a>
 
                 </div>
 

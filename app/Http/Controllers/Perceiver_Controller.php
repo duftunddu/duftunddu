@@ -84,9 +84,8 @@ class Perceiver_Controller extends Controller
    $new->like       = $request->input('like');
    $new->comment    = $request->input('comment');
    //  $new-> = $request->input('');
-   //  $new-> = $request->input('');
-   //  $new-> = $request->input('');
-   //  $new-> = $request->input('');
+
+   $request->session()->reflash();
 
    $new->save();
   });

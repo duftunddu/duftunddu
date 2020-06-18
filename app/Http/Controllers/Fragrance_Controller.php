@@ -23,10 +23,12 @@ class Fragrance_Controller extends Controller
   $accords     = accord::all();
   $ingredients = ingredient::all();
   $brands      = fragrance_brand::all();
-  return view('forms.fragrance_entry')
-   ->with('accords', $accords)
-   ->with('ingredients', $ingredients)
-   ->with('brands', $brands);
+  
+   return view('forms.fragrance_entry',
+   ['accords' => $accords,
+   'ingredients' => $ingredients,
+   'brands' => $brands]
+  );
  }
 
  /**
@@ -51,7 +53,7 @@ class Fragrance_Controller extends Controller
    'brand_id'             => 'required',
    'name'                 => 'required',
    'type'                 => 'required',
-   'gender_appropriation' => 'required',
+   'gender'               => 'required',
    'cost'                 => 'required',
   ]);
 
@@ -59,13 +61,12 @@ class Fragrance_Controller extends Controller
    $new           = new fragrance();
    $new->brand_id = $request->input('brand_id');
    $new->name     = $request->input('name');
-   $new->tier     = $request->input('type');
-   $new->origin   = $request->input('gender_appropriation');
-   $new->origin   = $request->input('Cost');
+   $new->type     = $request->input('type');
+   $new->gender_appropriation   = $request->input('gender');
+   $new->cost   = $request->input('cost');
    $new->save();
-  });
 
-  $fragrance_id = DB::getPdo()->lastInsertId();
+   $fragrance_id = DB::getPdo()->lastInsertId();
 
   // if ($request->accord_id) {
 
@@ -77,11 +78,13 @@ class Fragrance_Controller extends Controller
   //   $new->save();
   //  }
   // }
-
+  
   $new               = new fragrance_accord();
   $new->fragrance_id = $fragrance_id;
-  $new->accord_id    = $request->input("id");
+  $new->accord_id    = $request->input("accord_id");
   $new->save();
+
+// });
 
   // if ($request->ingredient_id) {
 
@@ -103,12 +106,15 @@ class Fragrance_Controller extends Controller
 
   $new                = new fragrance_ingredient();
   $new->fragrance_id  = $fragrance_id;
-  $new->ingredient_id = $request->input('id');
+  $new->ingredient_id = $request->input('ingredient_id');
   $new->note          = $request->input('note');
   $new->strength      = $request->input('strength');
   $new->save();
+  });
 
-  return view('forms.fragrance_entry');
+  $request->session()->reflash();
+
+  return $this->index();
  }
 
  /**

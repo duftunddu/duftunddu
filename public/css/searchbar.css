@@ -1,0 +1,126 @@
+/* Body */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    min-height: 100vh;
+    color: #57585c;
+    color: var(--color-text);
+    background: #fff;
+    background: var(--color-bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Icons */
+.icon {
+    display: block;
+    width: 1.8vw;
+    /* height: 1.8vw; */
+    /* margin: 0 auto; */
+    fill: currentColor;
+}
+
+main {
+    position: relative;
+    width: 100%;
+}
+
+/* .content {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    min-height: 100vh;
+    flex-wrap: wrap;
+} */
+
+/* .demo-3 {
+    --color-text: #333;
+    --color-bg: #fff;
+    background-image: url('https://i.imgur.com/ajvasyu.jpg');
+    background-size: cover;
+    background-position: bottom center;
+    --color-link: #aaa;
+    --color-link-hover: #333;
+    --color-info: #333;
+} */
+
+/* .info {
+    position: fixed;
+    right: 1.51vw;
+    bottom: 1.51vw;
+} */
+
+.search {
+  pointer-events: auto;
+  position: relative;
+  /* left: 1.51vw; */
+  /* top: 24.18vw; */
+  /* height: 3.7vw; */
+}
+
+.search__input {
+    padding: 1.2vw;
+    background: none;
+    border: 0;
+    width: 18.14vw;
+    background: #fff;
+    border-radius: 2.27vw;
+    font-weight: bold;
+    opacity: 0;
+}
+
+.search__input:focus {
+    outline: none;
+    opacity: 1;
+}
+
+.search__input:focus ~ .search__feedback span {
+    opacity: 0.5;
+}
+
+.search__feedback {
+  position: absolute;
+  top: 0.72vw;
+  left: 2.41vw;
+  /* right: 0.6vw; */
+  /* right: 3.6vw; */
+  /* bottom: 0.1vw; */
+  font-weight: bold;
+  display: flex;
+  pointer-events: none;
+  font-size: 1.81vw;
+}
+
+.search__feedback span {
+    flex: none;
+    white-space: pre;
+}
+
+.btn {
+    margin: 0;
+    padding: 0;
+    top: 1.2vw;
+    left: 31.8vw;
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-size: 1.2vw;
+    position: absolute;
+    z-index: 10;
+    /* right: 0.97vw; */
+    /* top: 0.97vw; */
+    color: #333;
+}
+
+.btn:focus {
+    outline: none;
+}
+
+@media screen and (max-width: 55em) {
+    .search {
+        width: 14.51vw;
+        margin: 1.2vw auto;
+        
+    }
+}

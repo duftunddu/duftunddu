@@ -45,7 +45,9 @@ class Ingredient_Controller extends Controller
    $new->name = $request->input('name');
    $new->save();
   });
-  $request->flash();
+  
+//   $request->flash();
+  $request->session()->reflash();
   return view('forms.note_entry');
  }
 

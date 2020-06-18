@@ -15,7 +15,6 @@ class Fragrance_Brand_Controller extends Controller
   */
  public function index()
  {
-  // echo($request->BrandName);
   return view('forms.brand_entry');
  }
 
@@ -48,10 +47,25 @@ class Fragrance_Brand_Controller extends Controller
    $new->name   = $request->input('name');
    $new->tier   = $request->input('tier');
    $new->origin = $request->input('origin');
+   $new = accord::firstOrNew(
+      ['name' => $request->name],
+      ['tier' => $request->tier],
+      ['origin' => $request->origin],
+   );
+   
    $new->save();
   });
 
+  $request->session()->reflash();
+  
   return view('forms.brand_entry');
+ }
+
+ public function index2()
+ {
+    $fragrance_Brands = Fragrance_Brand::all();
+    // return view('forms.brand_output.brand_output')->with('fragrance_Brand',$fragrance_Brands); 
+    return view('forms.brand_output',['fragrance_Brand' => $fragrance_Brands]); 
  }
 
  /**
@@ -62,7 +76,8 @@ class Fragrance_Brand_Controller extends Controller
   */
  public function show(Fragrance_Brand $fragrance_Brand)
  {
-  //
+  //   $brand = Fragrance_Brand::find($fragrance_Brand);
+  return view('forms.brand_show',['brand'=> $fragrance_Brand]);
  }
 
  /**
