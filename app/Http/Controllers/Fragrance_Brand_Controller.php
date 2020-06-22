@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Fragrance_Brand;
+use App\Country;
+use App\State;
+use App\City;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -13,10 +16,15 @@ class Fragrance_Brand_Controller extends Controller
   *
   * @return \Illuminate\Http\Response
   */
- public function index()
- {
-  return view('forms.brand_entry');
- }
+   public function index()
+   {
+      $countries      =  Country::all();
+      //   $continents      =  Continent:all();
+      
+      return view('forms.brand_entry',
+         ['countries'   =>    $countries]
+      );
+   }
 
  /**
   * Show the form for creating a new resource.
@@ -34,38 +42,44 @@ class Fragrance_Brand_Controller extends Controller
   * @param  \Illuminate\Http\Request  $request
   * @return \Illuminate\Http\Response
   */
- public function store(Request $request)
- {
-  $this->validate($request, [
-   'name'   => 'required',
-   'tier'   => 'required',
-   'origin' => 'required',
-  ]);
+   public function store(Request $request)
+   {
+      $this->validate($request, [
+         'name'   => 'required',
+         'tier'   => 'required',
+         'origin' => 'required',
+      ]);
 
-  DB::transaction(function () use ($request) {
-   $new         = new fragrance_brand();
-   $new->name   = $request->input('name');
-   $new->tier   = $request->input('tier');
-   $new->origin = $request->input('origin');
-   $new = accord::firstOrNew(
-      ['name' => $request->name],
-      ['tier' => $request->tier],
-      ['origin' => $request->origin],
-   );
-   
-   $new->save();
-  });
+      DB::transaction(function () use ($request) {
+         // $new         = new fragrance_brand();
+         // $new->name   = $request->input('name');
+         
+         $new = fragrance_brand::firstOrNew(
+            ['name' => $request->name]
+         );
+         
+         $new->tier   = $request->input('tier');
+         $new->origin = $request->input('origin');
+         
+         $new->save();
+      });
 
-  $request->session()->reflash();
-  
-  return view('forms.brand_entry');
- }
+      $request->session()->reflash();
+      
+      $countries      =  Country::all();
+      
+      return view('forms.brand_entry',
+         ['countries'   =>    $countries]
+      );
+   }
 
  public function index2()
  {
     $fragrance_Brands = Fragrance_Brand::all();
     // return view('forms.brand_output.brand_output')->with('fragrance_Brand',$fragrance_Brands); 
-    return view('forms.brand_output',['fragrance_Brand' => $fragrance_Brands]); 
+    return view('forms.brand_output',[
+      'fragrance_Brand' => $fragrance_Brands
+    ]);
  }
 
  /**

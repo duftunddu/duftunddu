@@ -19,26 +19,28 @@
         <style>
 
             html, body {
-                background-image: url('https://cdn.shopify.com/s/files/1/1600/9217/products/Gem-Cut-Decanter-Detail.jpg?v=1498771896');
-                background-attachment: fixed;
-                color: #636b6f;
+                background-image: url('../images/laura-chouette-5qRgJ8ISEpA-unsplash.jpg');
+                /* background-attachment: fixed; */
+                background-repeat: no-repeat;
+                background-position: -80px top;
+                background-size: contain;
+                background-color: #f5f5f3;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
-                /* font-size: 20px; */
                 height: 100vh;
                 margin: 0;
             }
 
             .full-height {
-                height: 90vh;
+                height: 80vh;
             }
 
             .flex-center {
-                align-items: left;
+                align-items: right;
                 display: flex;
-                justify-content: left;
+                justify-content: right;
                 padding-top: 7.55vw;
-                padding-left: 10.9vw;
+                padding-left: 55%;
             }
 
             .position-ref {
@@ -59,16 +61,24 @@
                 font-size: 6.4vw;
             }
 
+            .heading{
+                font-size: 1.4vw;
+            }
+
             .links > a {
-                color: #636b6f;
+                /* color: #636b6f; */
+                color: #201a1d;
                 /* padding: 0 1.88px; */
                 font-size: 0.97vw;
                 font-weight: 600;
-                letter-spacing: .12vw;
+                letter-spacing: .15vw;
                 text-decoration: none;
                 text-transform: uppercase;
             }
 
+            .top-pad{
+                padding-top: 18vh;
+            }
             .m-b-md {
                 margin-bottom: 2.26vw;
             }
@@ -105,7 +115,7 @@
                 </div>
 
                 <div class="heading m-b-md">
-                    <h1>{{_('Search Engine')}}</h1>
+                    <h1>{{_('Explore')}}</h1>
                 </div>
 
                 <br><br>
@@ -126,18 +136,18 @@
                             <use xlink:href="#icon-search"></use>
                         </svg>
                     </button>
-                    <span class="search__feedback" style="color:rgba(144, 89, 105, 0.6)">{{_('type fragrance or brand name')}}</span>
+                    <span class="search__feedback" style="color:rgba(202, 56, 73, 0.7)">{{_('type here')}}</span>
+                
                 </form>
 
+                <div class= "top-pad">
+                    <div class="links">     
+        
+                        <a style="padding-top=100px"><h2>{{_('PREMIUM FEATURES COMING SOON')}}</h2></a>
+                            <br>
+                        <a href="{{ url('about_us')}}"><h2>{{_('About Us')}}</h2></a>
 
-                <br><br><br><br><br><br>
-
-                <div class="links">     
-    
-                    <a><h2>{{_('PREMIUM FEATURES COMING SOON')}}</h2></a>
-                        <br>
-                    <a href="{{ url('about_us')}}"><h2>{{_('About Us')}}</h2></a>
-
+                    </div>
                 </div>
 
             </div>

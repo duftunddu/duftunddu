@@ -15,12 +15,15 @@ class CreatePerceiverAccordTable extends Migration
     {
         Schema::create('perceiver_accord', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamps();
+            $table->timestamp('created_at');
             $table->unsignedBigInteger('perceiver_id');
-            $table->foreign('perceiver_id')->references('id')->on('perceiver');
+            $table->foreign('perceiver_id')->references('id')->on('perceiver')
+            ->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedMediumInteger('accord_id');
-            $table->foreign('accord_id')->references('id')->on('accord');
+            $table->foreign('accord_id')->references('id')->on('accord')
+            ->onUpdate('cascade')->onDelete('cascade');
         });
+
     }
 
     /**

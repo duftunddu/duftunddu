@@ -18,10 +18,10 @@ class Search_Queries_Controller extends Controller
     public function index()
     {
         // Desktop
-        // return view('forms.search_engine');
+        return view('forms.search_engine');
 
         // Mobile
-        return view('forms.search_engine_m');
+        // return view('forms.search_engine_m');
 
     }
 

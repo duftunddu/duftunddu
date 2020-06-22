@@ -15,18 +15,20 @@ class CreatePerceiverTable extends Migration
     {
         Schema::create('perceiver', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamps();
-            $table->unsignedBigInteger('users_detail_id');
-            $table->foreign('users_detail_id')->references('id')->on('users_detail');
+            $table->timestamp('created_at');
+            $table->unsignedBigInteger('users_id');
+            $table->foreign('users_id')->references('id')->on('users')
+            ->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedInteger('fragrance_id');
-            $table->foreign('fragrance_id')->references('id')->on('fragrance');
+            $table->foreign('fragrance_id')->references('id')->on('fragrance')
+            ->onUpdate('cascade')->onDelete('cascade');
 			$table->unsignedTinyInteger('gender');
+            $table->date('dob');
+            $table->unsignedTinyInteger('age');
 			$table->unsignedTinyInteger('profession');
-			$table->unsignedTinyInteger('age');
             $table->unsignedTinyInteger('skin_type');
             $table->unsignedTinyInteger('sweat');
 			$table->float('height');
-			$table->unsignedTinyInteger('bodyshape');
 			$table->float('weight');
             $table->unsignedTinyInteger('country');
 			$table->unsignedTinyInteger('city');
@@ -34,7 +36,9 @@ class CreatePerceiverTable extends Migration
 			$table->unsignedTinyInteger('season');
 			$table->string('comment',256);
             $table->unsignedTinyInteger('like');
+            $table->unsignedTinyInteger('status');
         });
+
     }
 
     /**

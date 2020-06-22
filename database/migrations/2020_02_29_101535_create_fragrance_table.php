@@ -13,16 +13,19 @@ class CreateFragranceTable extends Migration
   */
  public function up()
  {
-  Schema::create('fragrance', function (Blueprint $table) {
-   $table->increments('id');
-   $table->timestamps();
-   $table->unsignedMediumInteger('brand_id');
-   $table->foreign('brand_id')->references('id')->on('fragrance_brand');
-   $table->string('name', 100);
-   $table->unsignedTinyInteger('type');
-   $table->unsignedTinyInteger('gender_appropriation');
-   $table->unsignedInteger('cost');
-  });
+    Schema::create('fragrance', function (Blueprint $table) {
+        $table->increments('id');
+        $table->timestamps();
+        $table->unsignedMediumInteger('brand_id');
+        $table->foreign('brand_id')->references('id')->on('fragrance_brand')
+        ->onUpdate('cascade')->onDelete('cascade');
+        $table->string('name',100);
+        $table->unsignedTinyInteger('type');
+        $table->unsignedTinyInteger('gender_appropriation');
+        $table->unsignedInteger('cost');
+        $table->string('currency',4);
+    });
+
  }
 
  /**

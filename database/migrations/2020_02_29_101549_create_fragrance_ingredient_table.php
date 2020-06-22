@@ -13,16 +13,18 @@ class CreateFragranceIngredientTable extends Migration
   */
  public function up()
  {
-  Schema::create('fragrance_ingredient', function (Blueprint $table) {
-   $table->bigIncrements('id');
-   $table->timestamps();
-   $table->unsignedInteger('fragrance_id');
-   $table->foreign('fragrance_id')->references('id')->on('fragrance');
-   $table->unsignedMediumInteger('ingredient_id');
-   $table->foreign('ingredient_id')->references('id')->on('ingredient');
-   $table->unsignedTinyInteger('note');
-   $table->unsignedTinyInteger('strength');
-  });
+    Schema::create('fragrance_ingredient', function (Blueprint $table) {
+        $table->bigIncrements('id');
+        $table->unsignedInteger('fragrance_id');
+        $table->foreign('fragrance_id')->references('id')->on('fragrance')
+        ->onUpdate('cascade')->onDelete('cascade');
+        $table->unsignedMediumInteger('ingredient_id');
+        $table->foreign('ingredient_id')->references('id')->on('ingredient')
+        ->onUpdate('cascade')->onDelete('cascade');
+        $table->unsignedTinyInteger('note');
+        $table->unsignedTinyInteger('intensity');
+    });
+
  }
 
  /**

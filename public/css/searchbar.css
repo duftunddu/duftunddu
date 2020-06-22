@@ -82,7 +82,8 @@ main {
 .search__feedback {
   position: absolute;
   top: 0.72vw;
-  left: 2.41vw;
+  left: 12.9vw;
+  /* left: 2.41vw; */
   /* right: 0.6vw; */
   /* right: 3.6vw; */
   /* bottom: 0.1vw; */
@@ -90,6 +91,7 @@ main {
   display: flex;
   pointer-events: none;
   font-size: 1.81vw;
+  letter-spacing: .15vw;
 }
 
 .search__feedback span {

@@ -19,6 +19,7 @@ class CreateFragranceBrandTable extends Migration
             $table->string('name',100);
             $table->unsignedTinyInteger('tier');
             $table->string('origin', 45);
+            $table->unsignedTinyInteger('discontinued')->default('1');
         });
     }
 

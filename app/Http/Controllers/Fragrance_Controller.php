@@ -25,10 +25,10 @@ class Fragrance_Controller extends Controller
   $brands      = fragrance_brand::all();
   
    return view('forms.fragrance_entry',
-   ['accords' => $accords,
-   'ingredients' => $ingredients,
-   'brands' => $brands]
-  );
+    ['accords' => $accords,
+    'ingredients' => $ingredients,
+    'brands' => $brands]
+   );
  }
 
  /**
@@ -49,6 +49,10 @@ class Fragrance_Controller extends Controller
   */
  public function store(Request $request)
  {
+  $accords = $request->accord_ids;
+  var_dump($accords);
+  return;
+
   $this->validate($request, [
    'brand_id'             => 'required',
    'name'                 => 'required',

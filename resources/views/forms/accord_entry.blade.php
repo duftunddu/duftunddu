@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-<title>{{_('Accord Entry - The AI Powered Fragrance Genie')}}</title>
+<title>{{_('Accord Entry | The AI Powered Fragrance Genie | Duft Und Du')}}</title>
 
 @section('content')
     <div class="container">

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-<title>{{('Brand Entry - Duft Und Du')}}</title>
+<title>{{('Brand Entry | The AI Powered Fragrance Genie')}}</title>
 
 @section('content')
     <div class="container">
@@ -37,13 +37,19 @@
                                     <select id="tier" type="tier" class="form-control @error('tier') is-invalid @enderror" name="tier" value="{{ old('tier')}}" required>
                                         <option value="" selected="selected" disabled="disabled">-- Select Tier --</option>
                                         <option value="1">
-                                            {{'Low'}}
+                                            {{'Low-End'}}
                                         </option>
                                         <option value="2">
-                                            {{'Medium'}}
+                                            {{'Low'}}
                                         </option>
                                         <option value="3">
+                                            {{'Mid'}}
+                                        </option>
+                                        <option value="4">
                                             {{'High'}}
+                                        </option>
+                                        <option value="5">
+                                            {{'High-End'}}
                                         </option>
                                     </select>
 
@@ -64,21 +70,9 @@
                                     
                                     <select id="origin" type="origin" class="form-control @error('origin') is-invalid @enderror" name="origin" value="{{ old('origin')}}" required>
                                     <option value="" selected="selected" disabled="disabled">-- Select Country --</option>
-                                    {{-- @foreach($countries as $country)
+                                    @foreach($countries as $country)
                                         <option value="{{$country->id}}">{{$country->name}}</option>
-                                    @endforeach --}}
-                                    <option value="1">
-                                        {{'Europe'}}
-                                    </option>
-                                    <option value="2">
-                                        {{'America'}}
-                                    </option>
-                                    <option value="3">
-                                        {{'Asia'}}
-                                    </option>
-                                    <option value="4">
-                                        {{'Africa'}}
-                                    </option>
+                                    @endforeach
                                 </select>
                                 @if($errors->has('origin'))
                                     <div class="invalid-feedback">
@@ -87,7 +81,7 @@
                                 @endif
                                 </div>
                             </div>
-
+                            
                             {{-- Submit --}}
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">

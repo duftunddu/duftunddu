@@ -55,7 +55,7 @@ class Accord_Controller extends Controller
   ]);
 
   DB::transaction(function () use ($request) {
-   $new       = new accord();
+  //  $new       = new accord();
   //  $new->name = $request->input('name');
    $new = accord::firstOrNew(['name' => $request->name]);
    $new->save();

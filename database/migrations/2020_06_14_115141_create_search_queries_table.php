@@ -15,23 +15,25 @@ class CreateSearchQueriesTable extends Migration
     {
         Schema::create('search_queries', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamps();
-            $table->unsignedBigInteger('users_detail_id');
-            $table->foreign('users_detail_id')->references('id')->on('users_detail');
-            $table->unsignedTinyInteger('gender');
-            $table->unsignedTinyInteger('profession');
-            $table->date('dob');
-            $table->unsignedTinyInteger('age');
-            $table->unsignedTinyInteger('skin_type');
-            $table->unsignedTinyInteger('sweat');
-            $table->float('height');
-            $table->float('weight');
-            $table->unsignedTinyInteger('country');
-            $table->unsignedTinyInteger('city');
-            $table->unsignedTinyInteger('climate');
-            $table->unsignedTinyInteger('season');
-            $table->string('query',256);
+            $table->timestamp('created_at');
+            $table->unsignedBigInteger('users_id')->nullable();
+            $table->foreign('users_id')->references('id')->on('users')
+            ->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedTinyInteger('gender')->nullable();
+            $table->unsignedTinyInteger('profession')->nullable();
+            $table->date('dob')->nullable();
+            $table->unsignedTinyInteger('age')->nullable();
+            $table->unsignedTinyInteger('skin_type')->nullable();
+            $table->unsignedTinyInteger('sweat')->nullable();
+            $table->float('height')->nullable();
+            $table->float('weight')->nullable();
+            $table->unsignedTinyInteger('country')->nullable();
+            $table->unsignedTinyInteger('city')->nullable();
+            $table->unsignedTinyInteger('climate')->nullable();
+            $table->unsignedTinyInteger('season')->nullable();
+            $table->string('query',40);
         });
+
     }
 
     /**

@@ -6,8 +6,11 @@
 {{-- <script src="https://gist.github.com/ag14spirit/fbf877576c9d6b78899e3ad02fe92b50.js"></script> --}}
 
 @section('content')
+{{-- Add Another Function --}}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 
 {{-- Range Slider Function --}}
+{{-- Source: https://codepen.io/Aceamar/pen/LKLXKK --}}
 <link href="{{ asset('css/range_slider_strength.css') }}" rel="stylesheet">
 <script src="{{ asset('js/range_slider_strength.js') }}" defer></script>
 
@@ -66,7 +69,7 @@
                                 <div class="col-md-6">
 
                                     <select id="type" type="type" class="form-control @error('type') is-invalid @enderror" name="type" value="{{ old('type')}}" required>
-                                        <option value="" selected>-- Select Type --</option>
+                                        <option selected="selected" disabled="disabled" value="" selected>-- Select Type --</option>
                                         <option value="1">
                                             {{'Perfume (Parfum)'}}
                                         </option>
@@ -88,9 +91,9 @@
                                         <option value="7">
                                             {{'Mist'}}
                                         </option>
-                                        <option value="8">
+                                        {{-- <option value="8">
                                             {{'Air Freshner'}}
-                                        </option>
+                                        </option> --}}
                                     </select>
 
                                     @error('type')
@@ -133,7 +136,7 @@
                                 <label for="cost" class="col-md-4 col-from-label text-md-right">{{ __('Cost:')}}</label>
 
                                 <div class="col-md-6">
-                                    <input id="cost" type="cost" class="form-control @error('cost') is-invalid @enderror" name="cost" value="{{ ('')}}" required>
+                                    <input id="cost" type="number" class="form-control @error('cost') is-invalid @enderror" name="cost" value="{{ ('')}}" required>
 
                                     @error('cost')
                                     <span class="invalid-feeback" role="alert">
@@ -143,14 +146,6 @@
                                 </div>
                             </div>
 
-                            {{-- <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Submit') }}
-                                </button>
-                            </div>
-                        </div>
-                         --}}
                         </div>
                     </div>
 
@@ -168,21 +163,42 @@
 
                                 <div class="col-md-6">
 
-                                    <select id="accord_id" type="accord_id" class="form-control @error('accord_id') is-invalid @enderror" name="accord_id" value="{{ old('')}}" required>
+                                    <div class="table-responsive">
+                                        <table class="table" id="dynamic_field">
+                                                  
+                                          <tr>
+                                                    
+                                            <td>
+                                              <select id="accord_id" type="accord_id" class="form-control @error('accord_id') is-invalid @enderror" name="accord_id" value="{{ old('')}}" required>
+                                                <option value="" selected="selected" disabled="disabled">-- Select Accord --</option>
+                                                  @foreach($accords as $accord)
+                                                    <option value="{{$accord->id}}">{{$accord->name}}</option>
+                                                  @endforeach
+                                              </select>
+                
+                                            </td>
+              
+                                            {{-- + / Add Another Button --}}
+                                            <td><button type="button" name="add" id="add" class="btn btn-success">{{ _('+')}}</button></td>
+                                                  
+                                            </tr>
+                                          </table>
+                                      </div>
+
+                                    {{-- <select id="accord_id" type="accord_id" class="form-control @error('accord_id') is-invalid @enderror" name="accord_id" value="{{ old('')}}" required>
                                         <option value="" selected="selected" disabled="disabled">-- Select Accord --</option>
                                         @foreach($accords as $accord)
                                             <option value="{{$accord->id}}">{{$accord->name}}</option>
                                         @endforeach
-                                    </select>
+                                    </select> --}}
 
-                                    @error('accord_id')
+                                    {{-- @error('accord_id')
                                     <span class="invalid-feeback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                    @enderror
-                                </div>
+                                    @enderror --}}
+                                </div> 
 
-                            </div>
 
                             {{-- Button: Add Another Accord --}}
                             {{-- <div class="form-group row mb-0">
@@ -190,8 +206,8 @@
                                     <button type="another" class="btn btn-secondary">
                                         {{ __('Add Another Accord') }}
                                     </button>
-                                </div>
-                            </div> --}}
+                                </div>--}}
+                            </div> 
 
                         </div>
                     </div>
@@ -210,13 +226,35 @@
 
                                 <div class="col-md-6">
 
-                                    <select id="ingredient_id" type="ingredient_id" class="form-control @error('ingredient_id') is-invalid @enderror" name="ingredient_id" value="{{ old('')}}" required>
+                                    <div class="table-responsive">
+                                        <table class="table" id="dynamic_field">
+                                                  
+                                          <tr>
+                                                    
+                                            <td>
+                                              <select id="accord_id" type="accord_id" class="form-control @error('accord_id') is-invalid @enderror" name="accord_id" value="{{ old('')}}" required>
+                                                <option value="" selected="selected" disabled="disabled">-- Select Accord --</option>
+                                                  @foreach($accords as $accord)
+                                                    <option value="{{$accord->id}}">{{$accord->name}}</option>
+                                                  @endforeach
+                                              </select>
+                
+                                            </td>
+              
+                                            {{-- + / Add Another Button --}}
+                                            <td><button type="button" name="add" id="add" class="btn btn-success">{{ _('+')}}</button></td>
+                                                  
+                                            </tr>
+                                          </table>
+                                      </div>
+
+                                    {{-- <select id="ingredient_id" type="ingredient_id" class="form-control @error('ingredient_id') is-invalid @enderror" name="ingredient_id" value="{{ old('')}}" required>
                                         <option value="" selected="selected" disabled="disabled">-- Select Ingredient --</option>
                                         @foreach($ingredients as $ingredient)
                                             <option value="{{$ingredient->id}}">{{$ingredient->name}}</option>
                                         @endforeach
 
-                                    </select>
+                                    </select> --}}
 
                                     @error('ingredient_id')
                                     <span class="invalid-feeback" role="alert">
@@ -298,4 +336,35 @@
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function(){
+          var i=1;
+          $('#add').click(function(){
+            i++;
+            // $('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" name="name[]" placeholder="Enter your Name" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+            
+            $('#dynamic_field').append('<tr id="row'+i+'"><td><select type="accord_ids" name="accord_ids[]" value="{{ old('')}}" class="form-control" required><option value="" selected="selected" disabled="disabled">-- Select Accord --</option>@foreach($accords as $accord)<option value="{{$accord->id}}">{{$accord->name}}</option>@endforeach</td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+          
+          });
+          
+          $(document).on('click', '.btn_remove', function(){
+            var button_id = $(this).attr("id"); 
+            $('#row'+button_id+'').remove();
+          });
+          
+          $('#submit').click(function(){		
+            $.ajax({
+              url:"name.php",
+              method:"POST",
+              data:$('#add_name').serialize(),
+              success:function(data)
+              {
+                alert(data);
+                $('#add_name')[0].reset();
+              }
+            });
+          });
+          
+        });
+        </script>  
 @endsection

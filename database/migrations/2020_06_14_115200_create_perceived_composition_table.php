@@ -15,14 +15,17 @@ class CreatePerceivedCompositionTable extends Migration
     {
         Schema::create('perceived_composition', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamps();
+            $table->timestamp('created_at');
             $table->unsignedBigInteger('perceiver_id');
-            $table->foreign('perceiver_id')->references('id')->on('perceiver');
+            $table->foreign('perceiver_id')->references('id')->on('perceiver')
+            ->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedMediumInteger('ingredient_id');
-            $table->foreign('ingredient_id')->references('id')->on('ingredient');
+            $table->foreign('ingredient_id')->references('id')->on('ingredient')
+            ->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedTinyInteger('note');
-            $table->unsignedTinyInteger('strength');
+            $table->unsignedTinyInteger('intensity');
         });
+
     }
 
     /**

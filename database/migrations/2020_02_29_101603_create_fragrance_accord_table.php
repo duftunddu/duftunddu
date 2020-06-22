@@ -13,14 +13,17 @@ class CreateFragranceAccordTable extends Migration
   */
  public function up()
  {
-  Schema::create('fragrance_accord', function (Blueprint $table) {
-   $table->bigIncrements('id');
-   $table->timestamps();
-   $table->unsignedInteger('fragrance_id');
-   $table->foreign('fragrance_id')->references('id')->on('fragrance');
-   $table->unsignedMediumInteger('accord_id');
-   $table->foreign('accord_id')->references('id')->on('accord');
-  });
+    Schema::create('fragrance_accord', function (Blueprint $table) {
+        $table->bigIncrements('id');
+        $table->timestamps();
+        $table->unsignedInteger('fragrance_id');
+        $table->foreign('fragrance_id')->references('id')->on('fragrance')
+        ->onUpdate('cascade')->onDelete('cascade');
+        $table->unsignedMediumInteger('accord_id');
+        $table->foreign('accord_id')->references('id')->on('accord')
+        ->onUpdate('cascade')->onDelete('cascade');
+    });
+
  }
 
  /**
