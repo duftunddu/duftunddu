@@ -1,20 +1,27 @@
-$('.add').on('click', add);
-$('.remove').on('click', remove);
+// Hold button with mouse / select with tab and hold spacebar
 
-function add() {
-    var new_chq_no = parseInt($('#total_chq').val()) + 1;
-    var new_input = "<input type='text' id='new_" + new_chq_no + "'>";
+let duration = 1600,
+    success = button => {
+        //Success function
+        button.classList.add('success');
+    };
 
-    $('#new_chq').append(new_input);
-
-    $('#total_chq').val(new_chq_no);
-}
-
-function remove() {
-    var last_chq_no = $('#total_chq').val();
-
-    if (last_chq_no > 1) {
-        $('#new_' + last_chq_no).remove();
-        $('#total_chq').val(last_chq_no - 1);
-    }
-}
+document.querySelectorAll('.button-hold').forEach(button => {
+    button.style.setProperty('--duration', duration + 'ms');
+    ['mousedown', 'touchstart', 'keypress'].forEach(e => {
+        button.addEventListener(e, ev => {
+            if (e != 'keypress' || (e == 'keypress' && ev.which == 32 && !button.classList.contains('process'))) {
+                button.classList.add('process');
+                button.timeout = setTimeout(success, duration, button);
+            }
+        });
+    });
+    ['mouseup', 'mouseout', 'touchend', 'keyup'].forEach(e => {
+        button.addEventListener(e, ev => {
+            if (e != 'keyup' || (e == 'keyup' && ev.which == 32)) {
+                button.classList.remove('process');
+                clearTimeout(button.timeout);
+            }
+        }, false);
+    });
+});

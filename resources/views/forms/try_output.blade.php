@@ -4,6 +4,10 @@
 @extends('layouts.app')
 
 @section('content')
+
+{{-- Button --}}
+<link href="{{ asset('css/custom_button.css') }}" rel="stylesheet">
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 
     <div class="container">
@@ -63,8 +67,9 @@
                               {{-- Button: Submit --}}
                               <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-10">
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('Submit') }}
+                                    <button type="submit" class="custom">
+                                      <span class="before">{{_('Submit')}}</span>
+                                      <span class="after">{{_('Submit')}}</span>
                                     </button>
                                 </div>
                               </div>

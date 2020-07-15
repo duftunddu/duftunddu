@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+{{-- Button --}}
+<link href="{{ asset('css/custom_button.css') }}" rel="stylesheet">
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -29,8 +32,9 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Confirm Password') }}
+                                <button type="submit" class="custom">
+                                    <span class="before">{{_('Confirm Password')}}</span>
+                                    <span class="after">{{_('Confirm Password')}}</span>
                                 </button>
 
                                 @if (Route::has('password.request'))

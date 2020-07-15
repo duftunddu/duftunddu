@@ -32,15 +32,15 @@ a --}}
 
                                 <div class="col-md-6">
 
-                                    <select id="gender" type="gender" class="form-control @error('gender') is-invalid @enderror" name="gender" value="{{ old('gender')}}" required>
+                                    <select id="gender" type="text" class="form-control @error('gender') is-invalid @enderror" name="gender" value="{{ old('gender')}}" required>
                                         <option value="" selected="selected" disabled="disabled">-- Select Gender --</option>
-                                        <option value="1">
+                                        <option value="Male">
                                             {{'Male'}}
                                         </option>
-                                        <option value="2">
+                                        <option value="Female">
                                             {{'Female'}}
                                         </option>
-                                        <option value="3">
+                                        <option value="Unisex">
                                             {{'Unisex'}}
                                         </option>
                                     </select>
@@ -597,15 +597,15 @@ a --}}
 
                                 <div class="col-md-6">
 
-                                    <select id="note_id" type="note_id" class="form-control @error('note_id') is-invalid @enderror" name="note_id" value="{{ old('')}}" required>
+                                    <select id="note_id" type="text" class="form-control @error('note_id') is-invalid @enderror" name="note_id" value="{{ old('')}}" required>
                                         <option value="" selected="selected" disabled="disabled">-- Select Note --</option>
-                                        <option value="1">
+                                        <option value="Top">
                                             {{'Top'}}
                                         </option>
-                                        <option value="2">
+                                        <option value="Middle">
                                             {{'Middle'}}
                                         </option>
-                                        <option value="3">
+                                        <option value="Base">
                                             {{'Base'}}
                                         </option>
                                     </select>

@@ -19,7 +19,9 @@ class CreateFragranceBrandAvailabilityTable extends Migration
             $table->unsignedMediumInteger('brand_id');
             $table->foreign('brand_id')->references('id')->on('fragrance_brand')
             ->onUpdate('cascade')->onDelete('cascade');
-            $table->string('country',45);
+            $table->unsignedInteger('country_id');
+            $table->foreign('country_id')->references('id')->on('countries')
+            ->onUpdate('cascade')->onDelete('cascade');
         });
 
     }

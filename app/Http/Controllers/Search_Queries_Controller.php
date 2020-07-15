@@ -43,19 +43,16 @@ class Search_Queries_Controller extends Controller
      */
     public function store(Request $request)
     {
-        // $var = Model::where('column', 'ilike', '%' . $request . '%');
-        // $brands = DB::table('fragrance_brand')->get();
-
-        // $brands = Fragrance_Brand::where('name', 'ilike', '%' . $request . '%');
-        // $fragrances = Fragrance::where('name', 'ilike', '%' . $request . '%');
-
         $query = $request->searchbox;
         $queries =  preg_split('/ +/', $query, null, PREG_SPLIT_NO_EMPTY);
         
-        $brands = DB::table('fragrance_brand')->where('name', '=', $queries[0])->get();
-        $fragrances = DB::table('fragrance')->where('name', '=', $queries[0])->get();
+        // $brands = DB::table('fragrance_brand')->where('name', '=', $queries[0])->get();
+        // $fragrances = DB::table('fragrance')->where('name', '=', $queries[0])->get();
         
-        unset($queries[0]);  
+        // unset($queries[0]);  
+        
+        $brands = collect();
+        $fragrances = collect();
 
         foreach($queries as $q) {
             $brands = $brands -> merge(DB::table('fragrance_brand')->where('name', '=', $q)->get());

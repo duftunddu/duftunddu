@@ -35,12 +35,26 @@ class Controller extends BaseController
   return view('forms.catalog');
  }
  
+ public function footer()
+ {
+  return view('layouts.footer');
+ }
+
+ public function admin_links()
+ {
+  return view('forms.admin_links');
+ }
+
+ public function scroll()
+ {
+  return view('forms.scroll_down_button');
+ }
+
  public function try () {
    $accords = accord::all();
-
-  return view('forms.try',
-  ['accords' => $accords]
- );
+   return view('forms.try',[
+    'countries' => $accords
+  ]);
  }
 
  public function try_output (Request $request) {

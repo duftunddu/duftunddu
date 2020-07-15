@@ -19,18 +19,18 @@ class CreateSearchQueriesTable extends Migration
             $table->unsignedBigInteger('users_id')->nullable();
             $table->foreign('users_id')->references('id')->on('users')
             ->onUpdate('cascade')->onDelete('cascade');
-            $table->unsignedTinyInteger('gender')->nullable();
+            $table->string('gender',10)->nullable();
             $table->unsignedTinyInteger('profession')->nullable();
             $table->date('dob')->nullable();
             $table->unsignedTinyInteger('age')->nullable();
-            $table->unsignedTinyInteger('skin_type')->nullable();
+            $table->unsignedTinyInteger('skin_type_id')->nullable();
             $table->unsignedTinyInteger('sweat')->nullable();
             $table->float('height')->nullable();
             $table->float('weight')->nullable();
-            $table->unsignedTinyInteger('country')->nullable();
-            $table->unsignedTinyInteger('city')->nullable();
-            $table->unsignedTinyInteger('climate')->nullable();
-            $table->unsignedTinyInteger('season')->nullable();
+            $table->unsignedTinyInteger('country_id')->nullable();
+            $table->unsignedTinyInteger('city_id')->nullable();
+            $table->unsignedTinyInteger('climate_id')->nullable();
+            $table->unsignedTinyInteger('season_id')->nullable();
             $table->string('query',40);
         });
 

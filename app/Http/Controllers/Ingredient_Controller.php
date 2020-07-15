@@ -36,19 +36,20 @@ class Ingredient_Controller extends Controller
   */
  public function store(Request $request)
  {
-  $this->validate($request, [
-   'name' => 'required',
+ 
+  $validatedData = $request->validate([
+    'name' => 'required|unique:ingredient',
   ]);
 
   DB::transaction(function () use ($request) {
-   $new       = new ingredient();
-   $new->name = $request->input('name');
-   $new->save();
+   
+    $new          = new Ingredient();
+    $new->name    = $request->input('name');
+    $new->save();
+
   });
-  
-//   $request->flash();
-  $request->session()->reflash();
-  return view('forms.note_entry');
+
+  return redirect('note_entry');
  }
 
  /**

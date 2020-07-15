@@ -50,18 +50,19 @@ class Accord_Controller extends Controller
  public function store(Request $request)
  {
 
-  $this->validate($request, [
-   'name' => 'required',
+  $validatedData = $request->validate([
+    'name' => 'required|unique:accord',
   ]);
-
+  
   DB::transaction(function () use ($request) {
-  //  $new       = new accord();
-  //  $new->name = $request->input('name');
-   $new = accord::firstOrNew(['name' => $request->name]);
-   $new->save();
+    
+    $new          = new Accord();
+    $new->name    = $request->input('name');
+    $new->save();
+
   });
 
-  return view('forms.accord_entry');
+  return redirect('accord_entry');
  }
 
  /**
@@ -108,4 +109,17 @@ class Accord_Controller extends Controller
  {
   //
  }
+
+
+  /**
+   * Get custom attributes for validator errors.
+   *
+   * @return array
+   */
+  public function attributes()
+  {
+      return [
+          'name' => 'accord',
+      ];
+  }
 }

@@ -3,15 +3,29 @@
 namespace App\Http\Controllers;
 
 use App\Accord;
-use App\Fragrance;
-use App\Fragrance_Brand;
 use App\Ingredient;
+
+use App\Fragrance_Brand;
+use App\Fragrance;
+use App\Fragrance_Profile;
+
 use App\Perceiver;
+use App\Perceiver_Accord;
+use App\Perceived_Composition;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+use Carbon\Carbon;
+
 class Perceiver_Controller extends Controller
 {
+
+    public function __construct()
+    {
+
+    }
+
  /**
   * Display a listing of the resource.
   *
@@ -19,16 +33,18 @@ class Perceiver_Controller extends Controller
   */
  public function index()
  {
-  $accords     = accord::all();
-  $ingredients = ingredient::all();
-  $brands      = fragrance_brand::all();
-  $fragrances  = fragrance::all();
+    $accords     = accord::all();
+    $ingredients = ingredient::all();
+    $brands      = fragrance_brand::all();
+    $fragrances  = fragrance::all();
 
-  return view('forms.genie_input')
-   ->with('accords', $accords)
-   ->with('ingredients', $ingredients)
-   ->with('brands', $brands)
-   ->with('fragrances', $fragrances);
+    return view('forms.perceiver_fragrance',[
+      'accords'       => $accords,
+      'ingredients'   => $ingredients,
+      'brands'        => $brands,
+      'fragrances'    => $fragrances
+      ]);
+
  }
 
  public function output()
@@ -60,37 +76,100 @@ class Perceiver_Controller extends Controller
   */
  public function store(Request $request)
  {
-  $this->validate($request, [
-   'name'                 => 'required',
-   'type'                 => 'required',
-   'gender_appropriation' => 'required',
-   'cost'                 => 'required',
-  ]);
+    // $validatedData = $request->validate([
+    //   'name'                 => 'required|unique:fragrance',
+    //   'brand_id'             => 'required',
+    //   'type'                 => 'required',
+    //   'gender'               => 'required',
+      
+    //   'accord_id'            => 'required',
+    //   'ingredient_id'        => 'required',
+    // ]);
 
-  DB::transaction(function () use ($request) {
-   $new             = new perceiver();
-   $new->gender     = $request->input('gender');
-   $new->profession = $request->input('profession');
-   $new->age        = $request->input('age');
-   $new->skin_type  = $request->input('skin_type');
-   $new->sweat      = $request->input('sweat');
-   $new->height     = $request->input('height');
-   $new->bodyshape  = $request->input('bodyshape');
-   $new->country    = $request->input('country');
-   $new->city       = $request->input('city');
-   $new->climate    = $request->input('climate');
-   $new->season     = $request->input('season');
-   $new->fragrance  = $request->input('fragrance');
-   $new->like       = $request->input('like');
-   $new->comment    = $request->input('comment');
-   //  $new-> = $request->input('');
+    // Profile Details
+    DB::transaction(function () use ($request) {
 
-   $request->session()->reflash();
+    $new                = new Perceiver();
 
-   $new->save();
+    // Change this to get profile ID automatically.
+    $profile      = DB::table('fragrance_profile')->where('users_id', request()->user()->id)->first();
+    $fragrance_id = $request->input('fragrance_id');
+    
+    $new->fragrance_id    = $fragrance_id;
+    $new->profile_id      = $profile->id;
+    $new->gender          = $profile->gender;
+    $new->dob             = $profile->dob;
+    $date                 = Carbon::parse($profile->dob);
+
+    $new->age             = Carbon::now()->diffInYears($date);
+    $new->profession_id   = $profile->profession_id;
+    $new->skin_type_id    = $profile->skin_type_id;
+    $new->sweat           = $profile->sweat;
+    $new->height          = $profile->height;
+    $new->weight          = $profile->weight;
+    $new->country_id      = $profile->country_id;
+    $new->city_id         = $profile->city_id;
+    $new->climate_id      = $profile->climate_id;
+    $new->season_id       = $profile->season_id;
+    $new->comment         = $request->input('comment');
+    $new->like            = $request->input('like');
+
+    $new->save();
+    
+    $perceiver_id = $new->id;
+    
+    // Accord
+    $new               = new Perceiver_Accord();
+    $new->perceiver_id = $perceiver_id;
+    $new->accord_id    = $request->input('accord_id');
+    $new->save();
+    
+    if ($request->accord_ids) {
+
+      
+      for ($i = 0; $i < count($request->accord_ids); $i++) {
+        
+        $new               = new Perceiver_Accord();
+        $new->perceiver_id = $perceiver_id;
+        $new->accord_id    = $request->input('accord_ids')[$i];
+
+        $new->save();
+
+      }
+    }
+
+    // Ingredient
+      $new                  = new Perceived_Composition();
+      $new->perceiver_id    = $perceiver_id;
+      $new->ingredient_id   = $request->input('ingredient_id');
+      $new->note            = $request->input('note');
+      $new->intensity       = $request->input('intensity');
+      $new->save();
+
+
+    if ($request->ingredient_ids) {
+
+      
+      for ($i = 0; $i < count($request->ingredient_ids); $i++) {
+        
+        $new                  = new Perceived_Composition();
+        $new->perceiver_id    = $perceiver_id;
+        $new->ingredient_id   = $request->input('ingredient_ids')[$i];
+        $new->note            = $request->input('notes')[$i];
+        $new->intensity       = $request->input('intensities')[$i];
+        
+        $new->save();
+      
+      }
+    }
+
   });
 
-  return view('forms.genie_input');
+  $request->session()->reflash();
+
+  // Return
+  return redirect('home');
+
  }
 
  /**

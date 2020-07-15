@@ -79,6 +79,7 @@
             .top-pad{
                 padding-top: 18vh;
             }
+
             .m-b-md {
                 margin-bottom: 2.26vw;
             }
@@ -102,7 +103,7 @@
                         <a href="{{ route('login') }}">Login &nbsp&nbsp&nbsp&nbsp</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
+                            <a href="{{ route('register') }}">Sign Up</a>
                         @endif
                     @endauth
                 </div>
@@ -119,6 +120,7 @@
                 </div>
 
                 <br><br>
+                
                 <form class="search" method="POST" action="{{ url('search_engine')}}">
                     @csrf
 

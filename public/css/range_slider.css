@@ -4,13 +4,14 @@
 	width: 800px;
   }
   label {
-	  width: 16%;
+	  padding-left: 7px;
+	  width: 24%;
 	  opacity: 0.7;
-	display:inline-block
+	  display:inline-block
   }
   
   .slideContainer {
-	  width: 55%;
+	  width: 63%;
 	  margin-top: 200px;
 	}
 	

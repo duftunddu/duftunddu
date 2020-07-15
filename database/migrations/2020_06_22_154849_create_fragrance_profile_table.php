@@ -20,19 +20,28 @@ class CreateFragranceProfileTable extends Migration
             $table->foreign('users_id')->references('id')->on('users')
             ->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedTinyInteger('user_check');
-            $table->unsignedTinyInteger('gender');
+            $table->string('gender',10);
             $table->date('dob');
-            $table->unsignedTinyInteger('profession');
-            $table->unsignedTinyInteger('skin_type');
+            $table->unsignedSmallInteger('profession_id');
+            $table->foreign('profession_id')->references('id')->on('profession')
+            ->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedTinyInteger('skin_type_id');
+            $table->foreign('skin_type_id')->references('id')->on('skin_type')
+            ->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedTinyInteger('sweat');
             $table->float('height');
             $table->float('weight');
-            $table->unsignedTinyInteger('country');
-            $table->unsignedTinyInteger('city');
-            $table->unsignedTinyInteger('climate');
-            $table->unsignedTinyInteger('season');
+            $table->unsignedTinyInteger('country_id');
+            $table->unsignedTinyInteger('city_id');
+            $table->unsignedTinyInteger('climate_id');
+            $table->foreign('climate_id')->references('id')->on('climate')
+            ->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedTinyInteger('season_id');
+            $table->foreign('season_id')->references('id')->on('season')
+            ->onUpdate('cascade')->onDelete('cascade');
+            $table->string('currency',4);
             $table->string('detail',256)->nullable();
-            $table->unsignedTinyInteger('status');
+            $table->softDeletes();
         });
 
     }

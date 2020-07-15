@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+<title>{{('Login | Duft Und Du')}}</title>
+
+{{-- Button --}}
+<link href="{{ asset('css/custom_button.css') }}" rel="stylesheet">
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -51,19 +56,23 @@
                             </div>
                         </div>
 
+                        {{-- Button: Login --}}
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
+                                <button type="submit" class="custom">
+                                    <span class="before">{{_('Login')}}</span>
+                                    <span class="after">{{_('Login')}}</span>
                                 </button>
 
                                 @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    <a style="margin-bottom:40px" class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                                 @endif
+
                             </div>
                         </div>
+
                     </form>
                 </div>
             </div>

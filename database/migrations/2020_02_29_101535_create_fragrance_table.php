@@ -20,8 +20,10 @@ class CreateFragranceTable extends Migration
         $table->foreign('brand_id')->references('id')->on('fragrance_brand')
         ->onUpdate('cascade')->onDelete('cascade');
         $table->string('name',100);
-        $table->unsignedTinyInteger('type');
-        $table->unsignedTinyInteger('gender_appropriation');
+        $table->unsignedTinyInteger('type_id');
+        $table->foreign('type_id')->references('id')->on('fragrance_type')
+        ->onUpdate('cascade')->onDelete('cascade');
+        $table->string('gender',10);
         $table->unsignedInteger('cost');
         $table->string('currency',4);
     });

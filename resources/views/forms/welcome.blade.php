@@ -7,6 +7,18 @@
 
         <title>{{('Duft Und Du')}}</title>
 
+        {{-- <link href="{{ asset('css/try.css') }}" rel="stylesheet">
+        <script src="{{ asset('js/try.js') }}" defer></script> --}}
+
+        {{-- Typing Effect --}}
+        <link href="{{ asset('css/typing_effect.css') }}" rel="stylesheet">
+        <script src="{{ asset('js/typing_effect.js') }}" defer></script>
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <link href="{{ asset('css/scroll_down_button.css') }}" rel="stylesheet">
+        <script src="{{ asset('js/scroll_down_button.js') }}" defer></script>
+
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
@@ -18,35 +30,86 @@
                 color: #636b6f;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
-                height: 100vh;
+                height: 100%;
                 margin: 0;
             }
 
             .full-height {
-                height: 130vh;
+                height: 100%;
             }
 
             .flex-center1 {
+                background-image: url("../images/laura-chouette--35i4nDu13w-unsplash.jpg");
+                /* background-attachment: fixed; */
+                /* background-size: cover; */
+                background-repeat: no-repeat;
+                background-position: top right;
+                background-size: 50%;
+
                 align-items: left;
                 display: flex;
                 justify-content: left;
-                padding-top: 7.73vw;
+                /* padding-top: 7.73vw; */
                 padding-left: 10.1vw;
             }
 
             .flex-center2 {
+                background-image: url('../images/guilherme-stecanella-SZ80v2lmhSY-unsplash_genie.jpg');
+                /* background-attachment: fixed; */
+                background-size: cover;
+                background-repeat: no-repeat;
+                /* background-size: 100% 100%; */
+                background-position: center center;
+                
                 align-items: left;
                 display: flex;
                 justify-content: left;
-                padding-top: 7.73vw;
+                /* padding-top: 7.73vw; */
                 padding-left: 10.1vw;
             }
             
             .flex-center3 {
+                background-image: url('../images/laura-chouette-o7BEFNmuDkU-unsplash.jpg');
+                /* background-attachment: fixed; */
+                background-size: cover;
+                /* background-repeat: no-repeat; */
+                /* background-size: 100% 100%; */
+                background-position: center center;
+
                 align-items: left;
                 display: flex;
                 justify-content: left;
-                padding-top: 7.73vw;
+                /* padding-top: 7.73vw; */
+                padding-left: 10.1vw;
+            }
+
+            .flex-center4 {
+                
+                background-image: url('../images/luca-bravo-9l_326FISzk-unsplash.jpg');
+                /* background-attachment: fixed; */
+                background-size: cover;
+                /* background-repeat: no-repeat;
+                background-size: 100% 100%; */
+
+                align-items: left;
+                display: flex;
+                justify-content: left;
+                /* padding-top: 7.73vw; */
+                padding-left: 10.1vw;
+            }
+
+            .flex-center5 {
+                background-image: url('../images/laura-chouette-j_qackZwDIU-unsplash-edited-enhanced.jpg');
+                /* background-attachment: fixed; */
+                background-size: cover;
+                background-repeat: no-repeat; 
+                /* background-size: 100% auto;  */
+                background-position: left center;
+
+                align-items: left;
+                display: flex;
+                justify-content: left;
+                /* padding-top: 7.73vw; */
                 padding-left: 10.1vw;
             }
 
@@ -80,34 +143,9 @@
                 color:#905969;
             }
 
-            .flex-center1{
-                background-image: url("../images/welcome_div1.jpg");
-                background-attachment: fixed;
-                background-size: cover;
-                background-repeat: no-repeat;
-                background-position: 0vw -13.2vw;
-                /* background-size: 100% 100%; */
-                
-            }
-
-            .flex-center2{
-                background-image: url('https://industry.ehl.edu/hubfs/HI_Blog%20Header%20Pictures/AI_in_recruitment.jpg');
-                background-attachment: fixed;
-                /* background-size: cover; */
-                /* background-repeat: no-repeat; */
-                /* background-size: 100% 100%; */
-            }
-
-            .flex-center3{
-                background-image: url('https://cdn.shopify.com/s/files/1/1600/9217/products/Gem-Cut-Decanter-Detail.jpg?v=1498771896');
-                background-attachment: fixed;
-                /* background-size: cover; */
-                /* background-repeat: no-repeat;
-                background-size: 100% 100%; */
-            }
-
             .heading{
                 font-size: 1.3vw;
+                text-align: center;
             }
 
             h1{
@@ -129,6 +167,7 @@
     </head>
     
     <body>
+        
         <div class="flex-center1 position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
@@ -150,18 +189,23 @@
                 </div>
 
                 <div class="heading m-b-md">
-                    <h1>{{_('The AI Powered Fragrance Genie')}}</h1>
+                    <h1>
+                        <div class="wrapper">
+ 
+                            <div data-text></div>
+                            <span class="item">{{_('The AI Powered Fragrance Genie')}}</span>
+                            <span class="item">{{_('Smell Good, Feel Good')}}</span>
+                            <span class="item">{{_('Hi! I am the Genie')}}</span>
+                      
+                        </div>
+                    </h1>
                 </div>
 
                 <br>
 
                 <div class="links">
 
-                    <a><h2>{{_('Lets grant your wish to smell good ')}}
-                        <br>{{_('Lets grant your wish to smell good ')}}
-                    
-                    
-                    </h2></a>
+                    <a><h2>{{_('Lets grant your wish to smell good ')}}</h2></a>
                     
                     <p>{{_('The only stop you will make today')}}
                         <br>{{_('which you will like based on your preferences')}}
@@ -234,6 +278,16 @@
             </div>
         </div>
 
+        <div class="flex-center4 position-ref full-height">
+            <h1>Lol</h1>
+        </div>
+
+        <div class="flex-center5 position-ref full-height">
+            <h1>Lol</h1>
+        </div>
+
+        @include('layouts.footer')
+    
     </body>
 
 </html>

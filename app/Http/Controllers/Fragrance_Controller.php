@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Accord;
 use App\Fragrance;
+use App\Fragrance_Type;
 use App\Fragrance_Accord;
 use App\Fragrance_Brand;
 use App\Fragrance_Ingredient;
 use App\Ingredient;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
+use AshAllenDesign\LaravelExchangeRates\Classes\ExchangeRate;
 
 class Fragrance_Controller extends Controller
 {
@@ -20,15 +24,20 @@ class Fragrance_Controller extends Controller
   */
  public function index()
  {
-  $accords     = accord::all();
-  $ingredients = ingredient::all();
-  $brands      = fragrance_brand::all();
-  
-   return view('forms.fragrance_entry',
-    ['accords' => $accords,
-    'ingredients' => $ingredients,
-    'brands' => $brands]
-   );
+    $types       = Fragrance_Type::all();
+    $accords     = Accord::all();
+    $ingredients = Ingredient::all();
+    $brands      = Fragrance_Brand::all();
+    
+    $currencies  = new ExchangeRate();
+    
+    return view('forms.fragrance_entry',[
+      'types'         => $types,
+      'accords'       => $accords,
+      'ingredients'   => $ingredients,
+      'brands'        => $brands,
+      'currencies'    => $currencies->currencies()
+      ]);
  }
 
  /**
@@ -49,76 +58,83 @@ class Fragrance_Controller extends Controller
   */
  public function store(Request $request)
  {
-  $accords = $request->accord_ids;
-  var_dump($accords);
-  return;
+    
+    $validatedData = $request->validate([
+      'name'                 => 'required|unique:fragrance',
+      'brand_id'             => 'required',
+      'type_id'              => 'required',
+      'gender'               => 'required',
+      'cost'                 => 'required',
+      'currency'             => 'required',
+      
+      'accord_id'            => 'required',
+      'ingredient_id'        => 'required',
+    ]);
 
-  $this->validate($request, [
-   'brand_id'             => 'required',
-   'name'                 => 'required',
-   'type'                 => 'required',
-   'gender'               => 'required',
-   'cost'                 => 'required',
-  ]);
+    DB::transaction(function () use ($request) {
 
-  DB::transaction(function () use ($request) {
-   $new           = new fragrance();
-   $new->brand_id = $request->input('brand_id');
-   $new->name     = $request->input('name');
-   $new->type     = $request->input('type');
-   $new->gender_appropriation   = $request->input('gender');
-   $new->cost   = $request->input('cost');
-   $new->save();
+    $new                           = new fragrance();
+    $new->brand_id                 = $request->input('brand_id');
+    $new->name                     = $request->input('name');
+    $new->type_id                  = $request->input('type_id');
+    $new->gender     = $request->input('gender');
+    $new->cost                     = $request->input('cost');
+    $new->currency                 = $request->input('currency');
 
-   $fragrance_id = DB::getPdo()->lastInsertId();
+    $new->save();
 
-  // if ($request->accord_id) {
+    $fragrance_id = $new->id;
+    
+    // Accord
+    $new               = new fragrance_accord();
+    $new->fragrance_id = $fragrance_id;
+    $new->accord_id    = $request->input('accord_id');
+    $new->save();
+    
+    if ($request->accord_ids) {
+      
+      for ($i = 0; $i < count($request->accord_ids); $i++) {
+        
+        $new               = new fragrance_accord();
+        $new->fragrance_id = $fragrance_id;
+        $new->accord_id    = $request->input('accord_ids')[$i];
 
-  //  for ($i = 0; $i < count($request->accord_id); $i++) {
-  //   $new               = new fragrance_accord();
-  //   $new->fragrance_id = $fragrance_id;
-  //   $new->accord_id    = $request->input("id")[$i];
-  //   // $new->accord_id    = $request->
-  //   $new->save();
-  //  }
-  // }
+        $new->save();
+
+      }
+    }
+
+    // Ingredient
+      $new                  = new fragrance_ingredient();
+      $new->fragrance_id    = $fragrance_id;
+      $new->ingredient_id   = $request->input('ingredient_id');
+      $new->note            = $request->input('note');
+      $new->intensity       = $request->input('intensity');
+      $new->save();
+
   
-  $new               = new fragrance_accord();
-  $new->fragrance_id = $fragrance_id;
-  $new->accord_id    = $request->input("accord_id");
-  $new->save();
+    if ($request->ingredient_ids) {
 
-// });
+      
+      for ($i = 0; $i < count($request->ingredient_ids); $i++) {
+        
+        $new                  = new fragrance_ingredient();
+        $new->fragrance_id    = $fragrance_id;
+        $new->ingredient_id   = $request->input('ingredient_ids')[$i];
+        $new->note            = $request->input('notes')[$i];
+        $new->intensity       = $request->input('intensities')[$i];
+        
+        $new->save();
+      
+      }
+    }
 
-  // if ($request->ingredient_id) {
-
-  //  for ($j = 0; $j < count($request->ingredient_id); $j++) {
-  //   // $result = $this->checkAvailability($request->input('Date_From')[$j], $request->input('Date_Till')[$j], $request->Hotel_Room_ID[$j]);
-  //   // if ($result != null) {
-  //   //  $id = $request->Hotel_Room_ID[$j];
-  //   //  // echo "Room: $id is already booked from $result->Date_From to $result->Date_Till";
-  //   //  throw new \Exception("Room: $id is already booked from $result->Date_From to $result->Date_Till");
-  //   // }
-  //   $new                = new fragrance_ingredient();
-  //   $new->fragrance_id  = $fragrance_id;
-  //   $new->ingredient_id = $request->input('id')[$j];
-  //   $new->note          = $request->input('note')[$j];
-  //   $new->strength      = $request->input('strength')[$j];
-  //   $new->save();
-  //  }
-  // }
-
-  $new                = new fragrance_ingredient();
-  $new->fragrance_id  = $fragrance_id;
-  $new->ingredient_id = $request->input('ingredient_id');
-  $new->note          = $request->input('note');
-  $new->strength      = $request->input('strength');
-  $new->save();
   });
 
   $request->session()->reflash();
 
-  return $this->index();
+  // Return
+  return redirect('fragrance_entry');
  }
 
  /**
