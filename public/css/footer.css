@@ -2,13 +2,13 @@
 
 :root {
   --body-font: 'Marcellus', sans-serif;
-  /* --body-font: 'Manrope', sans-serif; */
   --body-color: #b3b3b3;
+  --border-color: #efefef;
+  --main-color: black;
+  /* --body-font: 'Manrope', sans-serif; */
   /* --body-bg-color: #f2f2f2; */
   /* --theme-bg-color: #fafafa; */
-  --border-color: #efefef;
   /* --logo-color: #f13a2f; */
-  --main-color: black;
   /* --header-bg-color: #fff; */
 }
 
@@ -49,6 +49,7 @@ html, body{
   text-decoration: none;
   color: var(--main-color);
 }
+
 .footer-links a + a {
   margin-left: 4vh;
 }
@@ -68,6 +69,7 @@ html, body{
   font-family: var(--body-font);
 
 }
+
 .footer-last {
   border-top: 0.1vh solid var(--border-color);
   padding: 2.27vh 24px;
@@ -85,7 +87,7 @@ html, body{
 }
 
 .social-media svg {
-  width: 170%;
+  width: inherit;
 }
 
 .social-media a {
@@ -110,7 +112,7 @@ html, body{
 
 @media (max-width: 1120px) {
   .sexy_line{
-    margin-bottom: 20px;
+    margin-bottom: inherit;
     display: block;
     border: none;
     color:white;
@@ -165,7 +167,7 @@ html, body{
   }
 
   .social-media svg {
-    width: 120%;
+    width: 100%;
   }
 
   .footer-links {

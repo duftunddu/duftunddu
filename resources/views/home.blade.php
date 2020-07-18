@@ -10,11 +10,9 @@
         .full-height {
             height: 75vh;
         }
-
         .full-width{
             width: 100vw;
         }
-
         .flex-center1 {
             /* background-image: url("https://www.designisthis.com/blog/images/uploads/2012/08/AnestasiA-Vodka.jpg"); */
             /* background-attachment: fixed; */
@@ -22,13 +20,11 @@
             /* background-repeat: no-repeat; */
             /* background-position: center top; */
             /* background-size: 100% 100%; */
-
             align-items: left;
             display: flex;
             justify-content: left;
             /* padding-top: 7.73vw; */
             /* padding-left: 10.1vw; */
-
             /* color:slategrey; */
         }
         
@@ -36,12 +32,10 @@
             position: relative;
             text-align: center;
         }
-
         label{
             position: relative;
             text-align: center;
         }
-
     </style>
 
     <link href="{{ asset('css/home.css') }}" rel="stylesheet">

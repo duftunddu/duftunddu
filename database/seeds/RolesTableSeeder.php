@@ -2,6 +2,7 @@
 
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
 
 class RolesTableSeeder extends Seeder
@@ -13,6 +14,8 @@ class RolesTableSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('role_has_permissions')->truncate();
+
         // User
         // fill_user_profile	new_user
         $role = Role::firstOrCreate(['name' => 'new_user']);
@@ -69,5 +72,27 @@ class RolesTableSeeder extends Seeder
         $role->givePermissionTo('add_brand_fragrance');
         $role->givePermissionTo('edit_brand_fragrance');
         $role->givePermissionTo('edit_ba_profile');
+
+        // super_admin
+        $role = Role::firstOrCreate(['name' => 'super_admin']);
+        
+        // $role->givePermissionTo('fill_user_profile');
+
+        // $role->givePermissionTo('get_user_analytics');
+        // $role->givePermissionTo('get_prediction');
+        // $role->givePermissionTo('user_dashboard_access');
+        // $role->givePermissionTo('add_profile');
+        // $role->givePermissionTo('edit_user_profile');
+        // $role->givePermissionTo('add_perceived_fragrance');
+        // $role->givePermissionTo('add_profile_perceived_fragrance');
+        
+        // $role->givePermissionTo('get_gift_prediction');
+        
+        // $role->givePermissionTo('get_brand_analytics');
+        // $role->givePermissionTo('brand_dashboard_access');
+        // $role->givePermissionTo('add_brand_fragrance');
+        // $role->givePermissionTo('edit_brand_fragrance');
+        // $role->givePermissionTo('edit_ba_profile');
+
     }
 }

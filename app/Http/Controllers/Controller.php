@@ -16,52 +16,20 @@ use Illuminate\Routing\Controller as BaseController;
 
 class Controller extends BaseController
 {
- use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+  use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
- // public function brand_entry($request)
- // {
- //     var_dump($request);
- //     return view('brand_entry');
- // }
+  public function try () {
+    $accords = accord::all();
+    return view('forms.try',[
+      'countries' => $accords
+    ]);
+  }
 
-
- public function about_us()
- {
-  return view('forms.about_us');
- }
-
- public function catalog()
- {
-  return view('forms.catalog');
- }
- 
- public function footer()
- {
-  return view('layouts.footer');
- }
-
- public function admin_links()
- {
-  return view('forms.admin_links');
- }
-
- public function scroll()
- {
-  return view('forms.scroll_down_button');
- }
-
- public function try () {
-   $accords = accord::all();
-   return view('forms.try',[
-    'countries' => $accords
-  ]);
- }
-
- public function try_output (Request $request) {
-  $accords = $request->accord_ids;
-  var_dump($accords);
-  return;
-  return view('forms.try_output');
- }
+  public function try_output (Request $request) {
+    $accords = $request->accord_ids;
+    var_dump($accords);
+    return;
+    return view('forms.try_output');
+  }
 
 }

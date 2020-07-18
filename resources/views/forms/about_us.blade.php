@@ -2,7 +2,7 @@
 {{-- @extends('layouts.nav_bar') --}}
 <link href="{{ asset('css/paragraph.css') }}" rel="stylesheet">
 
-<title>{{_('About Us - The AI Powered Fragrance Genie')}}</title>
+<title>{{_('About Us | The Fragrance Hub | Duft Und Du')}}</title>
 
 
 @section('content')

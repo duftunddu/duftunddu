@@ -19,7 +19,7 @@
         <style>
 
             html, body {
-                background-image: url('../images/laura-chouette-5qRgJ8ISEpA-unsplash.jpg');
+                background-image: url('../images/laura-chouette-5qRgJ8ISEpA-unsplash_edit.jpg');
                 /* background-attachment: fixed; */
                 background-repeat: no-repeat;
                 background-position: -80px top;
@@ -27,19 +27,19 @@
                 background-color: #f5f5f3;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
-                height: 100vh;
+                height: 100%;
                 margin: 0;
             }
 
             .full-height {
-                height: 80vh;
+                height: 100%;
             }
 
             .flex-center {
                 align-items: right;
                 display: flex;
                 justify-content: right;
-                padding-top: 7.55vw;
+                top: 7.55vw;
                 padding-left: 55%;
             }
 
@@ -67,8 +67,8 @@
 
             .links > a {
                 /* color: #636b6f; */
-                color: #201a1d;
                 /* padding: 0 1.88px; */
+                color: #201a1d;
                 font-size: 0.97vw;
                 font-weight: 600;
                 letter-spacing: .15vw;
@@ -81,7 +81,7 @@
             }
 
             .m-b-md {
-                margin-bottom: 2.26vw;
+                /* margin-bottom: 2.26vw; */
             }
 
             /* .searchbox {
@@ -90,24 +90,33 @@
                 width: 3vw;
             } */
 
+            .social-media svg {
+                width: 110% ;
+            }
+
+
         </style>
     </head>
     
-    <body>          
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login &nbsp&nbsp&nbsp&nbsp</a>
+    <body>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Sign Up</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
+        {{-- Login & Register --}}
+        @if (Route::has('login'))
+            <div class="top-right links">
+                @auth
+                    <a href="{{ url('/home') }}">Home</a>
+                @else
+                    <a href="{{ route('login') }}">Login &nbsp&nbsp&nbsp&nbsp</a>
+
+                    @if (Route::has('register'))
+                        <a href="{{ route('register') }}">Sign Up</a>
+                    @endif
+
+                @endauth
+            </div>
+        @endif    
+
+        <div class="flex-center position-ref full-height">
 
             <div class="content">
 
@@ -155,6 +164,8 @@
             </div>
         </div>
         
+        @include('layouts.footer')
+
     </body>
 
 </html>

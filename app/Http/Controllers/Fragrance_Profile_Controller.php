@@ -110,6 +110,9 @@ class Fragrance_Profile_Controller extends Controller
             $new->save();
         });
         
+        request()->user()->removeRole('new_user');
+        request()->user()->assignRole('user');
+
         // Return
         return redirect('home');
     }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Accord;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
 
 class AccordTableSeeder extends Seeder
@@ -12,6 +13,8 @@ class AccordTableSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('accord')->truncate();
+
         $data = [
             [
                 'id'         => 1,

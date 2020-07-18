@@ -54,7 +54,7 @@
             }
 
             .flex-center2 {
-                background-image: url('../images/guilherme-stecanella-SZ80v2lmhSY-unsplash_genie.jpg');
+                background-image: url('../images/guilherme-stecanella-SZ80v2lmhSY-unsplash_genie_converted.jpg');
                 /* background-attachment: fixed; */
                 background-size: cover;
                 background-repeat: no-repeat;
@@ -85,17 +85,18 @@
 
             .flex-center4 {
                 
-                background-image: url('../images/luca-bravo-9l_326FISzk-unsplash.jpg');
+                /* background-image: url('../images/luca-bravo-9l_326FISzk-unsplash.jpg'); */
                 /* background-attachment: fixed; */
-                background-size: cover;
+                /* background-size: cover; */
                 /* background-repeat: no-repeat;
                 background-size: 100% 100%; */
+                background-color: #FEFFFEEE;
 
                 align-items: left;
                 display: flex;
                 justify-content: left;
                 /* padding-top: 7.73vw; */
-                padding-left: 10.1vw;
+                padding-left: 1vw;
             }
 
             .flex-center5 {
@@ -279,7 +280,7 @@
         </div>
 
         <div class="flex-center4 position-ref full-height">
-            <h1>Lol</h1>
+            @include('forms.feature_slider')
         </div>
 
         <div class="flex-center5 position-ref full-height">

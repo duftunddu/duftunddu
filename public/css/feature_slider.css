@@ -1,16 +1,16 @@
-@import url('https://fonts.googleapis.com/css?family=Open Sans:400,700|Montserrat');
+/* @import url('https://fonts.googleapis.com/css?family=Open Sans:400,700|Montserrat'); */
 
 body {
-  margin: 0;
+  /* margin: 0;
   padding: 0;
   font-family: 'Montserrat';
-  font-size: 13px;
+  font-size: 13px; */
   letter-spacing: 1px;
 }
 
 #tabs {
   /* width: 700px; */
-  width: 90%;
+  width: 95%;
   display: flex;
   position: relative;
   margin: 0 auto;
@@ -52,10 +52,10 @@ ul li a {
   padding: 20px 5px;
   z-index: 1;
   opacity: .5;
-  -webkit-transition: 0.3s ease;
-  -moz-transition: 0.3s ease;
-  -o-transition: 0.3s ease;
-  transition: 0.3s ease;
+  -webkit-transition: 0.4s ease;
+  -moz-transition: 0.4s ease;
+  -o-transition: 0.4s ease;
+  transition: 0.4s ease;
 }
 
 ul li:focus, a:focus {
@@ -75,7 +75,7 @@ ul li a.active {
   margin-top: 10px;
   padding: 0;
   text-transform: uppercase;
-  font-size: 11px;
+  /* font-size: 11px; */
   letter-spacing: 1px;
   border: none;
   font-family: 'Montserrat';
@@ -127,7 +127,7 @@ ul li a.active {
   transform: translate(-50%, -50%);
 }
 
-.title {
+.heading {
   display: inline-block;
   text-transform: uppercase;
   font-weight: bold;
@@ -142,7 +142,7 @@ ul li a.active {
   top: -25px;
   margin-left: 70px;
   letter-spacing: 0;
-  font-size: 13px;
+  /* font-size: 13px; */
   color: #9b9b9b;
   opacity: 0;
   font-family: 'Open Sans';
@@ -169,7 +169,7 @@ ul li a.active {
   top: 0;
   left: 0;
   width: 100%;
-  height: 25px;
+  height: 30px;
   line-height: 27px;
   background: #fff;
   border-bottom: solid 2px #7b7b7b;
@@ -179,13 +179,14 @@ ul li a.active {
 .dot {
   position: relative;
   display: inline-block;
-  padding: 6px;
+  padding: 7px;
   background: #c7c7c7;
   border-radius: 100%;
 }
 
 .dot:nth-child(1) {
-  margin-left: 7px;
+  margin-top: 8px;
+  margin-left: 9px;
 }
 
 #tabs-1, #tabs-2, #tabs-3 {
