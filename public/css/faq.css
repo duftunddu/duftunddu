@@ -1,0 +1,76 @@
+.toggle {
+	background-color: #fff;
+	border-radius: 5px;
+	line-height: 1.8em;
+	overflow: hidden;
+	margin: 15px 0;
+	border: 1px solid #e9eaed;
+}
+.toggle:hover {
+	-webkit-box-shadow: 0px 5px 30px rgba(0,0,0,0.15);
+	-moz-box-shadow: 0px 5px 30px rgba(0,0,0,0.15);
+	box-shadow: 0px 5px 30px rgba(0,0,0,0.15);
+}
+.toggle .toggle-title {
+	display: block;
+	position: relative;
+	opacity: .75;
+}
+.toggle .toggle-title.active {
+	opacity: 1;
+}
+.toggle .toggle-title h3 {
+	font-size: 20px;
+	margin: 0px;
+	line-height: 1.4em;
+	cursor: pointer;
+	font-weight: 200;
+}
+.toggle .toggle-inner {
+	display: none;
+	padding: 7px 25px 10px 25px;
+	margin: 10px 0 6px;
+}
+.toggle .toggle-inner div {
+	max-width: 100%;
+}
+.toggle .toggle-title .title-name {
+	display: block;
+	padding: 25px 65px 25px 25px;
+}
+.toggle .toggle-title.active .title-name {
+	border-bottom: 1px solid #e9eaed;
+}
+.toggle .toggle-title a i {
+	font-size: 22px;
+	margin-right: 5px;
+}
+.toggle .toggle-title i {
+	font-size: .9em;
+	position: absolute;
+	width: 24px;
+	height: 24px;
+	transition: all 0.3s ease;
+	right: 25px;
+	top: 30px;
+}
+.toggle .toggle-title i:before {
+	content:"\f078";
+	display: block;
+}
+.toggle .toggle-title.active i:before {
+	content:"\f077";
+}
+
+
+input{
+	font: inherit
+  }
+  
+  ::before element{
+	box-sizing: border-box;
+  }
+  
+  ::after element{
+	box-sizing: border-box;
+  }
