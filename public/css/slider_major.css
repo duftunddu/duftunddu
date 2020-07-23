@@ -1,210 +1,480 @@
-/* @import url('https://fonts.googleapis.com/css?family=Open Sans:400,700|Montserrat'); */
+.button-hold {
+  --color: #F6F8FF;
+  --background: #2B3044;
+  --icon: var(--color);
+  --progress-border: #646B8C;
+  --progress-active: #fff;
+  --progress-success: #5C86FF;
+  --tick-stroke: var(--progress-active);
+  --shadow: rgba(0, 9, 61, 0.2);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+  min-width: 112px;
+  padding: 12px 20px 12px 12px;
+  border: 0;
+  border-radius: 24px;
+  outline: none;
+  user-select: none;
+  cursor: pointer;
+  -webkit-backface-visibility: hidden;
+  -webkit-appearance: none;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 var(--shadow-y, 4px) var(--shadow-blur, 12px) var(--shadow);
+  transform: scale(var(--scale, 1)) translateZ(0);
+  color: var(--color);
+  background: var(--background);
+}
+.button-hold > div {
+  margin-right: 4px;
+  border-radius: 50%;
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  background: var(--progress-border);
+}
+.button-hold > div:before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  left: 2px;
+  top: 2px;
+  z-index: 1;
+  position: absolute;
+  background: var(--background);
+  border-radius: inherit;
+  transform: scale(var(--background-scale, 1));
+  transition: transform 0.32s ease;
+}
+.button-hold > div svg {
+  display: block;
+}
+.button-hold > div svg.icon, .button-hold > div svg.tick {
+  position: absolute;
+}
+.button-hold > div svg.icon {
+  width: 8px;
+  height: 8px;
+  left: 6px;
+  top: 6px;
+  fill: var(--icon);
+  z-index: 1;
+  transition: opacity 0.2s, transform 0.2s;
+  opacity: var(--icon-opacity, 1);
+  transform: translateY(var(--icon-y, 0)) scale(var(--icon-scale, 1));
+}
+.button-hold > div svg.progress, .button-hold > div svg.tick {
+  fill: none;
+}
+.button-hold > div svg.progress {
+  width: 20px;
+  height: 20px;
+  transform: rotate(-90deg) scale(var(--progress-scale, 1));
+  transition: transform 0.5s ease;
+}
+.button-hold > div svg.progress circle {
+  stroke-dashoffset: 1;
+  stroke-dasharray: var(--progress-array, 0) 52;
+  stroke-width: 16;
+  stroke: var(--progress-active);
+  transition: stroke-dasharray var(--duration) linear;
+}
+.button-hold > div svg.tick {
+  width: 20px;
+  height: 20px;
+  left: 0;
+  top: 0;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke: var(--tick-stroke);
+  transition: stroke 0.3s ease 0.7s;
+}
+.button-hold > div svg.tick polyline {
+  stroke-dasharray: 18 18 18;
+  stroke-dashoffset: var(--tick-offset, 18);
+  transition: stroke-dashoffset 0.4s ease 0.7s;
+}
+.button-hold:focus:not(.process), .button-hold:hover:not(.process) {
+  --shadow-y: 8px;
+  --shadow-blur: 16px;
+}
+.button-hold:active:not(.success) {
+  --scale: .96;
+  --shadow-y: 4px;
+  --shadow-blur: 8px;
+}
+.button-hold.process, .button-hold.success {
+  --progress-array: 52;
+  --icon-y: -4px;
+  --icon-scale: .6;
+  --icon-opacity: 0;
+}
+.button-hold.success {
+  --progress-border: none;
+  --progress-scale: .11;
+  --tick-stroke: var(--progress-success);
+  --background-scale: 0;
+  --tick-offset: 36;
+}
+.button-hold.success > div svg.progress {
+  animation: tick 0.3s linear forwards 0.4s;
+}
+
+@keyframes tick {
+  100% {
+    transform: rotate(-90deg) translate(0, -5px) scale(var(--progress-scale));
+  }
+}
+html {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: inherit;
+}
+*:before, *:after {
+  box-sizing: inherit;
+}
 
 body {
-  /* margin: 0;
-  padding: 0;
-  font-family: 'Montserrat';
-  font-size: 13px; */
-  letter-spacing: 1px;
-}
-
-#tabs {
-  /* width: 700px; */
-  width: 95%;
+  min-height: 100vh;
   display: flex;
-  position: relative;
-  margin: 0 auto;
-  margin-top: 50px;
-  height: 90%;
-  min-height: 200px;
-  /* max-height: 600px; */
-  max-height: 90%;
-  overflow: hidden;
+  font-family: "Roboto", Arial;
+  justify-content: center;
+  align-items: center;
+  background: #ECEFFC;
 }
-
-@media (max-width: 475px){
-  #tabs{
-    width: 700px;
-    max-height: 600px;
-    height: 50%;
-
-  }
-
+body .dribbble {
+  position: fixed;
+  display: block;
+  right: 20px;
+  @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&display=swap");
+  bottom: 20px;
 }
-
-ul {
-  position: relative;
-  display: inline-block;
+body .dribbble :root {
+  --card-width: 200px;
+  --card-height: 300px;
+  --card-transition-duration: 800ms;
+  --card-transition-easing: ease;
+}
+body .dribbble * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  list-style-type: none;
-  vertical-align: top;
-  width: 50%;
 }
-
-ul li a {
-  position: relative;
-  display: block;
+body .dribbble body {
   width: 100%;
-  text-decoration: none;
-  color: #3b3b3b;
-  border-top: solid 2px #e9e9e9;
-  padding: 20px 5px;
-  z-index: 1;
-  opacity: .5;
-  -webkit-transition: 0.4s ease;
-  -moz-transition: 0.4s ease;
-  -o-transition: 0.4s ease;
-  transition: 0.4s ease;
-}
-
-ul li:focus, a:focus {
-  outline: none;
-}
-
-ul li:nth-child(1) a {
-  border-top: none;
-}
-
-ul li a.active {
-  opacity: 1;
-}
-
-.para-a {
-  font-weight: bold;
-  margin-top: 10px;
-  padding: 0;
-  text-transform: uppercase;
-  /* font-size: 11px; */
-  letter-spacing: 1px;
-  border: none;
-  font-family: 'Montserrat';
-  color: #2b2b2b;
-}
-
-.tag {
-  position: relative;
-  width: 100%;
-}
-
-.icon {
-  position: relative;
-  display: inline-block;
-  width: 50px;
-  height: 50px;
-  background: #c7c7c7;
-  border-radius: 100%;
-  vertical-align: middle;
-}
-
-.block {
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  vertical-align: middle;
-  border: solid 2px #7b7b7b;
-  border-radius: 5px;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
-.circle {
-  position: absolute;
-  padding: 2px;
-  border: solid 2px #7b7b7b;
-  border-radius: 100%;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
-.heading {
-  display: inline-block;
-  text-transform: uppercase;
-  font-weight: bold;
-  padding: 0 10px;
-  vertical-align: middle;
-  color: #7b7b7b;
-}
-
-.addon {
-  position: relative;
-  width: 80%;
-  top: -25px;
-  margin-left: 70px;
-  letter-spacing: 0;
-  /* font-size: 13px; */
-  color: #9b9b9b;
-  opacity: 0;
-  font-family: 'Open Sans';
-}
-
-.addon.fadein {
-  opacity: 1;
-}
-
-.browser {
-  width: 45%;
-  height: 95%;
-  position: absolute;
-  border-style: solid;
-  border-width: 2px 0 2px 2px;
-  border-color: #7b7b7b transparent #7b7b7b #7b7b7b;
-  right: 0;
-  border-radius: 10px 0 0 10px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.787);
   overflow: hidden;
 }
-
-.top-bar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 30px;
-  line-height: 27px;
-  background: #fff;
-  border-bottom: solid 2px #7b7b7b;
-  z-index: 2;
+body .dribbble button {
+  border: none;
+  background: none;
+  cursor: pointer;
 }
-
-.dot {
+body .dribbble button:focus {
+  outline: none;
+  border: none;
+}
+body .dribbble .app {
   position: relative;
-  display: inline-block;
-  padding: 7px;
-  background: #c7c7c7;
-  border-radius: 100%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
-.dot:nth-child(1) {
-  margin-top: 8px;
-  margin-left: 9px;
-}
-
-#tabs-1, #tabs-2, #tabs-3 {
+body .dribbble .app__bg {
   position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -5;
+  filter: blur(8px);
+  pointer-events: none;
+  user-select: none;
+  overflow: hidden;
+}
+body .dribbble .app__bg::before {
+  content: "";
+  position: absolute;
+  left: 0;
   top: 0;
-  right: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: 1;
+  opacity: 0.8;
+}
+body .dribbble .app__bg__image {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) translateX(var(--image-translate-offset, 0));
+  width: 180%;
+  height: 180%;
+  transition: transform 1000ms ease, opacity 1000ms ease;
+  overflow: hidden;
+}
+body .dribbble .app__bg__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+body .dribbble .app__bg__image.current--image {
+  opacity: 1;
+  --image-translate-offset: 0;
+}
+body .dribbble .app__bg__image.previous--image, body .dribbble .app__bg__image.next--image {
+  opacity: 0;
+}
+body .dribbble .app__bg__image.previous--image {
+  --image-translate-offset: -25%;
+}
+body .dribbble .app__bg__image.next--image {
+  --image-translate-offset: 25%;
+}
+body .dribbble .cardList {
+  position: absolute;
+  width: calc(3 * var(--card-width));
+  height: auto;
+}
+body .dribbble .cardList__btn {
+  --btn-size: 35px;
+  width: var(--btn-size);
+  height: var(--btn-size);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+}
+body .dribbble .cardList__btn.btn--left {
+  left: -5%;
+}
+body .dribbble .cardList__btn.btn--right {
+  right: -5%;
+}
+body .dribbble .cardList__btn .icon {
   width: 100%;
   height: 100%;
 }
-
-#tabs-1 {
-  background: #9b9b9b;
+body .dribbble .cardList__btn .icon svg {
+  width: 100%;
+  height: 100%;
+}
+body .dribbble .cardList .cards__wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  perspective: 1000px;
+}
+body .dribbble .card {
+  --card-translateY-offset: 100vh;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) translateX(var(--card-translateX-offset)) translateY(var(--card-translateY-offset)) rotateY(var(--card-rotation-offset)) scale(var(--card-scale-offset));
+  display: inline-block;
+  width: var(--card-width);
+  height: var(--card-height);
+  transition: transform var(--card-transition-duration) var(--card-transition-easing);
+  user-select: none;
+}
+body .dribbble .card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: 1;
+  transition: opacity var(--card-transition-duration) var(--card-transition-easing);
+  opacity: calc(1 - var(--opacity));
+}
+body .dribbble .card__image {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+body .dribbble .card__image img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+body .dribbble .card.current--card {
+  --current-card-rotation-offset: 0;
+  --card-translateX-offset: 0;
+  --card-rotation-offset: var(--current-card-rotation-offset);
+  --card-scale-offset: 1.2;
+  --opacity: 0.8;
+}
+body .dribbble .card.previous--card {
+  --card-translateX-offset: calc(-1 * var(--card-width) * 1.1);
+  --card-rotation-offset: 25deg;
+}
+body .dribbble .card.next--card {
+  --card-translateX-offset: calc(var(--card-width) * 1.1);
+  --card-rotation-offset: -25deg;
+}
+body .dribbble .card.previous--card, body .dribbble .card.next--card {
+  --card-scale-offset: 0.9;
+  --opacity: 0.4;
+}
+body .dribbble .infoList {
+  position: absolute;
+  width: calc(3 * var(--card-width));
+  height: var(--card-height);
+  pointer-events: none;
+}
+body .dribbble .infoList .info__wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+body .dribbble .info {
+  margin-bottom: calc(var(--card-height) / 8);
+  margin-left: calc(var(--card-width) / 1.5);
+  transform: translateZ(2rem);
+  transition: transform var(--card-transition-duration) var(--card-transition-easing);
+}
+body .dribbble .info .text {
+  position: relative;
+  font-family: "Montserrat";
+  font-size: calc(var(--card-width) * var(--text-size-offset, 0.2));
+  white-space: nowrap;
+  color: #fff;
+  width: fit-content;
+}
+body .dribbble .info .name,
+body .dribbble .info .location {
+  text-transform: uppercase;
+}
+body .dribbble .info .location {
+  font-weight: 800;
+}
+body .dribbble .info .location {
+  --mg-left: 40px;
+  --text-size-offset: 0.12;
+  font-weight: 600;
+  margin-left: var(--mg-left);
+  margin-bottom: calc(var(--mg-left) / 2);
+  padding-bottom: 0.8rem;
+}
+body .dribbble .info .location::before, body .dribbble .info .location::after {
+  content: "";
+  position: absolute;
+  background: #fff;
+  left: 0%;
+  transform: translate(calc(-1 * var(--mg-left)), -50%);
+}
+body .dribbble .info .location::before {
+  top: 50%;
+  width: 20px;
+  height: 5px;
+}
+body .dribbble .info .location::after {
+  bottom: 0;
+  width: 60px;
+  height: 2px;
+}
+body .dribbble .info .description {
+  --text-size-offset: 0.065;
+  font-weight: 500;
+}
+body .dribbble .info.current--info {
+  opacity: 1;
+  display: block;
+}
+body .dribbble .info.previous--info, body .dribbble .info.next--info {
+  opacity: 0;
+  display: none;
+}
+body .dribbble .loading__wrapper {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #000;
+  z-index: 200;
+}
+body .dribbble .loading__wrapper .loader--text {
+  color: #fff;
+  font-family: "Montserrat";
+  font-weight: 500;
+  margin-bottom: 1.4rem;
+}
+body .dribbble .loading__wrapper .loader {
+  position: relative;
+  width: 200px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.25);
+}
+body .dribbble .loading__wrapper .loader span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: red;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+@media only screen and (min-width: 800px) {
+  body .dribbble :root {
+    --card-width: 250px;
+    --card-height: 400px;
+  }
+}
+body .dribbble .support {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  padding: 10px;
+  display: flex;
+}
+body .dribbble .support a {
+  margin: 0 10px;
+  color: #fff;
+  font-size: 1.8rem;
+  backface-visibility: hidden;
+  transition: all 150ms ease;
+}
+body .dribbble .support a:hover {
+  transform: scale(1.1);
+}
+body .dribbble img {
+  display: block;
+  height: 28px;
+}
+body .twitter {
+  position: fixed;
+  display: block;
+  right: 64px;
+  bottom: 14px;
+}
+body .twitter svg {
+  width: 32px;
+  height: 32px;
+  fill: #1da1f2;
 }
 
-#tabs-2 {
-  background: #c9c9c9;
-}
-
-#tabs-3 {
-  background: #1b1b1b;
-}
+/*# sourceMappingURL=try.css.map */

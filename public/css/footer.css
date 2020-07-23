@@ -1,7 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Marcellus&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Marcellus&display=swap"); */
 
 :root {
-  --body-font: 'Marcellus', sans-serif;
+  /* --body-font: 'Marcellus', sans-serif; */
   --body-color: #b3b3b3;
   --border-color: #efefef;
   --main-color: black;
@@ -18,7 +18,7 @@ html, body{
 
 .container{
   position:relative;
-  min-height: 56%;
+  min-height: 53%;
 }
 
 .footer-all{
@@ -101,7 +101,7 @@ html, body{
   margin-right: 4vh;
 }
 
-.sexy_line{
+.sleek-border{
   display:block;
   border:none;
   color:white;
@@ -111,7 +111,7 @@ html, body{
 }
 
 @media (max-width: 1120px) {
-  .sexy_line{
+  .sleek-border{
     margin-bottom: inherit;
     display: block;
     border: none;
@@ -136,7 +136,12 @@ html, body{
 
 @media (max-width: 475px) {
 
-  .sexy_line{
+  .container{
+    position:relative;
+    min-height: 46%;
+  }
+  
+  .sleek-border{
     margin-bottom: 20px;
     display:block;
     border:none;
@@ -159,15 +164,17 @@ html, body{
     border: 0.14vh solid var(--border-color);
     border-radius: 50%;
     color: var(--body-color);
-    padding: 1.14vh;
+    padding: 2vh;
     flex-shrink: 0;
     width: 5.1vh;
     height: 5.1vh;
-    margin-right: 1.9vh;
+    margin-right: 2vh;
+    margin-bottom: 0.9vh;
+    padding-bottom: 5vh;
   }
 
   .social-media svg {
-    width: 100%;
+    width: 4.5vh;
   }
 
   .footer-links {

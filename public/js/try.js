@@ -1,27 +1,52 @@
-// Hold button with mouse / select with tab and hold spacebar
 
-let duration = 1600,
-    success = button => {
-        //Success function
-        button.classList.add('success');
-    };
 
-document.querySelectorAll('.button-hold').forEach(button => {
-    button.style.setProperty('--duration', duration + 'ms');
-    ['mousedown', 'touchstart', 'keypress'].forEach(e => {
-        button.addEventListener(e, ev => {
-            if (e != 'keypress' || (e == 'keypress' && ev.which == 32 && !button.classList.contains('process'))) {
-                button.classList.add('process');
-                button.timeout = setTimeout(success, duration, button);
+/* Please ❤ this if you like it! */
+
+
+(function ($) {
+    "use strict";
+
+    $(function () {
+        var header = $(".start-style");
+        $(window).scroll(function () {
+            var scroll = $(window).scrollTop();
+
+            if (scroll >= 10) {
+                header.removeClass('start-style').addClass("scroll-on");
+            } else {
+                header.removeClass("scroll-on").addClass('start-style');
             }
         });
     });
-    ['mouseup', 'mouseout', 'touchend', 'keyup'].forEach(e => {
-        button.addEventListener(e, ev => {
-            if (e != 'keyup' || (e == 'keyup' && ev.which == 32)) {
-                button.classList.remove('process');
-                clearTimeout(button.timeout);
-            }
-        }, false);
+
+    //Animation
+
+    $(document).ready(function () {
+        $('body.hero-anime').removeClass('hero-anime');
     });
-});
+
+    //Menu On Hover
+
+    $('body').on('mouseenter mouseleave', '.nav-item', function (e) {
+        if ($(window).width() > 750) {
+            var _d = $(e.target).closest('.nav-item'); _d.addClass('show');
+            setTimeout(function () {
+                _d[_d.is(':hover') ? 'addClass' : 'removeClass']('show');
+            }, 1);
+        }
+    });
+
+    //Switch light/dark
+
+    $("#switch").on('click', function () {
+        if ($("body").hasClass("dark")) {
+            $("body").removeClass("dark");
+            $("#switch").removeClass("switched");
+        }
+        else {
+            $("body").addClass("dark");
+            $("#switch").addClass("switched");
+        }
+    });
+
+})(jQuery); 

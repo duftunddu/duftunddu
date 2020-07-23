@@ -41,7 +41,6 @@ Route::get('whitepaper', function () {
 Route::get('/brands', 'Fragrance_Brand_Controller@output');
 Route::get('/brands/{id}', 'Fragrance_Brand_Controller@show');
 
-
 // Authorized Routes
 Auth::routes();
 
@@ -113,10 +112,27 @@ Route::middleware(['role:super_admin'])->group(function () {
         return view('forms.feature_slider');
     });
 
+    Route::get('slider_major', function () {
+        return view('forms.slider_major');
+    });
+
+    Route::get('slider_major_2', function () {
+        return view('forms.slider_major_2');
+    });
+    
+    Route::get('button_hold_to_confirm', function () {
+        return view('forms.button_hold_to_confirm');
+    });
+
+    
+
 });
 
+Route::get('header', function () {
+    return view('layouts.header');
+});
 // sample
-// Route::middleware(['role:brand_ambassador|user|super_admin'])->group(function () {
+// Route::middleware(['role:user|super_admin'])->group(function () {
 // });
 
 Auth::routes();

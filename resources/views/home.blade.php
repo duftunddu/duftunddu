@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-<title>{{_('Dashboard | Duft Und Du')}} </title>
+<title>{{_('Dashboard | AI Powered Fragrance Genie | Duft Und Du')}} </title>
 
 <head>
     <meta charset="utf-8">

@@ -1,3 +1,4 @@
+{{-- @extends('layouts.app') --}}
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -39,7 +40,7 @@
             }
 
             .flex-center1 {
-                background-image: url("../images/laura-chouette--35i4nDu13w-unsplash.jpg");
+                background-image: url("../images/fragrance_model/laura-chouette--35i4nDu13w-unsplash_use.jpg");
                 /* background-attachment: fixed; */
                 /* background-size: cover; */
                 background-repeat: no-repeat;
@@ -54,7 +55,7 @@
             }
 
             .flex-center2 {
-                background-image: url('../images/guilherme-stecanella-SZ80v2lmhSY-unsplash_genie_converted.jpg');
+                background-image: url('../images/others/guilherme-stecanella-SZ80v2lmhSY-unsplash_genie_use.jpg');
                 /* background-attachment: fixed; */
                 background-size: cover;
                 background-repeat: no-repeat;
@@ -69,7 +70,7 @@
             }
             
             .flex-center3 {
-                background-image: url('../images/laura-chouette-o7BEFNmuDkU-unsplash.jpg');
+                background-image: url('../images/fragrance_model/laura-chouette-o7BEFNmuDkU-unsplash_use.jpg');
                 /* background-attachment: fixed; */
                 background-size: cover;
                 /* background-repeat: no-repeat; */
@@ -85,7 +86,7 @@
 
             .flex-center4 {
                 
-                /* background-image: url('../images/luca-bravo-9l_326FISzk-unsplash.jpg'); */
+                /* background-image: url('../images/others/luca-bravo-9l_326FISzk-unsplash_use.jpg'); */
                 /* background-attachment: fixed; */
                 /* background-size: cover; */
                 /* background-repeat: no-repeat;
@@ -100,7 +101,7 @@
             }
 
             .flex-center5 {
-                background-image: url('../images/laura-chouette-j_qackZwDIU-unsplash-edited-enhanced.jpg');
+                background-image: url('../images/others/laura-chouette-j_qackZwDIU-unsplash-edited-enhanced_use.jpg');
                 /* background-attachment: fixed; */
                 background-size: cover;
                 background-repeat: no-repeat; 
@@ -166,11 +167,15 @@
         </style>
 
     </head>
-    
+
+    {{-- @section('content') --}}
     <body>
         
+        @include('layouts.header')
+
         <div class="flex-center1 position-ref full-height">
-            @if (Route::has('login'))
+            
+            {{-- @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
@@ -182,7 +187,7 @@
                         @endif
                     @endauth
                 </div>
-            @endif
+            @endif --}}
 
             <div class="content">
                 <div class="title m-b-md">
@@ -194,9 +199,10 @@
                         <div class="wrapper">
  
                             <div data-text></div>
-                            <span class="item">{{_('The AI Powered Fragrance Genie')}}</span>
+                            <span class="item">{{_('The Fragrance Hub')}}</span>
+                            <span class="item">{{_('AI Powered Genie')}}</span>
+                            <!-- <span class="item">{{_('Hi! I am the Genie')}}</span> -->
                             <span class="item">{{_('Smell Good, Feel Good')}}</span>
-                            <span class="item">{{_('Hi! I am the Genie')}}</span>
                       
                         </div>
                     </h1>
@@ -231,6 +237,7 @@
                 </div>
 
             </div>
+
         </div>
         
         <div class="flex-center2 position-ref full-height">
@@ -290,5 +297,7 @@
         @include('layouts.footer')
     
     </body>
+
+    {{-- @endsection --}}
 
 </html>

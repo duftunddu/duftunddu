@@ -9,8 +9,7 @@
   
   {{-- Style --}}
   <style>
-    
-    .footer{
+    .footer, .footer-last{
       background-color: #FCF6F5FF;
       /* position:relative; */
       color: black;
@@ -19,28 +18,13 @@
       /* height: 100vh; */
       /* margin: 0; */
     }
-
-    .footer-last{
-      background-color: #FCF6F5FF;
-      /* position: relative; */
-      color: black;
-      font-family: 'Marcellus', serif;
-      /* font-weight: 200; */
-      /* height: 100vh; */
-      /* margin: 0; */
-    }
-
   </style>
 
 </head>
 
-
 {{-- Footer --}}
-
 <div class = "footer-all">
-    <div>
-    <span class="sexy_line"></span>
-    </div>
+    <div><span class="sleek-border"></span></div>
 
   {{-- Footer: Upper --}}
   <div class="footer">
@@ -48,12 +32,13 @@
     <div class="footer-row">
         <div class="footer-links">
 
-          <a href="#">About</a>
-          <a href="#">Press</a>
+          <a href="about_us">About Us</a>
+          <a href="whitepaper">Whitepaper</a>
           <a href="#">Copyright</a>
           <a href="#">Creators</a>
-          <a href="#">Advertise</a>
-          <a href="#">Developers</a>
+          <a href="advertisement">Advertise</a>
+          {{-- <a href="#">Press</a> --}}
+          {{-- <a href="#">Developers</a> --}}
 
         </div>
     </div>
@@ -61,10 +46,10 @@
     <div class="footer-row">
         <div class="footer-links link-footer">
 
-          <a href="#">Terms</a>
-          <a href="#">Privacy</a>
-          <a href="#">Policy&Safety</a>
-          <a href="#">Send Feedback</a>
+          <a href="#">Terms of Use</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Feedback</a>
+          {{-- <a href="#">Policy&Safety</a> --}}
         
         </div>
     </div>
