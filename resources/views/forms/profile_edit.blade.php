@@ -242,7 +242,6 @@
                                     </div>
                                 </div>
 
-                                @hasrole('new_user')
                                 {{-- Currency --}}
                                 <div class="form-group row">
                                     <label for="currency" class="col-md-4 col-from-label text-md-right">{{ __('Preferred Currency:')}}</label>
@@ -263,9 +262,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                @endhasrole
 
-                                @hasrole('user|super_admin')
                                 {{-- Details --}}
                                 <div class="form-group row">
                                     <label for="details" class="col-md-4 col-from-label text-md-right">{{ __('Details:')}}</label>
@@ -280,7 +277,6 @@
                                         @enderror
                                     </div>
                                 </div>
-                                @endhasrole
 
                                 {{-- Button: Submit --}}
                                 <div class="form-group row mb-0">

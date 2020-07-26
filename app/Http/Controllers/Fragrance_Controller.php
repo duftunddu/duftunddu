@@ -13,6 +13,9 @@ use App\Ingredient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+use Symfony\Component\Process\Process;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+
 use AshAllenDesign\LaravelExchangeRates\Classes\ExchangeRate;
 
 class Fragrance_Controller extends Controller
@@ -82,15 +85,35 @@ class Fragrance_Controller extends Controller
       'ingredient_id'        => 'required',
     ]);
 
-    DB::transaction(function () use ($request) {
+    $process = new Process([
+      'C:\Users\Abdul Samad\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.8_qbz5n2kfra8p0\python3.8.exe',
+      'unidecode_string.py',
+      $request->input('name')
+    ], null, [
+      'PYTHONHOME' => 'C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.8_3.8.1264.0_x64__qbz5n2kfra8p0',
+      'PYTHONPATH' => 'C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.8_3.8.1264.0_x64__qbz5n2kfra8p0;C:\Users\Abdul Samad\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.8_qbz5n2kfra8p0\LocalCache\local-packages\Python38\site-packages',
+      'PYTHONHASHSEED' => 1,
+    ]);
+    
+    $process->run();
+ 
+    // executes after the command finishes
+    if (!$process->isSuccessful()) {
+        throw new ProcessFailedException($process);
+    }
 
-    $new                           = new fragrance();
-    $new->brand_id                 = $request->input('brand_id');
-    $new->name                     = $request->input('name');
-    $new->type_id                  = $request->input('type_id');
-    $new->gender     = $request->input('gender');
-    $new->cost                     = $request->input('cost');
-    $new->currency                 = $request->input('currency');
+    $normal_name  = $process->getOutput();
+
+    DB::transaction(function () use ($request,$normal_name) {
+
+    $new                            = new fragrance();
+    $new->brand_id                  = $request->input('brand_id');
+    $new->name                      = $request->input('name');
+    $new->normal_name               = $normal_name;
+    $new->type_id                   = $request->input('type_id');
+    $new->gender                    = $request->input('gender');
+    $new->cost                      = $request->input('cost');
+    $new->currency                  = $request->input('currency');
 
     $new->save();
 

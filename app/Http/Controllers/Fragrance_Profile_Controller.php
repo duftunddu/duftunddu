@@ -23,7 +23,7 @@ class Fragrance_Profile_Controller extends Controller
      * @return void
      */
     
-     public function __construct(HomeController $HomeController)
+     public function __construct()
     {
         $this->middleware('auth');
     }
@@ -42,8 +42,9 @@ class Fragrance_Profile_Controller extends Controller
 
         $countries      =   Country::all();
         $cities         =   City::all();
+                
         $currencies     =   new ExchangeRate();
-        
+
         return view('forms.profile_entry',[
             'professions'       =>    $professions,
             'skin_types'        =>    $skin_types,
@@ -74,25 +75,30 @@ class Fragrance_Profile_Controller extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'gender'        => 'required',
-            'dob'           => 'required',
-            'profession_id'    => 'required',
-            'skin_type_id'     => 'required',
-            'sweat'         => 'required',
-            'height'        => 'required',
-            'weight'        => 'required',
-            'country_id'       => 'required',
-            'city_id'          => 'required',
-            'climate_id'       => 'required',
-            'season_id'        => 'required',
-            'currency'      => 'required',
+            'gender'            => 'required',
+            'dob'               => 'required',
+            'profession_id'     => 'required',
+            'skin_type_id'      => 'required',
+            'sweat'             => 'required',
+            'height'            => 'required',
+            'weight'            => 'required',
+            'country_id'        => 'required',
+            'city_id'           => 'required',
+            'climate_id'        => 'required',
+            'season_id'         => 'required',
         ]);
-        
+
+        $user_check = 0;
+        if (request()->user()->hasRole('new_user')){
+            $user_check = 1;
+        }
+
         DB::transaction(function () use ($request) {
+            
             $new                = new Fragrance_Profile();
             $new->users_id      = request()->user()->id;
             
-            $new->user_check        = 1;
+            $new->user_check        = $user_check;
             $new->gender            = $request->input('gender');
             $new->dob               = $request->input('dob');
             $new->profession_id     = $request->input('profession_id');
@@ -110,9 +116,11 @@ class Fragrance_Profile_Controller extends Controller
             $new->save();
         });
         
-        request()->user()->removeRole('new_user');
-        request()->user()->assignRole('user');
-
+        if (request()->user()->hasRole('new_user')){
+            request()->user()->removeRole('new_user');
+            request()->user()->assignRole('user');
+        }
+        
         // Return
         return redirect('home');
     }

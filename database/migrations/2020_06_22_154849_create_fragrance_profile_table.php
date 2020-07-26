@@ -39,7 +39,7 @@ class CreateFragranceProfileTable extends Migration
             $table->unsignedTinyInteger('season_id');
             $table->foreign('season_id')->references('id')->on('season')
             ->onUpdate('cascade')->onDelete('cascade');
-            $table->string('currency',4);
+            $table->string('currency',4)->nullable();
             $table->string('detail',256)->nullable();
             $table->softDeletes();
         });

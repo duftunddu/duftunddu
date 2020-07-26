@@ -231,17 +231,17 @@ body.hero-anime .heading{
     transition-delay: 1500ms;
 }
 
-/* h1 transition */
-/* h1, h2, h3, h4, h5, h6{
+/* h4 transition */
+/* h4{
 	opacity: 1;
 	transform: translate(0);
-    transition: all 300ms linear;
-    transition-delay: 1700ms;
+    transition: all 200ms linear;
+    transition-delay: 700ms;
 }
-body.hero-anime h1, h2, h3, h4, h5, h6{
+body.hero-anime h4{
 	opacity: 0;
-	transform: translateY(40px);
-    transition-delay: 1700ms;
+	transform: translateY(10px);
+    transition-delay: 700ms;
 } */
 
 /* p transition */
@@ -257,6 +257,20 @@ body.hero-anime p{
 	transform: translateY(40px);
     transition-delay: 1700ms;
 }
+
+/* small transition */
+/* small{
+	opacity: 1;
+	transform: translate(0);
+    transition: all 250ms linear;
+    transition-delay: 1000ms;
+}
+body.hero-anime small{
+	opacity: 0;
+	transform: translateY(50px);
+    transition-delay: 1000ms;
+} */
+
 
 h1 span{
 	display: inline-block;

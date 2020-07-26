@@ -17,6 +17,7 @@ class CreateFragranceBrandTable extends Migration
             $table->mediumIncrements('id');
             $table->timestamps();
             $table->string('name',100);
+            $table->string('normal_name',100);
             $table->unsignedTinyInteger('tier_id');
             $table->foreign('tier_id')->references('id')->on('brand_tier')
             ->onUpdate('cascade')->onDelete('cascade');

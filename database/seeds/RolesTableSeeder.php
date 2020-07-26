@@ -37,6 +37,7 @@ class RolesTableSeeder extends Seeder
         $role->givePermissionTo('edit_user_profile');
         $role->givePermissionTo('add_perceived_fragrance');
         $role->givePermissionTo('add_profile_perceived_fragrance');
+        // Can be used for self and for others
         
         // [all of the above], get_user_analytics	premium_user
         $role = Role::firstOrCreate(['name' => 'premium_user']);
@@ -47,11 +48,7 @@ class RolesTableSeeder extends Seeder
         $role->givePermissionTo('edit_user_profile');
         $role->givePermissionTo('add_perceived_fragrance');
         $role->givePermissionTo('add_profile_perceived_fragrance');
-        
-        // get_gift_prediction	gifter
-        $role = Role::firstOrCreate(['name' => 'gifter']);
-        $role->givePermissionTo('get_gift_prediction');
-    
+        // can only be used for self 
 
         // Brand Ambassador
         // edit_ba_profile	candidate_brand_ambassador

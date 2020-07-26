@@ -38,14 +38,22 @@ Route::get('whitepaper', function () {
     return view('forms.whitepaper');
 });
 
+Route::get('brand_ambassador', function () {
+    return view('forms.brand_ambassador');
+});
+
 Route::get('/brands', 'Fragrance_Brand_Controller@output');
 Route::get('/brands/{id}', 'Fragrance_Brand_Controller@show');
+
 
 // Authorized Routes
 Auth::routes();
 
 // new_user|user|genie_user|premium_user
 Route::middleware(['role:new_user|user|genie_user|premium_user|super_admin'])->group(function () {
+    
+    Route::get('/home', 'HomeController@index')->name('home');
+
     Route::get('/profile', 'Fragrance_Profile_Controller@index');
     Route::post('/profile', 'Fragrance_Profile_Controller@store');
    
@@ -56,11 +64,11 @@ Route::middleware(['role:user|genie_user|premium_user|super_admin'])->group(func
     Route::get('home', 'HomeController@index')
     ->name('home');
     
-    Route::get('/genie_input', 'Perceiver_Controller@index');
-    Route::post('/genie_input', 'Perceiver_Controller@store');
+    Route::get('/genie_input/{profile_id}', 'Perceiver_Controller@index');
+    Route::post('/genie_input/{profile_id}', 'Perceiver_Controller@store');
 
-    Route::get('/genie_output', 'Perceiver_Controller@output');
-    Route::post('/genie_output', 'Perceiver_Controller@output');
+    Route::get('genie_output', 'Perceiver_Controller@output');
+    Route::post('genie_output', 'Perceiver_Controller@output');
 
 });
 
@@ -108,7 +116,7 @@ Route::middleware(['role:super_admin'])->group(function () {
         return view('forms.range_slider');
     });
     
-    Route::get('/feature_slider', function () {
+    Route::get('feature_slider', function () {
         return view('forms.feature_slider');
     });
 
@@ -124,17 +132,23 @@ Route::middleware(['role:super_admin'])->group(function () {
         return view('forms.button_hold_to_confirm');
     });
 
+    Route::get('header', function () {
+        return view('layouts.header');
+    });
     
+    Route::get('button_get_wishes', function () {
+        return view('forms.button_get_wishes');
+    });
 
+    Route::get('button_custom_fancy', function () {
+        return view('forms.button_custom_fancy');
+    });
+
+    Route::get('button_plus', function () {
+        return view('forms.button_plus');
+    });
 });
 
-Route::get('header', function () {
-    return view('layouts.header');
-});
 // sample
 // Route::middleware(['role:user|super_admin'])->group(function () {
 // });
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

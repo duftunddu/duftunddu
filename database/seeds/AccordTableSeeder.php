@@ -13,8 +13,6 @@ class AccordTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('accord')->truncate();
-
         $data = [
             [
                 'id'         => 1,

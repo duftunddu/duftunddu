@@ -7,12 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <style>
+        
         .full-height {
             height: 75vh;
         }
+        
         .full-width{
             width: 100vw;
         }
+        
         .flex-center1 {
             /* background-image: url("https://www.designisthis.com/blog/images/uploads/2012/08/AnestasiA-Vodka.jpg"); */
             /* background-attachment: fixed; */
@@ -32,10 +35,44 @@
             position: relative;
             text-align: center;
         }
-        label{
-            position: relative;
-            text-align: center;
+
+        h4{
+            opacity: 1;
+            transform: translate(0);
+            transition: all 200ms linear;
+            transition-delay: 700ms;
         }
+        body.hero-anime h4{
+            opacity: 0;
+            transform: translateY(8px);
+            transition-delay: 700ms;
+        }
+
+        button.btn{
+            opacity: 1;
+            transform: translate(0);
+            transition: all 200ms linear;
+            transition-delay: 800ms;
+        }
+        body.hero-anime button.btn{
+            opacity: 0;
+            transform: translateY(8px);
+            transition-delay: 800ms;
+        }
+
+        small{
+            /* margin: 0; */
+            opacity: 1;
+            transform: translate(0);
+            transition: all 250ms linear;
+            transition-delay: 1000ms;
+        }
+        body.hero-anime small{
+            opacity: 0;
+            transform: translateY(50px);
+            transition-delay: 1000ms;
+        }
+
     </style>
 
     <link href="{{ asset('css/home.css') }}" rel="stylesheet">
@@ -67,9 +104,9 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
+    
                     {{-- User Fragrances --}}
-                    @if ($brand->isNotEmpty())
+                    @if (!empty($fav_brand))
 
                         {{-- Favorite Brand --}}
                         <div class="form-group row">
@@ -77,8 +114,7 @@
 
                             <div class="col-md-5">
                                 <h4>
-                                    <a href="/brand_output/{{$brand->name}}">{{$brand->name}}</a>
-                                    {{-- {{_($brand->name)}} --}}
+                                    <a href="/brands/{{$fav_brand->id}}">{{$fav_brand->name}}</a>
                                 </h4>
                             </div>
 
@@ -100,45 +136,22 @@
                             </div>
                         </div>
 
-                        {{--  Button: Add a Fragrance --}}
-                        <div class="form-group row mb-0">
-                            <div class="col-md-5 offset-md-5">
-                                <button type="submit" class="btn btn-secondary">
-                                    {{ __('Add a Fragrance') }}
-                                </button>
-                            </div>
-                        </div>
+                        <br>
+
+                        {{--  Button: Add Fragrance --}}
+                        <button type="button" style="display: block; margin:0 auto;" class="btn btn-secondary" onclick="window.location='{{ url('/genie_input/' . $user_profile->id) }}'">
+                            {{ __('Add Fragrance') }}
+                        </button>
 
                         <br>
 
-                        {{-- Button: Get Reccommendation --}}
-                        {{-- Only appears Brand exists --}}
-                        @if($brand->isNotEmpty())
-                            <div class="form-group row mb-0">
-                                <div class="col-md-5 offset-md-5">        
-                                    <button type="submit" class="custom"> {{-- style="position:absolute; right:3vh" --}}
-                                        <span class="before">{{_('Ask Genie')}}</span>
-                                        <span class="after">{{_('Ask Genie')}}</span>
-                                    </button>
-                                </div>
-                            </div>
-                        @endif
-
-                        
-                        <br>
-                        
-                        {{-- Add a Profile - Button --}}
-                        {{-- Only appears if there are no Profiles --}}
-                        @if($profiles->isEmpty())
-
-                            <div class="form-group row mb-0">
-                                <div class="col-md-5 offset-md-5">
-                                    <button type="submit" class="btn btn-secondary">
-                                        {{ __('Add a Profile') }}
-                                    </button>
-                                </div>
-                            </div>
-                        
+                        {{-- Button: Genie --}}
+                        {{-- Only appears fav_brand exists --}}
+                        @if (!empty($fav_brand))
+                            <button type="submit" style="display: block; margin:0 auto;" class="custom" onclick="window.location='{{ url('/genie_output/' . $user_profile->id) }}'"> {{-- style="position:absolute; right:3vh" --}}
+                                <span class="before">{{_('Genie')}}</span>
+                                <span class="after">{{_('Genie')}}</span>
+                            </button>
                         @endif
 
                     {{-- Empty Dashboard --}}
@@ -155,31 +168,31 @@
                         
                         <br>
 
-                        {{--  Button: Add a Fragrance --}}
+                        {{--  Button: Add Fragrance --}}
                         <div class="form-group row mb-0">
                             <div class="col-md-5 offset-md-5">
-                                <button type="submit" class="btn btn-secondary">
-                                    {{ __('Add a Fragrance') }}
+                                <button type="button" class="btn btn-secondary" onclick="window.location='{{ url('/genie_input/' . $user_profile->id) }}'">
+                                    {{ __('Add Fragrance') }}
                                 </button>
                             </div>
                         </div>
 
                         <br>
-                        
-                        {{-- Add a Profile - Button --}}
-                        {{-- Only appears if there are no Profiles --}}
-                        @if($profiles->isEmpty())
 
-                            <div class="form-group row mb-0">
-                                <div class="col-md-5 offset-md-5">
-                                    <button type="submit" class="btn btn-secondary">
-                                        {{ __('Add a Profile') }}
-                                    </button>
-                                </div>
-                            </div>
-                        
-                        @endif
+                    @endif
+                    
+                    {{-- Add a Profile - Button --}}
+                    {{-- Only appears if there are no Profiles --}}
+                    @if($profiles->isEmpty() && empty($empty_profiles) )
 
+                        {{-- <div class="form-group row mb-0"> --}}
+                            {{-- <div class="col-md-5 offset-md-5"> --}}
+                                <button type="submit" style="display: block; margin:0 auto;" class="btn btn-secondary"  onclick="window.location='{{ url('profile') }}'">
+                                    {{ __('Add a Profile') }}
+                                </button>
+                            {{-- </div> --}}
+                        {{-- </div> --}}
+                    
                     @endif
 
                 </div>
@@ -188,12 +201,44 @@
             <br><br>
 
             {{-- Card: Profiles --}}
-            @if($profiles->isNotEmpty())
+            @if($profiles->isNotEmpty() || !empty($empty_profiles) )
             <div class="card">
                 <div class="card-header">{{_('Other Profiles')}}</div>
+                
+                {{-- Empty Profiles --}}
+                @if ( empty($empty_profiles) )
+                @foreach($empty_profiles as $profile)
+                
+                {{-- Accordion --}}
+                <div id="accordion" class="accordion">
+                    
+                    {{-- Head --}}
+                    <div class="as-accordion-head">
+
+                        <span id="as-accordion-close" class="as-accordion-close" aria-hidden="true"><h2>&times;</h2></span>
+                        
+                        <span class="as-accordion-title">
+                            <h4> {{_($profile->detail)}} </h4>
+                        </span>
+
+                        {{--  Button: Add Fragrance --}}
+                        <span>
+                            <button type="button" style="position:relative; margin-left:25vw; margin-top:3.5vh" class="btn btn-secondary" onclick="window.location='{{ url('/genie_input/' . $profile->id) }}'">
+                                {{ __('Add Fragrance') }}
+                            </button>
+                        </span>
+
+                    </div>
+                </div>
+
+                @endforeach
+                @endif
+
+
+                {{-- Profiles with Fragrances --}}
                 @foreach($profiles as $profile)
                 
-                {{-- Accordions --}}
+                {{-- Accordion --}}
                 <div id="accordion" class="accordion">
                     
                     {{-- Head --}}
@@ -205,19 +250,12 @@
                             <h4> {{_($profile[0]->detail)}} </h4>
                         </span>
 
-                        {{-- <span> --}}
-
-                            {{-- Button: Buy Gift Card --}}
-                            {{-- <div class="form-group row mb-0">
-                                <div class="col-md-5 offset-md-9">
-                                    <button type="submit" class="custom" style="position:absolute; left:70%">
-                                        {{ __('Buy Gift Card') }}
-                                    </button>
-                                </div>
-                            </div> --}}
-
-                        {{-- </span> --}}
-
+                        {{--  Button: Add Fragrance --}}
+                        <span>
+                            <button type="button" style="position:relative; margin-left:25vw; margin-top:3.5vh" class="btn btn-secondary" onclick="window.location='{{ url('/genie_input/' . $profile[0]->profile_id) }}'">
+                                {{ __('Add Fragrance') }}
+                            </button>
+                        </span>
 
                     </div>
                     
@@ -238,20 +276,17 @@
                                 </div>
                             @endforeach
 
-                            {{-- Button: Buy Gift Card --}}
-                            <div class="form-group row mb-0">
-                                <div class="col-md-5 offset-md-8">
-                                    <button type="submit" class="custom">
-                                        <span class="before">{{_('Buy Gift Card')}}</span>
-                                        <span class="after">{{_('Buy Gift Card')}}</span>
-                                    </button>
-                                </div>
-                            </div>
+                            {{-- Button: Genie --}}
+                            <button type="submit" style="display: block; margin:0 auto;" class="custom" onclick="window.location='{{ url('/genie_output/' . $profile[0]->profile_id) }}'">
+                                <span class="before">{{_('Genie')}}</span>
+                                <span class="after">{{_('Genie')}}</span>
+                            </button>
 
                         </div>
                     </div>
 
                 </div>
+
                 @endforeach
 
                 <br>
@@ -260,8 +295,8 @@
                 <div class="form-group row mb-0">
                     <div class="col-md-5 offset-md-7">
                         <button type="submit" class="custom">
-                            <span class="before">{{_('Add a Profile')}}</span>
-                            <span class="after">{{_('Add a Profile')}}</span>
+                            <span class="before">{{_('Add Profile')}}</span>
+                            <span class="after">{{_('Add Profile')}}</span>
                         </button>
                     </div>
                 </div>

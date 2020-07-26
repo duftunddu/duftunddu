@@ -30,65 +30,93 @@ class HomeController extends Controller
         $user      = request()->user()->id;
 
         $profiles = DB::table('fragrance_profile')
-        ->where('users_id', $user)
-        ->get();
-
-        $check_perceiver = collect();
-
-        // $check_perceiver = DB::table('perceiver')
-        // ->where('profile_id', $profiles->first()->id)
-        // ->get();
-
-        if(empty($check_perceiver)){
-        // User Profile
-        $data_fav_brand = DB::table('perceiver')
-            ->join('fragrance', 'fragrance.id', '=', 'perceiver.fragrance_id')
-            ->where('profile_id', $profiles->first()->id)
-            ->select('fragrance.brand_id', DB::raw('COUNT(fragrance.brand_id) AS occurrences'))
-            ->groupBy('fragrance.brand_id')
-            ->orderBy('occurrences', 'DESC')
+            ->where('users_id', $user)
             ->get();
-        
-        $fav_brand = DB::table('fragrance_brand')->where('id', $data_fav_brand->first()->brand_id)->get();
 
-        $user_fragrances = DB::table('perceiver')
-                ->join('fragrance', 'fragrance.id', '=', 'perceiver.fragrance_id')
-                ->where('profile_id', $profiles->first()->id)
-                ->select('fragrance.name', 'perceiver.like')
-                ->get();
-
-        unset($profiles[0]);
-
-        // Other profiles
-        $profile_fragrances = collect();
-
-        foreach ($profiles as $profile){
-            $profile_fragrance = DB::table('perceiver')
-                ->join('fragrance', 'fragrance.id', '=', 'perceiver.fragrance_id')
-                ->join('fragrance_profile', 'fragrance_profile.id', '=', 'perceiver.profile_id')
-                ->where('profile_id', $profile->id)
-                ->select('profile_id', 'fragrance_profile.detail', 'fragrance.name', 'perceiver.like')
-                ->get();
-                
-            $profile_fragrances = $profile_fragrances->merge($profile_fragrance); 
+        if ($profiles->isEmpty()){
+            return redirect('profile');
         }
 
-        $profile_fragrances = $profile_fragrances->groupBy('profile_id');
+        $user_profile = $profiles[0];
+
+        $check_perceiver = DB::table('perceiver')
+            ->where('profile_id', $profiles->first()->id)
+            ->get();
+
+        $fav_brand = collect();
+        $user_fragrances = collect();
+        if($check_perceiver->isNotEmpty()){
+            // User Profile
+            $data_fav_brand = DB::table('perceiver')
+                ->join('fragrance', 'fragrance.id', '=', 'perceiver.fragrance_id')
+                ->where('profile_id', $profiles->first()->id)
+                ->select('fragrance.brand_id', DB::raw('COUNT(fragrance.brand_id) AS occurrences'))
+                ->groupBy('fragrance.brand_id')
+                ->orderBy('occurrences', 'DESC')
+                ->get();
+            
+            $fav_brand = DB::table('fragrance_brand')->where('id', $data_fav_brand->first()->brand_id)->first();
+
+            $user_fragrances = DB::table('perceiver')
+                    ->join('fragrance', 'fragrance.id', '=', 'perceiver.fragrance_id')
+                    ->where('profile_id', $profiles->first()->id)
+                    ->select('fragrance.name', 'perceiver.like')
+                    ->get();
+        }
+        unset($profiles[0]);
+
+        // Other profiles        
+        $empty_profiles[] = collect();
+        $index = 0;
+        $profile_fragrances = collect();
+        if($profiles->isNotEmpty()){
+            
+            // Profiles with Fragrances
+            foreach ($profiles as $profile){
+                $profile_fragrance = DB::table('perceiver')
+                    ->join('fragrance', 'fragrance.id', '=', 'perceiver.fragrance_id')
+                    ->join('fragrance_profile', 'fragrance_profile.id', '=', 'perceiver.profile_id')
+                    ->where('profile_id', $profile->id)
+                    ->select('profile_id', 'fragrance_profile.detail', 'fragrance.name', 'perceiver.like')
+                    ->get();
+                    
+                $profile_fragrances = $profile_fragrances->merge($profile_fragrance);
+            }
+            $profile_fragrances = $profile_fragrances->groupBy('profile_id');
+
+            // Profiles with no Fragrances
+            foreach ($profiles as $profile){
+                $check = 0;
+                foreach ($profile_fragrance as $not_empty){
+                    if($profile->id == $not_empty->profile_id){
+                        $check = 1;
+                    }
+                }
+
+                if($check == 0){
+                    // $empty_profile = DB::table('perceiver')
+                    // ->join('fragrance_profile', 'fragrance_profile.id', '=', 'perceiver.profile_id')
+                    // ->where('profile_id', $profile->id)
+                    // ->select('profile_id', 'fragrance_profile.detail')
+                    // ->get();
+                
+                    $empty_profiles[$index]= $profile;    
+                    $index = $index+1;             
+                }
+            }
+
+            // foreach ($profiles as $p){
+            // var_dump($p->id);
+            // return;
+            // }
+
+        }
 
         return view('home',[
-            'brand'                 => $fav_brand[0],
+            'fav_brand'             => $fav_brand,
             'user_fragrances'       => $user_fragrances,
-            'profiles'              => $profile_fragrances
-        ]);
-        
-    }
-
-    $fav_brand = collect();
-    $user_fragrances = collect();
-    $profile_fragrances = collect();
-        return view('home',[
-            'brand'                 => $fav_brand,
-            'user_fragrances'       => $user_fragrances,
+            'user_profile'          => $user_profile,
+            'empty_profiles'        => $empty_profiles,
             'profiles'              => $profile_fragrances
         ]);
 

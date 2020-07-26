@@ -2,6 +2,35 @@
 
 <title>{{('Brands | Duft Und Du')}}</title>
 
+<style>
+    /* h4 transition */
+    h4{
+        opacity: 1;
+        transform: translate(0);
+        transition: all 200ms linear;
+        transition-delay: 700ms;
+    }
+    body.hero-anime h4{
+        opacity: 0;
+        transform: translateY(8px);
+        transition-delay: 700ms;
+    }
+
+    /* small transition */
+    small{
+        /* margin: 0; */
+        opacity: 1;
+        transform: translate(0);
+        transition: all 250ms linear;
+        transition-delay: 1000ms;
+    }
+    body.hero-anime small{
+        opacity: 0;
+        transform: translateY(50px);
+        transition-delay: 1000ms;
+    }
+</style>
+
 @section('content')
     <div class="container">
         <div class="row justify-content-center">

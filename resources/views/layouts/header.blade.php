@@ -33,9 +33,9 @@
 									<a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
 									<div class="dropdown-menu">
 										<a class="dropdown-item" href="search_engine">Search Engine</a>
-										<a class="dropdown-item" href="#">Catalog</a>
-										<a class="dropdown-item" href="#">Whitepaper</a>
-										<a class="dropdown-item" href="#">About Us</a>
+										<a class="dropdown-item" href="catalog">Catalog</a>
+										<a class="dropdown-item" href="whitepaper">Whitepaper</a>
+										<a class="dropdown-item" href="about_us">About Us</a>
 									</div>
 								</li>
 

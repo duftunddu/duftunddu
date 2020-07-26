@@ -69,32 +69,10 @@
 <link href="{{ asset('css/try.css') }}" rel="stylesheet">
 {{-- <script src="{{ asset('js/try.js') }}"></script> --}}
 
-<a href="#" class="animated-button13">
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  Get Wishes
-</a>
 
-<div style="margin:50px"></div>
-
-<a href="#" class="animated-button14">
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  Get Wishes
-</a>
-
-<div style="margin:50px"></div>
-
-<a href="#" class="animated-button15">
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  Get Wishes
-</a>
+<div class="button__holder">
+  <h2>Hover me &rarr;</h2>
+  <button class="plus"></button>
+</div>
 
 {{-- <script src="{{ asset('js/try.js') }}"></script> --}}

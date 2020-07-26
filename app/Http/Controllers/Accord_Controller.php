@@ -6,11 +6,6 @@ use App\Accord;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-use Symfony\Component\Finder\Finder;
-
-use Symfony\Component\Process\Process;
-use Symfony\Component\Process\Exception\ProcessFailedException;
-
 class Accord_Controller extends Controller
 {
 
@@ -54,36 +49,6 @@ class Accord_Controller extends Controller
   */
  public function store(Request $request)
  {
-  
-// finder
-// $finder = new Finder();
-// // find all files in the current directory
-// $finder->files()->in('C:\Users\Abdul Samad\tryproject\python_scripts')->name('*.py');
-// // $finder->files()->in(__DIR__);
-
-// // check if there are any search results
-// if ($finder->hasResults()) {
-//     var_dump($finder);
-// }
-// return;
-
-// process
-  //   $text = $request->input('name');
-  //   $process = new Process(["python3 C:\Users\Abdul Samad\tryproject\python_scripts/unidecode_string.py \"{$text}\""]);
-  //   // $process = new Process(['unidecode_string.py']);
-
-  // // $process = new Process(['C:\Users\Abdul Samad\tryproject\python_scripts', 'unidecode_string.py']);
-  // $process = new Process(['unidecode_string.py', $request->input('name')]);
-  // // $process->setInput($request->input('name'));
-  // $process->run();
-
-  // // executes after the command finishes
-  // if (!$process->isSuccessful()) {
-  //     throw new ProcessFailedException($process);
-  // }
-  
-  // var_dump($process->getOutput());
-  // return;
   
   $validatedData = $request->validate([
     'name' => 'required|unique:accord',

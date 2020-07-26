@@ -12,6 +12,9 @@ use App\Fragrance_Brand_Availability;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+use Symfony\Component\Process\Process;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+
 class Fragrance_Brand_Controller extends Controller
 {
     /**
@@ -70,10 +73,30 @@ class Fragrance_Brand_Controller extends Controller
          'availability'    => 'required',
        ]);
 
-      DB::transaction(function () use ($request) {
+      $process = new Process([
+        'C:\Users\Abdul Samad\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.8_qbz5n2kfra8p0\python3.8.exe',
+        'unidecode_string.py',
+        $request->input('name')
+      ], null, [
+        'PYTHONHOME' => 'C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.8_3.8.1264.0_x64__qbz5n2kfra8p0',
+        'PYTHONPATH' => 'C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.8_3.8.1264.0_x64__qbz5n2kfra8p0;C:\Users\Abdul Samad\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.8_qbz5n2kfra8p0\LocalCache\local-packages\Python38\site-packages',
+        'PYTHONHASHSEED' => 1,
+      ]);
+      
+      $process->run();
+   
+      // executes after the command finishes
+      if (!$process->isSuccessful()) {
+          throw new ProcessFailedException($process);
+      }
+
+      $normal_name  = $process->getOutput();
+
+      DB::transaction(function () use ($request,$normal_name) {
          
          $new                    = new fragrance_brand();
          $new->name              = $request->input('name');
+         $new->normal_name       = $normal_name;
 
          $new->tier_id           = $request->input('tier_id');
          $new->origin_id         = $request->input('origin_id');
