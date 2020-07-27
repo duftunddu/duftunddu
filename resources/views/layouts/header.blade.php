@@ -39,16 +39,29 @@
 									</div>
 								</li>
 
+								
+								<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+									<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="brand_ambassador" role="button" aria-haspopup="true" aria-expanded="false">Brand Ambassador</a>
+									<div class="dropdown-menu">
+										@unlessrole('brand_ambassador|premium_brand_ambassador')						
+										<a class="dropdown-item" href="brand_ambassador">Join Us</a>
+										<a class="dropdown-item" href="brand_ambassador">Advertise</a>  {{-- Redirect to Join Us --}}
+										@else
+										<a class="dropdown-item" href="#">Advertise</a>
+										@endunlessrole
+										<a class="dropdown-item" href="#">Premium Features</a>
+										
+									</div>
+								</li>
+
 								<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
 									<a class="nav-link" href="#">Portfolio</a>
 								</li>
 								
 								<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-									<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="brand_ambassador" role="button" aria-haspopup="true" aria-expanded="false">Brand Ambassador</a>
+									<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="brand_ambassador" role="button" aria-haspopup="true" aria-expanded="false">Insights</a>
 									<div class="dropdown-menu">
-										<a class="dropdown-item" href="#">Join Us</a>
-										{{-- <a class="dropdown-item" href="#"></a> --}}
-										<a class="dropdown-item" href="#">Advertise</a>
+										<a class="dropdown-item" href="#">Coming Soon</a>
 									</div>
 								</li>
 
@@ -57,7 +70,12 @@
 								</li>
 								
 								<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-									<a class="nav-link" href="#">Contact Us</a>
+									<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="brand_ambassador" role="button" aria-haspopup="true" aria-expanded="false">Contact Us</a>
+									<div class="dropdown-menu">
+										<a class="dropdown-item" href="#">Request a Feature</a>
+										<a class="dropdown-item" href="#">Feedback</a>
+										<a class="dropdown-item" href="#">Contact</a>
+									</div>
 								</li>
 
 								<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4"></li>
@@ -78,9 +96,14 @@
 										<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
 											{{ Auth::user()->name }} <span class="caret"></span>
 										</a>
+
+
 		
 										{{-- <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown"> --}}
 										<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+											<a class="dropdown-item" href="home">Dashboard</a>
+											<a class="dropdown-item" href="#">Premium</a>
+
 											<a class="dropdown-item" href="{{ route('logout') }}"
 											onclick="event.preventDefault();
 															document.getElementById('logout-form').submit();">

@@ -28,6 +28,8 @@ html, body{
   height: 170px;
   left: 0px;
   width:100%;
+  letter-spacing: 0.12vw;
+  
 }
 
 .view {

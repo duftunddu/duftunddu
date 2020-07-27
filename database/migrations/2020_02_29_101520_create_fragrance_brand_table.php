@@ -25,6 +25,8 @@ class CreateFragranceBrandTable extends Migration
             $table->foreign('origin_id')->references('id')->on('countries')
             ->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedTinyInteger('discontinued')->default('1');
+            $table->string('created_by',30)->nullable();
+            $table->string('updated_by',30)->nullable();
         });
     }
 

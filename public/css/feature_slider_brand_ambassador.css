@@ -1,0 +1,248 @@
+/* @import url('https://fonts.googleapis.com/css?family=Open Sans:400,700|Montserrat'); */
+
+body {
+  /* margin: 0;
+  padding: 0;
+  font-family: 'Montserrat';
+  font-size: 13px; */
+  letter-spacing: 1px;
+}
+
+#tabs {
+  /* width: 700px; */
+  width: 95%;
+  display: flex;
+  position: relative;
+  margin: 0 auto;
+  margin-top: 50px;
+  height: 90%;
+  min-height: 200px;
+  /* max-height: 600px; */
+  max-height: 90%;
+  overflow: hidden;
+}
+
+/* @media (max-width: 475px){
+  #tabs{
+    width: 700px;
+    max-height: 600px;
+    height: 50%;
+  }
+} */
+
+/* 850px */
+@media screen and (max-width: 480px) {
+  
+  #tabs{
+    flex-direction:column;
+    
+    height: 50%;
+    /* max-height: 50%; */
+  }
+  
+  #tabs-1, #tabs-2, #tabs-3 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 50% !important;
+  }
+}
+
+
+ul {
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  vertical-align: top;
+  width: 50%;
+}
+
+ul li a {
+  position: relative;
+  /* display: block; */
+  display: inline-block;
+  width: 100%;
+  text-decoration: none;
+  color: #3b3b3b;
+  opacity: 1;
+  border-top: solid 2px #e9e9e9;
+  padding: 20px 5px;
+  z-index: 1;
+  opacity: .5;
+  -webkit-transition: 0.4s ease;
+  -moz-transition: 0.4s ease;
+  -o-transition: 0.4s ease;
+  transition: 0.4s ease;
+}
+
+ul li:focus, a:focus {
+  outline: none;
+}
+
+ul li:nth-child(1) a {
+  border-top: none;
+}
+
+ul li a.active {
+  opacity: 1;
+}
+
+.para-a {
+  font-weight: bold;
+  margin-top: 10px;
+  padding: 0;
+  text-transform: uppercase;
+  /* font-size: 11px; */
+  letter-spacing: 1px;
+  border: none;
+  /* font-family: 'Montserrat'; */
+  color: #2b2b2b;
+  opacity: 1;
+}
+
+.tag {
+  position: relative;
+  width: 100%;
+}
+
+.icon {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  background: #c7c7c7;
+  border-radius: 100%;
+  vertical-align: middle;
+}
+
+.block {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+  border: solid 2px #7b7b7b;
+  border-radius: 5px;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.circle {
+  position: absolute;
+  padding: 2px;
+  border: solid 2px #7b7b7b;
+  border-radius: 100%;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.heading {
+  display: inline-block;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 1.5vw;
+  padding: 0 10px;
+  vertical-align: middle;
+  /* color: #7b7b7b; */
+}
+
+.addon {
+  position: relative;
+  width: 80%;
+  top: -25px;
+  margin-left: 70px;
+  letter-spacing: 0;
+  font-size: 1.5vw;
+  /* color: #9b9b9b; */
+  opacity: 0;
+  font-family: 'Open Sans';
+}
+
+.addon.fadein {
+  opacity: 1;
+}
+
+.browser {
+  width: 45%;
+  height: 95%;
+  position: absolute;
+  border-style: solid;
+  border-width: 2px 0 2px 2px;
+  border-color: #7b7b7b transparent #7b7b7b #7b7b7b;
+  right: 0;
+  border-radius: 10px 0 0 10px;
+  overflow: hidden;
+}
+
+.top-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 30px;
+  line-height: 27px;
+  background: #fff;
+  border-bottom: solid 2px #7b7b7b;
+  z-index: 2;
+}
+
+.dot {
+  position: relative;
+  display: inline-block;
+  padding: 7px;
+  background: #c7c7c7;
+  border-radius: 100%;
+}
+
+.dot:nth-child(1) {
+  margin-top: 8px;
+  margin-left: 9px;
+}
+
+#tabs-1, #tabs-2, #tabs-3 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#tabs-1 {
+  background-image: url("../images/others/trung-do-bao--aNELWvR-vQ-unsplash_use.jpg");
+  /*background-attachment: fixed;*/
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  /* background-position: -10px; */
+  /* background-size: 100% 100%; */
+}
+
+#tabs-2 {
+  background-image: url("../images/progress/background-board-chart-data-590041_use.jpg");
+  /*background-attachment: fixed;*/
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: right;
+  /* background-size: 100% 100%; */
+}
+
+#tabs-3 {
+  background-image: url("../images/fragrance_model/laura-chouette-2H_8WbVPRxM-unsplash_use.jpg");
+  /* background-attachment: fixed; */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: right;
+  /* background-size: 100% 100%; */
+}

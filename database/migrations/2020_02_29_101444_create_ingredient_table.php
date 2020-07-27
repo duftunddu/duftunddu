@@ -17,6 +17,8 @@ class CreateIngredientTable extends Migration
             $table->mediumIncrements('id');
             $table->timestamps();
             $table->string('name', 35);
+            $table->string('created_by',30)->nullable();
+            $table->string('updated_by',30)->nullable();
         });
     }
 

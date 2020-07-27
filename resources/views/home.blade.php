@@ -61,7 +61,6 @@
         }
 
         small{
-            /* margin: 0; */
             opacity: 1;
             transform: translate(0);
             transition: all 250ms linear;

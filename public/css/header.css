@@ -71,10 +71,12 @@ body{
 }
 .navigation-wrap{
 	position: fixed;
+	display: block;
 	width: 100%;
 	top: 0;
 	left: 0;
 	z-index: 1000;
+	letter-spacing: 0.05vw;
 	-webkit-transition : all 0.3s ease-out;
 	transition : all 0.3s ease-out;
 }
@@ -132,6 +134,7 @@ body{
 } */
 .nav-link{
 	color: #212121 !important;
+	opacity: 1;
 	font-weight: 500;
     transition: all 200ms linear;
 }
@@ -206,7 +209,7 @@ body{
 } */
 
 /* title transition */
-.title{
+/* .title{
 	opacity: 1;
 	transform: translate(0);
     transition: all 300ms linear;
@@ -216,10 +219,10 @@ body.hero-anime .title{
 	opacity: 0;
 	transform: translateY(40px);
     transition-delay: 1300ms;
-}
+} */
 
 /* heading transition */
-.heading{
+/* .heading{
 	opacity: 1;
 	transform: translate(0);
     transition: all 275ms linear;
@@ -229,7 +232,7 @@ body.hero-anime .heading{
 	opacity: 0;
 	transform: translateY(40px);
     transition-delay: 1500ms;
-}
+} */
 
 /* h4 transition */
 /* h4{
@@ -245,8 +248,7 @@ body.hero-anime h4{
 } */
 
 /* p transition */
-p{
-	/* margin: 0; */
+/* p{
 	opacity: 1;
 	transform: translate(0);
     transition: all 300ms linear;
@@ -256,7 +258,7 @@ body.hero-anime p{
 	opacity: 0;
 	transform: translateY(40px);
     transition-delay: 1700ms;
-}
+} */
 
 /* small transition */
 /* small{

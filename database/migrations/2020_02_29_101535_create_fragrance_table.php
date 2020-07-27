@@ -27,6 +27,8 @@ class CreateFragranceTable extends Migration
         $table->string('gender',10);
         $table->unsignedInteger('cost');
         $table->string('currency',4);
+        $table->string('created_by',30)->nullable();
+        $table->string('updated_by',30)->nullable();
     });
 
  }

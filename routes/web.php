@@ -39,8 +39,18 @@ Route::get('whitepaper', function () {
 });
 
 Route::get('brand_ambassador', function () {
-    return view('forms.brand_ambassador');
+    return view('forms.proposal_brand_ambassador');
 });
+
+Route::get('feature_slider_brand_ambassador', function () {
+    return view('forms.feature_slider_brand_ambassador');
+});
+
+
+Route::get('brand_ambassador_profile', function () {
+    return view('forms.profile_entry_brand_ambassador');
+});
+
 
 Route::get('/brands', 'Fragrance_Brand_Controller@output');
 Route::get('/brands/{id}', 'Fragrance_Brand_Controller@show');
@@ -70,6 +80,12 @@ Route::middleware(['role:user|genie_user|premium_user|super_admin'])->group(func
     Route::get('genie_output', 'Perceiver_Controller@output');
     Route::post('genie_output', 'Perceiver_Controller@output');
 
+    Route::get('brand_ambassador_profile', 'Brand_Ambassador_Profile_Controller@index');
+    Route::post('brand_ambassador_profile', 'Brand_Ambassador_Profile_Controller@store');
+
+    // Route::get('brand_ambassador_profile', 'Brand_Ambassador_Detail_Controller@index');
+    // Route::post('brand_ambassador_profile', 'Brand_Ambassador_Detail_Controller@store');
+
 });
 
 // brand_ambassador|premium_brand_ambassador|user|genie_user|premium_user
@@ -93,6 +109,8 @@ Route::middleware(['role:brand_ambassador|premium_brand_ambassador|super_admin']
     Route::post('/brand_entry', 'Fragrance_Brand_Controller@store');
     
 });
+
+// candidate_brand_ambassador
 
 // super_admin
 Route::middleware(['role:super_admin'])->group(function () {
@@ -146,6 +164,10 @@ Route::middleware(['role:super_admin'])->group(function () {
 
     Route::get('button_plus', function () {
         return view('forms.button_plus');
+    });
+
+    Route::get('button_learn_more', function () {
+        return view('forms.button_learn_more');
     });
 });
 
