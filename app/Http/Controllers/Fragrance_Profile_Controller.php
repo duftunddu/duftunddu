@@ -93,7 +93,7 @@ class Fragrance_Profile_Controller extends Controller
             $user_check = 1;
         }
 
-        DB::transaction(function () use ($request) {
+        DB::transaction(function () use ($request,$user_check) {
             
             $new                = new Fragrance_Profile();
             $new->users_id      = request()->user()->id;

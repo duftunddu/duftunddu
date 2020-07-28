@@ -105,6 +105,7 @@
                     @endif
     
                     {{-- User Fragrances --}}
+                    {{-- @if ($fav_brand->isEmpty()) --}}
                     @if (!empty($fav_brand))
 
                         {{-- Favorite Brand --}}
@@ -182,7 +183,8 @@
                     
                     {{-- Add a Profile - Button --}}
                     {{-- Only appears if there are no Profiles --}}
-                    @if($profiles->isEmpty() && empty($empty_profiles) )
+                    {{-- @if($profiles->isEmpty() && empty($empty_profiles) ) --}}
+                    @if(empty($profiles) && empty($empty_profiles) )
 
                         {{-- <div class="form-group row mb-0"> --}}
                             {{-- <div class="col-md-5 offset-md-5"> --}}
@@ -200,7 +202,8 @@
             <br><br>
 
             {{-- Card: Profiles --}}
-            @if($profiles->isNotEmpty() || !empty($empty_profiles) )
+            {{-- @if($profiles->isNotEmpty() || !empty($empty_profiles) ) --}}
+            @if(!empty($profiles) || !empty($empty_profiles) )
             <div class="card">
                 <div class="card-header">{{_('Other Profiles')}}</div>
                 
