@@ -4,9 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Fragrance;
 use App\Fragrance_Brand;
+use App\Fragrance_Profile;
 use App\Search_Queries;
+
+use Carbon\Carbon;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class Search_Queries_Controller extends Controller
 {
@@ -43,21 +48,39 @@ class Search_Queries_Controller extends Controller
      */
     public function store(Request $request)
     {
-        $query = $request->searchbox;
-        $queries =  preg_split('/ +/', $query, null, PREG_SPLIT_NO_EMPTY);
+        $queries = explode(' ', $request->searchbox);
         
-        // $brands = DB::table('fragrance_brand')->where('name', '=', $queries[0])->get();
-        // $fragrances = DB::table('fragrance')->where('name', '=', $queries[0])->get();
-        
-        // unset($queries[0]);  
-        
-        $brands = collect();
-        $fragrances = collect();
+        $brands = DB::table('fragrance_brand')->where('name', '=', $queries)->get();
+        $fragrances = DB::table('fragrance')->where('name', '=', $queries)->get();
 
-        foreach($queries as $q) {
-            $brands = $brands -> merge(DB::table('fragrance_brand')->where('name', '=', $q)->get());
-            $fragrances = $fragrances -> merge(DB::table('fragrance')->where('name', '=', $q)->get());    
-        }
+        DB::transaction(function () use ($request) {
+            $new = new Search_Queries();
+            $new->query = $request->searchbox;
+
+            if (Auth::check()) {
+                if(request()->user()->hasRole('user')){
+                    $profile = Fragrance_Profile::where('users_id', request()->user()->id)->first();
+                    
+                    $new->users_id        = $profile->users_id;
+                    $new->gender          = $profile->gender;
+                    $new->dob             = $profile->dob;
+                    $date                 = Carbon::parse($profile->dob);
+
+                    $new->age             = Carbon::now()->diffInYears($date);
+                    $new->profession_id   = $profile->profession_id;
+                    $new->skin_type_id    = $profile->skin_type_id;
+                    $new->sweat           = $profile->sweat;
+                    $new->height          = $profile->height;
+                    $new->weight          = $profile->weight;
+                    $new->country_id      = $profile->country_id;
+                    $new->city_id         = $profile->city_id;
+                    $new->climate_id      = $profile->climate_id;
+                    $new->season_id       = $profile->season_id;
+                }
+            }
+
+            $new->save();
+        });
 
         return view('forms.search_results',[
             'brands'      =>  $brands,

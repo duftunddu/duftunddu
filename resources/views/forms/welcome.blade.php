@@ -8,9 +8,6 @@
 
         <title>{{('Duft Und Du')}}</title>
 
-        {{-- <link href="{{ asset('css/try.css') }}" rel="stylesheet">
-        <script src="{{ asset('js/try.js') }}" defer></script> --}}
-
         {{-- Typing Effect --}}
         <link href="{{ asset('css/typing_effect.css') }}" rel="stylesheet">
         <script src="{{ asset('js/typing_effect.js') }}" defer></script>
@@ -22,6 +19,8 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
 
         <!-- Styles -->
         <style>
@@ -132,22 +131,14 @@
 
             .title {
                 font-size: 6.3vw;
+                font-family: 'Cinzel', serif;
                 /* background:rgba(255,255,255,0.1);  */
-            }
-
-            .links > a {
-                /* padding: 0 1.88vw; */
-                font-size: 0.98vw;
-                font-weight: 600;
-                letter-spacing: 0.12vw;
-                text-decoration: none;
-                text-transform: uppercase;
-                color:#905969;
             }
 
             .heading{
                 font-size: 1.3vw;
                 text-align: center;
+                /* font-family: 'Cinzel Decorative', cursive; */
             }
 
             h1{
@@ -158,6 +149,16 @@
                 font-size: 1.45vw;
                 font-weight: bold;
                 letter-spacing: 0.06vw;
+            }
+
+            .links > a {
+                /* padding: 0 1.88vw; */
+                font-size: 0.98vw;
+                font-weight: 600;
+                letter-spacing: 0.12vw;
+                text-decoration: none;
+                text-transform: uppercase;
+                color:#905969;
             }
 
             .m-b-md {
@@ -200,8 +201,7 @@
  
                             <div data-text></div>
                             <span class="item">{{_('The Fragrance Hub')}}</span>
-                            <span class="item">{{_('AI Powered Genie')}}</span>
-                            <!-- <span class="item">{{_('Hi! I am the Genie')}}</span> -->
+                            <span class="item" style="font-family:Cinzel Decorative; color:blue;">{{_('AI Powered Genie')}}</span>
                             <span class="item">{{_('Smell Good, Feel Good')}}</span>
                       
                         </div>
@@ -287,7 +287,7 @@
         </div>
 
         <div class="flex-center4 position-ref full-height">
-            @include('forms.feature_slider')
+            @include('features.feature_slider')
         </div>
 
         <div class="flex-center5 position-ref full-height">

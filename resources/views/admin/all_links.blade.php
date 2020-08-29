@@ -118,7 +118,7 @@
                     
                     <br>
 
-                    <a href="{{ url('search_engine')}}"><h2>{{_('Search Engine')}}</h2></a>
+                    <a href="{{ route('search')}}"><h2>{{_('Search Engine')}}</h2></a>
 
 
                     <br>

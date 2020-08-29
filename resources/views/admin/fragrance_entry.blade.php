@@ -22,7 +22,7 @@
 
                         <div class="card-body">
 
-                            {{-- Brand --}}
+                            {{-- Brands --}}
                             <div class="form-group row">
                                 <label for="brand_id" class="col-md-4 col-from-label text-md-right">{{ __('Brand Name:')}}</label>
 
@@ -180,7 +180,6 @@
                                     </div>
                                 </div>
                                 
-            
                             </div>
             
                             {{-- Button: + / Add Another --}}

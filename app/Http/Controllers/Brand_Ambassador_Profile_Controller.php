@@ -1,19 +1,27 @@
-<?php
-
-namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers;
 
 use App\Brand_Ambassador_Profile;
 use Illuminate\Http\Request;
 
-class Brand_Ambassador_Profile_Controller extends Controller
-{
+use App\Helper\Helper;
+
+class Brand_Ambassador_Profile_Controller extends Controller {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+
+    public function __construct() {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         //
     }
 
@@ -22,8 +30,7 @@ class Brand_Ambassador_Profile_Controller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         //
     }
 
@@ -33,8 +40,7 @@ class Brand_Ambassador_Profile_Controller extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         //
     }
 
@@ -44,8 +50,7 @@ class Brand_Ambassador_Profile_Controller extends Controller
      * @param  \App\Brand_Ambassador_Profile  $brand_Ambassador_Profile
      * @return \Illuminate\Http\Response
      */
-    public function show(Brand_Ambassador_Profile $brand_Ambassador_Profile)
-    {
+    public function show(Brand_Ambassador_Profile $brand_Ambassador_Profile) {
         //
     }
 
@@ -55,8 +60,7 @@ class Brand_Ambassador_Profile_Controller extends Controller
      * @param  \App\Brand_Ambassador_Profile  $brand_Ambassador_Profile
      * @return \Illuminate\Http\Response
      */
-    public function edit(Brand_Ambassador_Profile $brand_Ambassador_Profile)
-    {
+    public function edit(Brand_Ambassador_Profile $brand_Ambassador_Profile) {
         //
     }
 
@@ -67,8 +71,7 @@ class Brand_Ambassador_Profile_Controller extends Controller
      * @param  \App\Brand_Ambassador_Profile  $brand_Ambassador_Profile
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Brand_Ambassador_Profile $brand_Ambassador_Profile)
-    {
+    public function update(Request $request, Brand_Ambassador_Profile $brand_Ambassador_Profile) {
         //
     }
 
@@ -78,8 +81,7 @@ class Brand_Ambassador_Profile_Controller extends Controller
      * @param  \App\Brand_Ambassador_Profile  $brand_Ambassador_Profile
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Brand_Ambassador_Profile $brand_Ambassador_Profile)
-    {
+    public function destroy(Brand_Ambassador_Profile $brand_Ambassador_Profile) {
         //
     }
 }

@@ -17,7 +17,7 @@
                     <div class="card-header">{{ __('Brand Entry')}}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ url('brand_entry')}}">
+                        <form method="POST" action="{{ url('brand_entry_admin')}}">
                             @csrf
 
                             {{-- Name --}}

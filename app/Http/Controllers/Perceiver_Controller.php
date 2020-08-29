@@ -13,19 +13,19 @@ use App\Perceiver;
 use App\Perceiver_Accord;
 use App\Perceived_Composition;
 
+use Carbon\Carbon;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
-use Carbon\Carbon;
 
 class Perceiver_Controller extends Controller
 {
 
   /**
-      * Create a new controller instance.
-      *
-      * @return void
-  */
+   * Create a new controller instance.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $this->middleware('auth');
@@ -38,6 +38,12 @@ class Perceiver_Controller extends Controller
     */
   public function index($profile_id)
   {
+    $id_check = Fragrance_Profile::find($profile_id);
+    
+    if($id_check == NULL || $id_check->users_id != request()->user()->id){
+      return redirect('home');
+    }
+
       $accords     = accord::all();
       $ingredients = ingredient::all();
       $brands      = fragrance_brand::all();

@@ -50,11 +50,17 @@ class RolesTableSeeder extends Seeder
         $role->givePermissionTo('add_profile_perceived_fragrance');
         // can only be used for self 
 
+
         // Brand Ambassador
         // edit_ba_profile	candidate_brand_ambassador
         $role = Role::firstOrCreate(['name' => 'candidate_brand_ambassador']);
         $role->givePermissionTo('edit_ba_profile');
-            
+        
+        // add brand	new_brand_ambassador
+        $role = Role::firstOrCreate(['name' => 'new_brand_ambassador']);
+        // $role->givePermissionTo('edit_ba_profile');
+        
+
         // [all of the above], brand_dashboard_access, add_brand_fragrance, edit_brand_fragrance	brand_ambassador
         $role = Role::firstOrCreate(['name' => 'brand_ambassador']);
         $role->givePermissionTo('brand_dashboard_access');

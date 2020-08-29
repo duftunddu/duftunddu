@@ -134,7 +134,7 @@
                                     <label for="height" class="col-md-4 col-from-label text-md-right">{{ __('Height (in inches):')}}</label>
 
                                     <div class="col-md-6">
-                                        <input id="height" type="number" min="12" max="110" placeholder="65 inch" class="form-control @error('height') is-invalid @enderror" name="height" value="{{ old('height')}}" required>
+                                        <input id="height" type="number" step="0.01" min="12" max="110" placeholder="65 inch" class="form-control @error('height') is-invalid @enderror" name="height" value="{{ old('height')}}" required>
 
                                         @error('height')
                                         <span class="invalid-feeback" role="alert">
@@ -149,7 +149,7 @@
                                     <label for="weight" class="col-md-4 col-from-label text-md-right">{{ __('Weight (in kg.):')}}</label>
 
                                     <div class="col-md-6">
-                                        <input id="weight" type="number" min="15" max="500" placeholder="55 kg" class="form-control @error('weight') is-invalid @enderror" name="weight" value="{{ old('weight')}}" required>
+                                        <input id="weight" type="number" step="0.01" min="15" max="500" placeholder="55 kg" class="form-control @error('weight') is-invalid @enderror" name="weight" value="{{ old('weight')}}" required>
 
                                         @error('weight')
                                         <span class="invalid-feeback" role="alert">

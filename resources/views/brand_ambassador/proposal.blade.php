@@ -159,9 +159,10 @@
 </head>
 
 @section('content')
+
 {{-- Accordion --}}
 <div class="flex-center1 position-ref full-height">
-    @include('forms.feature_slider_brand_ambassador')
+    @include('features.feature_slider_brand_ambassador')
 </div>
 
 {{-- Steps --}}
@@ -195,17 +196,19 @@
         </div>
         <br><br>
 
-        {{-- @hasrole('user|premium_user|super-admin') --}}
+        @unlessrole('brand_ambassador|premium_brand_ambassador')
+        @hasrole('user|premium_user|super-admin')
         <div class="center">
-        <a href="brand_ambassador_profile" class="animated-button15" style="position: relative; center">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            Brand Ambassador
-        </a>
+            <a href="brand_ambassador_register" class="animated-button15" style="position: relative; center">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                Brand Ambassador
+            </a>
         </div>
-        {{-- @endhasrole --}}
+        @endhasrole
+        @endunlessrole
         
         <br><br><br><br>
         <div class="links">

@@ -17,8 +17,14 @@ class CreateIngredientTable extends Migration
             $table->mediumIncrements('id');
             $table->timestamps();
             $table->string('name', 35);
-            $table->string('created_by',30)->nullable();
-            $table->string('updated_by',30)->nullable();
+            $table->unsignedBigInteger('created_by')->default('1');
+            $table->foreign('created_by')->references('id')->on('users')
+            ->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('updated_by')->default('1');
+            $table->foreign('updated_by')->references('id')->on('users')
+            ->onUpdate('cascade')->onDelete('cascade');
+            // $table->string('created_by',30)->nullable();
+            // $table->string('updated_by',30)->nullable();
         });
     }
 

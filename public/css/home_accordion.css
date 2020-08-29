@@ -3,28 +3,46 @@
     width: 100%;
     text-align: center;
 }
-h1, h2, h3, h4, h5, p, span, .lead {
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+span,
+.lead {
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
 }
-h1, h2, h3, .lead {
+
+h1,
+h2,
+h3,
+.lead {
     font-weight: 100 !important;
 }
+
 .lead {
     font-weight: 300 !important;
 }
-.animate, .as-accordion-close {
+
+.animate,
+.as-accordion-close {
     transition: transform 0.2s ease-out;
 }
+
 .accordion {
     border-bottom: 1px solid #cdcdcd;
     width: 80%;
     margin-left: 10%;
     padding-bottom: 30px;
 }
+
 .accordion:nth-last-child(1) {
     border-bottom: 1px solid #cdcdcd;
 }
+
 .as-accordion-head {
     display: flex;
     /* justify-content: space-between; */
@@ -35,16 +53,20 @@ h1, h2, h3, .lead {
     padding: 40px 0;
     cursor: pointer;
 }
+
 .as-accordion-head:hover {
     color: #0070c9;
 }
+
 .as-accordion-title {
     font-size: inherit;
     line-height: 1.14286;
     font-weight: 200;
-    letter-spacing: 0;
+    /* letter-spacing: 0; */
+    word-spacing: 0px;
     height: 0;
 }
+
 .as-accordion-close {
     margin-right: 10%;
     font-size: inherit;
@@ -53,9 +75,11 @@ h1, h2, h3, .lead {
     line-height: 0;
     height: 0;
 }
+
 .as-accordion-close.open {
     transform: translateX(3px) translateY(-5px) rotate(0deg) scale(1);
 }
+
 .as-accordion-collapse {
     display: none;
     padding-bottom: 40px;

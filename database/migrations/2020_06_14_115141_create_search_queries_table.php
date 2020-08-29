@@ -15,12 +15,12 @@ class CreateSearchQueriesTable extends Migration
     {
         Schema::create('search_queries', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamp('created_at');
+            $table->timestamps();
             $table->unsignedBigInteger('users_id')->nullable();
             $table->foreign('users_id')->references('id')->on('users')
             ->onUpdate('cascade')->onDelete('cascade');
             $table->string('gender',10)->nullable();
-            $table->unsignedTinyInteger('profession')->nullable();
+            $table->unsignedTinyInteger('profession_id')->nullable();
             $table->date('dob')->nullable();
             $table->unsignedTinyInteger('age')->nullable();
             $table->unsignedTinyInteger('skin_type_id')->nullable();

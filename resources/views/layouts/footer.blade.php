@@ -10,7 +10,7 @@
   {{-- Style --}}
   <style>
     .footer, .footer-last{
-      background-color: #FCF6F5FF;
+      background-color: #FFFAFF;
       /* position:relative; */
       color: black;
       font-family: 'Marcellus', serif;

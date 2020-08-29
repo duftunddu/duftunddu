@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property integer $id
@@ -20,6 +21,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Brand_Ambassador_Profile extends Model
 {
+    use SoftDeletes;
+    
     /**
      * The table associated with the model.
      * 

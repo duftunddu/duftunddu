@@ -20,6 +20,8 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
+    
+    @include('layouts.header')
     <div id="app">
         {{-- Laravel Nav Bar --}}
         {{-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
@@ -73,12 +75,13 @@
             </div>
         </nav> --}}
         
-        @include('layouts.header')
         <main class="py-4">
+            @include('flash_message')
             @yield('content')
         </main>
-        @include('layouts.footer')
 
     </div>
+    @include('layouts.footer')
+
 </body>
 </html>
