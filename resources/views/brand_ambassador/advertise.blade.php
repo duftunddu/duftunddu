@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-<title>{{_('Ambassador Dashboard | The Fragrance Genie | Duft Und Du')}} </title>
+<title>{{_('Advertise | Duft Und Du')}} </title>
 
 <head>
     <meta charset="utf-8">
@@ -10,10 +10,6 @@
         .center{
             display: block;
             margin:0 auto;
-        }
-
-        #myChart{
-            z-index: 5;
         }
 
         h5{
@@ -56,7 +52,7 @@
 
     {{-- Button --}}
     <link href="{{ asset('css/custom_button.css') }}" rel="stylesheet">
-    
+        
 </head>
 
 @section('content')
@@ -70,15 +66,6 @@
                 <div class="card-header">{{_('Dashboard')}}</div>
 
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    <br>
-                    
-                    @include('forms.ambassador_dashboard_chart')
                     
                     <br><br>
 

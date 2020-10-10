@@ -1,6 +1,6 @@
 $(function () {
     $("#tabs").tabs({
-        show: { effect: "blind", direction: "right", duration: 800 }
+        show: { effect: "blind", direction: "right", duration: 400 }
     });
     $("#accordion").accordion();
 

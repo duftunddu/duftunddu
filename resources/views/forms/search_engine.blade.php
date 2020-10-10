@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
+{{-- Searchbar Scripts --}}
 <link href="{{ asset('css/searchbar.css') }}" rel="stylesheet">
 <script src="{{ asset('js/searchbar.js') }}" defer></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js" defer></script>
@@ -14,7 +15,8 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
+        
         <!-- Styles -->
         <style>
 
@@ -22,11 +24,13 @@
                 background-image: url('../images/fragrance_model/laura-chouette-5qRgJ8ISEpA-unsplash_use.jpg');
                 /* background-attachment: fixed; */
                 background-repeat: no-repeat;
-                background-position: -50px top;
+                /* background-position: -50px top; */
+                background-position: left 77px;
                 background-size: cover;
                 background-color: #f5f5f3;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
+                color: #212529;
                 height: 100%;
                 margin: 0;
             }
@@ -39,7 +43,7 @@
                 align-items: right;
                 display: flex;
                 justify-content: right;
-                top: 7.55vw;
+                top: 5.0vw;
                 padding-left: 55%;
             }
 
@@ -47,41 +51,43 @@
                 position: relative;
             }
 
-            .top-right {
-                position: absolute;
-                right: 0.75vw;
-                top: 1.36vw;
-            }
-
             .content {
                 text-align: center;
             }
 
             .title {
-                font-size: 6.4vw;
+                font-family: 'Cinzel', serif;
+                font-variant: small-caps;
+                font-size: 6.2vw;
+                letter-spacing: 1px;
             }
 
             .heading{
-                font-size: 1.4vw;
+                font-size: 2.7vw;
+                font-weight: 600;
+                letter-spacing: .25vw;
             }
 
-            .links > a {
-                /* color: #636b6f; */
-                /* padding: 0 1.88px; */
-                color: #201a1d;
+            /* .links > a {
+                padding: 0 1.88px;
                 font-size: 0.97vw;
                 font-weight: 600;
                 letter-spacing: .15vw;
                 text-decoration: none;
                 text-transform: uppercase;
-            }
+            } */
 
             .top-pad{
+                font-family: 'Nunito', serif;
                 padding-top: 18vh;
+                font-size: 1.7vw;
+                font-weight: 600;
+                letter-spacing: .25vw;
+                text-transform: uppercase;
             }
 
             .m-b-md {
-                /* margin-bottom: 2.26vw; */
+                margin-bottom: 2.26vw;
             }
 
             /* .searchbox {
@@ -89,33 +95,12 @@
                 height: 3.78vw;
                 width: 3vw;
             } */
-
-            /* .social-media svg {
-                width: 110% ;
-            } */
-
         </style>
     </head>
     
     <body>
 
-        {{-- @include('layouts.header') --}}
-
-        {{-- Login & Register --}}
-        {{-- @if (Route::has('login'))
-        <div class="top-right links">
-            @auth
-                <a href="{{ url('/home') }}">Home</a>
-            @else
-                <a href="{{ route('login') }}">Login &nbsp&nbsp&nbsp&nbsp</a>
-
-                @if (Route::has('register'))
-                    <a href="{{ route('register') }}">Sign Up</a>
-                @endif
-
-            @endauth
-        </div>
-        @endif --}}
+        @include('layouts.header')
         
         <div class="flex-center position-ref full-height">
             
@@ -126,12 +111,12 @@
                 </div>
 
                 <div class="heading m-b-md">
-                    <h1>{{_('Explore')}}</h1>
+                    {{_('Explore')}}
                 </div>
 
                 <br><br>
                 
-                <form class="search" method="POST" action="{{ url('search_engine')}}">
+                <form class="search" method="GET" action="{{ url('search_results')}}">
                     @csrf
 
                     <input id="search-input" class="search__input" name="searchbox" type="text" placeholder="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" required style="font-family: 'Nunito'; color: #636b6f; font-size: 1.36vw; font-weight: bold; width:32.65vw"> 
@@ -148,22 +133,20 @@
                             <use xlink:href="#icon-search"></use>
                         </svg>
                     </button>
-                    <span class="search__feedback" style="color:rgba(202, 56, 73, 0.7)">{{_('type here')}}</span>
+                <span class="search__feedback" style="color:rgba(202, 56, 73, 0.7); letter-spacing: .25vw;">{{_('type here')}}</span>
                 
                 </form>
 
-                <div class= "top-pad">
-                    <div class="links">     
-        
-                        <a style="padding-top=100px"><h2>{{_('PREMIUM FEATURES COMING SOON')}}</h2></a>
-
-                    </div>
+                <div class= "top-pad">        
+                    {{_('Premium Features Coming Soon')}}
                 </div>
 
             </div>
         </div>
         
-        @include('layouts.footer')
+        <div class="footer-pad">
+            @include('layouts.footer')
+        </div>
 
     </body>
 

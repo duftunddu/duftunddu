@@ -3,6 +3,8 @@
 
 <link href="{{ asset('css/searchbar_m.css') }}" rel="stylesheet">
 <script src="{{ asset('js/searchbar.js') }}" defer></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js" defer></script>
 
     <head>
@@ -19,30 +21,48 @@
         <style>
 
             html, body {
-                background-image: url('https://i.pinimg.com/originals/72/53/ab/7253ab02eb0507e9cc9da12ba856c081.jpg');
-                background-attachment: fixed;
-                background-size: cover;
-                background-repeat: no-repeat;
-                background-position: center center;
-                /* background-position: -10.0vh 0%; */
-                
-                /* background-color: #fff; */
-                color: #636b6f;
+
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
-                height: 100vh;
+                font-size: 3vw;
+                color: #212529;
+                height: 100%;
+                /* height: 100vh; */
                 margin: 0;
             }
 
             .full-height {
-                height: 70vh;
+                /* height: 70vh; */
+                height: 90% !important;
+            }
+
+            .background{
+
+                /* background-image: url('../images/fragrance_model/applying_fragrance/person-holding-clear-glass-bottle-4659793_use.jpg'); */
+                /* background-image: url('../images/fragrance_model/applying_fragrance/person-holding-clear-glass-round-mirror-4659792_use.jpg'); */
+                /* background-image: url('../images/fragrance_model/laura-chouette-2H_8WbVPRxM-unsplash_search_use.jpg'); */
+                background-image: url('../images/fragrance_model/applying_fragrance/person-holding-clear-glass-round-mirror-4659792_use.jpg');
+                
+                height: 89%;
+                width: 100%;
+                position: absolute;
+                
+                background-size: cover;
+                background-repeat: no-repeat;
+
+                transition: all 1s ease-in;
+                -webkit-transition: all 1s ease-in;
+                -o-transition: all 1s ease-in;
+                -moz-transition: all 1s ease-in;
             }
 
             .flex-center {
                 align-items: center;
                 display: flex;
                 justify-content: center;
-                padding-top: 15vh;
+                /* margin-top: -30%; */
+                /* padding-top: 15vh; */
+                /* padding-top: 15vh; */
                 /* padding-left: 10.9vw; */
             }
 
@@ -50,40 +70,52 @@
                 position: relative;
             }
 
-            .top-right {
-                position: absolute;
-                right: 0.75vh;
-                top: 1.36vh;
-            }
-
             .content {
                 text-align: center;
-                font-variant: small-caps;
+                opacity: 0;
+                transition: all 1s ease-in;
+                -webkit-transition: all 1s ease-in;
+                -o-transition: all 1s ease-in;
+                -moz-transition: all 1s ease-in;
+
             }
 
             .title {
-                font-size: 12vw;
+                font-family: 'Cinzel', serif;
+                font-variant: small-caps;
+                font-size: 14vw;
+                letter-spacing: 1px;
+                /* font-size: 12vw; */
             }
 
-            .links > a {
+            .heading{
+                font-size: 10vw;
+            }
+
+            /* .links > a { */
                 /* padding: 0 1.88px; */
                 /* font-size: 1.2vh; */
-                font-size: 1.8vw;
+                /* font-size: 2.8vw;
                 font-weight: 600;
                 letter-spacing: .2vw;
                 text-decoration: none;
                 text-transform: uppercase;
-                color: #636b6f;
-            }
+                color: #636b6f; */
+            /* } */
 
             .m-b-md {
                 margin-bottom: 2.26vw;
             }
 
-            .heading{
-                font-size: 3.3vw;
+            .top-pad{
+                font-family: 'Nunito', serif;
+                padding-top: 18vh;
+                font-size: 4.5vw;
+                font-weight: 600;
+                letter-spacing: .25vw;
+                text-transform: uppercase;
             }
-
+            
             /* .searchbox {
                 line-height: 3.78vh;
                 height: 3.78vh;
@@ -93,22 +125,14 @@
         </style>
     </head>
     
-    <body>          
+    <body>
+        
+        @include('layouts.header')
+
+        <div class="background"></div>
+
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login &nbsp&nbsp&nbsp&nbsp</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
+          
             <div class="content">
 
                 <div class="title m-b-md">
@@ -116,14 +140,14 @@
                 </div>
 
                 <div class="heading m-b-md">
-                    <h1>{{_('Search Engine')}}</h1>
+                    {{_('Explore')}}
                 </div>
 
                 <br><br>
                 <form class="search" method="POST" action="{{ url('search_engine')}}">
                     @csrf
 
-                    <input id="search-input" class="search__input" name="searchbox" type="text" placeholder="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="font-family: 'Nunito'; color: #636b6f; font-size: 4.5vw; font-weight: bold; width:70vw">
+                    <input id="search-input" class="search__input" name="searchbox" type="text" placeholder="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="font-family: 'Nunito'; color: #636b6f; font-size: 4.5vw; font-weight: bold; width:70vw" required>
                     <button class="btn btn--search">
                         <?xml version="1.0" encoding="iso-8859-1"?>
                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -137,23 +161,34 @@
                             <use xlink:href="#icon-search"></use>
                         </svg>
                     </button>
-                    <span class="search__feedback" style="color:rgba(144, 89, 105, 0.6)">{{_('type fragrance or brand name')}}</span>
+                    <span class="search__feedback" style="color:rgba(144, 89, 105, 0.6)">{{_('type here')}}</span>
                 </form>
 
-
-                {{-- <br><br><br><br><br><br> --}}
-
-                <div class="links" style="padding-top:15vh">     
-    
-                    <a><h2>{{_('PREMIUM FEATURES COMING SOON')}}</h2></a>
-                        <br>
-                    <a style="color:#905969" href="{{ url('about_us')}}"><h2>{{_('About Us')}}</h2></a>
-
+                <div class= "top-pad">        
+                    Premium Features Coming Soon
                 </div>
+
 
             </div>
         </div>
         
+        <div class="footer-pad">
+            @include('layouts.footer')
+        </div>
+
     </body>
+
+    <script>
+
+        window.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function(){
+                $(".background").css("filter","blur(5px)");
+				setTimeout(function(){
+						$(".content").css("opacity","1");
+				},1000);
+            }, 1000);
+        });
+        
+    </script>
 
 </html>

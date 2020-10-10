@@ -1,55 +1,27 @@
-@extends('layouts.app')
-{{-- @extends('layouts.nav_bar') --}}
-<link href="{{ asset('css/paragraph.css') }}" rel="stylesheet">
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-<title>{{_('About Us | The Fragrance Hub | Duft Und Du')}}</title>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        <title>{{_('About Us | The Fragrance Hub | Duft Und Du')}}</title>
+        
+        <style>
+            .flex-4-placement{
+                margin-top: -2%;
+            }
+        </style>
+    </head>
 
-@section('content')
-
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-10">
-
-                <br>
-
-                <h2>{{ __('About Us')}}</h2>
-
-                <br>
-
-                <p>
-                    {{ __('
-                    Duft Und Du came into being when a nosy undergrad student thought about
-                    putting an end to the endless suffering of going through random fragrances in
-                    the pursuit of the One.
-                    ')}}
-                </p>
-
-                <br>
-
-                <p>{{ __('The undergrad had always found the idea of using AI to solve practical problems fascinating.')}}</p>
-
-                <br>
-
-                <p>
-                    {{ __('And when the fascination and nose met... Lets be real, that does not make any sense.')}}
-                </p>
-
-                <br>
-
-                <p>
-                    {{ __('Scratch that!')}}
-                </p>
-
-                <br>
-
-                <p>
-                    {{ __('So, while wandering in the greenhouse, ugh, I mean the cave obviously, the undergrad found a lamp...')}}
-                </p><p>
-                    {{ __('And the rest is, as they say, artificial intelligence.')}}
-                </p>
-
-            </div>
+    <body>
+        @include('layouts.header')
+        
+        @include('forms.about_us_content')
+        
+        <div class="footer-pad">
+            @include('layouts.footer')
         </div>
-    </div>
-@endsection
+
+    </body>
+</html>

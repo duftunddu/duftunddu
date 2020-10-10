@@ -31,7 +31,7 @@
                             <ul class="navbar-nav ml-auto py-4 py-md-0">
 
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">{{-- active --}}
-                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" 
                                         aria-expanded="false">Home</a>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="search_engine">Search Engine</a>
@@ -88,7 +88,7 @@
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
                                         aria-haspopup="true" aria-expanded="false">Contact Us</a>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#">Request a Feature</a>
+                                        <a class="dropdown-item" href="request_feature">Request a Feature</a>
                                         <a class="dropdown-item" href="#">Feedback</a>
                                         <a class="dropdown-item" href="#">Contact</a>
                                     </div>
@@ -113,8 +113,6 @@
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                         {{ Auth::user()->name }} <span class="caret"></span>
                                     </a>
-
-
 
                                     {{-- <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown"> --}}
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">

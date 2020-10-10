@@ -12,11 +12,13 @@
 */
 
 Route::get('search_engine', 'Search_Queries_Controller@index')->name('search');
-Route::post('search_engine', 'Search_Queries_Controller@store');
+Route::get('search_results', 'Search_Queries_Controller@store');
 
-Route::get('/', function () {
-    return view('forms.welcome');
-});
+Route::get('/', 'Controller@landing_page');
+
+// Route::get('/', function () {
+//     return view('forms.welcome');
+// });
    
 Route::get('m', function () {
     return view('forms.welcome_m');
@@ -74,6 +76,9 @@ Route::middleware(['role:user|genie_user|premium_user|super_admin'])->group(func
     Route::get('genie_output', 'Perceiver_Controller@output');
     Route::post('genie_output', 'Perceiver_Controller@output');
 
+    Route::get('request_feature', 'Controller@request_feature_show');
+    Route::post('request_feature', 'Controller@request_feature');
+    
 
 });
 
@@ -117,6 +122,7 @@ Route::middleware(['role:brand_ambassador|premium_brand_ambassador|super_admin']
     Route::get('fragrances/{id}', 'Fragrance_Controller@all_fragrances');
     Route::get('fragrance/{id}', 'Fragrance_Controller@show');
 
+    Route::get('advertise', 'Brand_Ambassador_Controller@advertise');
     
 });
 

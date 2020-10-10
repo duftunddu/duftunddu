@@ -1,22 +1,8 @@
-/* Body */
-/* body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-    min-height: 100vh;
-    color: #57585c;
-    color: var(--color-text);
-    background: #fff;
-    background: var(--color-bg);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-} */
-
 /* Icons */
 .icon {
     display: block;
     width: 4.36vw;
-    /* height: 1.8vh; */
-    /* margin: 0 auto; */
-    fill: currentColor;
+    fill: #101820FF;
 }
 
 main {
@@ -24,40 +10,10 @@ main {
     width: 100%;
 }
 
-/* .content {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    min-height: 100vh;
-    flex-wrap: wrap;
-} */
-
-/* .demo-3 {
-    --color-text: #333;
-    --color-bg: #fff;
-    background-image: url('https://i.imgur.com/ajvasyu.jpg');
-    background-size: cover;
-    background-position: bottom center;
-    --color-link: #aaa;
-    --color-link-hover: #333;
-    --color-info: #333;
-} */
-
-/* .info {
-    position: fixed;
-    right: 1.51vh;
-    bottom: 1.51vh;
-} */
-
 .search {
-  pointer-events: auto;
-  position: relative;
-  /* right: 1.27vh; */
-  /* left: 1.51vh; */
-  /* top: 24.18vh; */
-  /* height: 3.7vh; */
+    pointer-events: auto;
+    position: relative;
+    /* height: 3.7vh; */
 }
 
 .search__input {
@@ -76,23 +32,19 @@ main {
     opacity: 1;
 }
 
-.search__input:focus ~ .search__feedback span {
+.search__input:focus~.search__feedback span {
     opacity: 0.5;
 }
 
 .search__feedback {
-  position: absolute;
-  /* top: 0.72vh; */
-  /* top: 1.72vh; */
-  left: 2.41vw;
-  /* right: 0.6vh; */
-  /* right: 3.6vh; */
-  bottom: 0.7vh;
-  font-weight: bold;
-  text-transform: lowercase;
-  display: flex;
-  pointer-events: none;
-  font-size: 4.4vw;
+    position: absolute;
+    left: 11.5vw;
+    bottom: 0.6vw;
+    font-weight: bold;
+    text-transform: lowercase;
+    display: flex;
+    pointer-events: none;
+    font-size: 4.4vw;
 }
 
 .search__feedback span {
@@ -103,9 +55,8 @@ main {
 .btn {
     margin: 0;
     padding: 0;
-    top: 1.0vw;
-    /* left: 37.8vw; */
-    right: 0.97vh;
+    top: -0.3vw;
+    right: 7vw;
     cursor: pointer;
     border: none;
     background: none;
@@ -117,11 +68,4 @@ main {
 
 .btn:focus {
     outline: none;
-}
-
-@media screen and (max-width: 55em) {
-    /* .search { */
-        /* width: 14.51vw; */
-        /* margin: 1.2vw auto; */
-    /* } */
 }

@@ -1,7 +1,3 @@
-{{-- @extends('layouts.app') --}}
-
-<title>Feature Slider</title>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" ></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js" defer></script>
 
@@ -17,14 +13,14 @@
               <div class="circle"></div>
             </div>
           </div>
-          <span class="heading">Feature One</span>
+          <span class="headings">Our Team</span>
         </div>
       </a>
         <div class="addon fadein">
           <span>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+            Comprised of people with diverse backgrounds, our team ensures that you get the best user experience.
           </span>
-          <a class="para-a" href="#">Learn More</a>
+          {{-- <a class="para-a" href="#">Learn More</a> --}}
         </div>
     </li>
     <li>
@@ -34,14 +30,14 @@
               <div class="circle"></div>
             </div>
           </div>
-          <span class="heading">Feature Two</span>
+          <span class="headings">Innovating</span>
         </div>
       </a>
         <div class="addon">
           <span>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+            Our creative team is always collaborating with brands for innovation.
           </span>
-          <a class="para-a" href="#">Learn More</a>
+          {{-- <a class="para-a" href="#">Learn More</a> --}}
         </div>
     </li>
     <li>
@@ -51,14 +47,16 @@
               <div class="circle"></div>
             </div>
           </div>
-          <span class="heading">Feature Three</span>
+          <span class="headings">Maximizing Accuracy</span>
         </div>
       </a>
         <div class="addon">
           <span>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+            {{-- We are always researching and improving our practices of how we approach fragrances to maximize the accuracy of our Genie, who is quite active on Twitter. --}}
+            {{-- We are always trying to maximize the accuracy of our Genie, who is quite active on Twitter. --}}
+            We are always trying to maximize the accuracy of our Genie.
           </span>
-          <a class="para-a" href="#">Learn More</a>
+          {{-- <a class="para-a" href="#">Learn More</a> --}}
         </div>
     </li>
   </ul>

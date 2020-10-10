@@ -60,6 +60,9 @@
 
                     @endif
 
+                    {{-- {{ $fragrances->links() }} --}}
+                    {{ $fragrances->onEachSide(10)->links() }}
+
                 </div>
             </div>
         </div>

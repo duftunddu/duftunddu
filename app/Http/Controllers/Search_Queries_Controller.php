@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Jenssegers\Agent\Agent;
 
 class Search_Queries_Controller extends Controller
 {
@@ -22,12 +23,14 @@ class Search_Queries_Controller extends Controller
      */
     public function index()
     {
-        // Desktop
-        return view('forms.search_engine');
-
-        // Mobile
-        // return view('forms.search_engine_m');
-
+        $agent = new Agent();
+        
+        if($agent->isDesktop()){
+            return view('forms.search_engine');
+        }
+        else{
+            return view('forms.search_engine_m');
+        }
     }
 
     /**
@@ -51,8 +54,10 @@ class Search_Queries_Controller extends Controller
         $queries = explode(' ', $request->searchbox);
         
         $brands = DB::table('fragrance_brand')->where('name', '=', $queries)->get();
-        $fragrances = DB::table('fragrance')->where('name', '=', $queries)->get();
+        $fragrances = DB::table('fragrance')->where('name', '=', $queries)->paginate(15);
 
+        if($request->searchbox != NULL){
+        
         DB::transaction(function () use ($request) {
             $new = new Search_Queries();
             $new->query = $request->searchbox;
@@ -81,6 +86,7 @@ class Search_Queries_Controller extends Controller
 
             $new->save();
         });
+        }
 
         return view('forms.search_results',[
             'brands'      =>  $brands,

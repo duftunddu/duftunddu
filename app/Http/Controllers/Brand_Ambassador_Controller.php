@@ -52,13 +52,46 @@ class Brand_Ambassador_Controller extends Controller
                 ->get();
         }
 
+        // var_dump($queries->pluck('count'));return;
         // var_dump($queries[0]->count);return;
+        // var_dump($queries[0]->date);return;
+        // var_dump($queries);
+        // return;
 
+        $dates = $queries->pluck('date');
+        $counts = $queries->pluck('count');
+        
         return view('brand_ambassador.home',[
             'ambassador'   => $ambassador,
             'fragrances'   => $fragrances,
-            'queries_data'   => $queries
+            'queries_data' => $queries,
+            'dates'        => $dates,
+            'counts'       => $counts
         ]);
     }
 
+    public function advertise()
+    {
+        $ambassador = Brand_Ambassador_Profile::where('users_id', request()->user()->id)->first();
+        $fragrances = Fragrance::where('brand_id', $ambassador->brand_id)->get();
+
+        if(!empty($fragrances)){
+
+            $date = Carbon::today()->subDays(7);
+            $only_fragrances = Fragrance::where('brand_id', $ambassador->brand_id)->pluck('normal_name');
+            $queries = Search_Queries::where('created_at', '>=', $date)
+                ->where('query', '=', $only_fragrances)
+                ->select(DB::raw('DATE(created_at) as date'), DB::raw('count(*) as count'))
+                ->groupBy('date')
+                ->get();
+        }
+
+        // var_dump($queries[0]->count);return;
+        
+        return view('brand_ambassador.home',[
+            'ambassador'        => $ambassador,
+            'fragrances'        => $fragrances,
+            'queries_data'      => $queries
+        ]);
+    }
 }
