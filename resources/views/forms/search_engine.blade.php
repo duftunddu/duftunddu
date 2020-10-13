@@ -119,7 +119,7 @@
                 <form class="search" method="GET" action="{{ url('search_results')}}">
                     @csrf
 
-                    <input id="search-input" class="search__input" name="searchbox" type="text" placeholder="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" required style="font-family: 'Nunito'; color: #636b6f; font-size: 1.36vw; font-weight: bold; width:32.65vw"> 
+                    <input id="search-input" class="search__input" maxlength="40" name="searchbox" type="text" placeholder="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" required style="font-family: 'Nunito'; color: #636b6f; font-size: 1.36vw; font-weight: bold; width:32.65vw"> 
                     <button class="btn btn--search">
                         <?xml version="1.0" encoding="iso-8859-1"?>
                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"

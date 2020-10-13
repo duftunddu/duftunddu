@@ -61,11 +61,6 @@ body {
     display: flex;
 }
 
-/* .link-footer a { */
-/* color: var(--body-color); */
-/* font-size: 2.5vh; */
-/* } */
-
 .footer {
     padding: 3.3vh 25px;
     font-size: 2.5vh;
@@ -113,7 +108,7 @@ body {
     background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 650, from(#101820FF), to(#fff));
 }
 
-@media (max-width: 1120px) {
+@media (max-width: 3120px) {
     .sleek-border {
         margin-bottom: inherit;
         display: block;
@@ -137,7 +132,7 @@ body {
     }
 }
 
-@media (max-width: 475px) {
+@media (max-width: 700px) {
 
     .container {
         position: relative;

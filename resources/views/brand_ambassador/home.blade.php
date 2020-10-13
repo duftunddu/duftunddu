@@ -78,7 +78,7 @@
 
                     <br>
                     
-                    @include('forms.ambassador_dashboard_chart')
+                    @include('features.ambassador_dashboard_chart')
                     
                     <br><br>
 

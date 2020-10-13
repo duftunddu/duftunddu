@@ -1,10 +1,15 @@
 @extends('layouts.app')
 
-<title>{{('Brands - Duft Und Du')}}</title>
+<title>{{('Search Results for "')}}{{($query)}}{{('" | Duft Und Du')}}</title>
 
 <style>
-    h3 {
-        color: #ce3953;
+    .pad-left{
+        margin-left: 20px;
+    }
+    .center{
+        display: flex;
+        justify-content: center;
+        padding-top: 20px;
     }
 </style>
 
@@ -13,56 +18,33 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Search Results')}}</div>
+                
+                <div class="card-header">
+                    <div class="pad-left">
+                        {{ __('Search Results')}}
+                    </div>
+                </div>
 
                 <div class="card-body">
 
-                    @if(count($brands) == 0 and count($fragrances) == 0)
-                        <p>{{_('No Results Found')}}</p>
-
-                    @else
-
-                        @if(count($brands) > 0)
-
-                        <h4>{{_('Brands')}}</h4>
-                        <br>
-
-                            @foreach($brands as $brand)
-                            <div class="well">
-                                <a href="/brand/{{$brand->id}}">
-                                    <h5>{{$brand->name}}</h5>
-                                </a>
-                                <small>Added on {{$brand->created_at}}</small>
-                            </div>
-                            @endforeach
-                        
-                        <br><br>
-                        @endif
-
-                        @if(count($fragrances) > 0)
-
-                        <h4>{{_('Fragrances')}}</h4>
-
-                            @foreach($fragrances as $fragrance)
-                            <div class="well">
-                                <h5><a href="/brand/{{$fragrance->id}}">{{$fragrance->name}}</a></h5>
-                                <small>Added on {{$fragrance->created_at}}</small>
-                            </div>
-                            @endforeach
-                            <br>
+                    <div class="pad-left">
+                        @if(count($results) == 0)
+                            <p>{{_('No Results Found')}}</p>
                         @else
-                            <p>{{_('No Fragrances Found')}}</p>
+
+                            @foreach($results as $result)
+                                <h5><a href="/fragrance/{{$result->f_id}}">{{$result->f_name}}</a></h5>
+                                <small>by <a href="/brand/{{$result->b_id}}">{{$result->b_name}}</a></small>
+                                <br><br>
+                            @endforeach
+
                         @endif
-
-                        @if(count($brands) == 0)
-                            <p>{{_('No Brands Found')}}</p>
-                        @endif
-
-                    @endif
-
-                    {{-- {{ $fragrances->links() }} --}}
-                    {{ $fragrances->onEachSide(10)->links() }}
-
+                    </div>
+                
+                    <div class="center">
+                        {{ $results->appends($params)->links() }}
+                    </div>
+                    
                 </div>
             </div>
         </div>

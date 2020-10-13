@@ -13,6 +13,7 @@
 
 Route::get('search_engine', 'Search_Queries_Controller@index')->name('search');
 Route::get('search_results', 'Search_Queries_Controller@store');
+// Route::post('search_results', 'Search_Queries_Controller@store');
 
 Route::get('/', 'Controller@landing_page');
 

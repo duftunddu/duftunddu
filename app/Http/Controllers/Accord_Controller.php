@@ -45,8 +45,9 @@ class Accord_Controller extends Controller {
      */
     public function store(Request $request) {
 
-        $validatedData=$request->validate([ 'name'=> 'required|unique:accord',
-            ]);
+        $validatedData = $request->validate([ 
+            'name'=> 'required|unique:accord',
+        ]);
 
         DB::transaction(function () use ($request) {
 

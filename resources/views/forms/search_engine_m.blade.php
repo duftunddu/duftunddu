@@ -16,6 +16,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
 
         <!-- Styles -->
         <style>
@@ -38,11 +39,14 @@
 
             .background{
 
-                /* background-image: url('../images/fragrance_model/applying_fragrance/person-holding-clear-glass-bottle-4659793_use.jpg'); */
-                /* background-image: url('../images/fragrance_model/applying_fragrance/person-holding-clear-glass-round-mirror-4659792_use.jpg'); */
-                /* background-image: url('../images/fragrance_model/laura-chouette-2H_8WbVPRxM-unsplash_search_use.jpg'); */
+                @if($random > 0)
+                background-image: url('../images/fragrance_model/applying_fragrance/person-holding-clear-glass-bottle-4659793_use.jpg');
+                @elif($random < 0)
+                background-image: url('../images/fragrance_model/laura-chouette-2H_8WbVPRxM-unsplash_search_use.jpg');
+                @else
                 background-image: url('../images/fragrance_model/applying_fragrance/person-holding-clear-glass-round-mirror-4659792_use.jpg');
-                
+                @endif
+
                 height: 89%;
                 width: 100%;
                 position: absolute;
@@ -91,18 +95,7 @@
             .heading{
                 font-size: 10vw;
             }
-
-            /* .links > a { */
-                /* padding: 0 1.88px; */
-                /* font-size: 1.2vh; */
-                /* font-size: 2.8vw;
-                font-weight: 600;
-                letter-spacing: .2vw;
-                text-decoration: none;
-                text-transform: uppercase;
-                color: #636b6f; */
-            /* } */
-
+            
             .m-b-md {
                 margin-bottom: 2.26vw;
             }
@@ -116,6 +109,17 @@
                 text-transform: uppercase;
             }
             
+            /* .links > a { */
+                /* padding: 0 1.88px; */
+                /* font-size: 1.2vh; */
+                /* font-size: 2.8vw;
+                font-weight: 600;
+                letter-spacing: .2vw;
+                text-decoration: none;
+                text-transform: uppercase;
+                color: #636b6f; */
+            /* } */
+
             /* .searchbox {
                 line-height: 3.78vh;
                 height: 3.78vh;
@@ -141,13 +145,12 @@
 
                 <div class="heading m-b-md">
                     {{_('Explore')}}
-                </div>
+                </div><br><br>
 
-                <br><br>
                 <form class="search" method="POST" action="{{ url('search_engine')}}">
                     @csrf
 
-                    <input id="search-input" class="search__input" name="searchbox" type="text" placeholder="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="font-family: 'Nunito'; color: #636b6f; font-size: 4.5vw; font-weight: bold; width:70vw" required>
+                    <input id="search-input" class="search__input" maxlength="40" name="searchbox" type="text" placeholder="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="font-family: 'Nunito'; color: #636b6f; font-size: 4.5vw; font-weight: bold; width:70vw" required>
                     <button class="btn btn--search">
                         <?xml version="1.0" encoding="iso-8859-1"?>
                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"

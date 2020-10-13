@@ -37,8 +37,6 @@
           <a href="#">Copyright</a>
           <a href="#">Creators</a>
           <a href="advertisement">Advertise</a>
-          {{-- <a href="#">Press</a> --}}
-          {{-- <a href="#">Developers</a> --}}
 
         </div>
     </div>
@@ -49,7 +47,6 @@
           <a href="#">Terms of Use</a>
           <a href="#">Privacy Policy</a>
           <a href="#">Feedback</a>
-          {{-- <a href="#">Policy&Safety</a> --}}
         
         </div>
     </div>
