@@ -90,6 +90,10 @@
                 margin-bottom: 2.26vw;
             }
 
+            .footer-pad{
+                margin-top: -3vh;
+            }
+
             /* .searchbox {
                 line-height: 3.78vw;
                 height: 3.78vw;

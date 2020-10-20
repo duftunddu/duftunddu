@@ -35,6 +35,7 @@
 
                         <p>Added on {{$fragrance->created_at->format('d/m/Y')}}</p>
                         
+                        
                         @if($allow_edit)
                         <div class="form-group row mb-0">
                                 <div class="col-md-5 offset-md-0">

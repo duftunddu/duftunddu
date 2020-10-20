@@ -61,10 +61,10 @@ class Search_Queries_Controller extends Controller
         $queries = explode(' ', $request->searchbox);
         
         $results = DB::table('fragrance')
-        ->join('fragrance_brand', 'fragrance_brand.id', '=', 'fragrance.brand_id')
-        ->whereIn('fragrance.name', $queries)
-        ->select('fragrance.id as f_id','fragrance.name as f_name', 'fragrance_brand.id as b_id','fragrance_brand.name as b_name')
-        ->paginate(10);
+            ->join('fragrance_brand', 'fragrance_brand.id', '=', 'fragrance.brand_id')
+            ->whereIn('fragrance.name', $queries)
+            ->select('fragrance.id as f_id','fragrance.name as f_name', 'fragrance_brand.id as b_id','fragrance_brand.name as b_name')
+            ->paginate(10);
 
         $params = ['searchbox' => $request->searchbox];
     
