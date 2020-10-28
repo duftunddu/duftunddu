@@ -115,9 +115,9 @@ class HomeController extends Controller
         //     $empty_profiles = NULL;
         // }
         
-        if($profile_fragrances->isEmpty()){
-            $profile_fragrances = NULL;
-        }
+        // if($profile_fragrances->isEmpty()){
+        //     $profile_fragrances = NULL;
+        // }
 
         return view('home',[
             'fav_brand'             => $fav_brand,

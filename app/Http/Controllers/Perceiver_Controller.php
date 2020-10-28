@@ -88,15 +88,15 @@ class Perceiver_Controller extends Controller
     */
   public function store(Request $request, $profile_id)
   {
-      // $validatedData = $request->validate([
-      //   'name'                 => 'required|unique:fragrance',
-      //   'brand_id'             => 'required',
-      //   'type'                 => 'required',
-      //   'gender'               => 'required',
+      $validatedData = $request->validate([
+        'name'                 => 'required|unique:fragrance',
+        'brand_id'             => 'required',
+        'type'                 => 'required',
+        'gender'               => 'required',
         
-      //   'accord_id'            => 'required',
-      //   'ingredient_id'        => 'required',
-      // ]);
+        'accord_id'            => 'required',
+        'ingredient_id'        => 'required',
+      ]);
 
       $profile      = DB::table('fragrance_profile')->find($profile_id);
 
@@ -124,8 +124,7 @@ class Perceiver_Controller extends Controller
       $new->sweat           = $profile->sweat;
       $new->height          = $profile->height;
       $new->weight          = $profile->weight;
-      $new->country_id      = $profile->country_id;
-      $new->city_id         = $profile->city_id;
+      $new->location_id     = $profile->location_id;
       $new->climate_id      = $profile->climate_id;
       $new->season_id       = $profile->season_id;
       $new->comment         = $request->input('comment');

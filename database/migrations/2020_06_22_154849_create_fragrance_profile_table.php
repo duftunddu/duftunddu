@@ -20,6 +20,8 @@ class CreateFragranceProfileTable extends Migration
             $table->foreign('users_id')->references('id')->on('users')
             ->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedTinyInteger('user_check');
+            // make name nullable 
+            $table->string('name',40);
             $table->string('gender',10);
             $table->date('dob');
             $table->unsignedSmallInteger('profession_id');
@@ -31,8 +33,9 @@ class CreateFragranceProfileTable extends Migration
             $table->unsignedTinyInteger('sweat');
             $table->float('height');
             $table->float('weight');
-            $table->unsignedTinyInteger('country_id');
-            $table->unsignedTinyInteger('city_id');
+            $table->unsignedBigInteger('location_id');
+            $table->foreign('location_id')->references('id')->on('location')
+            ->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedTinyInteger('climate_id');
             $table->foreign('climate_id')->references('id')->on('climate')
             ->onUpdate('cascade')->onDelete('cascade');
@@ -40,7 +43,6 @@ class CreateFragranceProfileTable extends Migration
             $table->foreign('season_id')->references('id')->on('season')
             ->onUpdate('cascade')->onDelete('cascade');
             $table->string('currency',4)->nullable();
-            $table->string('detail',256)->nullable();
             $table->softDeletes();
         });
 

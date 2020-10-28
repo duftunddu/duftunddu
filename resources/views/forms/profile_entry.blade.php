@@ -23,6 +23,23 @@
 
                         <div class="card-body">
 
+                                @hasrole('user|super_admin')
+                                {{-- Name --}}
+                                <div class="form-group row">
+                                    <label for="name" class="col-md-4 col-from-label text-md-right">{{ __('Name:')}}</label>
+
+                                    <div class="col-md-6">
+                                        <input id="name" type="text" maxlength="40" placeholder="John" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name')}}" required>
+
+                                        @error('name')
+                                        <span class="invalid-feeback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                @endhasrole
+
                                 {{-- Gender --}}
                                 <div class="form-group row">
                                     <label for="gender" class="col-md-4 col-from-label text-md-right">{{ __('Gender:')}}</label>
@@ -159,46 +176,6 @@
                                     </div>
                                 </div>
 
-                                {{-- Country --}}
-                                <div class="form-group row">
-                                    <label for="country_id" class="col-md-4 col-from-label text-md-right">{{ __('Country:')}}</label>
-
-                                    <div class="col-md-6">
-                                        
-                                        <select id="country_id" type="number" class="form-control @error('country_id') is-invalid @enderror" name="country_id" value="{{ old('')}}" required>
-                                        <option value="" selected="selected" disabled="disabled">-- Select Country --</option>
-                                        @foreach($countries as $country)
-                                            <option value="{{$country->id}}">{{$country->name}}</option>
-                                        @endforeach
-                                    </select>
-                                    @if($errors->has('country_id'))
-                                        <div class="invalid-feedback">
-                                            {{ $errors->first('country_id')}}
-                                        </div>
-                                    @endif
-                                    </div>
-                                </div>
-
-                                {{-- City --}}
-                                <div class="form-group row">
-                                    <label for="city_id" class="col-md-4 col-from-label text-md-right">{{ __('City:')}}</label>
-
-                                    <div class="col-md-6">
-                                        
-                                        <select id="city_id" type="city_id" class="form-control @error('city_id') is-invalid @enderror" name="city_id" value="{{ old('')}}" required>
-                                        <option value="" selected="selected" disabled="disabled">-- Select City --</option>
-                                        @foreach($cities as $city)
-                                            <option value="{{$city->id}}">{{$city->name}}</option>
-                                        @endforeach
-                                    </select>
-                                    @if($errors->has('city_id'))
-                                        <div class="invalid-feedback">
-                                            {{ $errors->first('city_id')}}
-                                        </div>
-                                    @endif
-                                    </div>
-                                </div>
-
                                 {{-- Climate --}}
                                 <div class="form-group row">
                                     <label for="climate_id" class="col-md-4 col-from-label text-md-right">{{ __('Climate:')}}</label>
@@ -257,23 +234,6 @@
                                         </select>
 
                                         @error('currency')
-                                        <span class="invalid-feeback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                @endhasrole
-
-                                @hasrole('user|super_admin')
-                                {{-- Details --}}
-                                <div class="form-group row">
-                                    <label for="details" class="col-md-4 col-from-label text-md-right">{{ __('Details:')}}</label>
-
-                                    <div class="col-md-6">
-                                        <input id="details" type="textarea" placeholder="Unique identifier for the person" class="form-control @error('details') is-invalid @enderror" name="details" value="{{ old('details')}}" required>
-
-                                        @error('details')
                                         <span class="invalid-feeback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>

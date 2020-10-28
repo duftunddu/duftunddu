@@ -42,7 +42,7 @@ class Brand_Ambassador_Controller extends Controller
         $fragrances = Fragrance::where('brand_id', $ambassador->brand_id)->get();
 
         // fetching the search counts for the past week
-        if(!empty($fragrances)){
+        if($fragrances->isNotEmpty()){
             $date = Carbon::today()->subDays(7);
             $only_fragrances = Fragrance::where('brand_id', $ambassador->brand_id)->pluck('normal_name');
             $queries = Search_Queries::where('created_at', '>=', $date)
@@ -51,23 +51,27 @@ class Brand_Ambassador_Controller extends Controller
                 ->groupBy('date',)
                 ->orderBy('date', 'asc')
                 ->get();
-        }
-
-        $dates          = $queries->pluck('date')->toArray();
-        $fetched_counts = $queries->pluck('count')->toArray();
-
-        // Filling the rest of the days
-        $week_count = array(0,0,0,0,0,0,0);
         
-        $j = 0; 
-        for($i=0; $i < 7; $i++){
-            if(count($dates) < $j+1){
-                break;
+            $dates          = $queries->pluck('date')->toArray();
+            $fetched_counts = $queries->pluck('count')->toArray();
+
+            // Filling the rest of the days
+            $week_count = array(0,0,0,0,0,0,0);
+            
+            $j = 0; 
+            for($i=0; $i < 7; $i++){
+                if(count($dates) < $j+1){
+                    break;
+                }
+                if($date->addDays(1)->toDateString() == $dates[$j]){
+                    $week_count[$i] = $fetched_counts[$j];
+                    $j++;
+                }
             }
-            if($date->addDays(1)->toDateString() == $dates[$j]){
-                $week_count[$i] = $fetched_counts[$j];
-                $j++;
-            }
+        }
+        else{
+            $queries = NULL;
+            $week_count = NULL;
         }
 
         return view('brand_ambassador.home',[

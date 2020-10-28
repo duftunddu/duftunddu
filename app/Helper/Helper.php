@@ -2,13 +2,14 @@
 
 namespace App\Helper;
 
+use App\Location;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 
 class Helper
 {
     public function __construct() {
-
+        //
     }
 
     public static function normalize_name($name){
@@ -33,5 +34,14 @@ class Helper
       $normal_name  = rtrim($process->getOutput());
 
       return $normal_name;
+    }
+
+    public static function var_dump_readable($var){
+        echo '<pre>' , var_dump($var) , '</pre>';
+        return;
+    }
+
+    public static function current_location(){
+        return Location::where('ip_to', '>', ip2long(request()->ip()))->first();
     }
 }

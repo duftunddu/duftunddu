@@ -6,6 +6,7 @@ use App\Fragrance;
 use App\Fragrance_Brand;
 use App\Fragrance_Profile;
 use App\Search_Queries;
+use App\Location;
 
 use Carbon\Carbon;
 
@@ -68,9 +69,11 @@ class Search_Queries_Controller extends Controller
 
         $params = ['searchbox' => $request->searchbox];
     
+        $location = Location::where('ip_to', '>', ip2long(request()->ip()))->first();
+
         if($request->page == NULL){
         
-            DB::transaction(function () use ($request) {
+            DB::transaction(function () use ($request, $location) {
                 $new = new Search_Queries();
                 $new->query = $request->searchbox;
 
@@ -80,7 +83,6 @@ class Search_Queries_Controller extends Controller
                         
                         $new->users_id        = $profile->users_id;
                         $new->gender          = $profile->gender;
-                        $new->dob             = $profile->dob;
                         $date                 = Carbon::parse($profile->dob);
 
                         $new->age             = Carbon::now()->diffInYears($date);
@@ -89,8 +91,7 @@ class Search_Queries_Controller extends Controller
                         $new->sweat           = $profile->sweat;
                         $new->height          = $profile->height;
                         $new->weight          = $profile->weight;
-                        $new->country_id      = $profile->country_id;
-                        $new->city_id         = $profile->city_id;
+                        $new->location_id     = $location->id;
                         $new->climate_id      = $profile->climate_id;
                         $new->season_id       = $profile->season_id;
                     }

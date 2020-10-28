@@ -56,23 +56,23 @@
 
                         {{-- Origin --}}
                         <div class="form-group row">
-                            <label for="origin_id"
+                            <label for="location_id"
                                 class="col-md-4 col-from-label text-md-right">{{ __('Origin:')}}</label>
 
                             <div class="col-md-6">
 
-                                <select id="origin_id" type="number"
-                                    class="form-control @error('origin_id') is-invalid @enderror" name="origin_id"
-                                    value="{{ old('origin_id')}}" required>
-                                    <option value="" selected="selected" disabled="disabled">-- Select Country --
-                                    </option>
+                                <select id="location_id" type="number" class="form-control @error('location_id') is-invalid @enderror" name="location_id" value="{{ old('location_id')}}" required>
+                                    <option value="" selected="selected" disabled="disabled">-- Select Country --</option>
+                                    
                                     @foreach($countries as $country)
-                                    <option value="{{$country->id}}">{{$country->name}}</option>
+                                    <option value="{{$country->country_name}}">{{$country->country_name}}</option>
                                     @endforeach
+                                
                                 </select>
-                                @if($errors->has('origin_id'))
+                                
+                                @if($errors->has('location_id'))
                                 <div class="invalid-feedback">
-                                    {{ $errors->first('origin_id')}}
+                                    {{ $errors->first('location_id')}}
                                 </div>
                                 @endif
                             </div>
@@ -82,19 +82,15 @@
                         <div id="dynamic_field">
 
                             <div class="form-group row">
-                                <label for="availability"
-                                    class="col-md-4 col-from-label text-md-right">{{ __('Availability:')}}</label>
+                                <label for="availability" class="col-md-4 col-from-label text-md-right">{{ __('Availability:')}}</label>
 
                                 <div class="col-md-6">
 
-                                    <select id="availability" type="number"
-                                        class="form-control @error('availability') is-invalid @enderror"
-                                        name="availability" value="{{ old('availability')}}" required>
-                                        <option value="" selected="selected" disabled="disabled">-- Select Country --
-                                        </option>
+                                    <select id="availability" type="number" class="form-control @error('availability') is-invalid @enderror" name="availability" value="{{ old('availability')}}" required>
+                                        <option value="" selected="selected" disabled="disabled">-- Select Country --</option>
 
                                         @foreach($countries as $country)
-                                        <option value="{{$country->id}}">{{$country->name}}</option>
+                                        <option value="{{$country->country_name}}">{{$country->country_name}}</option>
                                         @endforeach
 
                                     </select>
@@ -144,18 +140,7 @@
         var a = 1;
         $('#add_a').click(function () {
             a++;
-            $('#dynamic_field').append('<div id="row' + a +
-                '"><div class="form-group row"><label for="availabilities" class="col-md-4 col-from-label text-md-right">{{ __('
-                Availability:
-                ')}}</label><div class="col-md-6"><select id="availabilities[]" type="number" class="form-control @error('
-                availabilities[]
-                ') is-invalid @enderror" name="availabilities[]" value="{{ old('
-                availabilities[]
-                ')}}" required><option value="" selected="selected" disabled="disabled">-- Select Country --</option>@foreach($countries as $country)<option value="{{$country->id}}">{{$country->name}}</option>@endforeach</select>@if($errors->has('
-                availabilities[]
-                '))<div class="invalid-feedback">{{ $errors->first('
-                availabilities ')}}</div>@endif</div><div class="col-md-2 button-right-align"><button type="button" name="remove_a" id="' +
-                a + '" class="btn btn-danger btn_remove_a">X</button></div></div>');
+            $('#dynamic_field').append('<div id="row' + a + '"><div class="form-group row"><label for="availabilities" class="col-md-4 col-from-label text-md-right">{{ __('Availability:')}}</label><div class="col-md-6"><select id="availabilities[]" type="number" class="form-control @error('availabilities[]') is-invalid @enderror" name="availabilities[]" value="{{ old('availabilities[]')}}" required><option value="" selected="selected" disabled="disabled">-- Select Country --</option>@foreach($countries as $country)<option value="{{$country->country_name}}">{{$country->country_name}}</option>@endforeach</select>@if($errors->has('availabilities[]'))<div class="invalid-feedback">{{ $errors->first('availabilities')}}</div>@endif</div><div class="col-md-2 button-right-align"><button type="button" name="remove_a" id="' + a + '" class="btn btn-danger btn_remove_a">X</button></div></div>');
         });
 
         $(document).on('click', '.btn_remove_a', function () {

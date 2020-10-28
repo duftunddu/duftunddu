@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $updated_at
  * @property string $name
  * @property boolean $tier
- * @property string $origin
+ * @property string $origin_id
  * @property Fragrance[] $fragrances
  */
 class Fragrance_Brand extends Model
@@ -25,7 +25,7 @@ class Fragrance_Brand extends Model
     /**
      * @var array
      */
-    protected $fillable = ['created_at', 'updated_at', 'name', 'tier', 'origin'];
+    protected $fillable = ['created_at', 'updated_at', 'name', 'tier', 'origin_id'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

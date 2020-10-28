@@ -12,6 +12,7 @@
     <style>
         html, body {
             background-color: #fff;
+            /* color: #212529; */
             color: #636b6f;
             font-family: 'Nunito', sans-serif;
             font-weight: 200;
@@ -20,7 +21,7 @@
         }
 
         .full-height {
-            height: 100%;
+            height: 90% !important;
         }
 
         .flex-center1 {
@@ -40,17 +41,9 @@
             /* background-size: 100% 100%; */
             background-position: center center;
             
-            /* filter: blur(3px);
-            -webkit-filter: blur(3px);
-            -o-filter: blur(3px);
-            -moz-filter: blur(3px); */
-            
             align-items: left;
             display: flex;
             justify-content: center;
-            /* padding-top: 7.73vw; */
-            /* padding-left: 10.1vw; */
-            /* color: whitesmoke; */
         }
         
         .position-ref {
@@ -58,29 +51,23 @@
         }
         
         .content {
-            /* text-align: center; */
             font-variant: small-caps;
         }
 
         .title {
             font-size: 6.3vw;
-            /* background:rgba(255,255,255,0.1);  */
         }
 
         .heading{
             font-size: 1.3vw;
-            color: #636b6f;
-            /* text-align: center; */
         }
 
         .links > a {
-            /* padding: 0 1.88vw; */
             font-size: 1vw;
             font-weight: 600;
             letter-spacing: 0.12vw;
             text-decoration: none;
             /* text-transform: uppercase; */
-            /* color:#905969; */
             color:#8167a9;
         }
         a{
@@ -100,7 +87,10 @@
             font-size: 1.8vw;
             font-weight: bold;
             letter-spacing: 0.09vw;
-            color: #636b6f;
+        }
+
+        .top-pad-fix{
+            margin-top: -3rem;
         }
 
         .m-b-md {
@@ -161,19 +151,16 @@
 @section('content')
 
 {{-- Accordion --}}
-<div class="flex-center1 position-ref full-height">
+<div class="flex-center1 position-ref full-height top-pad-fix">
     @include('features.feature_slider_brand_ambassador')
 </div>
 
 {{-- Steps --}}
 <div class="flex2 position-ref ">
     <div class="content">
-        {{-- <div class="title m-b-md">
-            {{_('Steps to become a Brand Ambassador:')}}
-        </div> --}}
 
         <div class="heading m-b-md">
-        <h1>{{_('Steps to become a Brand Ambassador')}}</h1>
+            <h1>{{_('Steps to become a Brand Ambassador')}}</h1>
         </div>
 
         <br>
@@ -187,11 +174,10 @@
 
             <br>
             
-            <h2>2. Head back to </h2><a href="{{ url('#')}}"><h2>Brand Ambassador</h2></a> 
+            <h2>2. Come back to </h2><a href="{{ url('#')}}"><h2>Brand Ambassador</h2></a> 
             
-                <p>Now, reload this page. Make sure that you are logged in your account<br>
-                If you are logged into your account and you are already not a Brand Ambassador,<br>
-                A button will show up right below. You can sign up to become a Brand Ambassador here.</p>
+                <p>A button will show up right below. You can sign up to become a Brand Ambassador here.<br>
+                    If the button doesn't show, reload the page and make sure that you are logged in your account</p>
 
         </div>
         <br><br>
@@ -217,7 +203,7 @@
             
                 <p>After the signing up process. Our team will then verify your details.<br>
                 And after verificaiton, you can access your <a href="{{ url('ambassador_home')}}">Ambassador Dashboard</a><br>
-                Instructions to use Ambassador Dashboard are provided <a href="{{ url('ambassador_home')}}">here.</a></p>
+                Instructions to use Ambassador Dashboard are provided <a href="{{ url('ambassador_guide')}}">here.</a></p>
 
             <br>
 

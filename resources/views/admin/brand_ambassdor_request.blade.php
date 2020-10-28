@@ -90,7 +90,8 @@
                                         <h4><a href="/brand_ambassador_requests/4/{{$ambassador->id}}">Approve</a></h4>
                                     @elseif($ambassador->status == 3)
                                     {{-- Rejected: Insufficient Information --}}
-                                        <h4><a href="/brand_ambassador_requests/3/{{$ambassador->id}}">Rejected - Approve</a></h4>
+                                    {{-- Approve to convert to Brand_Ambassador --}}
+                                        <h4><a href="/brand_ambassador_requests/1/{{$ambassador->id}}">Rejected - Approve</a></h4>
                                     @endif
                                     {{-- <h4><a href="/brand_ambassador_requests/4/{{$ambassador->id}}">Approve</a></h4> --}}
                                     <h4><a href="/brand_ambassador_requests/3/{{$ambassador->id}}">Reject</a></h4>

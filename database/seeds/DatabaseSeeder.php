@@ -23,10 +23,8 @@ class DatabaseSeeder extends Seeder
             ClimateTableSeeder::class,
             SeasonTableSeeder::class,
 
-            CountriesTableSeeder::class,
-            StatesTableSeeder::class,
-            CitiesTableSeeder::class,
-
+            LocationTableSeeder::class,
+            
             PermissionsTableSeeder::class,
             RolesTableSeeder::class,
         ]);

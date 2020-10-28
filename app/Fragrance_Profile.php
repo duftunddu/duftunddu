@@ -18,8 +18,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property boolean $sweat
  * @property float $height
  * @property float $weight
- * @property boolean $country
- * @property boolean $city
+ * @property boolean $location
  * @property boolean $climate
  * @property boolean $season
  * @property string $detail
@@ -48,7 +47,7 @@ class Fragrance_Profile extends Model
     /**
      * @var array
      */
-    protected $fillable = ['users_id', 'created_at', 'updated_at', 'user_check', 'gender', 'dob', 'profession', 'skin_type', 'sweat', 'height', 'weight', 'country', 'city', 'climate', 'season', 'detail', 'status'];
+    protected $fillable = ['users_id', 'created_at', 'updated_at', 'user_check', 'gender', 'dob', 'profession_id', 'skin_type_id', 'sweat', 'height', 'weight', 'location_id', 'climate_id', 'season_id', 'detail', 'status'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

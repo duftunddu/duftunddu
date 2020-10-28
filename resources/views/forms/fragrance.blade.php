@@ -21,14 +21,14 @@
                         <h4>Accords:</h4>
 
                         @foreach($accords as $accord)
-                            <h5>{{$accord->name}}</h5>     
+                            <h5>{{$accord->name}}</h5>
                         @endforeach
                         
                         <br>
 
                         <h4>Notes:</h4>
                         @foreach($notes as $note)
-                            <h5>{{$note->name}}</h5>     
+                            <h5>{{$note->name}}</h5>
                         @endforeach
                         
                         <br>
@@ -38,12 +38,15 @@
                         
                         @if($allow_edit)
                         <div class="form-group row mb-0">
-                                <div class="col-md-5 offset-md-0">
-                                    <button type="submit" class="btn btn-outline-dark"  onclick="window.location='{{ url('fragrance_edit/'.$fragrance->id) }}'">
-                                        {{ __('Edit') }}
-                                    </button>
-                                </div>
+                            <div class="col-md-5 offset-md-0">
+                                <button type="submit" class="btn btn-outline-dark"  onclick="window.location='{{ url('fragrance_edit/'.$fragrance->id) }}'">
+                                    {{ __('Edit') }}
+                                </button>
+                            </div>
                         </div>
+                        @endif
+
+                        @if($logged_in)
                         @endif
 
                     </div>

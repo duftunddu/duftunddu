@@ -77,10 +77,19 @@
                     @endif
 
                     <br>
+                    {{-- Chart --}}
+                    @if($queries_data != NULL)
                     
-                    @include('features.ambassador_dashboard_chart')
-                    
-                    <br><br>
+                        @include('features.ambassador_dashboard_chart')<br>
+                        
+                    @else
+                        <div class="form-group row mb-0">
+                            <div class="center">
+                                <h5>It looks empty in here...</h5>
+                            </div>
+                        </div>
+                    @endif
+                    <br>
 
                     {{-- Total Fragrances --}}
                     <div class="form-group row mb-0">

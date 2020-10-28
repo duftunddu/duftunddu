@@ -23,8 +23,6 @@ class CreateAccordTable extends Migration
             $table->unsignedBigInteger('updated_by')->default('1');
             $table->foreign('updated_by')->references('id')->on('users')
             ->onUpdate('cascade')->onDelete('cascade');
-            // $table->string('created_by',30)->nullable();
-            // $table->string('updated_by',30)->nullable();
         });
     }
 

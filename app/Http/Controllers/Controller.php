@@ -7,17 +7,17 @@ use App\Fragrance;
 use App\Fragrance_Brand;
 use Illuminate\Support\Facades\DB;
 
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Http\Request;
 use Jenssegers\Agent\Agent;
 
 class Controller extends BaseController {
-    // use AuthorizesRequests,
-    // DispatchesJobs,
-    // ValidatesRequests;
+    use AuthorizesRequests,
+    DispatchesJobs,
+    ValidatesRequests;
     
     public function landing_page(){
         $agent = new Agent();

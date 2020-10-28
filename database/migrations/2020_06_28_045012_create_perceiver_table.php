@@ -23,17 +23,25 @@ class CreatePerceiverTable extends Migration
             $table->foreign('fragrance_id')->references('id')->on('fragrance')
             ->onUpdate('cascade')->onDelete('cascade');
             $table->string('gender',10);
-            $table->date('dob');
             $table->unsignedTinyInteger('age');
-            $table->unsignedTinyInteger('profession_id');
+            $table->unsignedSmallInteger('profession_id');
+            $table->foreign('profession_id')->references('id')->on('profession')
+            ->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedTinyInteger('skin_type_id');
+            $table->foreign('skin_type_id')->references('id')->on('skin_type')
+            ->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedTinyInteger('sweat');
             $table->float('height');
             $table->float('weight');
-            $table->unsignedTinyInteger('country_id');
-            $table->unsignedTinyInteger('city_id');
+            $table->unsignedBigInteger('location_id');
+            $table->foreign('location_id')->references('id')->on('location')
+            ->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedTinyInteger('climate_id');
+            $table->foreign('climate_id')->references('id')->on('climate')
+            ->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedTinyInteger('season_id');
+            $table->foreign('season_id')->references('id')->on('season')
+            ->onUpdate('cascade')->onDelete('cascade');
             $table->string('comment',256);
             $table->unsignedTinyInteger('like');
             $table->softDeletes();

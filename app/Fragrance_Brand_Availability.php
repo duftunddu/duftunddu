@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $brand_id
  * @property string $created_at
  * @property string $updated_at
- * @property string $country
+ * @property string $location_id
  * @property FragranceBrand $fragranceBrand
  */
 class Fragrance_Brand_Availability extends Model
@@ -24,7 +24,7 @@ class Fragrance_Brand_Availability extends Model
     /**
      * @var array
      */
-    protected $fillable = ['brand_id', 'created_at', 'updated_at', 'country'];
+    protected $fillable = ['brand_id', 'created_at', 'updated_at', 'location_id'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

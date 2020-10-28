@@ -1,6 +1,7 @@
 <?php
 
 use App\Location;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
 
 class LocationTableSeeder extends Seeder
@@ -48,8 +49,6 @@ class LocationTableSeeder extends Seeder
 
     public function run()
     {
-        Location::truncate();
-
         // Number of files
         $n = 60;
 

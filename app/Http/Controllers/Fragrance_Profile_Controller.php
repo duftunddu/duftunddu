@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\City;
-use App\Country;
 use App\Season;
 use App\Climate;
 use App\Skin_Type;
+use App\Location;
 use App\Profession;
 use App\Fragrance_Profile;
 
@@ -15,15 +14,16 @@ use Illuminate\Support\Facades\DB;
 
 use AshAllenDesign\LaravelExchangeRates\Classes\ExchangeRate;
 
+use App\Helper\Helper;
+
 class Fragrance_Profile_Controller extends Controller
 {
     /**
      * Create a new controller instance.
      *
      * @return void
-     */
-    
-     public function __construct()
+    */
+    public function __construct()
     {
         $this->middleware('auth');
     }
@@ -39,10 +39,7 @@ class Fragrance_Profile_Controller extends Controller
         $skin_types     =   Skin_Type::all();
         $climates       =   Climate::all();
         $seasons        =   Season::all();
-
-        $countries      =   Country::all();
-        $cities         =   City::all();
-                
+        
         $currencies     =   new ExchangeRate();
 
         return view('forms.profile_entry',[
@@ -50,8 +47,6 @@ class Fragrance_Profile_Controller extends Controller
             'skin_types'        =>    $skin_types,
             'climates'          =>    $climates,
             'seasons'           =>    $seasons,
-            'countries'         =>    $countries,
-            'cities'            =>    $cities,
             'currencies'        =>    $currencies->currencies()
         ]);
     }
@@ -82,8 +77,6 @@ class Fragrance_Profile_Controller extends Controller
             'sweat'             => 'required',
             'height'            => 'required',
             'weight'            => 'required',
-            'country_id'        => 'required',
-            'city_id'           => 'required',
             'climate_id'        => 'required',
             'season_id'         => 'required',
         ]);
@@ -93,12 +86,16 @@ class Fragrance_Profile_Controller extends Controller
             $user_check = 1;
         }
 
-        DB::transaction(function () use ($request,$user_check) {
+        // $location = Location::where('ip_to', '>', ip2long(request()->ip()))->first();
+        $location = Helper::current_location();
+
+        DB::transaction(function () use ($request, $user_check, $location) {
             
-            $new                = new Fragrance_Profile();
-            $new->users_id      = request()->user()->id;
+            $new                    = new Fragrance_Profile();
+            $new->users_id          = request()->user()->id;
             
             $new->user_check        = $user_check;
+            $new->name              = $request->input('name');
             $new->gender            = $request->input('gender');
             $new->dob               = $request->input('dob');
             $new->profession_id     = $request->input('profession_id');
@@ -106,12 +103,10 @@ class Fragrance_Profile_Controller extends Controller
             $new->sweat             = $request->input('sweat');
             $new->height            = $request->input('height');
             $new->weight            = $request->input('weight');
-            $new->country_id        = $request->input('country_id');
-            $new->city_id           = $request->input('city_id');
+            $new->location_id       = $location->id;
             $new->climate_id        = $request->input('climate_id');
             $new->season_id         = $request->input('season_id');
             $new->currency          = $request->input('currency');
-            $new->detail            = $request->input('details');
 
             $new->save();
         });

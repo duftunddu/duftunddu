@@ -47,8 +47,7 @@
                                 
                                 <h4><a href="/brand/{{$brand->id}}">{{$brand->name}}</a></h4>
                                 <small>Added on {{$brand->created_at->format('d/m/Y')}}</small>
-                                <br>
-                                <br>
+                                <br><br>
 
                             @endforeach
 

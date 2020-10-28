@@ -131,7 +131,7 @@ class Admin_Controller extends Controller
             $user->assignRole('brand_ambassador');
             
             // Soft deleting from the model
-            $ambassador->delete();            
+            $ambassador->delete();
         }
 
         return redirect()->back()->with('success','Approval Successful.');

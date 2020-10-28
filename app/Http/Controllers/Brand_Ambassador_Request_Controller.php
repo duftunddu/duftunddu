@@ -1,9 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\City;
-use App\State;
-use App\Country;
+use App\Location;
 use App\Brand_Tier;
 use App\Fragrance_Brand;
 use App\Fragrance_Brand_Availability;
@@ -61,7 +59,7 @@ class Brand_Ambassador_Request_Controller extends Controller
         $ambassador = Brand_Ambassador_Request::where('users_id', request()->user()->id)->first();
 
         return view('brand_ambassador.application_status',[
-            'ambassador'        => $ambassador
+            'ambassador' => $ambassador
         ]);
         
     }
@@ -85,7 +83,7 @@ class Brand_Ambassador_Request_Controller extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-        'name'            => 'unique:fragrance_brand',
+        // 'name'            => 'unique:fragrance_brand',
         'email_work'      => 'unique:brand_ambassador_request|unique:brand_ambassador_profile',
         'linkedin'        => 'required|unique:brand_ambassador_request|unique:brand_ambassador_profile',
         'website'         => 'required',
@@ -119,7 +117,6 @@ class Brand_Ambassador_Request_Controller extends Controller
             }
 
             $new->save();
-
         }); 
 
         request()->user()->assignRole('candidate_brand_ambassador');

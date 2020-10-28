@@ -37,10 +37,6 @@ Route::get('faq', function () {
     return view('forms.faq');
 });
 
-Route::get('whitepaper', function () {
-    return view('forms.whitepaper');
-});
-
 Route::get('brand_ambassador_proposal', function () {
     return view('brand_ambassador.proposal');
 });
@@ -49,9 +45,11 @@ Route::get('feature_slider_brand_ambassador', function () {
     return view('forms.feature_slider_brand_ambassador');
 });
 
-Route::get('/brands', 'Fragrance_Brand_Controller@output');
-Route::get('/brand/{id}', 'Fragrance_Brand_Controller@show');
+Route::get('brands', 'Fragrance_Brand_Controller@all_brands');
+Route::get('brand/{id}', 'Fragrance_Brand_Controller@show');
 
+Route::get('fragrances/{id}', 'Fragrance_Controller@all_fragrances');
+Route::get('fragrance/{id}', 'Fragrance_Controller@show');
 
 // Authorized Routes
 Auth::routes();
@@ -120,9 +118,6 @@ Route::middleware(['role:brand_ambassador|premium_brand_ambassador|super_admin']
     Route::get('fragrance_entry', 'Fragrance_Controller@index_ba');
     Route::post('fragrance_entry', 'Fragrance_Controller@store_ba');
     
-    Route::get('fragrances/{id}', 'Fragrance_Controller@all_fragrances');
-    Route::get('fragrance/{id}', 'Fragrance_Controller@show');
-
     Route::get('advertise', 'Brand_Ambassador_Controller@advertise');
     
 });

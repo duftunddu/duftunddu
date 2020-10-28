@@ -33,7 +33,6 @@
         <div class="footer-links">
 
           <a href="about_us">About Us</a>
-          <a href="whitepaper">Whitepaper</a>
           <a href="#">Copyright</a>
           <a href="#">Creators</a>
           <a href="advertisement">Advertise</a>

@@ -21,8 +21,8 @@ class CreateFragranceBrandTable extends Migration
             $table->unsignedTinyInteger('tier_id');
             $table->foreign('tier_id')->references('id')->on('brand_tier')
             ->onUpdate('cascade')->onDelete('cascade');
-            $table->unsignedInteger('origin_id');
-            $table->foreign('origin_id')->references('id')->on('countries')
+            $table->unsignedBigInteger('origin_id');
+            $table->foreign('origin_id')->references('id')->on('location')
             ->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedTinyInteger('discontinued')->default('0');
             $table->unsignedBigInteger('created_by')->default('1');
