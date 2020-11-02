@@ -17,10 +17,10 @@ class CreateAccordTable extends Migration
             $table->mediumIncrements('id');
             $table->timestamps();
             $table->string('name', 35);
-            $table->unsignedBigInteger('created_by')->default('1');
+            $table->unsignedBigInteger('created_by')->nullable();
             $table->foreign('created_by')->references('id')->on('users')
             ->onUpdate('cascade')->onDelete('cascade');
-            $table->unsignedBigInteger('updated_by')->default('1');
+            $table->unsignedBigInteger('updated_by')->nullable();
             $table->foreign('updated_by')->references('id')->on('users')
             ->onUpdate('cascade')->onDelete('cascade');
         });

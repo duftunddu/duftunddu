@@ -1,17 +1,10 @@
 <?php
 
-use App\Location;
-use Illuminate\Support\Facades\DB;
+use App\Ingredient_Category_Cluster;
 use Illuminate\Database\Seeder;
 
-class LocationTableSeeder extends Seeder
+class IngredientCategoryClusterTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-
     function csvToArray($filename = '', $delimiter = ',')
     {
         if (!file_exists($filename) || !is_readable($filename))
@@ -42,23 +35,23 @@ class LocationTableSeeder extends Seeder
         for ($i = 0; $i < count($Arr); $i ++)
         {
             // Location::firstOrCreate($Arr[$i]);
-            Location::create($Arr[$i]);
+            Ingredient_Category_Cluster::firstOrCreate($Arr[$i]);
         }
         return;
     }
 
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
     public function run()
     {
         // The model name is in importCsv, it indicates the which model to use.
 
-        // Number of files
-        $n = 60;
-
-        //Importing files
-        for($i = 1; $i < $n+1; $i++){
-            $csv_filename = "seeds/iplocation/iplocation_part{$i}.csv";
-            $this->importCsv($csv_filename);
-        }
+        $csv_filename = "seeds/accords_and_notes/note_category_cluster-utf8.csv";
+        $this->importCsv($csv_filename);
+        
         return;
     }
 }

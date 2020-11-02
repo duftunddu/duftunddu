@@ -76,8 +76,8 @@ class RolesTableSeeder extends Seeder
         $role->givePermissionTo('edit_brand_fragrance');
         $role->givePermissionTo('edit_ba_profile');
 
-        // super_admin
-        $role = Role::firstOrCreate(['name' => 'super_admin']);
+        // admin
+        $role = Role::firstOrCreate(['name' => 'admin']);
         
         // $role->givePermissionTo('fill_user_profile');
 

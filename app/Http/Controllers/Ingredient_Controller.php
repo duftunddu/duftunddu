@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Accord;
 use App\Ingredient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -25,12 +26,18 @@ class Ingredient_Controller extends Controller
     */
   public function index()
   {
-    return view('admin.note_entry');
+    $accords = Accord::all();
+    return view('admin.note_entry',[
+        'accords' => $accords,
+    ]);
   }
 
   public function index_ba()
   {
-    return view('brand_ambassador.note_entry');
+    $accords = Accord::all();
+    return view('brand_ambassador.note_entry',[
+        'accords' => $accords,
+    ]);
   }
 
   /**
@@ -53,12 +60,14 @@ class Ingredient_Controller extends Controller
   {
   
     $validatedData = $request->validate([
-      'name' => 'required|unique:ingredient',
+      'accord_id' => 'required',
+      'name'      => 'required|unique:ingredient',
     ]);
 
     DB::transaction(function () use ($request) {
     
       $new                = new Ingredient();
+      $new->name          = $request->input('accord_id');
       $new->name          = $request->input('name');
       $new->created_by    = request()->user()->id;
       $new->save();

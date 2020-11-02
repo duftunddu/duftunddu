@@ -43,7 +43,7 @@ class Admin_Controller extends Controller
 
         return view('admin.brand_ambassdor_request',[
             'ambassadors'        => $ambassadors,
-            ]);
+        ]);
     }
 
     public function brand_ambassador_request_response($new_status, $ambassador_id)

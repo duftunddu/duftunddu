@@ -6,6 +6,41 @@ use Illuminate\Database\Seeder;
 
 class AccordTableSeeder extends Seeder
 {
+    function csvToArray($filename = '', $delimiter = ',')
+    {
+        if (!file_exists($filename) || !is_readable($filename))
+            return false;
+
+        $header = null;
+        $data = array();
+        if (($handle = fopen($filename, 'r')) !== false)
+        {
+            while (($row = fgetcsv($handle, 1000, $delimiter)) !== false)
+            {
+                if (!$header)
+                    $header = $row;
+                else
+                    $data[] = array_combine($header, $row);
+            }
+            fclose($handle);
+        }
+
+        return $data;
+    }
+
+    public function importCsv($file_name)
+    {
+        $file = public_path($file_name);
+        $Arr = $this->csvToArray($file);
+        $data = [];
+        for ($i = 0; $i < count($Arr); $i ++)
+        {
+            // Location::firstOrCreate($Arr[$i]);
+            Accord::firstOrCreate($Arr[$i]);
+        }
+        return;
+    }
+
     /**
      * Run the database seeds.
      *
@@ -13,25 +48,12 @@ class AccordTableSeeder extends Seeder
      */
     public function run()
     {
-        $data = [
-            [
-                'id'         => 1,
-                'name'       => 'Spicy',
-            ],
-            [
-                'id'         => 2,
-                'name'       => 'Creamy',
-            ],
-            [
-                'id'         => 3,
-                'name'       => 'Icy',
-            ],
-            [
-                'id'         => 4,
-                'name'       => 'Smoky',
-            ],
-        ];
+        // The model name is in importCsv, it indicates the which model to use.
 
-        Accord::insert($data);
+        //Importing files
+        $csv_filename = "seeds/accords_and_notes/accord-utf8.csv";
+        $this->importCsv($csv_filename);
+        
+        return;
     }
 }

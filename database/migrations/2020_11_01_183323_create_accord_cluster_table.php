@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateIngredientTable extends Migration
+class CreateAccordClusterTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,18 @@ class CreateIngredientTable extends Migration
      */
     public function up()
     {
-        Schema::create('ingredient', function (Blueprint $table) {
-            $table->mediumIncrements('id');
+        Schema::create('accord_cluster', function (Blueprint $table) {
+            $table->smallIncrements('id');
             $table->timestamps();
-            $table->string('name', 35);
-            $table->string('link', 100);
+            
+            $table->unsignedMediumInteger('accord_id');
+            $table->foreign('accord_id')->references('id')->on('accord')
+            ->onUpdate('cascade')->onDelete('cascade');
+            
+            $table->unsignedSmallInteger('ingredient_category_id');
+            $table->foreign('ingredient_category_id')->references('id')->on('ingredient_category')
+            ->onUpdate('cascade')->onDelete('cascade');
+            
             $table->unsignedBigInteger('created_by')->nullable();
             $table->foreign('created_by')->references('id')->on('users')
             ->onUpdate('cascade')->onDelete('cascade');
@@ -34,6 +41,6 @@ class CreateIngredientTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ingredient');
+        Schema::dropIfExists('accord_cluster');
     }
 }

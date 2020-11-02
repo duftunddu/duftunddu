@@ -23,10 +23,15 @@ class DatabaseSeeder extends Seeder
             ClimateTableSeeder::class,
             SeasonTableSeeder::class,
 
-            LocationTableSeeder::class,
+            // LocationTableSeeder::class,
             
             PermissionsTableSeeder::class,
             RolesTableSeeder::class,
+
+            IngredientCategoryTableSeeder::class,
+            IngredientCategoryClusterTableSeeder::class,
+            AccordClusterTableSeeder::class,
+
         ]);
     }
 }

@@ -23,7 +23,7 @@
 
                         <div class="card-body">
 
-                                @hasrole('user|super_admin')
+                                @hasrole('user|admin')
                                 {{-- Name --}}
                                 <div class="form-group row">
                                     <label for="name" class="col-md-4 col-from-label text-md-right">{{ __('Name:')}}</label>

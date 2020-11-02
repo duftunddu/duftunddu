@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateIngredientTable extends Migration
+class CreateIngredientCategoryTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateIngredientTable extends Migration
      */
     public function up()
     {
-        Schema::create('ingredient', function (Blueprint $table) {
-            $table->mediumIncrements('id');
+        Schema::create('ingredient_category', function (Blueprint $table) {
+            $table->smallIncrements('id');
             $table->timestamps();
             $table->string('name', 35);
-            $table->string('link', 100);
+            
             $table->unsignedBigInteger('created_by')->nullable();
             $table->foreign('created_by')->references('id')->on('users')
             ->onUpdate('cascade')->onDelete('cascade');
@@ -34,6 +34,6 @@ class CreateIngredientTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ingredient');
+        Schema::dropIfExists('ingredient_category');
     }
 }

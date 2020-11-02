@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\Accord;
+use App\Accord_Family;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -21,11 +22,17 @@ class Accord_Controller extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        return view('admin.accord_entry');
+        $accord_families = Accord_Family::all();
+        return view('admin.accord_entry',[
+            'accord_families' => $accord_families,
+        ]);
     }
 
     public function index_ba() {
-        return view('brand_ambassador.accord_entry');
+        $accord_families = Accord_Family::all();
+        return view('brand_ambassador.accord_entry',[
+            'accord_families' => $accord_families,
+        ]);
     }
 
     /**
@@ -46,15 +53,16 @@ class Accord_Controller extends Controller {
     public function store(Request $request) {
 
         $validatedData = $request->validate([ 
-            'name'=> 'required|unique:accord',
+            'accord_familiy_id' => 'required',
+            'name'              => 'required|unique:accord',
         ]);
 
         DB::transaction(function () use ($request) {
 
-                $new=new Accord();
-                $new->name=$request->input('name');
-                $new->created_by=request()->user()->id;
-
+                $new                = new Accord();
+                $new->name          = $request->input('accord_familiy_id');
+                $new->name          = $request->input('name');
+                $new->created_by    = request()->user()->id;
                 $new->save();
         });
 

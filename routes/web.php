@@ -55,7 +55,7 @@ Route::get('fragrance/{id}', 'Fragrance_Controller@show');
 Auth::routes();
 
 // new_user|user|genie_user|premium_user
-Route::middleware(['role:new_user|user|genie_user|premium_user|super_admin'])->group(function () {
+Route::middleware(['role:new_user|user|genie_user|premium_user|admin'])->group(function () {
     
     Route::get('/home', 'HomeController@index')->name('home');
 
@@ -65,7 +65,7 @@ Route::middleware(['role:new_user|user|genie_user|premium_user|super_admin'])->g
 });
 
 // user|genie_user|premium_user
-Route::middleware(['role:user|genie_user|premium_user|super_admin'])->group(function () {
+Route::middleware(['role:user|genie_user|premium_user|admin'])->group(function () {
     Route::get('home', 'HomeController@index')
     ->name('home');
     
@@ -81,23 +81,23 @@ Route::middleware(['role:user|genie_user|premium_user|super_admin'])->group(func
 
 });
 
-// user|genie_user|premium_user|candidate_brand_ambassador|super_admin
-Route::middleware(['role:user|genie_user|premium_user|candidate_brand_ambassador|super_admin'])->group(function () {
+// user|genie_user|premium_user|candidate_brand_ambassador|admin
+Route::middleware(['role:user|genie_user|premium_user|candidate_brand_ambassador|admin'])->group(function () {
 
     Route::get('brand_ambassador_register', 'Brand_Ambassador_Request_Controller@index');
     Route::post('brand_ambassador_register', 'Brand_Ambassador_Request_Controller@store');
 
 });
 
-// candidate_brand_ambassador|new_brand_ambassador|super_admin
-Route::middleware(['role:candidate_brand_ambassador|new_brand_ambassador|super_admin'])->group(function () {
+// candidate_brand_ambassador|new_brand_ambassador|admin
+Route::middleware(['role:candidate_brand_ambassador|new_brand_ambassador|admin'])->group(function () {
 
     Route::get('application_status', 'Brand_Ambassador_Request_Controller@application_status');
 
 });
 
-// new_brand_ambassador|super_admin
-Route::middleware(['role:new_brand_ambassador|super_admin'])->group(function () {
+// new_brand_ambassador|admin
+Route::middleware(['role:new_brand_ambassador|admin'])->group(function () {
 
     Route::get('brand_entry', 'Fragrance_Brand_Controller@index_ba');
     Route::post('brand_entry/{brand_name}', 'Fragrance_Brand_Controller@store_ba');
@@ -105,15 +105,15 @@ Route::middleware(['role:new_brand_ambassador|super_admin'])->group(function () 
 });
 
 // brand_ambassador|premium_brand_ambassador
-Route::middleware(['role:brand_ambassador|premium_brand_ambassador|super_admin'])->group(function () {
+Route::middleware(['role:brand_ambassador|premium_brand_ambassador|admin'])->group(function () {
 
     Route::get('ambassador_home', 'Brand_Ambassador_Controller@index');
 
-    Route::get('accord_entry', 'Accord_Controller@index_ba');
-    Route::post('accord_entry', 'Accord_Controller@store_ba');
+    // Route::get('accord_entry', 'Accord_Controller@index_ba');
+    // Route::post('accord_entry', 'Accord_Controller@store_ba');
 
-    Route::get('note_entry', 'Ingredient_Controller@index_ba');
-    Route::post('note_entry', 'Ingredient_Controller@store_ba');
+    // Route::get('note_entry', 'Ingredient_Controller@index_ba');
+    // Route::post('note_entry', 'Ingredient_Controller@store_ba');
 
     Route::get('fragrance_entry', 'Fragrance_Controller@index_ba');
     Route::post('fragrance_entry', 'Fragrance_Controller@store_ba');
@@ -122,8 +122,8 @@ Route::middleware(['role:brand_ambassador|premium_brand_ambassador|super_admin']
     
 });
 
-// super_admin
-Route::middleware(['role:super_admin'])->group(function () {
+// admin
+Route::middleware(['role:admin'])->group(function () {
 
     Route::get('accord_entry', 'Accord_Controller@index');
     Route::post('accord_entry', 'Accord_Controller@store');
@@ -197,5 +197,5 @@ Route::middleware(['role:super_admin'])->group(function () {
 });
 
 // sample
-// Route::middleware(['role:user|super_admin'])->group(function () {
+// Route::middleware(['role:user|admin'])->group(function () {
 // });
