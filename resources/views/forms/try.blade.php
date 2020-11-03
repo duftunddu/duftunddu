@@ -1,100 +1,268 @@
 {{-- @extends('layouts.app') --}}
 
-<title>Try</title>
+<title>{{('Fragrance Entry | Duft Und Du')}}</title>
 
-{{-- @section('content')
-//   <div class="container">
+{{-- @section('content') --}}
+{{-- Add Another Function --}}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+{{-- Button --}}
+<link href="{{ asset('css/custom_button.css') }}" rel="stylesheet">
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <style>
+  .custom-combobox {
+    position: relative;
+    display: inline-block;
+  }
+  .custom-combobox-toggle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin-left: -1px;
+    padding: 0;
+  }
+  .custom-combobox-input {
+    margin: 0;
+    padding: 5px 10px;
+  }
+  </style>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $.widget( "custom.combobox", {
+      _create: function() {
+        this.wrapper = $( "<span>" )
+          .addClass( "custom-combobox" )
+          .insertAfter( this.element );
+ 
+        this.element.hide();
+        this._createAutocomplete();
+        this._createShowAllButton();
+      },
+ 
+      _createAutocomplete: function() {
+        var selected = this.element.children( ":selected" ),
+          value = selected.val() ? selected.text() : "";
+ 
+        this.input = $( "<input>" )
+          .appendTo( this.wrapper )
+          .val( value )
+          .attr( "title", "" )
+          .addClass( "custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left" )
+          .autocomplete({
+            delay: 0,
+            minLength: 0,
+            source: $.proxy( this, "_source" )
+          })
+          .tooltip({
+            classes: {
+              "ui-tooltip": "ui-state-highlight"
+            }
+          });
+ 
+        this._on( this.input, {
+          autocompleteselect: function( event, ui ) {
+            ui.item.option.selected = true;
+            this._trigger( "select", event, {
+              item: ui.item.option
+            });
+          },
+ 
+          autocompletechange: "_removeIfInvalid"
+        });
+      },
+ 
+      _createShowAllButton: function() {
+        var input = this.input,
+          wasOpen = false;
+ 
+        $( "<a>" )
+          .attr( "tabIndex", -1 )
+          .attr( "title", "Show All Items" )
+          .tooltip()
+          .appendTo( this.wrapper )
+          .button({
+            icons: {
+              primary: "ui-icon-triangle-1-s"
+            },
+            text: false
+          })
+          .removeClass( "ui-corner-all" )
+          .addClass( "custom-combobox-toggle ui-corner-right" )
+          .on( "mousedown", function() {
+            wasOpen = input.autocomplete( "widget" ).is( ":visible" );
+          })
+          .on( "click", function() {
+            input.trigger( "focus" );
+ 
+            // Close if already visible
+            if ( wasOpen ) {
+              return;
+            }
+ 
+            // Pass empty string as value to search for, displaying all results
+            input.autocomplete( "search", "" );
+          });
+      },
+ 
+      _source: function( request, response ) {
+        var matcher = new RegExp( $.ui.autocomplete.escapeRegex(request.term), "i" );
+        response( this.element.children( "option" ).map(function() {
+          var text = $( this ).text();
+          if ( this.value && ( !request.term || matcher.test(text) ) )
+            return {
+              label: text,
+              value: text,
+              option: this
+            };
+        }) );
+      },
+ 
+      _removeIfInvalid: function( event, ui ) {
+ 
+        // Selected an item, nothing to do
+        if ( ui.item ) {
+          return;
+        }
+ 
+        // Search for a match (case-insensitive)
+        var value = this.input.val(),
+          valueLowerCase = value.toLowerCase(),
+          valid = false;
+        this.element.children( "option" ).each(function() {
+          if ( $( this ).text().toLowerCase() === valueLowerCase ) {
+            this.selected = valid = true;
+            return false;
+          }
+        });
+ 
+        // Found a match, nothing to do
+        if ( valid ) {
+          return;
+        }
+ 
+        // Remove invalid value
+        this.input
+          .val( "" )
+          .attr( "title", value + " didn't match any item" )
+          .tooltip( "open" );
+        this.element.val( "" );
+        this._delay(function() {
+          this.input.tooltip( "close" ).attr( "title", "" );
+        }, 2500 );
+        this.input.autocomplete( "instance" ).term = "";
+      },
+ 
+      _destroy: function() {
+        this.wrapper.remove();
+        this.element.show();
+      }
+    });
+ 
+    $( "#ingredient_id" ).combobox();
+    $( "#toggle" ).on( "click", function() {
+      $( "#ingredient_id" ).toggle();
+    });
+  } );
+  </script>
+</head>
+<body>
+
+<div class="container">
+
     <div class="row justify-content-center">
-      <div class="col-md-8">
-        <form method="POST" action="{{ url('try')}}">
-          @csrf --}}
-    
-          {{-- Accord Table --}}
-          {{-- <div class="card">
-            <div class="card-header">{{ __('Fragrance Accord Entry')}}</div>
+        <div class="col-md-8">
+            <form method="POST" action="{{ url('fragrance_entry')}}">
+                @csrf
 
-            <div class="card-body">
-                
-                  <div class="form-group row">
-                    <label for="availability" class="col-md-4 col-from-label text-md-right">{{ __('Availability:')}}</label>
+                {{-- Ingredient Table --}}
+                <div class="card">
+                    <div class="card-header">{{ __('Fragrance Note Entry')}}</div>
 
-                    <div class="col-md-6">
-                        
-                        <select id="availability" type="number" class="form-control @error('availability') is-invalid @enderror" name="availability" value="{{ old('availability')}}" required>
-                            <option value="" selected="selected" disabled="disabled">-- Select Country --</option>
-                            
-                            @foreach($countries as $country)
-                                <option value="{{$country->id}}">{{$country->name}}</option>
-                            @endforeach
-                      
-                        </select>
+                    <div class="card-body">
 
-                    @if($errors->has('availability'))
-                        <div class="invalid-feedback">
-                            {{ $errors->first('availability')}}
-                        </div>
-                    @endif
-                    
+                            {{-- Name --}}
+                            <div class="form-group row">
+                                <label for="ingredient_id"
+                                    class="col-md-4 col-from-label text-md-right">{{ __('Ingredient:')}}</label>
+
+                                <div class="col-md-6">
+
+                                    <select id="ingredient_id" type="number"
+                                        class="form-control @error('ingredient_id') is-invalid @enderror"
+                                        name="ingredient_id" value="{{ old('')}}" required>
+                                        <option value="" selected="selected" disabled="disabled">-- Select Ingredient --
+                                        </option>
+                                        @foreach($ingredients as $ingredient)
+                                        <option value="{{$ingredient->id}}">{{$ingredient->name}}</option>
+                                        @endforeach
+                                    </select>
+
+                                    @error('ingredient_id')
+                                    <span class="invalid-feeback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+
+                                </div>
+                            </div>
+
                     </div>
-                  </div> --}}
 
-                {{-- Button: Submit --}}
-                {{-- <div class="form-group row mb-0">
-                  <div class="col-md-6 offset-md-4">
-                    <button type="submit" class="noselect custom">
-                      <span class="before">{{_('Submit')}}</span>
-                      <span class="after">{{_('Submit')}}</span>
-                    </button>
-                  </div>
+                    <br>
+                     
+                    <div class="ui-widget">
+                      <label>Your preferred programming language: </label>
+                      <select id="combobox">
+                        <option value="">Select one...</option>
+                        <option value="ActionScript">ActionScript</option>
+                        <option value="AppleScript">AppleScript</option>
+                        <option value="Asp">Asp</option>
+                        <option value="BASIC">BASIC</option>
+                        <option value="C">C</option>
+                        <option value="C++">C++</option>
+                        <option value="Clojure">Clojure</option>
+                        <option value="COBOL">COBOL</option>
+                        <option value="ColdFusion">ColdFusion</option>
+                        <option value="Erlang">Erlang</option>
+                        <option value="Fortran">Fortran</option>
+                        <option value="Groovy">Groovy</option>
+                        <option value="Haskell">Haskell</option>
+                        <option value="Java">Java</option>
+                        <option value="JavaScript">JavaScript</option>
+                        <option value="Lisp">Lisp</option>
+                        <option value="Perl">Perl</option>
+                        <option value="PHP">PHP</option>
+                        <option value="Python">Python</option>
+                        <option value="Ruby">Ruby</option>
+                        <option value="Scala">Scala</option>
+                        <option value="Scheme">Scheme</option>
+                      </select>
+                    </div>
+                    <button id="toggle">Show underlying select</button>
+ 
+
+
                 </div>
 
-            </div>
-          </div>
+                <br>
 
-        </form>
+                {{-- Button: Submit --}}
+                <div class="form-group row mb-0">
+                    <div class="col-md-6 offset-md-9">
+                        <button type="submit" class="custom">
+                            <span class="before">{{_('Submit')}}</span>
+                            <span class="after">{{_('Submit')}}</span>
+                        </button>
+                    </div>
+                </div>
 
-      </div>
+            </form>
+        </div>
     </div>
-  </div>
-
-@endsection --}}
-
-
-{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> --}}
-
-{{-- <link href="{{ asset('css/onepage-scroll.css') }}" rel="stylesheet"> --}}
-{{-- <script src="{{ asset('js/onepage-scroll.js') }}" defer></script> --}}
-
-
-<link href="{{ asset('css/try.css') }}" rel="stylesheet">
-{{-- <script src="{{ asset('js/try.js') }}"></script> --}}
-
-<a href="#" class="animated-button13">
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  Get Wishes
-</a>
-
-<div style="margin:50px"></div>
-
-<a href="#" class="animated-button14">
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  Get Wishes
-</a>
-
-<div style="margin:50px"></div>
-
-<a href="#" class="animated-button15">
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  Get Wishes
-</a>
-
-{{-- <script src="{{ asset('js/try.js') }}"></script> --}}
+</div>
+</body>
+{{-- @endsection --}}

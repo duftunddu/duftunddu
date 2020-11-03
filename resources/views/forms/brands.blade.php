@@ -29,6 +29,12 @@
         transform: translateY(50px);
         transition-delay: 1000ms;
     }
+
+    .center{
+        display: flex;
+        justify-content: center;
+        padding-top: 20px;
+    }
 </style>
 
 @section('content')
@@ -42,20 +48,28 @@
                     <div class="card-body">
 
                         <div class="col-md-9">
-                        @if(count($fragrance_Brand) > 0)
-                            @foreach($fragrance_Brand as $brand)
+                            
+                            @if(count($brands) > 0)
                                 
-                                <h4><a href="/brand/{{$brand->id}}">{{$brand->name}}</a></h4>
-                                <small>Added on {{$brand->created_at->format('d/m/Y')}}</small>
-                                <br><br>
+                                @foreach($brands as $brand)
+                                    
+                                    <h4><a href="/brand/{{$brand->id}}">{{$brand->name}}</a></h4>
+                                    <small>Added on {{$brand->created_at->format('d/M/y')}}</small>
+                                    <br><br>
 
-                            @endforeach
+                                @endforeach
+                                
+                                <div class="center">
+                                    {{-- {{ $brands->appends($params)->links() }} --}}
+                                    {{ $brands->links() }}
+                                </div>
 
-                        @else
-                            <p>No Brands</p>
-                        @endif
+                            @else
+                                <p>No Brands</p>
+                            @endif
                 
                         </div>
+                        
                     </div>
                 </div>
             </div>

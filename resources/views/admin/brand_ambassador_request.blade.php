@@ -73,7 +73,7 @@
                                     <h4>{{$ambassador->linkedin}}</h4>
                                     <h4>{{$ambassador->email_work}}</h4>
                                     <h4>{{$ambassador->website}}</h4>
-                                    <small>Added on {{$ambassador->updated_at->format('d/m/Y')}}</small>
+                                    <small>Added on {{$ambassador->updated_at->format('d/M/y')}}</small>
 
                                     @if($ambassador->status == 0)
                                     {{-- New Candidate: Candidate Profile has been filled, is Candidate_Brand Ambassador --}}

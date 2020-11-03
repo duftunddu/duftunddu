@@ -14,6 +14,9 @@ class DatabaseSeeder extends Seeder
         // $this->call(UsersTableSeeder::class);
 
         $this->call([
+            // Never uncomment this
+            // MakeAdmin::class,
+
             AccordTableSeeder::class,
             IngredientTableSeeder::class,
             BrandTierTableSeeder::class,
@@ -31,7 +34,6 @@ class DatabaseSeeder extends Seeder
             IngredientCategoryTableSeeder::class,
             IngredientCategoryClusterTableSeeder::class,
             AccordClusterTableSeeder::class,
-
         ]);
     }
 }

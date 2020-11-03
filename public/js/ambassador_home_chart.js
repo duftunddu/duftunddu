@@ -42,7 +42,9 @@ var myChart = new Chart(ctx, {
                     fontStyle: "bold",
                     beginAtZero: true,
                     maxTicksLimit: 5,
-                    padding: 20
+                    padding: 20,
+                    beginAtZero: true,
+                    precision: 0
                 },
                 gridLines: {
                     drawTicks: false,
@@ -57,7 +59,7 @@ var myChart = new Chart(ctx, {
                 ticks: {
                     padding: 20,
                     fontColor: "rgba(0,0,0,0.5)",
-                    fontStyle: "bold"
+                    fontStyle: "bold",
                 }
             }]
         }

@@ -38,7 +38,7 @@ class Brand_Ambassador_Controller extends Controller
      */
     public function index()
     {
-        $ambassador = Brand_Ambassador_Profile::where('users_id', request()->user()->id)->first();
+        $ambassador = Brand_Ambassador_Profile::firstWhere('users_id', request()->user()->id);
         $fragrances = Fragrance::where('brand_id', $ambassador->brand_id)->get();
 
         // fetching the search counts for the past week
@@ -84,7 +84,7 @@ class Brand_Ambassador_Controller extends Controller
 
     public function advertise()
     {
-        $ambassador = Brand_Ambassador_Profile::where('users_id', request()->user()->id)->first();
+        $ambassador = Brand_Ambassador_Profile::firstWhere('users_id', request()->user()->id);
         $fragrances = Fragrance::where('brand_id', $ambassador->brand_id)->get();
 
         if(!empty($fragrances)){

@@ -29,6 +29,12 @@
         transform: translateY(50px);
         transition-delay: 1000ms;
     }
+
+    .center{
+        display: flex;
+        justify-content: center;
+        padding-top: 20px;
+    }
 </style>
 
 @section('content')
@@ -44,13 +50,20 @@
                     <div class="col-md-9">
 
                         @if(count($fragrances) > 0)
+                            
                             @foreach($fragrances as $fragrance)
                                 
                                 <h4><a href="/fragrance/{{$fragrance->id}}">{{$fragrance->name}}</a></h4>
-                                <small>Added on {{$fragrance->created_at->format('d/m/Y')}}</small>
+                                <small>Added on {{$fragrance->created_at->format('d/M/y')}}</small>
                                 <br>
                                 <br>
                             @endforeach
+
+                            <div class="center">
+                                {{-- {{ $brands->appends($params)->links() }} --}}
+                                {{ $fragrances->links() }}
+                            </div>
+
                         @else
                             <p>No Fragrances</p>
                         @endif

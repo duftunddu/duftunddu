@@ -214,10 +214,11 @@ class Fragrance_Brand_Controller extends Controller
 
    public function all_brands()
    {
-      $fragrance_Brands = Fragrance_Brand::all();
-
+      $brands = Fragrance_Brand::orderBy('name', 'asc')
+         ->paginate(10);
+      
       return view('forms.brands',[
-         'fragrance_Brand' => $fragrance_Brands->sortBy('name')
+         'brands'       => $brands,
       ]);
 
    }
@@ -230,7 +231,6 @@ class Fragrance_Brand_Controller extends Controller
    */
    public function show($id)
    {
-      // Fragrance_Brand $fragrance_Brand
       $brand = Fragrance_Brand::find($id);
 
       if(empty($brand)){
@@ -247,11 +247,24 @@ class Fragrance_Brand_Controller extends Controller
          ->select('location.country_name')
          ->get();
 
+      // All data in a single query, Availability list required thinking, I was tired.   
+      // $data = DB::table('fragrance_brand')
+      //    ->where('fragrance_brand.id',$id)
+      //    ->join('brand_tier', 'brand_tier.id', '=', 'fragrance_brand.tier_id')
+      //    ->join('fragrance_brand_availability', 'fragrance_brand_availability.brand_id', '=', 'fragrance_brand.id')
+      //    ->join('location as origin', 'origin.id', '=', 'fragrance_brand.origin_id')
+      //    ->join('location', 'location.id', '=', 'fragrance_brand_availability.location_id')
+      //    ->where('fragrance_brand_availability.brand_id',$id)
+      //    ->select('brand_tier.name as tier', 'origin.id as country_name', 'location.country_name as availablity')
+      //    ->get();
+         
+      // Helper::var_dump_readable($data);return;
+
       return view('forms.brand',[
          'brand'     => $brand,
          'tier'      => $tier,
          'origin'    => $origin,
-         'countries' => $countries->sortBy('name')
+         'countries' => $countries->sortBy('name'),
          ]);
    }
 

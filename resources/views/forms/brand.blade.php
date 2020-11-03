@@ -67,7 +67,7 @@
                             
                             <br>
 
-                            <p>Added on {{$brand->created_at->format('d/m/Y')}}</p>
+                            <p>Added on {{$brand->created_at->format('d/M/y')}}</p>
 
                         </div>
                     </div>

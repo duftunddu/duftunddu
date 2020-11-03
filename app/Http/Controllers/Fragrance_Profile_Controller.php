@@ -86,7 +86,6 @@ class Fragrance_Profile_Controller extends Controller
             $user_check = 1;
         }
 
-        // $location = Location::where('ip_to', '>', ip2long(request()->ip()))->first();
         $location = Helper::current_location();
 
         DB::transaction(function () use ($request, $user_check, $location) {

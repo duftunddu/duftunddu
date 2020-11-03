@@ -41,7 +41,7 @@ class Admin_Controller extends Controller
         // var_dump($ambassadors);
         // return;
 
-        return view('admin.brand_ambassdor_request',[
+        return view('admin.brand_ambassador_request',[
             'ambassadors'        => $ambassadors,
         ]);
     }
@@ -94,7 +94,7 @@ class Admin_Controller extends Controller
             // Checking existence of brand. The code ensures the integrity but it's
             // 2AM and I am paranoid
             $ambassador = Brand_Ambassador_Request::find($ambassador_id);
-            $brand = Fragrance_Brand::where('name', $ambassador->brand_name)->first();
+            $brand = Fragrance_Brand::firstWhere('name', $ambassador->brand_name);
 
             if(empty($brand)){
                 return redirect()->back()->with('error', 'Brand not found.');

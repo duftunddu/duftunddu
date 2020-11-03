@@ -357,13 +357,7 @@
         var a = 1;
         $('#add_a').click(function () {
             a++;
-            $('#dynamic_field_a').append('<div id="row' + a +
-                '"><div class="form-group row"><label for="accord_ids" class="col-md-4 col-from-label text-md-right">{{ __('
-                Accord:
-                ')}}</label><div class="col-md-6"><select id="accord_ids" type="number" class="form-control @error('
-                accord_ids ') is-invalid @enderror"name="accord_ids[]" required><option value="" selected="selected" disabled="disabled">-- Select Accord --</option>@foreach($accords as $accord)<option value="{{$accord->id}}">{{$accord->name}}</option>@endforeach</select>@error('
-                accord_ids ')<span class="invalid-feeback" role="alert"><strong>{{ $message }}</strong></span>@enderror</div><div class="col-md-2 button-right-align"><button type="button" name="remove_a" id="' +
-                a + '" class="btn btn-danger btn_remove_a">X</button></div></div>');
+            $('#dynamic_field_a').append('<div id="row' + a +'"><div class="form-group row"><label for="accord_ids" class="col-md-4 col-from-label text-md-right">{{ __('Accord:')}}</label><div class="col-md-6"><select id="accord_ids" type="number" class="form-control @error('accord_ids ') is-invalid @enderror"name="accord_ids[]" required><option value="" selected="selected" disabled="disabled">-- Select Accord --</option>@foreach($accords as $accord)<option value="{{$accord->id}}">{{$accord->name}}</option>@endforeach</select>@error('accord_ids ')<span class="invalid-feeback" role="alert"><strong>{{ $message }}</strong></span>@enderror</div><div class="col-md-2 button-right-align"><button type="button" name="remove_a" id="' +a + '" class="btn btn-danger btn_remove_a">X</button></div></div>');
         });
 
         $(document).on('click', '.btn_remove_a', function () {
@@ -399,41 +393,9 @@
             k++;
             // $('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" name="name[]" placeholder="Enter your Name" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
 
-            $('#dynamic_field_i').append('<div id="row' + i +
-                '"><br><div class="form-group row"><label for="ingredient_ids" class="col-md-4 col-from-label text-md-right">{{ __('
-                Ingredient:
-                ')}}</label><div class="col-md-6"><select id="ingredient_ids" type="number" class="form-control @error('
-                ingredient_ids ') is-invalid @enderror" name="ingredient_ids[]" required><option value="" selected="selected" disabled="disabled">-- Select Ingredient --</option>@foreach($ingredients as $ingredient)<option value="{{$ingredient->id}}">{{$ingredient->name}}</option>@endforeach</select>@error('
-                ingredient_ids ')<span class="invalid-feeback" role="alert"><strong>{{ $message }}</strong></span>@enderror</div></div>'
-                );
-            $('#dynamic_field_i').append('<div id="row' + j +
-                '"><div class="form-group row"><label for="notes" class="col-md-4 col-from-label text-md-right">{{ __('
-                Note:
-                ')}}</label><div class="col-md-6"><select id="notes" type="number" class="form-control @error('
-                notes ') is-invalid @enderror" name="notes[]" required><option value="" selected="selected" disabled="disabled">-- Select Note --</option><option value="1">{{'
-                Top '}}</option><option value="2">{{'
-                Middle '}}</option><option value="3">{{'
-                Base '}}</option></select>@error('
-                notes ')<span class="invalid-feeback" role="alert"><strong>{{ $message }}</strong></span>@enderror</div></div>'
-                );
-            $('#dynamic_field_i').append('<div id="row' + k +
-                '"><div class="form-group row"><label for="intensities" class="col-md-4 col-from-label text-md-right">{{ __('
-                Intensity:
-                ')}}</label><div class="col-md-6"><select id="intensities" type="number" class="form-control @error('
-                intensities ') is-invalid @enderror" name="intensities[]" required><option value="" selected="selected" disabled="disabled">-- Select Intensity --</option><option value="1">{{'
-                1 '}}</option><option value="2">{{'
-                2 '}}</option><option value="3">{{'
-                3 '}}</option><option value="4">{{'
-                4 '}}</option><option value="5">{{'
-                5 '}}</option><option value="6">{{'
-                6 '}}</option><option value="7">{{'
-                7 '}}</option><option value="8">{{'
-                8 '}}</option><option value="9">{{'
-                9 '}}</option><option value="10">{{'
-                10 '}}</option></select>@error('
-                intensities ')<span class="invalid-feeback" role="alert"><strong>{{ $message }}</strong></span>@enderror</div><div class="col-md-2 button-right-align"><button type="button" name="remove_i" id="' +
-                i + '" id2="' + j + '" id3="' + k +
-                '" class="btn btn-danger btn_remove_i">X</button></div></div>');
+            $('#dynamic_field_i').append('<div id="row' + i +'"><br><div class="form-group row"><label for="ingredient_ids" class="col-md-4 col-from-label text-md-right">{{ __('Ingredient:')}}</label><div class="col-md-6"><select id="ingredient_ids" type="number" class="form-control @error('ingredient_ids ') is-invalid @enderror" name="ingredient_ids[]" required><option value="" selected="selected" disabled="disabled">-- Select Ingredient --</option>@foreach($ingredients as $ingredient)<option value="{{$ingredient->id}}">{{$ingredient->name}}</option>@endforeach</select>@error('ingredient_ids ')<span class="invalid-feeback" role="alert"><strong>{{ $message }}</strong></span>@enderror</div></div>');
+            $('#dynamic_field_i').append('<div id="row' + j +'"><div class="form-group row"><label for="notes" class="col-md-4 col-from-label text-md-right">{{ __('Note:')}}</label><div class="col-md-6"><select id="notes" type="number" class="form-control @error('notes ') is-invalid @enderror" name="notes[]" required><option value="" selected="selected" disabled="disabled">-- Select Note --</option><option value="1">{{'Top '}}</option><option value="2">{{'Middle '}}</option><option value="3">{{'Base '}}</option></select>@error('notes ')<span class="invalid-feeback" role="alert"><strong>{{ $message }}</strong></span>@enderror</div></div>');
+            $('#dynamic_field_i').append('<div id="row' + k +'"><div class="form-group row"><label for="intensities" class="col-md-4 col-from-label text-md-right">{{ __('Intensity:')}}</label><div class="col-md-6"><select id="intensities" type="number" class="form-control @error('intensities ') is-invalid @enderror" name="intensities[]" required><option value="" selected="selected" disabled="disabled">-- Select Intensity --</option><option value="1">{{'1 '}}</option><option value="2">{{'2 '}}</option><option value="3">{{'3 '}}</option><option value="4">{{'4 '}}</option><option value="5">{{'5 '}}</option><option value="6">{{'6 '}}</option><option value="7">{{'7 '}}</option><option value="8">{{'8 '}}</option><option value="9">{{'9 '}}</option><option value="10">{{'10 '}}</option></select>@error('intensities ')<span class="invalid-feeback" role="alert"><strong>{{ $message }}</strong></span>@enderror</div><div class="col-md-2 button-right-align"><button type="button" name="remove_i" id="' +i + '" id2="' + j + '" id3="' + k +'" class="btn btn-danger btn_remove_i">X</button></div></div>');
         });
 
         $(document).on('click', '.btn_remove_i', function () {

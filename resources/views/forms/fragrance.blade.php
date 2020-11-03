@@ -33,7 +33,7 @@
                         
                         <br>
 
-                        <p>Added on {{$fragrance->created_at->format('d/m/Y')}}</p>
+                        <p>Added on {{$fragrance->created_at->format('d/M/y')}}</p>
                         
                         
                         @if($allow_edit)
@@ -47,6 +47,7 @@
                         @endif
 
                         @if($logged_in)
+
                         @endif
 
                     </div>

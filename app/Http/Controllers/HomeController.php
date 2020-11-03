@@ -56,7 +56,7 @@ class HomeController extends Controller
                 ->orderBy('occurrences', 'DESC')
                 ->get();
             
-            $fav_brand = DB::table('fragrance_brand')->where('id', $data_fav_brand->first()->brand_id)->first();
+            $fav_brand = DB::table('fragrance_brand')->firstWhere('id', $data_fav_brand->first()->brand_id);
 
             $user_fragrances = DB::table('perceiver')
                     ->join('fragrance', 'fragrance.id', '=', 'perceiver.fragrance_id')

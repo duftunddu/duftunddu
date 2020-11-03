@@ -56,7 +56,7 @@ class Brand_Ambassador_Request_Controller extends Controller
             return redirect('ambassador_home');
         }
 
-        $ambassador = Brand_Ambassador_Request::where('users_id', request()->user()->id)->first();
+        $ambassador = Brand_Ambassador_Request::firstWhere('users_id', request()->user()->id);
 
         return view('brand_ambassador.application_status',[
             'ambassador' => $ambassador

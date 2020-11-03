@@ -102,6 +102,82 @@
             justify-content: center;
         }
 
+        @media (max-width: 768px) {
+            .flex-center1 {
+            /* background-image: url("../images/abstract/pawel-czerwinski-tMbQpdguDVQ-unsplash_use.jpg");
+            background-attachment: fixed;
+            background-size: cover; */
+            /* background-repeat: no-repeat; */
+            /* background-position: top right; */
+            /* background-size: 50%; */
+            }
+            
+            .flex2 {
+                /* background-image: url('../images/progress/stairs-918735_use.jpg'); */
+                background-attachment: fixed;
+                background-size: cover;
+                background-repeat: no-repeat;
+                /* background-size: 100% 100%; */
+                background-position: center center;
+                
+                align-items: left;
+                display: flex;
+                justify-content: center;
+            }
+
+            .title {
+                font-size: 4.3vh;
+            }
+
+            .heading{
+                margin-top: 10%;
+                font-size: 1.1vh;
+            }
+
+            .links > a {
+                font-size: 1vh;
+                font-weight: 600;
+                letter-spacing: 0.12vh;
+                text-decoration: none;
+                /* text-transform: uppercase; */
+                color:#8167a9;
+            }
+
+            h1{
+                letter-spacing: 0.2vh;
+            }
+
+            h2{
+                /* font-size: 1vh; */
+                display: inline;
+            }
+
+            p{
+                font-size: 3vh;
+                font-weight: bold;
+                letter-spacing: 0.09vh;
+            }
+
+            .top-pad-fix{
+                margin-top: -3rem;
+            }
+
+            .m-b-md {
+                margin-bottom: 2.26vh;
+            }
+
+            span{
+                font-size: 3vh;
+            }
+
+
+            /* .center {
+                display: flex;
+                justify-content: center;
+            } */
+
+        }
+
         /* Header Fix */
         .navigation-wrap{
             /* width: 67% !important; */

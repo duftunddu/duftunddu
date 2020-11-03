@@ -274,7 +274,7 @@ class Fragrance_Controller extends Controller
 
     $fragrances = Fragrance::where('brand_id', $brand->id)
       ->orderBy('name', 'asc')
-      ->get();
+      ->paginate(10);
 
     return view('forms.fragrances',[
         'brand'        => $brand,
@@ -314,7 +314,7 @@ class Fragrance_Controller extends Controller
     // For Brand Ambassadors
     $allow_edit = FALSE;
     if (Auth::check()) {
-        
+      $logged_in = TRUE;
       // If the user is Brand Ambassdor. And if the BA is of this brand.
       if(request()->user()->hasRole(['brand_ambassador', 'premium_brand_ambassador'])){
         $ambassador = Brand_Ambassador_Profile::where('users_id', request()->user()->id)->first();
@@ -342,10 +342,13 @@ class Fragrance_Controller extends Controller
 
         // https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
 
-        $weather_data_json  = Http::get('https://api.openweathermap.org/data/2.5/onecall?lat={$location->latitude}&lon={$location->longitude}&units=imperial&exclude=current,minutely,hourly,alerts&appid=7120811d6e66b35f6be4b030be29c4d3');
+        $weather_data_json  = Http::get("https://api.openweathermap.org/data/2.5/onecall?lat={$location->latitude}&lon={$location->longitude}&units=imperial&exclude=current,minutely,hourly,alerts&appid=7120811d6e66b35f6be4b030be29c4d3");
+        
+        // Helper::var_dump_readable($weather_data_json->successful());return;
+        
         if($weather_data_json->successful()){
 
-          // Sum of Variables
+          // Sum of Weekly Variables
           $sum_temp = 0;
           $sum_hum  = 0;
 
@@ -357,7 +360,7 @@ class Fragrance_Controller extends Controller
           // Average Temperature
           $avg_temp = $sum_temp/8;
 
-          // Average Temperature
+          // Average Humidity
           $avg_hum = $sum_hum/8;
 
           // Initializing Weights
@@ -409,7 +412,10 @@ class Fragrance_Controller extends Controller
 
           // Weather: Cold weather/region holds stronger, lusher floral notes in check, which is why your tropical perfumes will smell all wrong during winter or autumn. Conversely, lighter scents work better in summer and spring.
           if($avg_temp > 65){
-          //   if(accords == tropical){
+            // if($accords == tropical){
+              // var_dump($accords->toArray());return;
+            // if(in_array("tropical", $accords->toArray())){
+              // var_dump(in_array("tropical", $accords));return;
           //     $strength_of_fragrance *= 1.1;
               // $suitability *= 1.1;
             // }
@@ -480,12 +486,16 @@ class Fragrance_Controller extends Controller
         }
       }
     }
+    else{
+      $logged_in = FALSE;
+    }
 
     return view('forms.fragrance',[
         'fragrance'     => $fragrance,
-        'type'      => $type,
-        'accords'      => $accords,
-        'notes'    => $notes,
+        'type'          => $type,
+        'accords'       => $accords,
+        'notes'         => $notes,
+        'logged_in'     => $logged_in,
         'allow_edit'    => $allow_edit,
     ]);
   }

@@ -42,6 +42,6 @@ class Helper
     }
 
     public static function current_location(){
-        return Location::where('ip_to', '>', ip2long(request()->ip()))->first();
+        return Location::firstWhere('ip_to', '>', ip2long(request()->ip()));
     }
 }

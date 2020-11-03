@@ -69,36 +69,46 @@ class Search_Queries_Controller extends Controller
 
         $params = ['searchbox' => $request->searchbox];
     
-        $location = Location::where('ip_to', '>', ip2long(request()->ip()))->first();
 
         if($request->page == NULL){
-        
-            DB::transaction(function () use ($request, $location) {
-                $new = new Search_Queries();
-                $new->query = $request->searchbox;
+            
+            // Page refresh check
+            $pageWasRefreshed = isset($_SERVER['HTTP_CACHE_CONTROL']) && $_SERVER['HTTP_CACHE_CONTROL'] === 'max-age=0';
+ 
+            if(!$pageWasRefreshed) {
+            //page wasn't refreshed
+                $location = Location::firstWhere('ip_to', '>', ip2long(request()->ip()));
 
-                if (Auth::check()) {
-                    if(request()->user()->hasRole('user')){
-                        $profile = Fragrance_Profile::where('users_id', request()->user()->id)->first();
-                        
-                        $new->users_id        = $profile->users_id;
-                        $new->gender          = $profile->gender;
-                        $date                 = Carbon::parse($profile->dob);
+                DB::transaction(function () use ($request, $location) {
+                    $new = new Search_Queries();
+                    $new->query = $request->searchbox;
 
-                        $new->age             = Carbon::now()->diffInYears($date);
-                        $new->profession_id   = $profile->profession_id;
-                        $new->skin_type_id    = $profile->skin_type_id;
-                        $new->sweat           = $profile->sweat;
-                        $new->height          = $profile->height;
-                        $new->weight          = $profile->weight;
-                        $new->location_id     = $location->id;
-                        $new->climate_id      = $profile->climate_id;
-                        $new->season_id       = $profile->season_id;
+                    if (Auth::check()) {
+                        if(request()->user()->hasRole('user')){
+                            $profile = Fragrance_Profile::where('users_id', request()->user()->id)->first();
+                            
+                            $new->users_id        = $profile->users_id;
+                            $new->gender          = $profile->gender;
+                            $date                 = Carbon::parse($profile->dob);
+
+                            $new->age             = Carbon::now()->diffInYears($date);
+                            $new->profession_id   = $profile->profession_id;
+                            $new->skin_type_id    = $profile->skin_type_id;
+                            $new->sweat           = $profile->sweat;
+                            $new->height          = $profile->height;
+                            $new->weight          = $profile->weight;
+                            $new->location_id     = $location->id;
+                            $new->climate_id      = $profile->climate_id;
+                            $new->season_id       = $profile->season_id;
+                        }
                     }
-                }
 
-                $new->save();
-            });
+                    $new->save();
+                });
+            } else {
+                //page was refeshed
+            }
+        
         }
 
         return view('forms.search_results',[
