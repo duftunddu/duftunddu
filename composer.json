@@ -20,7 +20,8 @@
         "laravel/ui": "^2.0",
         "spatie/laravel-permission": "^3.13",
         "symfony/finder": "^5.1",
-        "symfony/process": "^5.1"
+        "symfony/process": "^5.1",
+        "volosyuk/simple-eloquent": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

@@ -44,4 +44,10 @@ class Helper
     public static function current_location(){
         return Location::firstWhere('ip_to', '>', ip2long(request()->ip()));
     }
+
+    // It is said that it Returns a pure array not a stdClass knockoff,
+    // I tried and was disappointed but further testing is required
+    public static function convert_collection_to_array($array_with_stdClass){
+        return array_map( function($value) { return (array)$value; }, $array_with_stdClass );
+    }
 }

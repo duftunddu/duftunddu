@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3d6385576ae6cb5cf37cd8f3c49247c9",
+    "content-hash": "d7d3d9979954463c798c259d8c1c78e4",
     "packages": [
         {
             "name": "ashallendesign/laravel-exchange-rates",
@@ -4533,6 +4533,68 @@
                 "php"
             ],
             "time": "2020-06-15T23:49:30+00:00"
+        },
+        {
+            "name": "volosyuk/simple-eloquent",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/andreyvolosyuk/simple-eloquent.git",
+                "reference": "0cdd9b78180a2b59644ae562e78587748f384081"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/andreyvolosyuk/simple-eloquent/zipball/0cdd9b78180a2b59644ae562e78587748f384081",
+                "reference": "0cdd9b78180a2b59644ae562e78587748f384081",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^6.0|^7.0",
+                "illuminate/pagination": "^6.0|^7.0",
+                "illuminate/support": "^6.0|^7.0",
+                "php": "^7.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "6.0.x-dev",
+                    "dev-five_eight": "5.8.x-dev",
+                    "dev-five_seven": "5.7.x-dev",
+                    "dev-five_six": "5.6.x-dev",
+                    "dev-five_five": "5.5.x-dev",
+                    "dev-five_four": "5.4.x-dev",
+                    "dev-five_three": "5.3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Volosyuk\\SimpleEloquent\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andrey Volosyuk",
+                    "email": "valasiuk.andrei@gmail.com"
+                }
+            ],
+            "description": "Adaptation of eloquent for retrieving its attributes",
+            "keywords": [
+                "eloquent",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/andreyvolosyuk/simple-eloquent/issues",
+                "source": "https://github.com/andreyvolosyuk/simple-eloquent/tree/master"
+            },
+            "time": "2020-05-19T16:35:20+00:00"
         }
     ],
     "packages-dev": [
@@ -6609,5 +6671,6 @@
     "platform": {
         "php": "^7.2.5"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "2.0.0"
 }

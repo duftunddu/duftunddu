@@ -1,3 +1,8 @@
+// Tooltip
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();
+});
+
 /******/ (function (modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};

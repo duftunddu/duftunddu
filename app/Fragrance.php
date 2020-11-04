@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Volosyuk\SimpleEloquent\SimpleEloquent;
 
 /**
  * @property int $id
@@ -20,6 +21,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Fragrance extends Model
 {
+    use SimpleEloquent;
+    
     /**
      * The table associated with the model.
      * 

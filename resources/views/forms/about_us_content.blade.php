@@ -77,21 +77,27 @@
             About Us
         </div>
         <div class="flex-4-body">
-            Find the fragrance you want on our Search Engine and check similar fragrances.
+            Smell Good, Feel Good.<br>
+            That's Our Motto.
+            {{-- Check how a fragrance will suit you, on our <span href="search_engine">Search Engine</span><br>
+            Check Similar Fragrances (Coming Soon)<br>
+            Get Fragrance Recommendations (Coming Soon)<br> --}}
         </div><br>
 
         <div class="flex-4-heading">
             Our Vision
         </div>
         <div class="flex-4-body">
-            Find the fragrance you want on our Search Engine and check similar fragrances.
+            {{-- To be able to suggest the perfect fragrance for each occasion and person.    --}}
+            {{-- To be able to suggest you the perfect fragrance for each occasion.    --}}
+            To be able to suggest you the perfect fragrance for each occasion and gift.   
         </div><br>
 
         <div class="flex-4-heading">
             Our Mission
         </div>
         <div class="flex-4-body">
-            Find the fragrance you want on our Search Engine and check similar fragrances.
+            To help people make informed decisions about fragrances.
         </div>
         
     </div>

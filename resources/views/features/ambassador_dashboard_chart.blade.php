@@ -45,6 +45,18 @@
                 scales: {
                     yAxes: [{
                         ticks: {
+                            // fontColor: 'white',
+                            stepSize:1,
+                                callback: function(value, index, values) {
+                              
+                                    if(value%Math.round(values[0]/10)==0){
+                                       return  value;
+                                    }
+                                    else if(value===0){
+                                        return value;
+                                    }
+                                    
+                                },
                             fontColor: "rgba(0,0,0,0.5)",
                             fontStyle: "bold",
                             beginAtZero: true,
