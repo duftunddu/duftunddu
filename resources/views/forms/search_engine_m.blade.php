@@ -22,7 +22,6 @@
         <style>
 
             html, body {
-
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
                 font-size: 3vw;
@@ -40,11 +39,14 @@
             .background{
 
                 @if($random > 0)
-                background-image: url('../images/fragrance_model/applying_fragrance/person-holding-clear-glass-bottle-4659793_use.jpg');
-                @elif($random < 0)
+                background-image: url('../images/fragrance_model/applying_fragrance/person-holding-clear-glass-bottle-4659793_small_use.jpg');
+                background-image: url('../images/fragrance_model/applying_fragrance/person-holding-clear-glass-bottle-4659793_small_use.webp');
+                @elseif($random < 0)
                 background-image: url('../images/fragrance_model/laura-chouette-2H_8WbVPRxM-unsplash_search_use.jpg');
+                background-image: url('../images/fragrance_model/laura-chouette-2H_8WbVPRxM-unsplash_search_use.webp');
                 @else
-                background-image: url('../images/fragrance_model/applying_fragrance/person-holding-clear-glass-round-mirror-4659792_use.jpg');
+                background-image: url('../images/fragrance_model/applying_fragrance/person-holding-clear-glass-round-mirror-4659792_small_use.jpg');
+                background-image: url('../images/fragrance_model/applying_fragrance/person-holding-clear-glass-round-mirror-4659792_small_use.webp');
                 @endif
 
                 height: 89%;
@@ -182,7 +184,6 @@
     </body>
 
     <script>
-
         window.addEventListener('DOMContentLoaded', function() {
             setTimeout(function(){
                 $(".background").css("filter","blur(5px)");
@@ -191,7 +192,6 @@
 				},1000);
             }, 1000);
         });
-        
     </script>
 
 </html>

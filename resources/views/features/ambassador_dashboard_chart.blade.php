@@ -1,5 +1,5 @@
-<script src="{{ asset('js/chart.min.js') }}" defer></script>
-{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script> --}}
+{{-- <script src="{{ asset('js/chart.min.js') }}" defer></script> --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" defer></script>
 
 <canvas id="myChart" width="80%" height="50%"></canvas>
 
@@ -44,28 +44,18 @@
                 },
                 scales: {
                     yAxes: [{
+                        display:true,
                         ticks: {
-                            // fontColor: 'white',
-                            stepSize:1,
-                                callback: function(value, index, values) {
-                              
-                                    if(value%Math.round(values[0]/10)==0){
-                                       return  value;
-                                    }
-                                    else if(value===0){
-                                        return value;
-                                    }
-                                    
-                                },
+                            beginAtZero: true,
+                            max: {{$yaxis_limit}},
                             fontColor: "rgba(0,0,0,0.5)",
                             fontStyle: "bold",
-                            beginAtZero: true,
-                            maxTicksLimit: 5,
+                            maxTicksLimit: 6,
                             padding: 20
                         },
                         gridLines: {
                             drawTicks: false,
-                            display: false
+                            display: true
                         }
 
                     }],

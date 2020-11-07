@@ -34,7 +34,7 @@ class Fragrance_Controller extends Controller
   {
       //
   }
-  
+
   /**
     * Display a listing of the resource.
     *
@@ -264,6 +264,17 @@ class Fragrance_Controller extends Controller
     return redirect('ambassador_home')->with('success','Fragrance added successfully.');
   }
 
+  public function all_fragrances_array($id)
+  {
+    $brand = Fragrance_Brand::find($id);
+
+    $fragrances = Fragrance::where('brand_id', $brand->id)
+      ->orderBy('name', 'asc')
+      ->get(10);
+
+    return $fragrances;
+  }
+
   public function all_fragrances($id)
   {
     $brand = Fragrance_Brand::find($id);
@@ -369,19 +380,20 @@ class Fragrance_Controller extends Controller
           // Eau de Toilette (EDT): 5-15 | 80
           // Eau de Cologne: 2-4 | 70
           // Eau Fraiche: 1-3 | 60
-          if(strcmp($frag_profile->skin, "Parfum (Perfume)") == 0){
+          // $fragrance_type = [100,90,80,70,60,80]; 
+          if(strcmp($type->name, "Parfum (Perfume)") == 0){
             $longevity = 100;
           }
-          else if(strcmp($frag_profile->skin, "Eau de Parfum") == 0){
+          else if(strcmp($type->name, "Eau de Parfum") == 0){
             $longevity = 90;
           }
-          else if(strcmp($frag_profile->skin, "Eau de Toilette") == 0){
+          else if(strcmp($type->name, "Eau de Toilette") == 0){
             $longevity = 80;
           }
-          else if(strcmp($frag_profile->skin, "Eau de Cologne") == 0){
+          else if(strcmp($type->name, "Eau de Cologne") == 0){
             $longevity = 70;
           }
-          else if(strcmp($frag_profile->skin, "Eau Fraiche") == 0){
+          else if(strcmp($type->name, "Eau Fraiche") == 0){
             $longevity = 60;
           }
           else{
@@ -389,6 +401,7 @@ class Fragrance_Controller extends Controller
           }
           
           // Humidity: Makes you sweat more.
+          // $sweat_weights = [55, 1.3, 35, 1.2];
           if($avg_hum > 55){
             $frag_profile->sweat *= 1.3;
           }
@@ -397,6 +410,7 @@ class Fragrance_Controller extends Controller
           }
 
           // Heat: Volatilizes essences faster.
+          // $sustainability_heat_weights = [71.9, 0.8, 82, 0.9];
           if($avg_temp > 71.9){  
             $sustainability *= 0.8;
           }
@@ -467,13 +481,16 @@ class Fragrance_Controller extends Controller
         else{
           // Create two more accounts on the weather website and adjust this controller with more apis.
         }
-
+          $data = [$avg_temp, $avg_hum, $bmi, $longevity, $suitability, $sustainability];
         }
       }
+
     }
     else{
       $logged_in = FALSE;
+      $longevity = $suitability = $sustainability = NULL;
     }
+    
 
     return view('forms.fragrance',[
         'fragrance'         => $fragrance,

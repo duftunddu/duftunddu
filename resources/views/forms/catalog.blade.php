@@ -1,148 +1,96 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@extends('layouts.app')
 
-<title>{{_('Catalog | The Fragrance Hub | Duft Und Du')}}</title>
-
+<title>{{('Catalog | The Fragrance Hub')}}</title>
 
 <style>
-    div{
-        background-image: url('https://cdn.shopify.com/s/files/1/1600/9217/products/Gem-Cut-Decanter-Detail.jpg?v=1498771896');
-        background-attachment: fixed;
-        /* background-size: cover; */
-        /* background-repeat: no-repeat;
-        background-size: 100% 100%; */
-    }
-
+    .flex-2-left {
+            background-image: url('../images/fragrance_model/laura-chouette-o7BEFNmuDkU-unsplash_desktop_big_use.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            /* background-position: center center; */
+            background-attachment: fixed;
+        }
+        .flex-2-placement{
+            text-align: left;
+            align-items: left;
+            justify-content: left;
+            margin-right: 55%;
+            padding-left: 4%;
+            /* padding-top: 4%; */
+            padding-bottom:4%;
+            /* display: flex; */
+            /* padding-top: 7.73vw; */
+        }
+        .flex-2-heading{
+            /* font-size: 2.3vw; */
+            font-size: 1.8rem;
+            font-weight: 100;
+            font-variant: small-caps;
+            color: #89163f;
+            /* color: #571b34; */
+            /* color: #220e19; */
+        }
+        .flex-2-body{
+            /* font-size: 1.4vw; */
+            font-size: 1.056rem;
+            font-weight: 100;       
+            color: rgb(255, 250, 255);
+            /* color: #e8e7ec; */
+            /* color: #571b34; */
+            /* color: #2e1524; */
+            /* color: rgb(0, 255, 255);  */
+        }
+        .flex-2-body a{
+            color: #f7527c;
+        }
 </style>
 
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@section('content')
 
-        <title>{{('Catalog | The Fragrance Hub | Duft Und Du')}}</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 115vh;
-            }
-
-            .flex-left {
-                align-items: left;
-                display: flex;
-                justify-content: left;
-                padding-top: 70px;
-                padding-left: 100px;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: left;
-            }
-
-            .title {
-                font-size: 75px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                /* padding: 0 25px; */
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-
-            h2{
-                color:#905969;
-            }
-        </style>
-    </head>
-    
-    <body>
-        <div class="flex-left position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title">
-                    {{_('Catalog')}}
-                </div>
-
-                <div class="heading">
-                    <h1>{{_('The AI Powered Fragrance Genie')}}</h1>
-                </div>
-                
-                <br>
-                
-                <div class="links">
-
-                    <a href="{{ url('catalog')}}"><h2>{{_('All Active Reigons')}}</h2></a>
-                    <a href="{{ url('catalog')}}"><h2>{{_('All Fragrances')}}</h2></a>
-                    <a href="{{ url('catalog')}}"><h2>{{_('All Brands')}}</h2></a>
-                    {{-- <a href="{{ url('catalog')}}"><h2>{{_('Users')}}</h2></a> --}}
-                    
-                    <br>
-
-                    <a href="{{ route('search')}}"><h2>{{_('Search Engine')}}</h2></a>
-
-
-                    <br>
-
-                    <a href="{{ url('catalog')}}"><h2>{{_('Advertise on Duft Und Du')}}</h2></a>
-                    <a href="{{ url('catalog')}}"><h2>{{_('Become a brand ambassador')}}</h2></a>
-                    
-                    <br>
-                    
-                    <a><h2 style="color:#636b6f">{{_('PREMIUM FEATURES COMING SOON')}}</h2></a>
-                    
-                    <br>
-                    
-                    <a href="{{ url('about_us')}}"><h2>{{_('About Us')}}</h2></a>
-                    
-                </div>
-
-                </div>
-
+{{-- <div class="container"> --}}
+    <div class="flex-2-left position-ref full-height">
+        <div class="flex-2-placement">
+            
+            <div class="flex-2-heading">
+                Discover
             </div>
+            <div class="flex-2-body">
+                Find the fragrance you want on our <a href="search_engine">Search Engine</a> and check similar fragrances.
+                {{-- [add picture on hover] --}}
+                {{-- Find the fragrance you want on our Search Engine and check similar fragrances. --}}
+            </div>
+
+            <div class="flex-2-heading">
+                Smell Your Best
+            </div>
+            <div class="flex-2-body">
+                ●	Check if a fragrance suits you on the <a href="search_engine">Search Engine</a><br>
+                ●	Get fragrance suggestions based on your preferences with our Genie | Coming Soon.<br>
+                {{-- [add picture on hover] --}}
+                ●	Find your perfect scent for every occasion | Coming Soon.<br>
+                Always smell your best.
+            </div>
+
+            <div class="flex-2-heading">
+                Get Your Loved Ones The Perfect Gift
+            </div>
+            <div class="flex-2-body">
+                Use Genie Gift Cards to get fragrance recommendations for your loved ones | Coming Soon.
+                {{-- [add picture on hover] --}}
+            </div>
+            
+            <div class="flex-2-heading">
+                Get Insights
+            </div>
+            <div class="flex-2-body">
+                Become a Brand Ambassador to see the details of your brand and add your latest fragrances.<br>
+                Registered Brand Ambassadors can also get access to valuable customer insight. <a href="brand_ambassador_proposal">Learn More</a>.
+                {{-- [add picture on hover] --}}
+            </div>
+
         </div>
-        
-    </body>
-</html>
+    </div>
+
+{{-- </div> --}}
+
+@endsection

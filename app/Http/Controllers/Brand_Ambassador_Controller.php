@@ -74,11 +74,20 @@ class Brand_Ambassador_Controller extends Controller
             $week_count = NULL;
         }
 
+        $max = max($week_count);
+        if($max%10 != 0){
+            $yaxis_limit = $max + (10 - $max%10); 
+        }
+        else{
+            $yaxis_limit = $max;
+        }
+        
         return view('brand_ambassador.home',[
-            'ambassador'   => $ambassador,
-            'fragrances'   => $fragrances,
-            'queries_data' => $queries,
-            'counts'       => $week_count
+            'ambassador'        => $ambassador,
+            'fragrances'        => $fragrances,
+            'queries_data'      => $queries,
+            'counts'            => $week_count,
+            'yaxis_limit'       => $yaxis_limit
         ]);
     }
 

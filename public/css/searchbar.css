@@ -1,7 +1,8 @@
 /* Body */
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-    min-height: 100vh;
+    /* min-height: 100vh; */
+    min-height: 100%;
     color: #57585c;
     color: var(--color-text);
     background: #fff;
@@ -13,7 +14,8 @@ body {
 /* Icons */
 .icon {
     display: block;
-    width: 1.8vw;
+    /* width: 1.8vw; */
+    width: 1.488375rem;
     /* height: 1.8vw; */
     /* margin: 0 auto; */
     fill: currentColor;
@@ -60,12 +62,15 @@ main {
 }
 
 .search__input {
-    padding: 1.2vw;
+    /* padding: 1.2vw; */
+    padding: 1rem;
     background: none;
     border: 0;
-    width: 18.14vw;
+    /* width: 18.14vw; */
+    width: 15rem;
     background: #fff;
-    border-radius: 2.27vw;
+    /* border-radius: 2.27vw; */
+    border-radius: 1.875rem;
     font-weight: bold;
     opacity: 0;
 }
@@ -81,8 +86,10 @@ main {
 
 .search__feedback {
     position: absolute;
-    top: 0.72vw;
-    left: 12.9vw;
+    /* top: 0.72vw; */
+    top: 0.595rem;
+    /* left: 12.9vw; */
+    left: 10.6625rem;
     /* left: 2.41vw; */
     /* right: 0.6vw; */
     /* right: 3.6vw; */
@@ -90,8 +97,10 @@ main {
     font-weight: bold;
     display: flex;
     pointer-events: none;
-    font-size: 1.81vw;
-    letter-spacing: .15vw;
+    /* font-size: 1.81vw; */
+    font-size: 1.49625rem;
+    /* letter-spacing: .15vw; */
+    letter-spacing: 0.124rem;
 }
 
 .search__feedback span {
@@ -102,12 +111,15 @@ main {
 .btn {
     margin: 0;
     padding: 0;
-    top: 0.6vw;
-    left: 31.0vw;
+    /* top: 0.6vw; */
+    top: 0.5rem;
+    /* left: 31.0vw; */
+    left: 25.6rem;
     cursor: pointer;
     border: none;
     background: none;
-    font-size: 1.2vw;
+    /* font-size: 1.2vw; */
+    font-size: 1rem;
     position: absolute;
     z-index: 10;
     /* right: 0.97vw; */

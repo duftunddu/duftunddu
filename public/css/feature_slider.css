@@ -242,6 +242,7 @@ ul li a.active {
 
 #tabs-1 {
     background-image: url("../images/team/top-view-photo-of-people-near-wooden-table-3183150_slider_use.jpg");
+    background-image: url("../images/team/top-view-photo-of-people-near-wooden-table-3183150_slider_use.webp");
     /*background-attachment: fixed;*/
     background-repeat: no-repeat;
     background-size: cover;
@@ -249,6 +250,7 @@ ul li a.active {
 
 #tabs-2 {
     background-image: url("../images/progress/man-wearing-black-and-white-stripe-shirt-looking-at-white-212286_slider_use.jpg");
+    background-image: url("../images/progress/man-wearing-black-and-white-stripe-shirt-looking-at-white-212286_slider_use.webp");
     /*background-attachment: fixed;*/
     background-repeat: no-repeat;
     background-size: cover;
@@ -256,6 +258,7 @@ ul li a.active {
 
 #tabs-3 {
     background-image: url("../images/progress/photo-of-person-holding-mobile-phone-3183153_slider_use.jpg");
+    background-image: url("../images/progress/photo-of-person-holding-mobile-phone-3183153_slider_use.webp");
     /* background-attachment: fixed; */
     background-repeat: no-repeat;
     background-size: cover;

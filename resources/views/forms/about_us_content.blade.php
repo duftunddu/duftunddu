@@ -41,30 +41,31 @@
     @media (max-width: 700px) {
         .flex-4-right {
             background-image: url('../images/others/laura-chouette-j_qackZwDIU-unsplash-edited-enhanced_use.jpg');
-            background-size: auto 100%;
+            background-size: cover;
             background-repeat: no-repeat; 
-            background-position: center center;
+            background-position: 42.5% center;
             background-attachment: fixed;
         }
         .flex-4-placement{
             text-align: center;
             align-items: right;
             justify-content: right;
-            margin-left: 25%;
-            margin-right: 8%;
-            padding-top: 8%;
+            margin-left: 20%;
+            margin-right: 3%;
+            padding-top: 9%;
         }
         .flex-4-heading{
-            font-size: 4.5vh;
+            font-size: 5.5vh;
             font-weight: 100;
             font-variant: small-caps;
             color: #89163f;
         }
         .flex-4-body{
-            font-size: 2.5vh;
+            font-size: 3vh;
             font-weight: 100;
             color: #e8e7ec;
         }
+
     }
 }
 
@@ -73,12 +74,14 @@
 <div class="flex-4-right position-ref full-height">
     <div class="flex-4-placement">
         
+        <br>
         <div class="flex-4-heading">
             About Us
         </div>
         <div class="flex-4-body">
-            Smell Good, Feel Good.<br>
-            That's Our Motto.
+            A team of Fragrance Enthusiasts who went from reviewing perfumes to recommending them.
+            {{-- Smell Good, Feel Good.<br> --}}
+            {{-- That's Our Motto. --}}
             {{-- Check how a fragrance will suit you, on our <span href="search_engine">Search Engine</span><br>
             Check Similar Fragrances (Coming Soon)<br>
             Get Fragrance Recommendations (Coming Soon)<br> --}}

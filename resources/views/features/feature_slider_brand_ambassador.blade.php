@@ -37,7 +37,7 @@
       </a>
         <div class="addon">
           <span>
-            See how your brand is doing on the search engine. Check how many times your brand and its fragrances have shown up in searches. 
+            See how many people have searched for your brand in the past week. 
           </span>
           {{-- <a class="para-a" href="#">Learn More</a> --}}
         </div>

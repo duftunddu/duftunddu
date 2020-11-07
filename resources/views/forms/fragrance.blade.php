@@ -17,7 +17,78 @@
         margin-left:20%;
         text-align:justify;
     }
-    
+    .color-red{
+        color: #f7527c;
+    }
+    .color-highlight-purple{
+        color: #8167a9;
+    }
+
+    .rating {
+        /* position: absolute; */
+        /* top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0; */
+        width: 150px;
+        height: 30px;
+        /* padding: 5px 10px; */
+        /* margin: auto; */
+        /* align-content: right; */
+        /* text-content: right; */ 
+        /* justify-content: right; */
+        float: right; 
+        border-radius: 30px;
+        background: #FFFAFF;
+        display: block;
+        overflow: hidden;
+        
+        box-shadow: 0 1px #CCC,
+                    0 2px #DDD,
+                    0 9px 6px -3px #999;
+        
+        unicode-bidi: bidi-override;
+        direction: rtl;
+        font-size: 1.5rem;
+    }
+    .rating:not(:checked) > input {
+        display: none;
+    }
+
+    /* - - - - - RATE */
+    #rate {
+    /* top: -65px; */
+    }
+    #rate:not(:checked) > label {
+        cursor:pointer;
+        float: right;
+        width: 30px;
+        height: 30px;
+        display: block;
+        
+        /* color: rgba(0, 135, 211, .4); */
+        color: rgba(211, 0, 53, .4);
+        line-height: 33px;
+        text-align: center;
+    }
+    #rate:not(:checked) > label:hover,
+    #rate:not(:checked) > label:hover ~ label {
+        /* color: rgba(0, 135, 211, .6); */
+        color: rgba(211, 0, 53, .6);
+    }
+    #rate > input:checked + label:hover,
+    #rate > input:checked + label:hover ~ label,
+    #rate > input:checked ~ label:hover,
+    #rate > input:checked ~ label:hover ~ label,
+    #rate > label:hover ~ input:checked ~ label {
+        /* color: rgba(0, 135, 211, .8); */
+        color: rgba(211, 0, 53, .8);
+    }
+    #rate > input:checked ~ label {
+        /* color: rgb(0, 135, 211); */
+        color: rgb(211, 0, 53);
+    }
+
     /* Toggler */
     /* #effect-open-close {
         position: relative;
@@ -80,9 +151,66 @@
                         <div class="column">
                             <div class="right">
                                 @if($logged_in)
-                                    <h4 data-toggle="tooltip" data-placement="top" data-html="true" title="How long the fragrance lasts.<br>100 is max.">Longevity: {{$longevity}}</h4>
-                                    <h4 data-toggle="tooltip" data-placement="top" data-html="true" title="Depends on season.<br>100 is average.<br>Above 100 is better.">Suitability: {{$suitability}}</h4>
-                                    <h4 data-toggle="tooltip" data-placement="top" data-html="true" title="How much heat affects the longevity of fragrance.<br>100 means unaffected. Below 100 means it will wear off sooner.">Sustainability: {{$sustainability}}</h4>
+
+                                    <h4 class="hsl-color" data-toggle="tooltip" data-placement="top" data-html="true" title="How long the fragrance lasts.<br>100 is max.">Longevity: {{$longevity}}</h4>
+                                        <!-- RATE -->
+                                        <section id="rate" class="rating">
+                                            <!-- FIFTH STAR -->
+                                            <input type="radio" id="star_5" name="longevity" value="5" onclick="handleLongevity(this);"/>
+                                            <label for="star_5" title="Five">&#9733;</label>
+                                            <!-- FOURTH STAR -->
+                                            <input type="radio" id="star_4" name="longevity" value="4" onclick="handleLongevity(this);"/>
+                                            <label for="star_4" title="Four">&#9733;</label>
+                                            <!-- THIRD STAR -->
+                                            <input type="radio" id="star_3" name="longevity" value="3" onclick="handleLongevity(this);"/>
+                                            <label for="star_3" title="Three">&#9733;</label>
+                                            <!-- SECOND STAR -->
+                                            <input type="radio" id="star_2" name="longevity" value="2" onclick="handleLongevity(this);"/>
+                                            <label for="star_2" title="Two">&#9733;</label>
+                                            <!-- FIRST STAR -->
+                                            <input type="radio" id="star_1" name="longevity" value="1" onclick="handleLongevity(this);"/>
+                                            <label for="star_1" title="One">&#9733;</label>
+                                        </section><br><br>
+
+                                    <h4 class="hsl-color" data-toggle="tooltip" data-placement="top" data-html="true" title="Depends on season.<br>100 is average.<br>Above 100 is better.">Suitability: {{$suitability}}</h4>
+                                        <!-- RATE -->
+                                        <section id="rate" class="rating">
+                                            <!-- FIFTH STAR -->
+                                            <input type="radio" id="star_5" name="suitability" value="5" onclick="handleSuitability(this);"/>
+                                            <label for="star_5" title="Five">&#9733;</label>
+                                            <!-- FOURTH STAR -->
+                                            <input type="radio" id="star_4" name="suitability" value="4" onclick="handleSuitability(this);"/>
+                                            <label for="star_4" title="Four">&#9733;</label>
+                                            <!-- THIRD STAR -->
+                                            <input type="radio" id="star_3" name="suitability" value="3" onclick="handleSuitability(this);"/>
+                                            <label for="star_3" title="Three">&#9733;</label>
+                                            <!-- SECOND STAR -->
+                                            <input type="radio" id="star_2" name="suitability" value="2" onclick="handleSuitability(this);"/>
+                                            <label for="star_2" title="Two">&#9733;</label>
+                                            <!-- FIRST STAR -->
+                                            <input type="radio" id="star_1" name="suitability" value="1" onclick="handleSuitability(this);"/>
+                                            <label for="star_1" title="One">&#9733;</label>
+                                        </section><br><br>
+                                        
+                                    <h4 class="hsl-color" data-toggle="tooltip" data-placement="top" data-html="true" title="How much heat affects the longevity of fragrance.<br>100 means unaffected. Below 100 means it will wear off sooner.">Sustainability: {{$sustainability}}</h4>
+                                        <!-- RATE -->
+                                        <section id="rate" class="rating">
+                                            <!-- FIFTH STAR -->
+                                            <input type="radio" id="star_5" name="sustainability" value="5" onclick="handleSustainability(this);"/>
+                                            <label for="star_5" title="Five">&#9733;</label>
+                                            <!-- FOURTH STAR -->
+                                            <input type="radio" id="star_4" name="sustainability" value="4" onclick="handleSustainability(this);"/>
+                                            <label for="star_4" title="Four">&#9733;</label>
+                                            <!-- THIRD STAR -->
+                                            <input type="radio" id="star_3" name="sustainability" value="3" onclick="handleSustainability(this);"/>
+                                            <label for="star_3" title="Three">&#9733;</label>
+                                            <!-- SECOND STAR -->
+                                            <input type="radio" id="star_2" name="sustainability" value="2" onclick="handleSustainability(this);"/>
+                                            <label for="star_2" title="Two">&#9733;</label>
+                                            <!-- FIRST STAR -->
+                                            <input type="radio" id="star_1" name="sustainability" value="1" onclick="handleSustainability(this);"/>
+                                            <label for="star_1" title="One">&#9733;</label>
+                                        </section><br>
                                     
                                     <br><p>
                                         These are personalized numbers.<br>
@@ -102,6 +230,9 @@
                                     </div>
                                     <a href="#" id="toggle-button" role="button">Toggle</a> --}}
         
+                                @else
+                                    <h4 class="color-red">You are missing out on Factors Affecting Fragrance:</h4>
+                                    <h4 class="color-red"><a href="/login">Log In</a> and find out if <span class="color-highlight-purple">{{ __($fragrance->name)}}</span> will suit you.</h4>
                                 @endif
                             </div>
                         </div>
@@ -124,7 +255,69 @@
     </div>
 </div>
 
+{{-- HSL Color --}}
 <script>
+    document.querySelectorAll(".hsl-color").forEach(function(e){
+        let s = e.innerText;
+        let n = s.substring(s.indexOf(":")+1).trim();
+        console.log(n);
+        e.style.color= "hsl("+n+",100%,39%)";
+        // e.style.backgroundColor= "hsl("+n+",50%,50%)";
+    })
+</script>
+
+{{-- Longevity --}}
+<script>
+    function handleLongevity(Longevity) {
+        // currentValue = myRadio.value;
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                // Success
+            }
+        };
+        xhttp.open("POST", "/fragrance_calculations_feedback", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("rating=Longevity.value&type=Longevity");
+    }
+</script>
+
+{{-- Suitability --}}
+<script>
+    function handleSuitability(Suitability) {
+        // currentValue = myRadio.value;
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                // Success
+            }
+        };
+        xhttp.open("POST", "/fragrance_calculations_feedback", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("rating=Suitability.value&type=Suitability");
+    
+    }
+</script>
+
+{{-- Sustainability --}}
+<script>
+    function handleSustainability(Sustainability) {
+        // currentValue = myRadio.value;
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                // Success
+            }
+        };
+        xhttp.open("POST", "/fragrance_calculations_feedback", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("rating=Sustainability.value&type=Sustainability");
+    }
+</script>
+    
+
+{{-- Toggle Effect --}}
+{{-- <script>
     $( function() {
       function runEffect() {
         // Run the effect
@@ -136,6 +329,6 @@
         runEffect();
       });
     } );
-</script>
+</script> --}}
     
 @endsection

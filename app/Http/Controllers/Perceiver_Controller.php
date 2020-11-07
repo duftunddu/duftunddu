@@ -44,19 +44,18 @@ class Perceiver_Controller extends Controller
       return redirect('home');
     }
 
-      $accords     = accord::all();
-      $ingredients = ingredient::all();
-      $brands      = fragrance_brand::all();
-      $fragrances  = fragrance::all();
-
-      return view('forms.perceiver_fragrance',[
-        'accords'       => $accords,
-        'ingredients'   => $ingredients,
-        'brands'        => $brands,
-        'fragrances'    => $fragrances,
-        'profile_id'    => $profile_id
-        ]);
-
+    $accords     = Accord::all();
+    $ingredients = Ingredient::all();
+    $brands      = Fragrance_Brand::all();
+    $fragrances  = Fragrance::all();
+    
+    return view('forms.perceiver_fragrance',[
+      'accords'       => $accords,
+      'ingredients'   => $ingredients,
+      'brands'        => $brands,
+      'fragrances'    => $fragrances,
+      'profile_id'    => $profile_id
+      ]);
   }
 
   public function output()
@@ -89,10 +88,10 @@ class Perceiver_Controller extends Controller
   public function store(Request $request, $profile_id)
   {
       $validatedData = $request->validate([
-        'name'                 => 'required|unique:fragrance',
-        'brand_id'             => 'required',
-        'type'                 => 'required',
-        'gender'               => 'required',
+        // 'brand_id'             => 'required',
+        'fragrance_id'         => 'required',
+        'like'                 => 'required',
+        'comment'              => 'required',
         
         'accord_id'            => 'required',
         'ingredient_id'        => 'required',
@@ -115,7 +114,7 @@ class Perceiver_Controller extends Controller
       $new->fragrance_id    = $fragrance_id;
       $new->profile_id      = $profile->id;
       $new->gender          = $profile->gender;
-      $new->dob             = $profile->dob;
+      // $new->dob             = $profile->dob;
       $date                 = Carbon::parse($profile->dob);
 
       $new->age             = Carbon::now()->diffInYears($date);
@@ -179,11 +178,10 @@ class Perceiver_Controller extends Controller
 
     });
 
-    $request->session()->reflash();
+    // $request->session()->reflash();
 
     // Return
-    return redirect('home');
-
+    return redirect('home')->with('success', 'Fragrance added successfully.');
   }
 
   /**

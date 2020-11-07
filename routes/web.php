@@ -48,8 +48,10 @@ Route::get('feature_slider_brand_ambassador', function () {
 Route::get('brands', 'Fragrance_Brand_Controller@all_brands');
 Route::get('brand/{id}', 'Fragrance_Brand_Controller@show');
 
+Route::get('fragrances_array/{id}', 'Fragrance_Controller@all_fragrances_array');
 Route::get('fragrances/{id}', 'Fragrance_Controller@all_fragrances');
 Route::get('fragrance/{id}', 'Fragrance_Controller@show');
+Route::post('fragrance/f/{id}', 'Factors_Affecting_Fragrance_Wearability_Controller@store');
 
 // Authorized Routes
 Auth::routes();

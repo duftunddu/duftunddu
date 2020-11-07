@@ -16,8 +16,10 @@
             color: #636b6f;
             font-family: 'Nunito', sans-serif;
             font-weight: 200;
+            font-size: 100%;
             height: 100%;
             margin: 0;
+            text-align: justify;
         }
 
         .full-height {
@@ -25,6 +27,7 @@
         }
 
         .flex-center1 {
+            font-size: 1.156rem;
             /* background-image: url("../images/abstract/pawel-czerwinski-tMbQpdguDVQ-unsplash_use.jpg");
             background-attachment: fixed;
             background-size: cover; */
@@ -55,17 +58,24 @@
         }
 
         .title {
-            font-size: 6.3vw;
+            /* font-size: 6.3vw; */
+            font-size: 5.20625rem;
         }
 
         .heading{
-            font-size: 1.3vw;
+            /* font-size: 1.3vw; */
+            font-size: 1.4rem;
+            color: #f7527c !important;
+            font-weight: bold;
+            font-variant:small-caps;
         }
 
         .links > a {
-            font-size: 1vw;
+            /* font-size: 1vw; */
+            font-size: 0.83rem;
             font-weight: 600;
-            letter-spacing: 0.12vw;
+            /* letter-spacing: 0.12vw; */
+            letter-spacing: 0.1rem;
             text-decoration: none;
             /* text-transform: uppercase; */
             color:#8167a9;
@@ -75,18 +85,24 @@
         }
 
         h1{
-            letter-spacing: 0.2vw;
+            /* letter-spacing: 0.2vw; */
+            letter-spacing: 0.165rem;
         }
 
         h2{
-            font-size: 1vw;
+            /* font-size: 1vw; */
+            font-size: 0.83rem;
+            /* font-weight: strong !important; */
             display: inline;
+            /* font-weight: 300 !important */
         }
 
         p{
-            font-size: 1.8vw;
-            font-weight: bold;
-            letter-spacing: 0.09vw;
+            /* font-size: 1.8vw; */
+            font-size: 1.48rem;
+            font-weight: 100;
+            /* letter-spacing: 0.09vw; */
+            letter-spacing: 0.074rem;
         }
 
         .top-pad-fix{
@@ -94,7 +110,8 @@
         }
 
         .m-b-md {
-            margin-bottom: 2.26vw;
+            /* margin-bottom: 2.26vw; */
+            margin-bottom: 1.86rem;
         }
 
         .center {
@@ -104,77 +121,48 @@
 
         @media (max-width: 768px) {
             .flex-center1 {
-            /* background-image: url("../images/abstract/pawel-czerwinski-tMbQpdguDVQ-unsplash_use.jpg");
-            background-attachment: fixed;
-            background-size: cover; */
-            /* background-repeat: no-repeat; */
-            /* background-position: top right; */
-            /* background-size: 50%; */
+                font-size: 1.156rem;
             }
             
             .flex2 {
-                /* background-image: url('../images/progress/stairs-918735_use.jpg'); */
-                background-attachment: fixed;
-                background-size: cover;
-                background-repeat: no-repeat;
-                /* background-size: 100% 100%; */
-                background-position: center center;
-                
-                align-items: left;
-                display: flex;
-                justify-content: center;
+                margin: 20px;
             }
 
             .title {
-                font-size: 4.3vh;
+                font-size: 4.8rem;
             }
 
             .heading{
-                margin-top: 10%;
-                font-size: 1.1vh;
+                font-size: 1.075rem !important;
+                margin-top: 20px;
+                margin-bottom: 20px;
             }
 
             .links > a {
-                font-size: 1vh;
-                font-weight: 600;
-                letter-spacing: 0.12vh;
-                text-decoration: none;
-                /* text-transform: uppercase; */
-                color:#8167a9;
+                font-size: 0.83rem !important;
+                letter-spacing: 0.1rem;
             }
-
+            
             h1{
-                letter-spacing: 0.2vh;
+                letter-spacing: 0.165rem;
             }
 
             h2{
-                /* font-size: 1vh; */
-                display: inline;
+                font-size: 1.58rem !important;
             }
 
             p{
-                font-size: 3vh;
-                font-weight: bold;
-                letter-spacing: 0.09vh;
+                font-size: 1.48rem;
+                letter-spacing: 0.074rem;
             }
 
             .top-pad-fix{
-                margin-top: -3rem;
+                margin-top: -2rem;
             }
 
             .m-b-md {
-                margin-bottom: 2.26vh;
+                margin-bottom: 1.86rem;
             }
-
-            span{
-                font-size: 3vh;
-            }
-
-
-            /* .center {
-                display: flex;
-                justify-content: center;
-            } */
 
         }
 
@@ -226,6 +214,7 @@
 
 @section('content')
 
+<div class="container">
 {{-- Accordion --}}
 <div class="flex-center1 position-ref full-height top-pad-fix">
     @include('features.feature_slider_brand_ambassador')
@@ -239,7 +228,7 @@
             <h1>{{_('Steps to become a Brand Ambassador')}}</h1>
         </div>
 
-        <br>
+        {{-- <br> --}}
 
         <div class="links">
 
@@ -295,4 +284,5 @@
     </div>
 </div>
 
+</div>
 @endsection

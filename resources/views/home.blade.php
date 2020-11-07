@@ -21,6 +21,13 @@
             position: absolute;
             left: 68%;
         }
+        .margin-border{
+            margin: 25px;
+            text-align: justify;
+        }
+        .red-color{
+            color: #f7527c;
+        }
 
         h4{
             /* display: inline; */
@@ -34,6 +41,19 @@
             opacity: 0;
             transform: translateY(8px);
             transition-delay: 700ms;
+        }
+        h5{
+            /* display: inline; */
+            display: inline-block;
+            opacity: 1;
+            transform: translate(0);
+            transition: all 200ms linear;
+            transition-delay: 750ms;
+        }
+        body.hero-anime h5{
+            opacity: 0;
+            transform: translateY(10px);
+            transition-delay: 750ms;
         }
 
         button.btn{
@@ -135,16 +155,16 @@
                         {{-- Button: Genie --}}
                         {{-- Only appears fav_brand exists --}}
                         @if (!empty($fav_brand))
-                        <div class="form-group row">
+                        {{-- <div class="form-group row">
                             <div class="center">
                                 <button type="submit" class="custom" onclick="window.location='{{ url('/genie_output/' . $user_profile->id) }}'">
                                     <span class="before">{{_('Genie')}}</span>
                                     <span class="after">{{_('Genie')}}</span>
                                 </button>
                             </div>
-                        </div>
+                        </div> --}}
 
-                        <br>
+                        {{-- <br> --}}
                         @endif
 
                     {{-- Empty Dashboard --}}
@@ -155,9 +175,17 @@
                             </div>
                         </div>
                         
-                        <br>
+                        {{-- <br> --}}
 
                         {{--  Button: Add Fragrance --}}
+                        <div class="form-group row">
+                            <div class="margin-border">
+                                <h5 class="red-color">{{_('Function under development. Your input will help the development.')}}</h5>
+                                <h5>{{_('Function: Fragrance Recommendations by Genie based on your preferences.')}}</h5>
+                                <h5>{{_('You can tell us what you think about the fragrances you have used by clicking the "Add Fragrance" button.')}}</h5>
+                                <h5>{{_('And this will speed up the development process.')}}</h5>
+                            </div>
+                        </div>
                         <div class="form-group row mb-0">
                             <div class="center">
                                 <button type="button" class="btn btn-outline-dark" onclick="window.location='{{ url('/genie_input/' . $user_profile->id) }}'">
@@ -274,10 +302,10 @@
                                 @endforeach
 
                                 {{-- Button: Genie --}}
-                                <button type="submit" style="display: block; margin:0 auto;" class="custom" onclick="window.location='{{ url('/genie_output/' . $profile[0]->profile_id) }}'">
+                                {{-- <button type="submit" style="display: block; margin:0 auto;" class="custom" onclick="window.location='{{ url('/genie_output/' . $profile[0]->profile_id) }}'">
                                     <span class="before">{{_('Genie')}}</span>
                                     <span class="after">{{_('Genie')}}</span>
-                                </button>
+                                </button> --}}
 
                             </div>
                         </div>

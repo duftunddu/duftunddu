@@ -22,6 +22,7 @@
 
             html, body {
                 background-image: url('../images/fragrance_model/laura-chouette-5qRgJ8ISEpA-unsplash_use.jpg');
+                background-image: url('../images/fragrance_model/laura-chouette-5qRgJ8ISEpA-unsplash_use.webp');
                 /* background-attachment: fixed; */
                 background-repeat: no-repeat;
                 /* background-position: -50px top; */
@@ -33,6 +34,7 @@
                 color: #212529;
                 height: 100%;
                 margin: 0;
+                font-size: 100%;
             }
 
             .full-height {
@@ -46,6 +48,18 @@
                 top: 5.0vw;
                 padding-left: 55%;
             }
+            #search-input{
+                font-family: 'Nunito';
+                color: #636b6f; 
+                font-size: 1rem;
+                font-weight: bold;
+                width:26.5rem;
+                letter-spacing:1px;
+            }
+            .search__feedback{
+                color:rgba(202, 56, 73, 0.7);
+                letter-spacing: 0.152rem;
+            }
 
             .position-ref {
                 position: relative;
@@ -58,14 +72,17 @@
             .title {
                 font-family: 'Cinzel', serif;
                 font-variant: small-caps;
-                font-size: 6.2vw;
+                /* font-size: 6.2vw; */
+                font-size: 5.125rem;
                 letter-spacing: 1px;
             }
 
             .heading{
-                font-size: 2.7vw;
+                /* font-size: 2.7vw; */
+                font-size: 2.23rem;
                 font-weight: 600;
-                letter-spacing: .25vw;
+                /* letter-spacing: .25vw; */
+                letter-spacing: .2rem;
             }
 
             /* .links > a {
@@ -79,21 +96,26 @@
 
             .top-pad{
                 font-family: 'Nunito', serif;
-                padding-top: 18vh;
-                font-size: 1.7vw;
+                /* padding-top: 18vh; */
+                padding-top: 7.8525rem;
+                /* font-size: 1.7vw; */
+                font-size: 1.4rem;
                 font-weight: 600;
-                letter-spacing: .25vw;
+                /* letter-spacing: .25vw; */
+                letter-spacing: .2rem;
                 text-transform: uppercase;
             }
 
             .m-b-md {
-                margin-bottom: 2.26vw;
+                /* margin-bottom: 2.26vw; */
+                margin-bottom: 1.868rem;
             }
 
             .footer-pad{
-                margin-top: -3vh;
+                /* margin-top: -3vh; */
+                margin-top: -1.3rem;
             }
-
+            
             /* .searchbox {
                 line-height: 3.78vw;
                 height: 3.78vw;
@@ -123,7 +145,9 @@
                 <form class="search" method="GET" action="{{ url('search_results')}}">
                     @csrf
 
-                    <input id="search-input" class="search__input" maxlength="40" name="searchbox" type="text" placeholder="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" required style="font-family: 'Nunito'; color: #636b6f; font-size: 1.36vw; font-weight: bold; width:32.65vw"> 
+                    {{-- <input id="search-input" class="search__input" maxlength="40" name="searchbox" type="text" placeholder="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" required style="font-family: 'Nunito'; color: #636b6f; font-size: 1.36vw; font-weight: bold; width:32.65vw">  --}}
+                    {{-- <input id="search-input" class="search__input" maxlength="40" name="searchbox" type="text" placeholder="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" required style="font-family: 'Nunito'; color: #636b6f; font-size: 1rem; font-weight: bold; width:26.5rem; letter-spacing:1px">  --}}
+                    <input id="search-input" class="search__input" maxlength="40" name="searchbox" type="text" placeholder="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" required> 
                     <button class="btn btn--search">
                         <?xml version="1.0" encoding="iso-8859-1"?>
                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -137,7 +161,8 @@
                             <use xlink:href="#icon-search"></use>
                         </svg>
                     </button>
-                <span class="search__feedback" style="color:rgba(202, 56, 73, 0.7); letter-spacing: .25vw;">{{_('type here')}}</span>
+                {{-- <span class="search__feedback" style="color:rgba(202, 56, 73, 0.7); letter-spacing: .25vw;">{{_('type here')}}</span> --}}
+                <span class="search__feedback">{{_('type here')}}</span>
                 
                 </form>
 

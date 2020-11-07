@@ -21,6 +21,7 @@ class Controller extends BaseController {
     
     public function landing_page(){
         $agent = new Agent();
+        return view('forms.welcome');
         
         if($agent->isDesktop()){
             return view('forms.welcome');
