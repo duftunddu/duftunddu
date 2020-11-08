@@ -56,10 +56,10 @@
     }
 
     /* - - - - - RATE */
-    #rate {
+    .rate {
     /* top: -65px; */
     }
-    #rate:not(:checked) > label {
+    .rate:not(:checked) > label {
         cursor:pointer;
         float: right;
         width: 30px;
@@ -71,20 +71,20 @@
         line-height: 33px;
         text-align: center;
     }
-    #rate:not(:checked) > label:hover,
-    #rate:not(:checked) > label:hover ~ label {
+    .rate:not(:checked) > label:hover,
+    .rate:not(:checked) > label:hover ~ label {
         /* color: rgba(0, 135, 211, .6); */
         color: rgba(211, 0, 53, .6);
     }
-    #rate > input:checked + label:hover,
-    #rate > input:checked + label:hover ~ label,
-    #rate > input:checked ~ label:hover,
-    #rate > input:checked ~ label:hover ~ label,
-    #rate > label:hover ~ input:checked ~ label {
+    .rate > input:checked + label:hover,
+    .rate > input:checked + label:hover ~ label,
+    .rate > input:checked ~ label:hover,
+    .rate > input:checked ~ label:hover ~ label,
+    .rate > label:hover ~ input:checked ~ label {
         /* color: rgba(0, 135, 211, .8); */
         color: rgba(211, 0, 53, .8);
     }
-    #rate > input:checked ~ label {
+    .rate > input:checked ~ label {
         /* color: rgb(0, 135, 211); */
         color: rgb(211, 0, 53);
     }
@@ -110,6 +110,9 @@
 {{-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" defer></script> --}}
 {{-- <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/flick/jquery-ui.css"> --}}
 
+{{-- JQuery for Ajax --}}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -117,7 +120,7 @@
 
                 <div class="card-header">{{'Fragrance: '}} {{ __($fragrance->name)}}</div>
                 <div class="card-body">
-
+                    
                     <div class="row">
                         <div class="column">
                             <div class="col-md-9">
@@ -150,11 +153,12 @@
 
                         <div class="column">
                             <div class="right">
-                                @if($logged_in)
+                                @auth
+                                {{-- @if($logged_in) --}}
 
                                     <h4 class="hsl-color" data-toggle="tooltip" data-placement="top" data-html="true" title="How long the fragrance lasts.<br>100 is max.">Longevity: {{$longevity}}</h4>
                                         <!-- RATE -->
-                                        <section id="rate" class="rating">
+                                        <section class="rate rating">
                                             <!-- FIFTH STAR -->
                                             <input type="radio" id="star_5" name="longevity" value="5" onclick="handleLongevity(this);"/>
                                             <label for="star_5" title="Five">&#9733;</label>
@@ -174,42 +178,42 @@
 
                                     <h4 class="hsl-color" data-toggle="tooltip" data-placement="top" data-html="true" title="Depends on season.<br>100 is average.<br>Above 100 is better.">Suitability: {{$suitability}}</h4>
                                         <!-- RATE -->
-                                        <section id="rate" class="rating">
+                                        <section class="rate rating">
                                             <!-- FIFTH STAR -->
-                                            <input type="radio" id="star_5" name="suitability" value="5" onclick="handleSuitability(this);"/>
-                                            <label for="star_5" title="Five">&#9733;</label>
+                                            <input type="radio" id="sstar_5" name="suitability" value="5" onclick="handleSuitability(this);"/>
+                                            <label for="sstar_5" title="Five">&#9733;</label>
                                             <!-- FOURTH STAR -->
-                                            <input type="radio" id="star_4" name="suitability" value="4" onclick="handleSuitability(this);"/>
-                                            <label for="star_4" title="Four">&#9733;</label>
+                                            <input type="radio" id="sstar_4" name="suitability" value="4" onclick="handleSuitability(this);"/>
+                                            <label for="sstar_4" title="Four">&#9733;</label>
                                             <!-- THIRD STAR -->
-                                            <input type="radio" id="star_3" name="suitability" value="3" onclick="handleSuitability(this);"/>
-                                            <label for="star_3" title="Three">&#9733;</label>
+                                            <input type="radio" id="sstar_3" name="suitability" value="3" onclick="handleSuitability(this);"/>
+                                            <label for="sstar_3" title="Three">&#9733;</label>
                                             <!-- SECOND STAR -->
-                                            <input type="radio" id="star_2" name="suitability" value="2" onclick="handleSuitability(this);"/>
-                                            <label for="star_2" title="Two">&#9733;</label>
+                                            <input type="radio" id="sstar_2" name="suitability" value="2" onclick="handleSuitability(this);"/>
+                                            <label for="sstar_2" title="Two">&#9733;</label>
                                             <!-- FIRST STAR -->
-                                            <input type="radio" id="star_1" name="suitability" value="1" onclick="handleSuitability(this);"/>
-                                            <label for="star_1" title="One">&#9733;</label>
+                                            <input type="radio" id="sstar_1" name="suitability" value="1" onclick="handleSuitability(this);"/>
+                                            <label for="sstar_1" title="One">&#9733;</label>
                                         </section><br><br>
                                         
                                     <h4 class="hsl-color" data-toggle="tooltip" data-placement="top" data-html="true" title="How much heat affects the longevity of fragrance.<br>100 means unaffected. Below 100 means it will wear off sooner.">Sustainability: {{$sustainability}}</h4>
                                         <!-- RATE -->
-                                        <section id="rate" class="rating">
+                                        <section class="rate rating">
                                             <!-- FIFTH STAR -->
-                                            <input type="radio" id="star_5" name="sustainability" value="5" onclick="handleSustainability(this);"/>
-                                            <label for="star_5" title="Five">&#9733;</label>
+                                            <input type="radio" id="astar_5" name="sustainability" value="5" onclick="handleSustainability(this);"/>
+                                            <label for="astar_5" title="Five">&#9733;</label>
                                             <!-- FOURTH STAR -->
-                                            <input type="radio" id="star_4" name="sustainability" value="4" onclick="handleSustainability(this);"/>
-                                            <label for="star_4" title="Four">&#9733;</label>
+                                            <input type="radio" id="astar_4" name="sustainability" value="4" onclick="handleSustainability(this);"/>
+                                            <label for="astar_4" title="Four">&#9733;</label>
                                             <!-- THIRD STAR -->
-                                            <input type="radio" id="star_3" name="sustainability" value="3" onclick="handleSustainability(this);"/>
-                                            <label for="star_3" title="Three">&#9733;</label>
+                                            <input type="radio" id="astar_3" name="sustainability" value="3" onclick="handleSustainability(this);"/>
+                                            <label for="astar_3" title="Three">&#9733;</label>
                                             <!-- SECOND STAR -->
-                                            <input type="radio" id="star_2" name="sustainability" value="2" onclick="handleSustainability(this);"/>
-                                            <label for="star_2" title="Two">&#9733;</label>
+                                            <input type="radio" id="astar_2" name="sustainability" value="2" onclick="handleSustainability(this);"/>
+                                            <label for="astar_2" title="Two">&#9733;</label>
                                             <!-- FIRST STAR -->
-                                            <input type="radio" id="star_1" name="sustainability" value="1" onclick="handleSustainability(this);"/>
-                                            <label for="star_1" title="One">&#9733;</label>
+                                            <input type="radio" id="astar_1" name="sustainability" value="1" onclick="handleSustainability(this);"/>
+                                            <label for="astar_1" title="One">&#9733;</label>
                                         </section><br>
                                     
                                     <br><p>
@@ -230,10 +234,15 @@
                                     </div>
                                     <a href="#" id="toggle-button" role="button">Toggle</a> --}}
         
-                                @else
+                                {{-- @else --}}
+                                @endauth
+                                @guest
+                                    
                                     <h4 class="color-red">You are missing out on Factors Affecting Fragrance:</h4>
                                     <h4 class="color-red"><a href="/login">Log In</a> and find out if <span class="color-highlight-purple">{{ __($fragrance->name)}}</span> will suit you.</h4>
-                                @endif
+                                {{-- @endif --}}
+                                @endguest
+
                             </div>
                         </div>
 
@@ -255,6 +264,11 @@
     </div>
 </div>
 
+<div id="csrf">
+    @csrf
+</div>
+
+
 {{-- HSL Color --}}
 <script>
     document.querySelectorAll(".hsl-color").forEach(function(e){
@@ -269,49 +283,42 @@
 {{-- Longevity --}}
 <script>
     function handleLongevity(Longevity) {
-        // currentValue = myRadio.value;
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                // Success
-            }
-        };
-        xhttp.open("POST", "/fragrance_calculations_feedback", true);
-        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhttp.send("rating=Longevity.value&type=Longevity");
+        $.ajax({
+           type:'POST',
+           url:'/factors_affecting_fragrance',
+           data:{"_token": "{{ csrf_token() }}", value: Longevity.value, type: "Longevity"},
+           success:function(data){
+              alert(data);
+           }
+        });
     }
 </script>
 
 {{-- Suitability --}}
 <script>
     function handleSuitability(Suitability) {
-        // currentValue = myRadio.value;
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                // Success
-            }
-        };
-        xhttp.open("POST", "/fragrance_calculations_feedback", true);
-        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhttp.send("rating=Suitability.value&type=Suitability");
-    
+        $.ajax({
+           type:'POST',
+           url:'/factors_affecting_fragrance',
+           data:{"_token": "{{ csrf_token() }}", value: Suitability.value, type: "Suitability"},
+           success:function(data){
+              alert(data);
+           }
+        });
     }
 </script>
 
 {{-- Sustainability --}}
 <script>
     function handleSustainability(Sustainability) {
-        // currentValue = myRadio.value;
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                // Success
-            }
-        };
-        xhttp.open("POST", "/fragrance_calculations_feedback", true);
-        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhttp.send("rating=Sustainability.value&type=Sustainability");
+        $.ajax({
+           type:'POST',
+           url:'/factors_affecting_fragrance',
+           data:{"_token": "{{ csrf_token() }}", value: Sustainability.value, type: "Sustainability"},
+           success:function(data){
+              alert(data);
+           }
+        });
     }
 </script>
     

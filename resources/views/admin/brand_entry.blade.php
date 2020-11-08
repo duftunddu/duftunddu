@@ -67,7 +67,7 @@
                                     <select id="location_id" type="number" class="form-control @error('location_id') is-invalid @enderror" name="location_id" value="{{ old('location_id')}}" required>
                                     <option value="" selected="selected" disabled="disabled">-- Select Country --</option>
                                     @foreach($countries as $country)
-                                        <option value="{{$country}}">{{$country}}</option>
+                                        <option value="{{$country->country_name}}">{{$country->country_name}}</option>
                                     @endforeach
 
                                 </select>

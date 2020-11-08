@@ -18,28 +18,6 @@
     
                     <div class="card-body">
 
-                        {{-- Accord Family --}}
-                        <div class="form-group row">
-                            <label for="accord_family" class="col-md-4 col-from-label text-md-right">{{ __('Accord Family Name:')}}</label>
-                            <div class="col-md-6">
-
-                                <select id="accord_family_id" type="accord_family_id" class="form-control @error('accord_family_id') is-invalid @enderror" name="accord_family_id" value="{{ old('accord_family_id')}}" required>
-                                    <option value="" selected="selected" disabled="disabled">-- Select Accord Family --</option>
-                                    
-                                    @foreach($accord_families as $af)
-                                        <option value="{{$af->id}}">{{$af->name}}</option>
-                                    @endforeach
-
-                                </select>
-
-                                @error('accord_family_id')
-                                    <span class="invalid-feeback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
                         {{-- Name --}}
                         <div class="form-group row">
                                 <label for="name" class="col-md-4 col-from-label text-md-right">{{ __('Accord:')}}</label>

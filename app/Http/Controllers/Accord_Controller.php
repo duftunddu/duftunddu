@@ -1,7 +1,6 @@
 <?php namespace App\Http\Controllers;
 
 use App\Accord;
-use App\Accord_Family;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -22,9 +21,9 @@ class Accord_Controller extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $accord_families = Accord_Family::all();
+        $accords = Accord::all();
         return view('admin.accord_entry',[
-            'accord_families' => $accord_families,
+            'accords' => $accords,
         ]);
     }
 

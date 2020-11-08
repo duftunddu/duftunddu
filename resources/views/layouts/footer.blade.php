@@ -18,6 +18,10 @@
       /* height: 100vh; */
       /* margin: 0; */
     }
+
+    svg{
+      color: rgb(100, 100, 100) !important;
+    }
   </style>
 
 </head>

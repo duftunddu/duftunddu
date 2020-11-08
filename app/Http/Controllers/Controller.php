@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Accord;
 use App\Fragrance;
 use App\Fragrance_Brand;
+use App\Country_And_City;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -30,6 +31,15 @@ class Controller extends BaseController {
             return view('forms.welcome_m');
         }
     }
+
+    public function cities_of_country(Request $request)
+    {
+        $cities = Country_And_City::select('city_name')->where('country_name', $request->country)->get();
+        $cities = json_encode($cities);
+
+        return $cities;
+    }
+
   
     public function request_feature_show(){
       return view('forms.request_feature');
@@ -51,4 +61,14 @@ class Controller extends BaseController {
         return view('forms.try_output');
     }
 
+
+    public function factors_affecting_fragrance(Request $request){
+        // var_dump($request->value);
+        // var_dump($request->type);
+
+        echo $request->value;
+        echo $request->type;
+        
+        return;
+    }
 }

@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+use App\Request_Brand;
 use App\Fragrance_Brand;
 use App\Brand_Ambassador_Request;
 use App\Brand_Ambassador_Profile;
-use App\User;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
+use Carbon\Carbon;
 
 class Admin_Controller extends Controller
 {
@@ -136,5 +139,30 @@ class Admin_Controller extends Controller
 
         return redirect()->back()->with('success','Approval Successful.');
     }
+
+    public function request_brand_status()
+    {
+        $date = Carbon::today()->subDays(7);
+        $brands = Request_Brand::where('status', '!=', "Processed (Added)")
+        ->where('request_brand.updated_at', '>', $date)
+        ->join('users', 'users.id', 'request_brand.users_id')
+        ->select('users.name as user', 'request_brand.*')
+        ->orderBy('votes', 'desc')
+        ->get();
+
+        return view('admin.request_brand_view',[
+            'brands'        =>    $brands,
+        ]);
+    }
+
+    public function request_brand_status_change(Request $request, $brand_name, $new_status)
+    {
+        $brand_request = Request_Brand::firstWhere('name', $brand_name);
+        $brand_request->status = $new_status;
+        $brand_request->save();
+
+        return redirect()->back();
+    }
+
 
 }

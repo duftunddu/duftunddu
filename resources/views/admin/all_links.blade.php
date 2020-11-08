@@ -111,10 +111,15 @@
                 
                 <div class="links">
 
-                    <a href="{{ url('catalog')}}"><h2>{{_('All Active Reigons')}}</h2></a>
-                    <a href="{{ url('catalog')}}"><h2>{{_('All Fragrances')}}</h2></a>
-                    <a href="{{ url('catalog')}}"><h2>{{_('All Brands')}}</h2></a>
-                    {{-- <a href="{{ url('catalog')}}"><h2>{{_('Users')}}</h2></a> --}}
+                    <a href="{{ url('request_brand_panel')}}"><h2>{{_('Request Brand Panel')}}</h2></a>
+                    <a href="{{ url('brand_ambassador_requests')}}"><h2>{{_('Brand Ambassador Requests')}}</h2></a>
+                    
+                    <br>
+                    <a href="{{ url('brand_entry_admin')}}"><h2>{{_('Brand Entry Admin')}}</h2></a>
+                    <br>
+                    
+                    <a href="{{ url('accord_entry')}}"><h2>{{_('Accord Entry')}}</h2></a>
+                    <a href="{{ url('note_entry')}}"><h2>{{_('Note Entry')}}</h2></a>
                     
                     <br>
 

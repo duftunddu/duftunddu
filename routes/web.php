@@ -53,6 +53,13 @@ Route::get('fragrances/{id}', 'Fragrance_Controller@all_fragrances');
 Route::get('fragrance/{id}', 'Fragrance_Controller@show');
 Route::post('fragrance/f/{id}', 'Factors_Affecting_Fragrance_Wearability_Controller@store');
 
+Route::post('factors_affecting_fragrance', 'Controller@factors_affecting_fragrance');
+
+Route::post('cities_of_country', 'Controller@cities_of_country');
+
+Route::get('request_brand_view', 'Request_Brand_Controller@show');
+
+
 // Authorized Routes
 Auth::routes();
 
@@ -80,7 +87,10 @@ Route::middleware(['role:user|genie_user|premium_user|admin'])->group(function (
     Route::get('request_feature', 'Controller@request_feature_show');
     Route::post('request_feature', 'Controller@request_feature');
     
-
+    Route::get('request_brand', 'Request_Brand_Controller@index');
+    Route::post('request_brand', 'Request_Brand_Controller@store');
+    Route::post('vote_brand', 'Request_Brand_Controller@vote');
+    
 });
 
 // user|genie_user|premium_user|candidate_brand_ambassador|admin
@@ -111,6 +121,7 @@ Route::middleware(['role:brand_ambassador|premium_brand_ambassador|admin'])->gro
 
     Route::get('ambassador_home', 'Brand_Ambassador_Controller@index');
 
+    // Only Admins are allowed to enter Accords and Ingredients for the time being. 
     // Route::get('accord_entry', 'Accord_Controller@index_ba');
     // Route::post('accord_entry', 'Accord_Controller@store_ba');
 
@@ -126,6 +137,9 @@ Route::middleware(['role:brand_ambassador|premium_brand_ambassador|admin'])->gro
 
 // admin
 Route::middleware(['role:admin'])->group(function () {
+
+    Route::get('/request_brand_panel', 'Admin_Controller@request_brand_status');
+    Route::get('/request_brand_panel/{brand_name}/{new_status}', 'Admin_Controller@request_brand_status_change');
 
     Route::get('accord_entry', 'Accord_Controller@index');
     Route::post('accord_entry', 'Accord_Controller@store');
@@ -150,7 +164,7 @@ Route::middleware(['role:admin'])->group(function () {
     });
     
     Route::get('admin_links', function () {
-        return view('forms.admin_links');
+        return view('admin.all_links');
     });
     
     Route::get('scroll', function () {

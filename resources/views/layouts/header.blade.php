@@ -83,6 +83,7 @@
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
                                         aria-haspopup="true" aria-expanded="false">Contact Us</a>
                                     <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="request_brand_view">Request a Brand</a>
                                         <a class="dropdown-item" href="request_feature">Request a Feature</a>
                                         <a class="dropdown-item" href="#">Feedback</a>
                                         <a class="dropdown-item" href="#">Contact</a>
@@ -111,6 +112,9 @@
 
                                     {{-- <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown"> --}}
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        @hasrole('admin')
+                                            <a class="dropdown-item" href="admin_links">Admin Links</a>
+                                        @endhasrole
                                         <a class="dropdown-item" href="home">Dashboard</a>
                                         <a class="dropdown-item" href="#">Premium</a>
 

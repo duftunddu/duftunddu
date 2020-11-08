@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Location;
+use App\Country_And_City;
 use App\Brand_Tier;
 use App\Fragrance_Brand;
 use App\Fragrance_Brand_Availability;
@@ -34,16 +35,23 @@ class Fragrance_Brand_Controller extends Controller
    public function index()
    {
       $tiers     =  Brand_Tier::all();
-      $countries = DB::table('location')
+      // $countries = DB::table('location')
+      //    ->select('country_name')
+      //    ->distinct('country_name')
+      //    ->orderBy('country_name', 'asc')
+      //    ->get()
+      //    ->skip(1);
+      $countries = DB::table('Country_And_City')
          ->select('country_name')
-         ->distinct('country_name')
-         ->orderBy('country_name', 'asc')
-         ->get()
-         ->skip(1);
+         ->distinct()
+         ->get();
+
+      // var_dump($countries);return;
 
       return view('admin.brand_entry',[
          'tiers'        =>    $tiers,
          'countries'    =>    $countries
+         // 'countries'    =>    $cities
       ]);
    }
 
@@ -147,7 +155,7 @@ class Fragrance_Brand_Controller extends Controller
       $request->session()->reflash();
       
       // Return
-      return redirect()->back()->with('success','Brand added successfully.');
+      return redirect()->back()->with('success','Brand Added Successfully.');
    }
 
    public function store_ba(Request $request, $brand_name)
