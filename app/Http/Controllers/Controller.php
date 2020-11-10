@@ -21,15 +21,15 @@ class Controller extends BaseController {
     ValidatesRequests;
     
     public function landing_page(){
-        $agent = new Agent();
         return view('forms.welcome');
+        // $agent = new Agent();
         
-        if($agent->isDesktop()){
-            return view('forms.welcome');
-        }
-        else{
-            return view('forms.welcome_m');
-        }
+        // if($agent->isDesktop()){
+        //     return view('forms.welcome');
+        // }
+        // else{
+        //     return view('forms.welcome_m');
+        // }
     }
 
     public function cities_of_country(Request $request)
@@ -61,14 +61,4 @@ class Controller extends BaseController {
         return view('forms.try_output');
     }
 
-
-    public function factors_affecting_fragrance(Request $request){
-        // var_dump($request->value);
-        // var_dump($request->type);
-
-        echo $request->value;
-        echo $request->type;
-        
-        return;
-    }
 }

@@ -73,7 +73,8 @@
                                     <input class="form-check-input" type="checkbox" name="terms_conditions" id="terms_conditions" required>
 
                                     <label class="form-check-label" for="terms_conditions">
-                                        {{ __('I agree to the Terms & Conditions') }}
+                                        {{-- {{ __('I agree to the Terms & Conditions') }} --}}
+                                        I agree to the <a href="/terms_and_conditions">Terms & Conditions</a>
                                     </label>
                                 
                                 </div>

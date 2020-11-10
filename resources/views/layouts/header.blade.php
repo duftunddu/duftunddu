@@ -1,4 +1,4 @@
-<title>Header</title>
+{{-- <title>Header</title> --}}
 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -19,7 +19,8 @@
                 <div class="col-12">
                     <nav class="navbar navbar-expand-md navbar-light">
 
-                        <a class="navbar-brand" href="/" ><img src="https://assets.codepen.io/1462889/fcy.png" alt=""></a> {{-- target="_blank" --}}
+                        {{-- <a class="navbar-brand" href="/" ><img src="https://assets.codepen.io/1462889/fcy.png" alt=""></a> target="_blank" --}}
+                        <a class="navbar-brand" href="/" ><img src="../images/logo_header.png" alt=""></a> {{-- target="_blank" --}}
 
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"

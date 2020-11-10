@@ -217,8 +217,10 @@
                                         </section><br>
                                     
                                     <br><p>
+                                        {{-- version 1.01.<br> --}}
                                         These are personalized numbers.<br>
-                                        These factors were researched and calculated using your region's weather data and the additional details you provided.<br>
+                                        These factors were researched and calculated using your personal data.<br>
+                                        Please leave feedback on fragrances you have used previously.<br>
                                         Your input will help us predict better!
                                     </p><br>
 
@@ -283,13 +285,15 @@
 {{-- Longevity --}}
 <script>
     function handleLongevity(Longevity) {
+            var weights = {!! json_encode($weights) !!};
         $.ajax({
-           type:'POST',
-           url:'/factors_affecting_fragrance',
-           data:{"_token": "{{ csrf_token() }}", value: Longevity.value, type: "Longevity"},
-           success:function(data){
-              alert(data);
-           }
+            type:'POST',
+            url:'/factors_affecting_fragrance',
+            //    data:{"_token": "{{ csrf_token() }}", value: Longevity.value, type: "Longevity"},
+            data:{"_token": "{{ csrf_token() }}", value: Longevity.value, type: "Longevity", weights: weights},
+            success:function(data){
+                alert(data);
+            }
         });
     }
 </script>
@@ -297,10 +301,12 @@
 {{-- Suitability --}}
 <script>
     function handleSuitability(Suitability) {
+        var weights = {!! json_encode($weights) !!};
         $.ajax({
            type:'POST',
            url:'/factors_affecting_fragrance',
-           data:{"_token": "{{ csrf_token() }}", value: Suitability.value, type: "Suitability"},
+        //    data:{"_token": "{{ csrf_token() }}", value: Suitability.value, type: "Suitability"},
+           data:{"_token": "{{ csrf_token() }}", value: Suitability.value, type: "Suitability", weights: weights},
            success:function(data){
               alert(data);
            }
@@ -311,10 +317,12 @@
 {{-- Sustainability --}}
 <script>
     function handleSustainability(Sustainability) {
+        var weights = {!! json_encode($weights) !!};
         $.ajax({
            type:'POST',
            url:'/factors_affecting_fragrance',
-           data:{"_token": "{{ csrf_token() }}", value: Sustainability.value, type: "Sustainability"},
+        //    data:{"_token": "{{ csrf_token() }}", value: Sustainability.value, type: "Sustainability"},
+           data:{"_token": "{{ csrf_token() }}", value: Sustainability.value, type: "Sustainability", weights: weights},
            success:function(data){
               alert(data);
            }

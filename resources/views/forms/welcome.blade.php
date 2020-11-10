@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        
         <title>Duft Und Du | The Fragrance Hub</title>
 
         {{-- Typing Effect --}}
@@ -15,7 +15,6 @@
         
         {{-- <link href="{{ asset('css/scroll_down_button.css') }}" rel="stylesheet" defer>
         <script src="{{ asset('js/scroll_down_button.js') }}" defer></script> --}}
-
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" defer>
@@ -95,7 +94,7 @@
             }
             .flex-2-heading{
                 /* font-size: 2.3vw; */
-                font-size: 1.8rem;
+                font-size: 1.85rem;
                 font-weight: 100;
                 font-variant: small-caps;
                 color: #89163f;
@@ -104,7 +103,8 @@
             }
             .flex-2-body{
                 /* font-size: 1.4vw; */
-                font-size: 1.056rem;
+                /* font-size: 1.056rem; */
+                font-size: 1.15rem;
                 font-weight: 100;       
                 color: rgb(255, 250, 255);
                 /* color: #e8e7ec; */
@@ -119,7 +119,6 @@
 
             .flex-3-center {
                 background-color: #FEFFFEEE;
-
                 /* font-size: 1.4vw; */
                 font-size: 1.156rem;
                 align-items: left;
@@ -159,9 +158,9 @@
             }
 
             .heading{
-                /* font-size: 1.1vw; */
                 font-size: 0.9rem;
-                text-align: center;
+                display: flex;
+                justify-content: center;
             }
 
             h1, h2 {
@@ -177,11 +176,12 @@
                 letter-spacing: 1px;
             }
 
+            .like-links, 
             .links > a {
                 /* padding: 0 1.88vw; */
                 /* font-size: 0.98vw; */
                 font-size: 0.81rem;
-                font-weight: 600;
+                font-weight: 300;
                 /* letter-spacing: 0.12vw; */
                 letter-spacing: 2px;
                 text-decoration: none;
@@ -294,6 +294,7 @@
 
         </style>
 
+
     </head>
 
     <body>
@@ -306,10 +307,11 @@
                 <br>
                 
                 <div class="title m-b-md">
-                    Duft Und Du
+                    <div data-toggle="tooltip" data-placement="top" title="German For Fragrance And You">Duft Und Du</div>
                 </div>
 
                 <div class="heading m-b-md">
+                    <span class="item">&nbsp;</span>
                     <div class="wrapper">
 
                         <div data-text></div>
@@ -324,35 +326,15 @@
 
                 <div class="links">
 
-                    <a><h2>{{_('Lets grant your wish to smell good ')}}</h2></a><br><br>
+                    <h2 class="like-links">{{_('Lets grant your wish to smell good ')}}</h2><br><br>
 
-                    {{-- <a><h2>{{_('The Fragrance Hub')}}</h2></a> --}}
                     <a href="search_engine"><h2>{{_('Fragrance Search')}}</h2></a><br>
-                    <a href="#"><h2>{{_('Fragrance Genie')}}</h2></a>
-                    <a href="#"><h2>{{_('Coming Soon')}}</h2></a>
-                    
-                    {{-- <p> --}}
-                        {{-- {{_('Search Search')}}<br> --}}
-                        {{-- {{_('Fragrance Recommendations by Genie | Coming Soon')}}<br> --}}
-                        {{-- {{_('Brand')}} --}}
-                    {{-- </p> --}}
-
-                    {{-- <p>{{_('The only stop you will make today')}}
-                        <br>{{_('which you will like based on your preferences')}}
-                        <br>{{_('Talk to the Genie and get your wish granted')}}</p> --}}
+                    <h2 class="like-links">{{_('Fragrance Genie')}}</h2>
+                    <h2 class="like-links">{{_('Coming Soon')}}</h2>
 
                     <br><br>
                     
-
-                    {{-- <a href="{{ url('catalog')}}"><h2>{{_('sds')}}</h2>                        
-                    <h2> {{_('Browse our Catalog of Services')}}</h2></a>
-                    
-                    <p>{{_('Search through all the fragrances and brands with their composition')}}
-                        <br>{{_('Apply for Advetisements & Brand Ambassadors')}}</p> --}}
-    
-                    {{-- <br><br> --}}
-                    
-                    <a><h2 style="color: #636b6f">{{_('PREMIUM FEATURES COMING SOON')}}</h2></a>
+                    <h2 class="like-links" style="color: #636b6f">{{_('PREMIUM FEATURES COMING SOON')}}</h2>
                     
                 </div>
 
@@ -414,6 +396,7 @@
         <div class="footer-pad">
             @include('layouts.footer')
         </div>
+
 
     </body>
 

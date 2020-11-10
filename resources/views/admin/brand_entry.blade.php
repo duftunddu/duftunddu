@@ -84,7 +84,7 @@
                             <div id="dynamic_field">
 
                                 <div class="form-group row">
-                                  <label for="availability" class="col-md-4 col-from-label text-md-right">{{ __('Availability:')}}</label>
+                                  <label for="availability" class="col-md-4 col-from-label text-md-right">{{ __('Availability of Stores:')}}</label>
                 
                                   <div class="col-md-6">
                                       

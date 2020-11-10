@@ -15,15 +15,15 @@ Route::get('search_engine', 'Search_Queries_Controller@index')->name('search');
 Route::get('search_results', 'Search_Queries_Controller@store');
 // Route::post('search_results', 'Search_Queries_Controller@store');
 
-Route::get('/', 'Controller@landing_page');
+// Route::get('/', 'Controller@landing_page');
 
-// Route::get('/', function () {
-//     return view('forms.welcome');
-// });
-   
-Route::get('m', function () {
-    return view('forms.welcome_m');
+Route::get('/', function () {
+    return view('forms.welcome');
 });
+   
+// Route::get('m', function () {
+//     return view('forms.welcome_m');
+// });
 
 Route::get('about_us', function () {
     return view('forms.about_us');
@@ -36,6 +36,15 @@ Route::get('catalog', function () {
 Route::get('faq', function () {
     return view('forms.faq');
 });
+
+Route::get('terms_and_conditions', function () {
+    return view('forms.terms_and_conditions');
+});
+
+Route::get('privacy_policy', function () {
+    return view('forms.privacy_policy');
+});
+
 
 Route::get('brand_ambassador_proposal', function () {
     return view('brand_ambassador.proposal');
@@ -51,9 +60,10 @@ Route::get('brand/{id}', 'Fragrance_Brand_Controller@show');
 Route::get('fragrances_array/{id}', 'Fragrance_Controller@all_fragrances_array');
 Route::get('fragrances/{id}', 'Fragrance_Controller@all_fragrances');
 Route::get('fragrance/{id}', 'Fragrance_Controller@show');
-Route::post('fragrance/f/{id}', 'Factors_Affecting_Fragrance_Wearability_Controller@store');
+// Route::post('factors_affecting_fragrance', 'Factors_Affecting_Fragrance_Wearability_Controller@store');
+Route::post('factors_affecting_fragrance', 'Fragrance_Controller@factors_affecting_fragrance');
 
-Route::post('factors_affecting_fragrance', 'Controller@factors_affecting_fragrance');
+// Route::post('factors_affecting_fragrance', 'Controller@factors_affecting_fragrance');
 
 Route::post('cities_of_country', 'Controller@cities_of_country');
 

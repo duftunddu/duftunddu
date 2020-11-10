@@ -21,7 +21,8 @@
                 // labels: ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL"],
                 labels: ["...", "6 Days Ago", "5 Days Ago", "4 Days Ago", "3 Days Ago", "2 Days Ago", "Day Before", "Today", "..."],
                 datasets: [{
-                    label: "Data",
+                    // label: "Data",
+                    label: "Searches",
                     borderColor: gradientStroke,
                     pointBorderColor: gradientStroke,
                     pointBackgroundColor: gradientStroke,
