@@ -49,7 +49,6 @@ class Request_Brand_Controller extends Controller
      */
     public function store(Request $request)
     {
-
         $validatedData = $request->validate([
             'name'            => 'required|unique:Fragrance_Brand|unique:Request_Brand',
             'website'         => 'required',

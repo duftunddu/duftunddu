@@ -1,11 +1,8 @@
 @extends('layouts.app')
-{{-- @extends('layouts.nav_bar') --}}
+
 <link href="{{ asset('css/paragraph.css') }}" rel="stylesheet">
 
-<title>{{_('Request A Brand | Duft Und Du')}}</title>
-
-{{-- JQuery for Ajax --}}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<title>{{_('Admin Panel: Feature Request By User | Duft Und Du')}}</title>
 
 <style>
     .center {
@@ -155,33 +152,18 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
 
-            <h2>{{ __('Request A Brand')}}</h2>
+            <h2>{{ __('Admin Panel: Feature Request By User')}}</h2> <br>
 
-            <p>
-                If a Brand is not in our <a href="brands">List of Brands</a>.
-                You can submit a request here by either
-                voting for the Brand if it is already in the list or submitting it.
-            </p><br>
-
-            {{-- Informing Guests that Voting Rights are only given to users --}}
-            @guest
-            <p>
-                <a href="login">Login</a> or <a href="register">Sign Up</a> to Request or Vote for A Brand.
-            </p><br>
-            @endguest
-
-            @if($brands->isNotEmpty())
+            @if($requests->isNotEmpty())
             <table>
 
                 {{-- Headings --}}
                 <thead>
                     <tr>
                         <th scope="col">Name</th>
-                        <th scope="col">Votes</th>
-                        @auth
-                        <th scope="col">Vote</th>
-                        @endauth
-                        <th scope="col">Request Status</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Implementation</th>
+                        <th scope="col">Approve/Delete</th>
                         <th scope="col">Added On</th>
                         <th scope="col">Added by</th>
                     </tr>
@@ -189,21 +171,16 @@
                 <tbody>
 
                     {{-- Data --}}
-                    @foreach($brands as $brand)
+                    @foreach($requests as $request)
                     <tr>
-                        <td data-label="Brand Name">{{$brand->name}}</td>
-                        <td data-label="Votes">{{$brand->votes}}</td>
-                        @auth
-                        <td data-label="Vote">
-                            <button type="button" class="btn btn-outline-dark" name="{{$brand->name}}"
-                                id="{{$brand->name}}" onclick="handleVote(this.id);">
-                                {{ __('Vote') }}
-                            </button>
-                        </td>
-                        @endauth
-                        <td data-label="Request Status">{{$brand->status}}</td>
-                        <td data-label="Added On">{{$brand->created_at->format('d/M/y')}}</td>
-                        <td data-label="Added by">{{$brand->user}}</td>
+                        <td data-label="Name">{{$request->name}}</td>
+                        <td data-label="Description">{{$request->description}}</td>
+                        <td data-label="Implementation">{{$request->mplementation}}</td>
+                        <td data-label="Approve/Delete"><a
+                                href="/request_feature_user_review/{{$request->id}}/0">Approve</a> / <a
+                                href="/request_feature_user_review/{{$request->id}}/1">Delete</a></td>
+                        <td data-label="Added On">{{$request->created_at->format('d/M/y')}}</td>
+                        <td data-label="Added by">{{$request->user->name}}</td>
                     </tr>
                     @endforeach
 
@@ -211,47 +188,9 @@
             </table>
             @else
             Nothing in Queue.
-            @endif
-            <br><br>
-
-            @auth
-            {{--  Button: Add Fragrance --}}
-            <div class="form-group row">
-                <div class="center">
-                    <button type="button" class="btn btn-outline-dark"
-                        onclick="window.location='{{ url('/request_brand/') }}'">
-                        {{ __('Add New Brand') }}
-                    </button>
-                </div>
-            </div>
-            @endauth
+            @endif<br><br>
 
         </div>
     </div>
 </div>
-
-{{-- CSRF Token for Ajax --}}
-<div id="csrf">
-    @csrf
-</div>
-
-
-{{-- Vote --}}
-<script>
-    function handleVote(brand) {
-        $.ajax({
-            type: 'POST',
-            url: '/vote_brand',
-            data: {
-                "_token": "{{ csrf_token() }}",
-                value: 1,
-                brand_name: brand
-            },
-            success: function (data) {
-                alert(data);
-            }
-        });
-    }
-</script>
-
 @endsection

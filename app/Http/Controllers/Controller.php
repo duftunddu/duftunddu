@@ -15,6 +15,8 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 use Jenssegers\Agent\Agent;
 
+use Carbon\Carbon;
+
 class Controller extends BaseController {
     use AuthorizesRequests,
     DispatchesJobs,
@@ -38,15 +40,6 @@ class Controller extends BaseController {
         $cities = json_encode($cities);
 
         return $cities;
-    }
-
-  
-    public function request_feature_show(){
-      return view('forms.request_feature');
-    }
-
-    public function request_feature(Request $request){
-
     }
 
     public function try () {

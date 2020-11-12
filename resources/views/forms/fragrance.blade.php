@@ -15,13 +15,17 @@
     }
     .right p{
         margin-left:20%;
-        text-align:justify;
+        text-align: right;
     }
     .color-red{
         color: #f7527c;
     }
     .color-highlight-purple{
         color: #8167a9;
+    }
+    .center{
+        display:flex;
+        justify-content: center;
     }
 
     .rating {
@@ -122,35 +126,10 @@
                 <div class="card-body">
                     
                     <div class="row">
-                        <div class="column">
-                            <div class="col-md-9">
+                        
+                        {{-- The design was made by mistake, it looked better than the original so we kept it --}}
 
-                                <h4>Type: {{$type->name}}</h4>
-                                <h4>Gender: {{$fragrance->gender}}</h4>
-                                <h4>Cost: {{$fragrance->cost}} {{$fragrance->currency}}</h4>
-                                <br>
-                                <h4>Accords:</h4>
-        
-                                @foreach($accords as $accord)
-                                    <h5>{{$accord}}</h5>
-                                @endforeach
-                                
-                                <br>
-        
-                                <h4>Notes:</h4>
-                                @foreach($notes as $note)
-                                    <h5>{{$note->name}}</h5>
-                                @endforeach
-                                
-                                <br>
-
-                                <p>Added on {{$fragrance->created_at->format('d/M/y')}}</p>
-
-                                <br>
-
-                            </div>
-                        </div>
-
+                        {{-- Actually on Right --}}
                         <div class="column">
                             <div class="right">
                                 @auth
@@ -248,15 +227,43 @@
                             </div>
                         </div>
 
+                        {{-- Actually on Left --}}
+                        <div class="column">
+                            {{-- <div class="col-md-9"> --}}
+
+                                <h4>Type: {{$type->name}}</h4>
+                                <h4>Gender: {{$fragrance->gender}}</h4>
+                                <h4>Cost: {{$fragrance->cost}} {{$fragrance->currency}}</h4>
+                                <br>
+                                <h4>Accords:</h4>
+        
+                                @foreach($accords as $accord)
+                                    <h5>{{$accord}}</h5>
+                                @endforeach
+                                
+                                <br>
+        
+                                <h4>Notes:</h4>
+                                @foreach($notes as $note)
+                                    <h5>{{$note->name}}</h5>
+                                @endforeach
+                                
+                                <br>
+
+                                <p>Added on {{$fragrance->created_at->format('d/M/y')}}</p>
+
+                                <br>
+
+                            {{-- </div> --}}
+                        </div>
+
                     </div>
 
                     @if($allow_edit)
-                        <div class="form-group row mb-0">
-                            <div class="col-md-5 offset-md-0">
-                                <button type="submit" class="btn btn-outline-dark"  onclick="window.location='{{ url('fragrance_edit/'.$fragrance->id) }}'">
-                                    {{ __('Edit') }}
-                                </button>
-                            </div>
+                        <div class="form-group row mb-0 center">
+                            <button type="submit" class="btn btn-outline-dark"  onclick="window.location='{{ url('fragrance_edit/'.$fragrance->id) }}'">
+                                {{ __('Edit') }}
+                            </button>
                         </div><br>
                     @endif
                   
@@ -285,10 +292,10 @@
 {{-- Longevity --}}
 <script>
     function handleLongevity(Longevity) {
-            var weights = {!! json_encode($weights) !!};
+        var weights = {!! json_encode($weights) !!};
         $.ajax({
             type:'POST',
-            url:'/factors_affecting_fragrance',
+            url:'/affecting_factors_data',
             //    data:{"_token": "{{ csrf_token() }}", value: Longevity.value, type: "Longevity"},
             data:{"_token": "{{ csrf_token() }}", value: Longevity.value, type: "Longevity", weights: weights},
             success:function(data){
@@ -304,7 +311,7 @@
         var weights = {!! json_encode($weights) !!};
         $.ajax({
            type:'POST',
-           url:'/factors_affecting_fragrance',
+           url:'/affecting_factors_data',
         //    data:{"_token": "{{ csrf_token() }}", value: Suitability.value, type: "Suitability"},
            data:{"_token": "{{ csrf_token() }}", value: Suitability.value, type: "Suitability", weights: weights},
            success:function(data){
@@ -320,7 +327,7 @@
         var weights = {!! json_encode($weights) !!};
         $.ajax({
            type:'POST',
-           url:'/factors_affecting_fragrance',
+           url:'/affecting_factors_data',
         //    data:{"_token": "{{ csrf_token() }}", value: Sustainability.value, type: "Sustainability"},
            data:{"_token": "{{ csrf_token() }}", value: Sustainability.value, type: "Sustainability", weights: weights},
            success:function(data){

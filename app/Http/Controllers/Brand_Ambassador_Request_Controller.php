@@ -60,8 +60,7 @@ class Brand_Ambassador_Request_Controller extends Controller
 
         return view('brand_ambassador.application_status',[
             'ambassador' => $ambassador
-        ]);
-        
+        ]);        
     }
 
     /**

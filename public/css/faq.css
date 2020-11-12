@@ -1,76 +1,108 @@
-.toggle {
-	background-color: #fff;
-	border-radius: 5px;
-	line-height: 1.8em;
-	overflow: hidden;
-	margin: 15px 0;
-	border: 1px solid #e9eaed;
-}
-.toggle:hover {
-	-webkit-box-shadow: 0px 5px 30px rgba(0,0,0,0.15);
-	-moz-box-shadow: 0px 5px 30px rgba(0,0,0,0.15);
-	box-shadow: 0px 5px 30px rgba(0,0,0,0.15);
-}
-.toggle .toggle-title {
-	display: block;
-	position: relative;
-	opacity: .75;
-}
-.toggle .toggle-title.active {
-	opacity: 1;
-}
-.toggle .toggle-title h3 {
-	font-size: 20px;
-	margin: 0px;
-	line-height: 1.4em;
-	cursor: pointer;
-	font-weight: 200;
-}
-.toggle .toggle-inner {
-	display: none;
-	padding: 7px 25px 10px 25px;
-	margin: 10px 0 6px;
-}
-.toggle .toggle-inner div {
-	max-width: 100%;
-}
-.toggle .toggle-title .title-name {
-	display: block;
-	padding: 25px 65px 25px 25px;
-}
-.toggle .toggle-title.active .title-name {
-	border-bottom: 1px solid #e9eaed;
-}
-.toggle .toggle-title a i {
-	font-size: 22px;
-	margin-right: 5px;
-}
-.toggle .toggle-title i {
-	font-size: .9em;
-	position: absolute;
-	width: 24px;
-	height: 24px;
-	transition: all 0.3s ease;
-	right: 25px;
-	top: 30px;
-}
-.toggle .toggle-title i:before {
-	content:"\f078";
-	display: block;
-}
-.toggle .toggle-title.active i:before {
-	content:"\f077";
+/* @import url(https://fonts.googleapis.com/css?family=Lato:300,400,700); */
+
+/* body {
+    font-family: "Lato", sans-serif;
+    font-size: 18px;
+    background: #fff;
+    line-height: 26px;
+} */
+
+/* h1 { */
+/* font-family: "Lato", sans-serif; */
+/* font-weight: 700; */
+/* font-style: normal; */
+/* color: #98c23d; */
+/* font-size: 32px; */
+/* } */
+
+h2,
+h4 {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-variant: small-caps;
+    letter-spacing: 1px;
 }
 
+h4 {
+    padding: 30px;
+}
 
-input{
-	font: inherit
-  }
-  
-  ::before element{
-	box-sizing: border-box;
-  }
-  
-  ::after element{
-	box-sizing: border-box;
-  }
+.content {
+    /* width: 80%; */
+    /* padding: 0 60px 0 0; */
+    margin-top: -1.5rem;
+    padding: 20px;
+    /* margin: 0 auto; */
+}
+
+.centerplease {
+    margin: 0 auto;
+    max-width: 270px;
+    font-size: 40px;
+}
+
+.question {
+    color: #fff;
+    position: relative;
+    /* background: #98c23d; */
+    background: #8167a9;
+    opacity: 0.6;
+    margin: 0;
+    padding: 10px 10px 10px 50px;
+    display: block;
+    width: 100%;
+    cursor: pointer;
+}
+
+.answers {
+    font-weight: 300;
+    background: #f2f2f2;
+    padding: 0px 15px;
+    margin: 0px 0;
+    height: 0;
+    overflow: hidden;
+    z-index: -1;
+    position: relative;
+    opacity: 0;
+    -webkit-transition: .7s ease;
+    -moz-transition: .7s ease;
+    -o-transition: .7s ease;
+    transition: .7s ease;
+}
+
+.questions:checked~.answers {
+    height: auto;
+    opacity: 1;
+    padding: 15px;
+}
+
+.plus {
+    color: #fff;
+    position: absolute;
+    margin-left: 10px;
+    margin-top: 5px;
+    z-index: 5;
+    font-size: 2em;
+    line-height: 100%;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    -webkit-transition: .3s ease;
+    -moz-transition: .3s ease;
+    -o-transition: .3s ease;
+    transition: .3s ease;
+}
+
+.questions:checked~.plus {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.questions {
+    display: none;
+}

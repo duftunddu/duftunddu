@@ -20,8 +20,9 @@
                     <nav class="navbar navbar-expand-md navbar-light">
 
                         {{-- <a class="navbar-brand" href="/" ><img src="https://assets.codepen.io/1462889/fcy.png" alt=""></a> target="_blank" --}}
-                        <a class="navbar-brand" href="/" ><img src="../images/logo_header.png" alt=""></a> {{-- target="_blank" --}}
-
+                        <a class="navbar-brand" href="/"><img style="float: left;" src="../images/logo_header.png" alt=""></a> {{-- target="_blank" --}}
+                        <a class="dnd-name" href="/">Duft Und Du</a>
+                        
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -85,7 +86,7 @@
                                         aria-haspopup="true" aria-expanded="false">Contact Us</a>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="request_brand_view">Request a Brand</a>
-                                        <a class="dropdown-item" href="request_feature">Request a Feature</a>
+                                        <a class="dropdown-item" href="request_feature_view">Request a Feature</a>
                                         <a class="dropdown-item" href="#">Feedback</a>
                                         <a class="dropdown-item" href="#">Contact</a>
                                     </div>

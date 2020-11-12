@@ -1,5 +1,6 @@
 /* @import url('https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&subset=devanagari,latin-ext'); */
-@import url("https://fonts.googleapis.com/css2?family=Marcellus&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Marcellus");
+@import url("https://fonts.googleapis.com/css2?family=Cinzel");
 
 /* #Primary
 ================================================== */
@@ -7,6 +8,32 @@
 body {
     font-family: 'Marcellus', sans-serif;
 }
+
+.dnd-name {
+    font-family: 'Cinzel';
+    font-variant: small-caps !important;
+    font-size: 25px !important;
+    letter-spacing: 1px !important;
+    color: #212529 !important;
+    text-decoration: none !important;
+}
+
+.dnd-name.scroll-on {
+    height: 24px;
+    -webkit-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+
+.dnd-name:hover {
+    color: #212529 !important;
+    text-decoration: none !important;
+}
+
+.dnd-name:visited {
+    color: #212529 !important;
+    text-decoration: none !important;
+}
+
 
 .top-padding {
     padding-top: 6rem !important;

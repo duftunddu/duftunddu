@@ -60,14 +60,12 @@ Route::get('brand/{id}', 'Fragrance_Brand_Controller@show');
 Route::get('fragrances_array/{id}', 'Fragrance_Controller@all_fragrances_array');
 Route::get('fragrances/{id}', 'Fragrance_Controller@all_fragrances');
 Route::get('fragrance/{id}', 'Fragrance_Controller@show');
-// Route::post('factors_affecting_fragrance', 'Factors_Affecting_Fragrance_Wearability_Controller@store');
-Route::post('factors_affecting_fragrance', 'Fragrance_Controller@factors_affecting_fragrance');
-
-// Route::post('factors_affecting_fragrance', 'Controller@factors_affecting_fragrance');
+Route::post('affecting_factors_data', 'Affecting_Factors_Data_Controller@store');
 
 Route::post('cities_of_country', 'Controller@cities_of_country');
 
 Route::get('request_brand_view', 'Request_Brand_Controller@show');
+Route::get('request_feature_view', 'Feature_Request_Controller@show');
 
 
 // Authorized Routes
@@ -94,13 +92,13 @@ Route::middleware(['role:user|genie_user|premium_user|admin'])->group(function (
     Route::get('genie_output', 'Perceiver_Controller@output');
     Route::post('genie_output', 'Perceiver_Controller@output');
 
-    Route::get('request_feature', 'Controller@request_feature_show');
-    Route::post('request_feature', 'Controller@request_feature');
-    
     Route::get('request_brand', 'Request_Brand_Controller@index');
     Route::post('request_brand', 'Request_Brand_Controller@store');
     Route::post('vote_brand', 'Request_Brand_Controller@vote');
     
+    Route::get('request_feature_user', 'Feature_Request_By_User_Controller@index');
+    Route::post('request_feature_user', 'Feature_Request_By_User_Controller@store');
+    Route::post('vote_feature', 'Feature_Request_Controller@store');
 });
 
 // user|genie_user|premium_user|candidate_brand_ambassador|admin
@@ -150,6 +148,13 @@ Route::middleware(['role:admin'])->group(function () {
 
     Route::get('/request_brand_panel', 'Admin_Controller@request_brand_status');
     Route::get('/request_brand_panel/{brand_name}/{new_status}', 'Admin_Controller@request_brand_status_change');
+
+    Route::get('/request_feature_panel', 'Admin_Controller@request_feature_status');
+    Route::get('/request_feature_panel/{feature_id}/{new_status}', 'Admin_Controller@request_feature_status_change');
+
+    Route::get('/request_feature_user_review', 'Admin_Controller@request_feature_user_review');
+    Route::get('/request_feature_user_review/{id}/{action}', 'Admin_Controller@request_feature_user_action');
+    Route::post('/request_feature_user_add', 'Admin_Controller@request_feature_user_store');
 
     Route::get('accord_entry', 'Accord_Controller@index');
     Route::post('accord_entry', 'Accord_Controller@store');

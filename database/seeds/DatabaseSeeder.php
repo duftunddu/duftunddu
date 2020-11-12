@@ -34,6 +34,8 @@ class DatabaseSeeder extends Seeder
             IngredientCategoryTableSeeder::class,
             IngredientCategoryClusterTableSeeder::class,
             AccordClusterTableSeeder::class,
+            
+            ModelVersionTableSeeder::class,
         ]);
     }
 }

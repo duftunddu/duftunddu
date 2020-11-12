@@ -7,6 +7,8 @@ use App\Request_Brand;
 use App\Fragrance_Brand;
 use App\Brand_Ambassador_Request;
 use App\Brand_Ambassador_Profile;
+use App\Feature_Request_By_User;
+use App\Feature_Request;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -36,6 +38,89 @@ class Admin_Controller extends Controller
         //
     }
 
+    // Feature Requests By User
+    public function request_feature_user_review()
+    {
+        $requests = Feature_Request_By_User::all();
+        
+        // var_dump($ambassadors);
+        // return;
+
+        return view('admin.request_feature_by_user_view',[
+            'requests'        => $requests,
+        ]);
+    }
+
+    public function request_feature_user_action($id, $action)
+    {
+        if(!Feature_Request_By_User::exists($id)){
+            return redirect('request_feature_user_review');
+        }
+
+        if($action == 0){
+            // Approve
+            $feature = Feature_Request_By_User::find($id);
+
+            return view('admin.request_feature_by_user_add',[
+                'feature'        => $feature,
+            ]);
+        }
+        else{
+            // Delete
+            Feature_Request_By_User::destroy($id);
+
+            return redirect()->back()->with('error',"ID: {$id} has been deleted.");
+        }
+    }
+
+    public function request_feature_user_store(Request $request)
+    {   
+        $validatedData = $request->validate([ 
+            'users_id'          => 'required',
+            'name'              => 'required|max:40',
+            'description'       => 'required|max:256',
+            'implementation'    => 'max:500',
+        ]);
+        
+        Feature_Request::create([
+            'users_id'          => $request->input('users_id'),
+            'name'              => $request->input('name'),
+            'description'       => $request->input('description'),
+            'status'            => "Queued",
+            'votes'             => 1,
+        ]);
+
+        Feature_Request_By_User::destroy($request->input('feature_id'));
+
+        return redirect('request_feature_user_review')->with('success',"{$request->name} approved.");
+    }
+
+    // Feature Requests
+    public function request_feature_status()
+    {
+        $date = Carbon::today()->subDays(7);
+        $features = Feature_Request::where('status', '!=', "Processed (Added)")
+        ->where('feature_request.updated_at', '>', $date)
+        ->join('users', 'users.id', 'feature_request.users_id')
+        ->select('users.name as user', 'feature_request.*')
+        ->orderBy('votes', 'desc')
+        ->get();
+
+        return view('admin.request_feature_view',[
+            'features'        =>    $features,
+        ]);
+    }
+
+    public function request_feature_status_change($feature_id, $new_status)
+    {
+        $feature = Feature_Request::find($feature_id);
+        $feature->status = $new_status;
+        $feature->save();
+
+        return redirect()->back();
+    }
+
+    // Brand Ambassador
     public function brand_ambassador_request()
     {
         $ambassadors = Brand_Ambassador_Request::all()
@@ -140,6 +225,7 @@ class Admin_Controller extends Controller
         return redirect()->back()->with('success','Approval Successful.');
     }
 
+    // Brand Requests
     public function request_brand_status()
     {
         $date = Carbon::today()->subDays(7);
@@ -163,6 +249,5 @@ class Admin_Controller extends Controller
 
         return redirect()->back();
     }
-
 
 }

@@ -48,8 +48,24 @@ class Handler extends ExceptionHandler
      *
      * @throws \Throwable
      */
+    // public function render($request, Throwable $exception)
+    // {
+    //     return parent::render($request, $exception);
+    // }
+
     public function render($request, Throwable $exception)
     {
+        if ($exception instanceof \Spatie\Permission\Exceptions\UnauthorizedException) {
+            if(request()->user()->hasRole(['new_user'])){
+                return redirect('/profile');
+            }else{
+                return redirect()->route('login');
+            }
+        }
+        else if ($exception instanceof \Illuminate\Session\TokenMismatchException) {
+            return redirect()->route('login');
+        }
+
         return parent::render($request, $exception);
     }
 }

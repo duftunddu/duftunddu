@@ -332,179 +332,253 @@ class Fragrance_Controller extends Controller
         $ambassador = Brand_Ambassador_Profile::where('users_id', request()->user()->id)->first();
         if($ambassador->brand_id == $fragrance->brand_id){
           $allow_edit = TRUE;
-      }
+        }
 
-      // If user, then calculate fragrance suitability, sustainability and longevity
-      if(request()->user()->hasRole(['user', 'genie_user', 'premium_user'])){
+        // If user, then calculate fragrance suitability, sustainability and longevity
+        if(request()->user()->hasRole(['user', 'genie_user', 'premium_user'])){
 
-        $frag_profile = DB::table('fragrance_profile')
-          ->where('users_id', request()->user()->id)
-          ->join('skin_type', 'skin_type.id', '=', 'fragrance_profile.skin_type_id')
-          ->join('climate', 'climate.id', '=', 'fragrance_profile.climate_id')
-          ->join('season', 'season.id', '=', 'fragrance_profile.season_id')
-          ->select('fragrance_profile.location_id', 'fragrance_profile.sweat', 'fragrance_profile.height', 'fragrance_profile.weight', 'skin_type.name as skin', 'climate.name as climate', 'season.name as season')
-          ->first();
-        
-        $location = Location::find($frag_profile->location_id);
-        
-        // https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
-        $weather_data_json  = Http::get("https://api.openweathermap.org/data/2.5/onecall?lat={$location->latitude}&lon={$location->longitude}&units=imperial&exclude=current,minutely,hourly,alerts&appid=7120811d6e66b35f6be4b030be29c4d3");
-        
-        // Helper::var_dump_readable($weather_data_json->successful());return;
-        if($weather_data_json->successful()){
-
-          //TODO: Create separate functions for each of the following, fetch weights in those functions from database.   
-
-          // Sum of Weekly Variables
-          $sum_temp = 0;
-          $sum_hum  = 0;
-
-          for ($i = 0; $i < 8; $i++){
-            $sum_temp += $weather_data_json['daily'][$i]['temp']['day'];
-            $sum_hum  += $weather_data_json['daily'][$i]['humidity'];
-          }
-
-          // Average Temperature
-          $avg_temp = $sum_temp/8;
-
-          // Average Humidity
-          $avg_hum = $sum_hum/8;
-
-          // Initializing Weights
-          // Strength of Fragrance (Experimental)
-          $strength_of_fragrance = $notes->pluck('intensity')->take(5)->sum()/5;
-          $sustainability = 100;
-          $suitability = 100;
-          $longevity = 0;        
-          // Perfume Oil Concentration in %
-          // Pure Perfume/Parfum: 15-30 | 100
-          // Eau de Parfum (EDP): 15-20 | 90
-          // Eau de Toilette (EDT): 5-15 | 80
-          // Eau de Cologne: 2-4 | 70
-          // Eau Fraiche: 1-3 | 60
-          $fragrance_type_weights = [100,90,80,70,60,80];
-          if(strcmp($type->name, "Parfum (Perfume)") == 0){
-            $longevity = 100;
-          }
-          else if(strcmp($type->name, "Eau de Parfum") == 0){
-            $longevity = 90;
-          }
-          else if(strcmp($type->name, "Eau de Toilette") == 0){
-            $longevity = 80;
-          }
-          else if(strcmp($type->name, "Eau de Cologne") == 0){
-            $longevity = 70;
-          }
-          else if(strcmp($type->name, "Eau Fraiche") == 0){
-            $longevity = 60;
-          }
-          else{
-            $longevity = 80;
-          }
+          $frag_profile = DB::table('fragrance_profile')
+            ->where('users_id', request()->user()->id)
+            ->join('skin_type', 'skin_type.id', '=', 'fragrance_profile.skin_type_id')
+            ->join('climate', 'climate.id', '=', 'fragrance_profile.climate_id')
+            ->join('season', 'season.id', '=', 'fragrance_profile.season_id')
+            ->select('fragrance_profile.location_id', 'fragrance_profile.sweat', 'fragrance_profile.height', 'fragrance_profile.weight', 'skin_type.name as skin', 'climate.name as climate', 'season.name as season')
+            ->first();
           
-          // Humidity: Makes you sweat more.
-          $humidity_weights = [55, 1.3, 35, 1.2];
-          if($avg_hum > 55){
-            $frag_profile->sweat *= 1.3;
-          }
-          else if($avg_hum > 35){
-            $frag_profile->sweat *= 1.2;
-          }
+          $location = Location::find($frag_profile->location_id);
+          
+          // https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
+          $weather_data_json  = Http::get("https://api.openweathermap.org/data/2.5/onecall?lat={$location->latitude}&lon={$location->longitude}&units=imperial&exclude=current,minutely,hourly,alerts&appid=7120811d6e66b35f6be4b030be29c4d3");
+          
+          // Helper::var_dump_readable($weather_data_json->successful());return;
+          if($weather_data_json->successful()){
 
-          // Heat: Volatilizes essences faster.
-          $sustainability_heat_weights = [71.9, 0.8, 82, 0.9];
-          if($avg_temp > 71.9){  
-            $sustainability *= 0.8;
-          }
-          else if($avg_temp > 82){
-            $sustainability *= 0.9;
-          }
+            //TODO: Create separate functions for each of the following, fetch weights in those functions from database.   
 
-          // Weather: Cold weather/region holds stronger, lusher floral notes in check, which is why your tropical perfumes will smell all wrong during winter or autumn. Conversely, lighter scents work better in summer and spring.
-          $warm_cold_weights = [65, 1.1, 1.1];
-          if($avg_temp > 65){
-            if( in_array("Floral", $accords) ){              
-              $suitability *= 1.1;
-              // $strength_of_fragrance *= 1.1;
+            // Sum of Weekly Variables
+            $sum_temp = 0;
+            $sum_hum  = 0;
+
+            for ($i = 0; $i < 8; $i++){
+              $sum_temp += $weather_data_json['daily'][$i]['temp']['day'];
+              $sum_hum  += $weather_data_json['daily'][$i]['humidity'];
             }
-          }
-          else{
-            if( in_array("Tropical", $accords) ){
-              $suitability *= 1.1;
-            }
-          }
 
-          // Sweat: Increases the strength of warm fragrances.
-          $sweat_weights = [50, 0.95, 1.15, 0.95, 0.9];
-          if($frag_profile->sweat > 50){
-            $sustainability *= 0.95;
-            if(in_array("Warm", $accords)){
-              $strength_of_fragrance *= 1.15;
+            // Average Temperature
+            $avg_temp = $sum_temp/8;
+
+            // Average Humidity
+            $avg_hum = $sum_hum/8;
+
+            // Initializing Weights
+            // Strength of Fragrance (Experimental)
+            $strength_of_fragrance = $notes->pluck('intensity')->take(5)->sum()/5;
+            $sustainability = 100;
+            $suitability = 100;
+            $longevity = 0;
+            // Perfume Oil Concentration in %
+            // Pure Perfume/Parfum: 15-30 | 100
+            // Eau de Parfum (EDP): 15-20 | 90
+            // Eau de Toilette (EDT): 5-15 | 80
+            // Eau de Cologne: 2-4 | 70
+            // Eau Fraiche: 1-3 | 60
+
+            $fragrance_type_weight = (object) [
+                'condition' => NULL,
+                'weight'    => NULL
+            ];
+            if(strcmp($type->name, "Parfum (Perfume)") == 0){
+              $longevity = 100;
+              $fragrance_type_weight->condition = "Parfum (Perfume)";
+            }
+            else if(strcmp($type->name, "Eau de Parfum") == 0){
+              $longevity = 90;
+              $fragrance_type_weight->condition = "Eau de Parfum";
+            }
+            else if(strcmp($type->name, "Eau de Toilette") == 0){
+              $longevity = 80;
+              $fragrance_type_weight->condition = "Eau de Toilette";
+            }
+            else if(strcmp($type->name, "Eau de Cologne") == 0){
+              $longevity = 70;
+              $fragrance_type_weight->condition = "Eau de Cologne";
+            }
+            else if(strcmp($type->name, "Eau Fraiche") == 0){
+              $longevity = 60;
+              $fragrance_type_weight->condition = "Eau Fraiche";
             }
             else{
-              $strength_of_fragrance *= 0.95;
-              $suitability *= 0.9;
+              $longevity = 80;
+              $fragrance_type_weight->condition = "Attar";
+            }
+            $fragrance_type_weight->weight = $longevity;
+            
+            // Humidity: Makes you sweat more.
+            $humidity_weight = (object) [
+              'condition' => NULL,
+              'weight'    => NULL
+            ];
+            if($avg_hum > 70){
+              $frag_profile->sweat *= 1.3;
+              $humidity_weight->condition = 70;
+              $humidity_weight->weight = 1.3;
+            }
+            else if($avg_hum > 55){
+              $frag_profile->sweat *= 1.2;
+              $humidity_weight->condition = 55;
+              $humidity_weight->weight = 1.2;
+            }
+
+            // Heat: Volatilizes essences faster.
+            $sustainability_heat_weight = (object) [
+              'condition' => NULL,
+              'weight'    => NULL
+            ];
+            if($avg_temp > 82){  
+              $sustainability *= 0.8;
+              $sustainability_heat_weight->condition = 82;
+              $sustainability_heat_weight->weight = 0.8;
+            }
+            else if($avg_temp > 71.9){
+              $sustainability *= 0.9;
+              $sustainability_heat_weight->condition = 71.9;
+              $sustainability_heat_weight->weight = 0.9;
+            }
+
+            // Weather: Cold weather/region holds stronger, lusher floral notes in check, which is why your tropical perfumes will smell all wrong during winter or autumn. Conversely, lighter scents work better in summer and spring.
+            $warm_cold_weight = (object) [
+              'condition_1' => NULL,
+              'condition_2' => NULL,
+              'weight'      => NULL
+            ];
+            if($avg_temp > 65){
+              if( in_array("Floral", $accords) ){              
+                $suitability *= 1.1;
+                $warm_cold_weight->condition_1 = 65;
+                $warm_cold_weight->condition_2 = "Floral";
+                $warm_cold_weight->weight      = 1.1;
+              }
+            }
+            else{
+              if( in_array("Tropical", $accords) ){
+                $suitability *= 1.1;
+                $warm_cold_weight->condition_1 = NULL;
+                $warm_cold_weight->condition_2 = "Tropical";
+                $warm_cold_weight->weight      = 1.1;
+              }
+            }
+
+            // Sweat: Increases the strength of warm fragrances.
+            $sweat_weight = (object) [
+              'condition_1' => NULL,
+              'condition_2' => NULL,
+              'weight'      => NULL
+            ];
+            if($frag_profile->sweat > 50){
+              $sustainability *= 0.95;
+              $sweat_weight->condition_1 = 0.95;
+              
+              if(in_array("Warm", $accords)){
+                $strength_of_fragrance *= 1.15;
+
+                $sweat_weight->condition_2 = "Warm";
+                $sweat_weight->weight = 1.15;
+              }
+            }
+            
+            // BMI:
+            // Multiply your weight in pounds by 703, Divide this number by your height in inches, Divide again by your height in inches.
+            // $bmi = ($frag_profile->weight*2.205)/pow($frag_profile->height,2);
+            // Google:
+            // Body Mass Index is a simple calculation using a person's height and weight. The formula is BMI = kg/m2
+            // where kg is a person's weight in kilograms and m2 is their height in metres squared. A BMI of 25.0 or more is overweight, while the healthy range is 18.5 to 24.9.
+            $bmi = ($frag_profile->weight)/pow($frag_profile->height/39.37,2);
+
+            // A BMI (Body Mass Index) under 18 is slim, 20 to 25 is normal, 25 to 30 is overweight, and greater than 30 is obese.
+            // Higher bmi requires more scent.
+            $bmi_weight = (object) [
+              'condition' => NULL,
+              'weight'    => NULL
+            ];
+            if($bmi > 30){
+              $strength_of_fragrance *= 0.8;
+              $bmi_weight->condition = 30;
+              $bmi_weight->weight = 0.8;
+            }
+            else if($bmi > 25){
+              $strength_of_fragrance *= 0.9;
+              $bmi_weight->condition = 25;
+              $bmi_weight->weight = 0.9;
+            }
+            else if($bmi < 19){
+              $strength_of_fragrance *= 1.1;
+              $bmi_weight->condition = 19;
+              $bmi_weight->weight = 1.1;
+            }
+
+            // Dryness of Skin: If you have dry skin, your fragrance will never be able to last as long as you want it to.
+            // The reason? There’s nothing for the fragrance to hang on to, thus making it evaporate even faster.
+            // $skin_weight = [1.2, 1.1, 0.9, 0.8];
+            $skin_weight = (object) [
+              'condition' => NULL,
+              'weight'    => NULL
+            ];
+            if(strcmp($frag_profile->skin, "Very Oily") == 0){
+              $longevity *= 1.2;
+              $skin_weight->condition = "Very Oily";
+              $skin_weight->weight = 1.2;
+            }
+            else if(strcmp($frag_profile->skin, "Oily") == 0){
+              $longevity *= 1.1;
+              $skin_weight->condition = "Oily";
+              $skin_weight->weight = 1.1;
+            }
+            else if(strcmp($frag_profile->skin, "Dry & Moisturized") == 0){
+              $longevity *= 0.9;
+              $skin_weight->condition = "Dry & Moisturized";
+              $skin_weight->weight = 0.9;
+            }
+            else{
+              $longevity *= 0.8;
+              $skin_weight->condition = NULL;
+              $skin_weight->weight = 0.8;
             }
           }
-          
-          // BMI:
-          // Multiply your weight in pounds by 703, Divide this number by your height in inches, Divide again by your height in inches.
-          // $bmi = ($frag_profile->weight*2.205)/pow($frag_profile->height,2);
-          // Google:
-          // Body Mass Index is a simple calculation using a person's height and weight. The formula is BMI = kg/m2
-          // where kg is a person's weight in kilograms and m2 is their height in metres squared. A BMI of 25.0 or more is overweight, while the healthy range is 18.5 to 24.9.
-          $bmi = ($frag_profile->weight)/pow($frag_profile->height/39.37,2);
-
-          // A BMI (Body Mass Index) under 18 is slim, 20 to 25 is normal, 25 to 30 is overweight, and greater than 30 is obese.
-          // Higher bmi requires more scent.
-          $bmi_weights = [30, 0.8, 25, 0.9, 19, 1.1];
-          if($bmi > 30){
-            $strength_of_fragrance *= 0.8;
-          }
-          else if($bmi > 25){
-            $strength_of_fragrance *= 0.9;
-          }
-          else if($bmi < 19){
-            $strength_of_fragrance *= 1.1;
-          }
-
-          // Dryness of Skin: If you have dry skin, your fragrance will never be able to last as long as you want it to.
-          // The reason? There’s nothing for the fragrance to hang on to, thus making it evaporate even faster.
-          $skin_weights = [1.2, 1.1, 0.9, 0.8];
-          if(strcmp($frag_profile->skin, "Very Oily") == 0){
-            $longevity *= 1.2;
-          }
-          else if(strcmp($frag_profile->skin, "Oily") == 0){
-            $longevity *= 1.1;
-          }
-          else if(strcmp($frag_profile->skin, "Dry & Moisturized") == 0){
-            $longevity *= 0.9;
-          }
           else{
-            $longevity *= 0.8;
+            // Create two more accounts on the weather website and adjust this controller with more apis.
           }
-        }
-        else{
-          // Create two more accounts on the weather website and adjust this controller with more apis.
-        }
-        // To save the weights to improve the model.
-          $weights = [$avg_temp, $avg_hum, $bmi, $fragrance_type_weights, $humidity_weights, $sustainability_heat_weights, $warm_cold_weights, $sweat_weights, $bmi_weights, $skin_weights];
+
+          // To save the weights to improve the model.
+          $weights = (object) [
+            'avg_temp'                    => $avg_temp,
+            'avg_hum'                     => $avg_hum,
+            'bmi'                         => $bmi,
+            'fragrance_type_weight'       => $fragrance_type_weight,
+            'humidity_weight'             => $humidity_weight,
+            'sustainability_heat_weight'  => $sustainability_heat_weight,
+            'warm_cold_weight'            => $warm_cold_weight,
+            'sweat_weight'                => $sweat_weight,
+            'bmi_weight'                  => $bmi_weight,
+            'skin_weight'                 => $skin_weight
+          ];
+
+
+          $weights =  json_encode($weights);
         }
       }
 
     }
     else{
-      $logged_in = FALSE;
+      // $logged_in = FALSE;
       $weights = $longevity = $suitability = $sustainability = NULL;
     }
-    
 
     return view('forms.fragrance',[
         'fragrance'         => $fragrance,
         'type'              => $type,
         'accords'           => $accords,
         'notes'             => $notes,
-        'logged_in'         => $logged_in,
+        // 'logged_in'         => $logged_in,
         'allow_edit'        => $allow_edit,
         'longevity'         => $longevity,
         'suitability'       => $suitability,
@@ -512,58 +586,9 @@ class Fragrance_Controller extends Controller
         'weights'           => $weights,
     ]);
   }
-
   
   public function factors_affecting_fragrance(Request $request){
-    // var_dump($request->value);
-    // var_dump($request->type);
 
-    // The array composition:
-    // $weights = [$avg_temp, $avg_hum, $bmi, $fragrance_type_weights, $humidity_weights, $sustainability_heat_weights,
-    //    $warm_cold_weights, $sweat_weights, $bmi_weights, $skin_weights];
-    
-    // $fragrance_type_weights = [100,90,80,70,60,80];6
-    // $humidity_weights = [55, 1.3, 35, 1.2];4
-    // $sustainability_heat_weights = [71.9, 0.8, 82, 0.9];4
-    // $warm_cold_weights = [65, 1.1, 1.1];3
-    // $sweat_weights = [50, 0.95, 1.15, 0.95, 0.9];5
-    // $bmi_weights = [30, 0.8, 25, 0.9, 19, 1.1];6
-    // $skin_weights = [1.2, 1.1, 0.9, 0.8];4
-    // 1,1,1,6,4,4,3,5,6,4
-
-    // avg_temp
-    // avg_hum
-    // bmi
-    // fragrance_type_condition
-    // fragrance_type_weight
-    // sustainability_heat_condition
-    // sustainability_heat_weight    
-    // humidity_condition
-    // humidity_weight
-    // warm_cold_condition_1
-    // warm_cold_condition_2
-    // warm_cold_weight
-    // sweat_condition1
-    // sweat_weight_1
-    // sweat_condition_2
-    // sweat_weight_2
-    // bmi_condition
-    // bmi_weight
-    // skin_condition
-    // skin_weight
-    // type
-    // rating
-    
-
-    echo $request->value;
-    echo $request->type;
-    echo $request->weights[0];
-    // echo $request->bmi;
-
-    
-    
-
-    return;
 }
 
   /**
