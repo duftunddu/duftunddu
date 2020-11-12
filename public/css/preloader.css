@@ -1,12 +1,17 @@
+/* Preloader */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-body {
-    background: url('https://images.pexels.com/photos/1036857/pexels-photo-1036857.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260') #1c1c1c center center / cover no-repeat fixed;
-    height: 200vh;
+/* body { */
+/* background: url('https://images.pexels.com/photos/1036857/pexels-photo-1036857.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260') #1c1c1c center center / cover no-repeat fixed; */
+/* height: 200vh; */
+/* } */
+
+html {
+    z-index: 1000 !important;
 }
 
 .no-scroll-y {
@@ -178,3 +183,5 @@ body {
         font: bold 2em 'Montserrat', sans-serif;
     }
 }
+
+/* End of Preloader */

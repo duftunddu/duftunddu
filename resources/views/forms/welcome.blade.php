@@ -201,20 +201,22 @@
                 margin-bottom: 1.3rem;
             }
 
-            @media (max-width: 700px) {
+            @media (max-width: 535px) {
                 .flex-1-center {
                     height: 91%;
                     background-image: url("../images/fragrance_model/laura-chouette-YGuaaoNnv3c-unsplash_use.jpg");
                     background-size: contain;
                     background-position: bottom;
                     background-color: #fafbfb;
-                    margin-top: -1.6rem;
+                    margin-top: -1.4rem;
 
                     display: flex;
                     align-items: left;
                     justify-content: left;
                     text-align: center;
                     padding-left: 0;
+                    padding: 10px;
+                    padding-bottom: 0;
                 }
                 .flex-1-center .heading{
                     font-size: 2.25rem;
@@ -242,7 +244,7 @@
                     justify-content: left;
                     margin-right: 20%;
                     padding-left: 4%;
-                    padding-top: 4%;
+                    padding-top: 12%;
                     padding-bottom:4%;
                     /* display: flex; */
                     /* padding-top: 7.73vw; */
@@ -294,10 +296,11 @@
 
         </style>
 
-
     </head>
 
     <body>
+
+        @include('layouts.preloader')
         
         @include('layouts.header')
 

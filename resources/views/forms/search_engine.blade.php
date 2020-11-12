@@ -125,6 +125,7 @@
     </head>
     
     <body>
+        @include('layouts.preloader')
 
         @include('layouts.header')
         
@@ -145,8 +146,6 @@
                 <form class="search" method="GET" action="{{ url('search_results')}}">
                     @csrf
 
-                    {{-- <input id="search-input" class="search__input" maxlength="40" name="searchbox" type="text" placeholder="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" required style="font-family: 'Nunito'; color: #636b6f; font-size: 1.36vw; font-weight: bold; width:32.65vw">  --}}
-                    {{-- <input id="search-input" class="search__input" maxlength="40" name="searchbox" type="text" placeholder="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" required style="font-family: 'Nunito'; color: #636b6f; font-size: 1rem; font-weight: bold; width:26.5rem; letter-spacing:1px">  --}}
                     <input id="search-input" class="search__input" maxlength="40" name="searchbox" type="text" placeholder="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" required> 
                     <button class="btn btn--search">
                         <?xml version="1.0" encoding="iso-8859-1"?>

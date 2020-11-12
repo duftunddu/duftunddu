@@ -129,11 +129,10 @@
                         
                         {{-- The design was made by mistake, it looked better than the original so we kept it --}}
 
-                        {{-- Actually on Right --}}
+                        {{-- On Left --}}
                         <div class="column">
                             <div class="right">
                                 @auth
-                                {{-- @if($logged_in) --}}
 
                                     <h4 class="hsl-color" data-toggle="tooltip" data-placement="top" data-html="true" title="How long the fragrance lasts.<br>100 is max.">Longevity: {{$longevity}}</h4>
                                         <!-- RATE -->
@@ -196,7 +195,7 @@
                                         </section><br>
                                     
                                     <br><p>
-                                        {{-- version 1.01.<br> --}}
+                                        {{-- version 1.0.<br> --}}
                                         These are personalized numbers.<br>
                                         These factors were researched and calculated using your personal data.<br>
                                         Please leave feedback on fragrances you have used previously.<br>
@@ -214,20 +213,17 @@
                                         </div>
                                     </div>
                                     <a href="#" id="toggle-button" role="button">Toggle</a> --}}
-        
-                                {{-- @else --}}
+
                                 @endauth
                                 @guest
-                                    
                                     <h4 class="color-red">You are missing out on Factors Affecting Fragrance:</h4>
                                     <h4 class="color-red"><a href="/login">Log In</a> and find out if <span class="color-highlight-purple">{{ __($fragrance->name)}}</span> will suit you.</h4>
-                                {{-- @endif --}}
                                 @endguest
 
                             </div>
                         </div>
 
-                        {{-- Actually on Left --}}
+                        {{-- On Right --}}
                         <div class="column">
                             {{-- <div class="col-md-9"> --}}
 

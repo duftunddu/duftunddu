@@ -27,7 +27,6 @@ class CreateFeedbackTable extends Migration
             $table->unsignedTinyInteger('type');
             $table->string('feedback', 256);
         });
-
     }
 
     /**

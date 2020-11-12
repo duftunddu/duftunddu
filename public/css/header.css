@@ -7,6 +7,7 @@
 
 body {
     font-family: 'Marcellus', sans-serif;
+    /* z-index: 999; */
 }
 
 .dnd-name {
@@ -316,7 +317,6 @@ body.hero-anime small{
 	transform: translateY(50px);
     transition-delay: 1000ms;
 } */
-
 
 h1 span {
     display: inline-block;

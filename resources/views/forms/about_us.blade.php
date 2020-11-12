@@ -15,6 +15,9 @@
     </head>
 
     <body>
+
+        @include('layouts.preloader')
+
         @include('layouts.header')
         
         @include('forms.about_us_content')
@@ -24,4 +27,5 @@
         </div>
 
     </body>
+
 </html>

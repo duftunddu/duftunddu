@@ -78,6 +78,9 @@ class Brand_Ambassador_Controller extends Controller
         if($max%10 != 0){
             $yaxis_limit = $max + (10 - $max%10); 
         }
+        else if ($max == 0){
+            $yaxis_limit = 10;
+        }
         else{
             $yaxis_limit = $max;
         }

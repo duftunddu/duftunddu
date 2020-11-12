@@ -1,0 +1,198 @@
+.slider {
+    width: 20rem;
+    height: 2px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
+    position: relative;
+}
+
+.slider .ui-slider-range {
+    border-radius: 2px;
+    background: #000;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.slider .ui-slider-handle {
+    cursor: move;
+    cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    outline: none;
+    top: 0;
+    z-index: 1;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.2);
+    margin: -1px 0 0 0;
+    transform: translate(-50%, -50%);
+    transition: box-shadow 0.3s ease;
+}
+
+.slider .ui-slider-handle .smiley {
+    position: absolute;
+    left: 50%;
+    bottom: 100%;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid #000;
+    opacity: 0;
+    transform: translate(-50%, -12px);
+    transition: all 0.3s ease 0s;
+}
+
+.slider .ui-slider-handle .smiley:before,
+.slider .ui-slider-handle .smiley:after {
+    content: "";
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #000;
+    position: absolute;
+    top: 8px;
+}
+
+.slider .ui-slider-handle .smiley:before {
+    left: 7px;
+}
+
+.slider .ui-slider-handle .smiley:after {
+    right: 7px;
+}
+
+.slider .ui-slider-handle .smiley svg {
+    width: 16px;
+    height: 7px;
+    position: absolute;
+    left: 50%;
+    bottom: 5px;
+    margin: 0 0 0 -8px;
+}
+
+.slider .ui-slider-handle .smiley svg path {
+    stroke-width: 3.4;
+    stroke: #000;
+    fill: none;
+    stroke-linecap: round;
+}
+
+.slider .ui-slider-handle.ui-state-active {
+    cursor: grabbing;
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.32);
+}
+
+.slider .ui-slider-handle.ui-state-active+.text {
+    transform: translate(0, -80px);
+    transition: transform 0.3s ease 0s;
+}
+
+.slider .ui-slider-handle.ui-state-active .smiley {
+    opacity: 1;
+    transform: translate(-50%, -12px);
+    transition: all 0.3s ease 0.1s;
+}
+
+.slider .text {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    transform: translate(0, -44px);
+    transition: transform 0.3s ease 0.2s;
+    font-size: 16px;
+    color: #ADAFB6;
+
+}
+
+.slider .text strong {
+    color: #000;
+    font-weight: bold;
+}
+
+.form-group {
+    padding: 4rem;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+.small-caps {
+    letter-spacing: 3px;
+    font-variant: small-caps;
+}
+
+.row {
+    display: flex;
+}
+
+.column {
+    flex: 50%;
+}
+
+@media (max-width: 1000px) {
+    .slider {
+        width: 15rem;
+        height: 2px;
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 2px;
+        position: relative;
+    }
+
+    .form-group {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+
+/* .justify-content-center {
+    display: flex;
+    flex-flow: row wrap;
+} */
+
+/* .left {
+    order: 1;
+    width: 50%;
+    background-color: red;
+}
+
+.right {
+    order: 2;
+    width: 50%;
+    background-color: green;
+}
+
+.center {
+    order: 3;
+    width: 100%;
+    background-color: blue;
+} */
+
+/* <div id="container"> */
+/* </div> */
+
+/* html {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+} */
+
+/* * {
+    box-sizing: inherit;
+} */
+
+/* *:before,
+*:after {
+    box-sizing: inherit;
+} */

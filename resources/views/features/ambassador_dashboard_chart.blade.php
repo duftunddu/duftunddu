@@ -49,6 +49,7 @@
                         ticks: {
                             beginAtZero: true,
                             max: {{$yaxis_limit}},
+                            min: 0,
                             fontColor: "rgba(0,0,0,0.5)",
                             fontStyle: "bold",
                             maxTicksLimit: 6,

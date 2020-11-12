@@ -25,6 +25,7 @@ main {
     border-radius: 2.27vh;
     font-weight: bold;
     opacity: 0.5;
+    padding-left: 2vw;
 }
 
 .search__input:focus {

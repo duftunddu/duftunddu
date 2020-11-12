@@ -4,7 +4,7 @@
 <link href="{{ asset('css/searchbar_m.css') }}" rel="stylesheet">
 <script src="{{ asset('js/searchbar.js') }}" defer></script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
+{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script> --}}
 <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js" defer></script>
 
     <head>
@@ -110,6 +110,15 @@
                 letter-spacing: .25vw;
                 text-transform: uppercase;
             }
+
+            .search__input{
+                font-family: 'Nunito';
+                color: #636b6f;
+                font-size: 4.5vw;
+                font-weight: bold;
+                width:70vw;
+                letter-spacing:1.2px;
+            }
             
             /* .links > a { */
                 /* padding: 0 1.88px; */
@@ -133,6 +142,8 @@
     
     <body>
         
+        @include('layouts.preloader')
+        
         @include('layouts.header')
 
         <div class="background"></div>
@@ -149,10 +160,10 @@
                     {{_('Explore')}}
                 </div><br><br>
 
-                <form class="search" method="POST" action="{{ url('search_engine')}}">
+                <form class="search" method="GET" action="{{ url('search_results')}}">
                     @csrf
 
-                    <input id="search-input" class="search__input" maxlength="40" name="searchbox" type="text" placeholder="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="font-family: 'Nunito'; color: #636b6f; font-size: 4.5vw; font-weight: bold; width:70vw" required>
+                    <input id="search-input" class="search__input" maxlength="40" name="searchbox" type="text" placeholder="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" required>
                     <button class="btn btn--search">
                         <?xml version="1.0" encoding="iso-8859-1"?>
                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"

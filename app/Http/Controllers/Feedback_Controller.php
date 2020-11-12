@@ -14,7 +14,7 @@ class Feedback_Controller extends Controller
      */
     public function index()
     {
-        //
+        return view('forms.feedback');
     }
 
     /**
@@ -35,7 +35,8 @@ class Feedback_Controller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        var_dump($request->first);
+        return;
     }
 
     /**
