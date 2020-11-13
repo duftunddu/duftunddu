@@ -79,9 +79,18 @@ class Search_Queries_Controller extends Controller
             //page wasn't refreshed
                 $location = Location::firstWhere('ip_to', '>', ip2long(request()->ip()));
 
-                DB::transaction(function () use ($request, $location) {
+                $agent = new Agent();
+
+                DB::transaction(function () use ($request, $location, $agent) {
                     $new = new Search_Queries();
                     $new->query = $request->searchbox;
+                    $new->device              = $agent->device();
+                    $new->platform            = $agent->platform();
+                    $new->browser             = $agent->browser();
+                    $new->version             = $agent->version($agent->browser());
+                    $new->desktop             = $agent->isDesktop();
+                    $new->phone               = $agent->isPhone();
+                    $new->tablet              = $agent->isTablet();
 
                     if (Auth::check()) {
                         if(request()->user()->hasRole('user')){

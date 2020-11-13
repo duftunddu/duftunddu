@@ -25,6 +25,8 @@ class AlterFragranceProfileTableMakeNameNullable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('fragrance_profile', function (Blueprint $table) {
+            $table->string('name',40)->change();
+        });
     }
 }

@@ -58,7 +58,6 @@ class Ingredient_Controller extends Controller
     */
   public function store(Request $request)
   {
-  
     $validatedData = $request->validate([
       'accord_id' => 'required',
       'name'      => 'required|unique:ingredient',

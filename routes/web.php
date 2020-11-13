@@ -15,18 +15,17 @@ Route::get('search_engine', 'Search_Queries_Controller@index')->name('search');
 Route::get('search_results', 'Search_Queries_Controller@store');
 // Route::post('search_results', 'Search_Queries_Controller@store');
 
-Route::get('feedback', 'Feedback_Controller@index');
-Route::post('feedback', 'Feedback_Controller@store');
+Route::get('feedback', 'Feedback_Form_Controller@index');
+Route::post('feedback', 'Feedback_Form_Controller@store');
+
+Route::get('report', 'Feedback_Comment_Controller@index');
+Route::post('report', 'Feedback_Comment_Controller@store');
 
 // Route::get('/', 'Controller@landing_page');
 
 Route::get('/', function () {
     return view('forms.welcome');
 });
-   
-// Route::get('m', function () {
-//     return view('forms.welcome_m');
-// });
 
 Route::get('about_us', function () {
     return view('forms.about_us');

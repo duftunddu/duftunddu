@@ -9,7 +9,9 @@
 <link href="{{ asset('css/feedback_slider.css') }}" rel="stylesheet">
 
 @section('content')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" defer></script>
+{{-- JQuery for Ajax And Feedback Slider --}}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" ></script> --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js" defer>
 </script>
@@ -17,7 +19,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-10">
-            <form method="POST" action="{{ url('feedback')}}">
+            <form method="POST" action="{{ url('feedback')}}" onsubmit="extract_values_helper()">
                 @csrf
 
                 <div class="center small-caps">
@@ -39,9 +41,9 @@
                                         </svg>
                                     </div>
                                 </div>
-                                <div class="text">
+                                <div class="text" name="ui_js" id="ui_js">
                                     <span>User Interface</span>
-                                    <strong id="first" name="first">-</strong>
+                                    <strong>-</strong>
                                 </div>
                             </div>
                         </div>
@@ -56,7 +58,7 @@
                                         </svg>
                                     </div>
                                 </div>
-                                <div class="text">
+                                <div class="text" name="function_js" id="function_js">
                                     <span>Functionality</span>
                                     <strong id="first" name="first">-</strong>
                                 </div>
@@ -78,9 +80,9 @@
                                         </svg>
                                     </div>
                                 </div>
-                                <div class="text">
+                                <div class="text" id="recommend_js" name="recommend_js">
                                     <span>How likey are you to recommend it to a friend?</span>
-                                    <strong id="first" name="first">-</strong>
+                                    <strong>-</strong>
                                 </div>
                             </div>
                         </div>
@@ -88,14 +90,18 @@
                     </div>
 
                 </div>
-
+                
+                <input type="hidden" name="ui" id="ui" value="">
+                <input type="hidden" name="function" id="function" value="">
+                <input type="hidden" name="recommend" id="recommend" value="">
+                
                 {{-- Button: Submit --}}
                 <div class="center">
                     <button type="submit" class="custom">
                         <span class="before">{{_('Submit')}}</span>
                         <span class="after">{{_('Submit')}}</span>
                     </button>
-                </div>
+                </div><br>
 
             </form>
         </div>
@@ -104,21 +110,20 @@
 
 <script src="{{ asset('js/feedback_slider.js') }}" defer></script>
 
-{{-- Suitability --}}
-{{-- <script>
-    function handleSuitability(Suitability) {
-        var weights = {!! json_encode($weights) !!};
-        $.ajax({
-           type:'POST',
-           url:'/affecting_factors_data',
-        //    data:{"_token": "{{ csrf_token() }}", value: Suitability.value, type: "Suitability"},
-data:{"_token": "{{ csrf_token() }}", value: Suitability.value, type: "Suitability", weights: weights},
-success:function(data){
-alert(data);
-}
-});
-}
-</script> --}}
+<script>
+    function extract_values_helper() {
+        // ui
+        var first = $("#ui_js").find("strong").html();
+        document.getElementById("ui").value = first;
 
+        // function
+        var first = $("#function_js").find("strong").html();
+        document.getElementById("function").value = first;
+
+        // function
+        var first = $("#recommend_js").find("strong").html();
+        document.getElementById("recommend").value = first;
+    }
+</script>
 
 @endsection

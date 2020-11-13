@@ -52,6 +52,7 @@
           <a href="feedback">Feedback</a>
           <a href="privacy_policy">Privacy Policy</a>
           <a href="terms_and_conditions">Terms of Use</a>
+          <a href="report">Report</a>
         
         </div>
     </div>
@@ -61,7 +62,7 @@
   {{-- Footer: Last Row --}}
   <div class="footer-last">
 
-      <div class="footer-year">Duft Und Du 2020</div>
+      <div class="footer-year">Duft Und Du Pvt. Ltd.</div>
       
       <div class="social-media">
 
@@ -80,7 +81,7 @@
       </div>
 
       <div class="policy">
-          <a href="#" >Terms of Use</a>
+          <a href="terms_and_conditions" >Terms of Use</a>
       </div>
 
   </div>

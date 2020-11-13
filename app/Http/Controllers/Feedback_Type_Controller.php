@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Feedback;
 use App\Feedback_Type;
 use Illuminate\Http\Request;
 
-class Feedback_Controller extends Controller
+class Feedback_Type_Controller extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,7 @@ class Feedback_Controller extends Controller
      */
     public function index()
     {
-        // 
+        //
     }
 
     /**
@@ -36,16 +35,16 @@ class Feedback_Controller extends Controller
      */
     public function store(Request $request)
     {
-        // 
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Feedback  $feedback
+     * @param  \App\Feedback_Type  $feedback_Type
      * @return \Illuminate\Http\Response
      */
-    public function show(Feedback $feedback)
+    public function show(Feedback_Type $feedback_Type)
     {
         //
     }
@@ -53,10 +52,10 @@ class Feedback_Controller extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Feedback  $feedback
+     * @param  \App\Feedback_Type  $feedback_Type
      * @return \Illuminate\Http\Response
      */
-    public function edit(Feedback $feedback)
+    public function edit(Feedback_Type $feedback_Type)
     {
         //
     }
@@ -65,10 +64,10 @@ class Feedback_Controller extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Feedback  $feedback
+     * @param  \App\Feedback_Type  $feedback_Type
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Feedback $feedback)
+    public function update(Request $request, Feedback_Type $feedback_Type)
     {
         //
     }
@@ -76,10 +75,10 @@ class Feedback_Controller extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Feedback  $feedback
+     * @param  \App\Feedback_Type  $feedback_Type
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Feedback $feedback)
+    public function destroy(Feedback_Type $feedback_Type)
     {
         //
     }
