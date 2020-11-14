@@ -78,16 +78,17 @@
     
     <!-- __________________________ SECTIONS ___________________________ --> 
     
-    <h4>PURCHASE, ORDERING, & RETURNS</h4>
+    <h4>Factors Affecting Fragrance</h4>
     
     <div>
       <input type="checkbox" id="question11" name="q"  class="questions">
       <div class="plus">+</div>
       <label for="question11" class="question">
-       What is the "S&L" price?
+       What are factors affecting fragrance?
       </label>
       <div class="answers">
-        <p>S&L means school/library.  Our school/library prices reflect a 30% discount off list prices.
+        <p>Factors affecting fragrance are the factors Longevity, Suitability and Sustainability
+          which are displayed on the fragrances. These factors are calculated using personal data provided by user.   
         </p>
         
       </div>
@@ -97,25 +98,10 @@
       <input type="checkbox" id="question12" name="q" class="questions">
       <div class="plus">+</div>
       <label for="question12" class="question">
-    How do I order Cavendish Square Materials?
+    What is Longevity?
       </label>
       <div class="answers">
-        <p>You can order Cavendish Square Products by mail, toll-free fax or telephone, and online through our cart or quick order portals.</p>
-        <p>
-          
-          By mail, please submit your order form (from a catalog, brochure, or PDF) or purchase order to:</p>
-        <p>
-          Cavendish Square<br />
-          243 5th Avenue, Suite 136<br />
-          New York, NY 10016<br />
-          Attention: Customer Service</p>
-        <p>
-          Place an order anytime through our toll-free fax at 1-877-980-4454. Please fax the order form or purchase order; be sure to include the billing and shipping addresses, item ISBNs, titles, quantity, price, shipping/handling, and tax (if applicable). Please include any special instructions or library processing requests.</p>
-        <p>
-          Please feel free to order toll-free via telephone between 9 AM and 5 PM, Eastern Standard Time, Monday through Friday at 1-877-980-4450.</p>
-        <p>
-         To order online, please select items for your cart and proceed to Checkout, or you can input ISBNs directly to create a quick order here.
-        </p>
+        <p>Longevity tells how long the fragrance lasts, it is based on oil concentration of fragrances.</p>
     
       </div>
     </div>
@@ -124,17 +110,11 @@
       <input type="checkbox" id="question13" name="q" class="questions">
       <div class="plus">+</div>
       <label for="question13" class="question">
-    How do I redeem coupons/discounts/online purchase bonuses?
+    What is Suitability?
       </label>
       <div class="answers">
-        <p>Cavendish Square is happy to redeem all coupons, price-reduction offers, online purchase bonuses, and special discounts. Please include any coupons or offers with mailed or faxed orders.</p>
-        <p>
-          
-          When placing your online order please follow instructions for coupon and bonus redemption. For any price-reduction offers and special discounts, please include these details within the comment section of the purchase portal.</p>
-        <p>
-          
-          You can also contact Customer Service at 1-877-980-4450 between 9 AM and 5 PM, EST, Monday through Friday to redeem offers.
-        </p>
+        <p>Suitability is the degree to which a fragrance is suitable in the season.</p>
+        
       </div>
     </div>
     <!-- _____________________________________________________ -->  
@@ -142,10 +122,12 @@
       <input type="checkbox" id="question14" name="q" class="questions">
       <div class="plus">+</div>
       <label for="question14" class="question">
-    How long will it take for me to receive my order once it has been placed?
+    What is Sustainability?
       </label>
       <div class="answers">
-        <p>Our standard shipping time is 7 to 10 business days from the receipt of your purchase order for in-stock items. If your order requires expedited delivery, please call Customer Service at 1-877-980-4450. </p>
+        <p>Sustainability is the degree to which the fragrance is affected by heat.</p>
+        <p>Heat volatilizes essences faster.</p>
+        <p>This is given separately for indoor wearers..</p>
         
       </div>
     </div>

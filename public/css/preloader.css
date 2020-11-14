@@ -51,7 +51,8 @@ html {
 
 /* Texto cargando */
 .ctn-preloader .animation-preloader .txt-loading {
-    font: bold 5em 'Montserrat', sans-serif;
+    /* font: bold 5em 'Montserrat', sans-serif; */
+    font: 300 5em 'Montserrat', sans-serif;
     text-align: center;
     user-select: none;
 }
@@ -165,7 +166,8 @@ html {
 
     /* Texto cargando */
     .ctn-preloader .animation-preloader .txt-loading {
-        font: bold 3.5em 'Montserrat', sans-serif;
+        /* font: bold 3.5em 'Montserrat', sans-serif; */
+        font: 300 3.5em 'Montserrat', sans-serif;
     }
 }
 
@@ -180,7 +182,8 @@ html {
 
     /* Texto cargando */
     .ctn-preloader .animation-preloader .txt-loading {
-        font: bold 2em 'Montserrat', sans-serif;
+        /* font: bold 2em 'Montserrat', sans-serif; */
+        font: 300 2em 'Montserrat', sans-serif;
     }
 }
 

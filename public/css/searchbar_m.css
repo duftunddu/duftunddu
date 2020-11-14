@@ -41,7 +41,8 @@ main {
 .search__feedback {
     position: absolute;
     left: 11.5vw;
-    bottom: 0.6vw;
+    /* bottom: 0.6vh; */
+    bottom: 0.2vh;
     font-weight: bold;
     text-transform: lowercase;
     display: flex;
@@ -57,8 +58,8 @@ main {
 .btn {
     margin: 0;
     padding: 0;
-    top: -0.3vw;
-    right: 7vw;
+    top: -0.1vh;
+    right: 7.5vw;
     cursor: pointer;
     border: none;
     background: none;

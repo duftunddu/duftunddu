@@ -3,6 +3,7 @@
 :root {
     /* --body-font: 'Marcellus', sans-serif; */
     --body-color: #b3b3b3;
+    /* --body-color: #fff; */
     --border-color: #efefef;
     --main-color: black;
     /* --body-font: 'Manrope', sans-serif; */
@@ -89,14 +90,14 @@ body {
 }
 
 .social-media a {
-    border: 0.14vh solid var(--border-color);
-    border-radius: 50%;
-    color: var(--body-color);
-    padding: 1.14vh;
+    /* border: 0.14vh solid var(--border-color); */
+    /* border-radius: 50%; */
+    /* color: var(--body-color); */
+    /* padding: 1.14vh; */
     flex-shrink: 0;
     width: 5.1vh;
     height: 5.1vh;
-    margin-right: 4vh;
+    /* margin-right: 4vh; */
 }
 
 .sleek-border {
@@ -161,14 +162,14 @@ body {
     }
 
     .social-media a {
-        border: 0.14vh solid var(--border-color);
-        border-radius: 50%;
-        color: var(--body-color);
-        padding: 2vh;
+        /* border: 0.14vh solid var(--border-color); */
+        /* border-radius: 50%; */
+        /* color: var(--body-color); */
+        /* padding: 2vh; */
         flex-shrink: 0;
         width: 5.1vh;
         height: 5.1vh;
-        margin-right: 2vh;
+        /* margin-right: 2vh; */
         margin-bottom: 0.9vh;
         padding-bottom: 5vh;
     }

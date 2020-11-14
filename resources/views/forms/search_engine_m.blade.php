@@ -4,7 +4,7 @@
 <link href="{{ asset('css/searchbar_m.css') }}" rel="stylesheet">
 <script src="{{ asset('js/searchbar.js') }}" defer></script>
 
-{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script> --}}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js" defer></script>
 
     <head>
@@ -118,6 +118,8 @@
                 font-weight: bold;
                 width:70vw;
                 letter-spacing:1.2px;
+                line-height: 7vw;
+                /* height: 6.5vw; */
             }
             
             /* .links > a { */

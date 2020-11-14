@@ -10,13 +10,9 @@
   {{-- Style --}}
   <style>
     .footer, .footer-last{
-      background-color: #FFFAFF;
-      /* position:relative; */
+      /* background-color: #FFFAFF; */
       color: black;
       font-family: 'Marcellus', serif;
-      /* font-weight: 200; */
-      /* height: 100vh; */
-      /* margin: 0; */
     }
 
     svg{
