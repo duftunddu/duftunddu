@@ -35,6 +35,7 @@ body {
     text-decoration: none !important;
 }
 
+
 .top-padding {
     padding-top: 6rem !important;
     /* margin-top: 3rem !important; */
@@ -50,6 +51,20 @@ body {
     background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 650, from(#101820FF), to(#fff));
 }
 
+/* body{
+    font-family: 'Poppins', sans-serif;
+	font-size: 16px;
+	line-height: 24px;
+	font-weight: 400;
+	color: #212112;
+	background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat-back.svg');
+	background-position: center;
+	background-repeat: repeat;
+	background-size: 7%;
+	background-color: #fff;
+	overflow-x: hidden;
+    transition: all 200ms linear;
+} */
 ::selection {
     color: #fff;
     background-color: #8167a9;
@@ -111,15 +126,17 @@ body {
     transition: all 0.3s ease-out;
 }
 
-/* .navbar-toggler {
-	float: right;
-	border: none;
-	padding-right: 0;
+.navbar-toggler {
+    float: right;
+    border: none;
+    padding-right: 0;
 }
+
 .navbar-toggler:active,
 .navbar-toggler:focus {
-	outline: none;
-}*/
+    outline: none;
+}
+
 .navbar-light .navbar-toggler-icon {
     width: 24px;
     height: 17px;
@@ -158,7 +175,7 @@ body {
     border-color: transparent;
 }
 
-*/ .nav-link {
+.nav-link {
     color: #212121 !important;
     opacity: 1;
     font-weight: 500;
@@ -551,13 +568,11 @@ body.hero-anime #switch {
     background-color: rgba(129, 103, 169, .6);
 }
 
+
 /* #Media
 ================================================== */
 
 @media (max-width: 767px) {
-    /* @media (min-width: 1000px) { */
-
-    /* @media (max-width: 1000px) and (min-width: 100px) { */
     .sleek-borders {
         margin-bottom: inherit;
         display: block;
