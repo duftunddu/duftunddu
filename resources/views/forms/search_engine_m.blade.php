@@ -11,6 +11,7 @@
         
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico" />
 
         <title>{{('Search Engine - Duft Und Du')}}</title>
 
@@ -144,7 +145,7 @@
     
     <body>
         
-        @include('layouts.preloader')
+        @include('layouts.preloader_for_phone_search')
         
         @include('layouts.header')
 
@@ -196,7 +197,7 @@
 
     </body>
 
-    <script>
+    {{-- <script>
         window.addEventListener('DOMContentLoaded', function() {
             setTimeout(function(){
                 $(".background").css("filter","blur(5px)");
@@ -205,6 +206,6 @@
 				},1000);
             }, 1000);
         });
-    </script>
+    </script> --}}
 
 </html>

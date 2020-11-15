@@ -21,12 +21,31 @@
             position: absolute;
             left: 68%;
         }
+        @media (max-width: 480px) {
+            .accordion-title-button{
+                position: absolute;
+                left: 55%;
+                
+            }
+            h4{
+                font-size: 1.3rem !important;
+            }
+            .small-btn{
+                /* width: 9rem; */
+                /* height: 5rem; */
+                font-size: 1rem !important;
+            }
+        }
+
         .margin-border{
             margin: 25px;
             text-align: justify;
         }
         .red-color{
             color: #f7527c;
+        }
+        .purple-color{
+            color: #8167a9;
         }
 
         h4{
@@ -68,6 +87,18 @@
             transition-delay: 800ms;
         }
 
+        p{
+            opacity: 1;
+            transform: translate(0);
+            transition: all 250ms linear;
+            transition-delay: 900ms;
+        }
+        body.hero-anime p{
+            opacity: 0;
+            transform: translateY(12px);
+            transition-delay: 900ms;
+        }
+
         small{
             opacity: 1;
             transform: translate(0);
@@ -89,7 +120,8 @@
     <link href="{{ asset('css/custom_button.css') }}" rel="stylesheet">
 
     {{-- Accordion --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </head>
 
@@ -135,6 +167,11 @@
                                         <a href="/fragrance/{{$fragrance->id}}">{{$fragrance->name}}</a>
                                         <br>
                                     @endforeach
+
+                                    {{-- @foreach($user_fragrances as $fragrance)
+                                        <a href="/fragrance/{{$fragrance->id}}">{{$fragrance->name}}</a>
+                                        <br>
+                                    @endforeach --}}
                                 </h4>
                             </div>
                         </div>
@@ -169,21 +206,30 @@
 
                     {{-- Empty Dashboard --}}
                     @else
+                        {{-- <div class="form-group row"> --}}
+                            {{-- <div class="col-md-5"> --}}
+                                {{-- <h4>{{_('This place looks empty.')}}</h4> --}}
+                            {{-- </div> --}}
+                        {{-- </div> --}}
+                        
                         <div class="form-group row">
-                            <div class="col-md-5">
-                                <h4>{{_('This place looks empty.')}}</h4>
+                            <div class="margin-border purple-color">
+                                <h5>Your Factors Affecting Fragrance are available.</h5>
+                                <h5>You can see Longevity, Suitability and Sustainability with fragrances 
+                                on  Search Engine.</h5>
                             </div>
                         </div>
-                        
+
                         {{-- <br> --}}
 
                         {{--  Button: Add Fragrance --}}
                         <div class="form-group row">
                             <div class="margin-border">
-                                <h5 class="red-color">{{_('Function under development. Your input will help the development.')}}</h5>
-                                <h5>{{_('Function: Fragrance Recommendations by Genie based on your preferences.')}}</h5>
-                                <h5>{{_('You can tell us what you think about the fragrances you have used by clicking the "Add Fragrance" button.')}}</h5>
-                                <h5>{{_('And this will speed up the development process.')}}</h5>
+                                <h5 class="red-color">Function under development. Your input will help the development.</h5>
+                                <h5>Function: Fragrance Recommendations by Genie based on your preferences.</h5>
+                                <h5>You can tell us what you think about the fragrances you have used by clicking the "Add Fragrance" button.</h5>
+                                <h5>And this will speed up the development process.</h5>
+                                <p>For more information, see <a href="/faq">FAQ</a>.</p>
                             </div>
                         </div>
                         <div class="form-group row mb-0">
@@ -200,7 +246,7 @@
                     
                     {{-- Add Profile - Button --}}
                     {{-- Only appears if there are no Profiles --}}
-                    @if(empty($profiles) && empty($empty_profiles) )
+                    @if( $profiles->isEmpty() )
 
                         <div class="form-group row mb-0">
                             <div class="center">        
@@ -219,46 +265,12 @@
             <br><br>
 
             {{-- Card: Profiles --}}
-            @if(!empty($profiles) || !empty($empty_profiles) )
+            @if( $profiles->isNotEmpty() )
+    
             <div class="card">
                 <div class="card-header">{{_('Other Profiles')}}</div>
                 
-                {{-- Empty Profiles --}}
-                @if ( !empty($empty_profiles) )
-                    @foreach($empty_profiles as $profile)
-                    
-                    {{-- Accordion --}}
-                    <div id="accordion" class="accordion">
-                        
-                        {{-- Head --}}
-                        <div class="as-accordion-head">
-
-                            <span id="as-accordion-close" class="as-accordion-close" aria-hidden="true"><h2>&times;</h2></span>
-                            
-                            <span class="as-accordion-title">
-                                <h4> {{_($profile->detail)}} </h4>
-                            </span>
-
-                            {{--  Button: Add Fragrance --}}
-                            <span>
-                                <div class="accordion-title-button">
-                                    <button type="button" class="btn btn-outline-dark" onclick="window.location='{{ url('/genie_input/' . $profile->id) }}'">
-                                        {{ __('Add Fragrance') }}
-                                    </button>
-                                </div>
-                            </span>
-
-                        </div>
-
-                    </div>
-
-                    @endforeach
-
-                    <br>
-                @endif
-
-                {{-- Profiles with Fragrances --}}
-                @if ( !empty($profiles) )
+                {{-- Profiles --}}
                     @foreach($profiles as $profile)
                     
                     {{-- Accordion --}}
@@ -270,13 +282,13 @@
                             <span id="as-accordion-close" class="as-accordion-close" aria-hidden="true"><h2>&times;</h2></span>
                             
                             <span class="as-accordion-title">
-                                <h4> {{_($profile[0]->detail)}} </h4>
+                                <h4> {{_($profile[0]->p_name)}} </h4>
                             </span>
 
                             {{--  Button: Add Fragrance --}}
                             <span>
                                 <div class = "accordion-title-button">
-                                    <button type="button" class="btn btn-outline-dark" onclick="window.location='{{ url('/genie_input/' . $profile[0]->profile_id) }}'">
+                                    <button type="button" class="btn btn-outline-dark small-btn" onclick="window.location='{{ url('/genie_input/' . $profile[0]->profile_id) }}'">
                                         {{ __('Add Fragrance') }}
                                     </button>
                                 </div>
@@ -284,17 +296,20 @@
 
                         </div>
                         
+                        {{-- No Body of Accordion if no Fragrances --}}
+                        @if(!empty($profile[0]->f_name))
+                        
                         {{-- Body --}}
                         <div class="as-accordion-collapse" id="collapseExample">
                             <div class="">
 
-                                {{-- Profile Fragrances --}}                            
-                                @foreach ($profile as $fragrance)                            
+                                {{-- Profile Fragrances --}}        
+                                @foreach ($profile as $fragrance)
                                     <div class="form-group row">
                                         
                                         <div class="col-md-5">
                                             <h5>
-                                                {{_($fragrance->name)}}
+                                                {{_($fragrance->f_name)}}
                                             </h5>
                                         </div>
 
@@ -309,13 +324,13 @@
 
                             </div>
                         </div>
+                        @endif
 
                     </div>
 
                     @endforeach
 
                     <br>
-                @endif
 
                 {{-- Button: Add Profile --}}
                 <div class="form-group row mb-0">

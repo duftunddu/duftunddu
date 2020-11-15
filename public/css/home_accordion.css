@@ -48,14 +48,16 @@ h3,
     /* justify-content: space-between; */
     justify-content: normal;
     align-items: center;
-    color: inherit;
+    /* color: inherit; */
+    color: #8167a9;
     /* width: 100%; */
     padding: 40px 0;
     cursor: pointer;
 }
 
 .as-accordion-head:hover {
-    color: #0070c9;
+    /* color: #0070c9; */
+    color: rgba(129, 103, 169, .6);
 }
 
 .as-accordion-title {
@@ -81,6 +83,9 @@ h3,
 }
 
 .as-accordion-collapse {
+    margin-top: 1rem;
+    margin-bottom: -1rem;
+    margin-left: -1.5rem;
     display: none;
-    padding-bottom: 40px;
+    /* padding-bottom: 40px; */
 }

@@ -325,6 +325,7 @@ class Fragrance_Controller extends Controller
 
     // For Brand Ambassadors
     $allow_edit = FALSE;
+
     if (Auth::check()) {
       $logged_in = TRUE;
       // If the user is Brand Ambassdor. And if the BA is of this brand.
@@ -333,6 +334,7 @@ class Fragrance_Controller extends Controller
         if($ambassador->brand_id == $fragrance->brand_id){
           $allow_edit = TRUE;
         }
+      }
 
         // If user, then calculate fragrance suitability, sustainability and longevity
         if(request()->user()->hasRole(['user', 'genie_user', 'premium_user'])){
@@ -565,8 +567,6 @@ class Fragrance_Controller extends Controller
 
           $weights =  json_encode($weights);
         }
-      }
-
     }
     else{
       // $logged_in = FALSE;
@@ -578,7 +578,6 @@ class Fragrance_Controller extends Controller
         'type'              => $type,
         'accords'           => $accords,
         'notes'             => $notes,
-        // 'logged_in'         => $logged_in,
         'allow_edit'        => $allow_edit,
         'longevity'         => $longevity,
         'suitability'       => $suitability,

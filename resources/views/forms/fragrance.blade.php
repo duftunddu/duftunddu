@@ -216,8 +216,9 @@
 
                                 @endauth
                                 @guest
-                                    <h4 class="color-red">You are missing out on Factors Affecting Fragrance:</h4>
-                                    <h4 class="color-red"><a href="/login">Log In</a> and find out if <span class="color-highlight-purple">{{ __($fragrance->name)}}</span> will suit you.</h4>
+                                    <h4 class="color-red">You are missing out on Factors Affecting Fragrance Wearability</h4>
+                                    <h4 class="color-red"><a href="/login">Log In</a> / <a href="/register">Sign Up</a> to see if <span class="color-highlight-purple">{{ __($fragrance->name)}}</span> will suit you.</h4>
+                                    <p>For more info, visit <a href="/faq">FAQ</a>.</p>
                                 @endguest
 
                             </div>
