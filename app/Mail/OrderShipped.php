@@ -14,7 +14,7 @@ class OrderShipped extends Mailable
     /**
      * The order instance.
      *
-     * @var Order
+    //  * @var Order
      */
     // protected $order;
 

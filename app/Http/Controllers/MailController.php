@@ -41,7 +41,7 @@ class MailController extends Controller
     // var_dump($request->name);
     //     return;
 
-        Mail::to($request->user())->send();
+        Mail::to($request->user())->send(new OrderShipped());
 
         return redirect()->back();
     }
