@@ -3,9 +3,14 @@
 namespace App\Http\Controllers;
 
 use Mail;
+use App\Mail\Mailer;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
+use App\Mail\OrderShipped;
+// use App\Order;
+// use Illuminate\Support\Facades\Mail;
 
 class MailController extends Controller
 {
@@ -33,8 +38,9 @@ class MailController extends Controller
 
         // Ship order...
         // echo "somthing";
-        // return;
-        
+    // var_dump($request->name);
+    //     return;
+
         Mail::to($request->user())->send();
 
         return redirect()->back();
