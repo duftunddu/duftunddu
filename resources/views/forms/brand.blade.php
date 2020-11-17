@@ -60,7 +60,7 @@
                             <h4>Tier: {{$tier->name}}</h4><br>
                             <h4>Origin: {{$origin->country_name}}</h4><br>
 
-                            <h4>Available in:</h4>
+                            <h4>Outlets Available in:</h4>
                             @foreach($countries as $country)
                                 <h5>{{$country->country_name}}</h5>     
                             @endforeach

@@ -1,65 +1,66 @@
 .noselect {
-  -webkit-touch-callout: none;
+    -webkit-touch-callout: none;
     -webkit-user-select: none;
-     -khtml-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none;
-		-webkit-tap-highlight-color: transparent;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 button.custom {
-	width: 150px;
-	height: 50px;
-	cursor: pointer;
-	background: none;
-	border: none;
+    width: 150px;
+    height: 50px;
+    cursor: pointer;
+    background: none;
+    border: none;
 }
 
-button.custom .before, button.custom .after {
-	/* content: 'Hover!'; */
-	letter-spacing: 4px;
-	font-size: 15px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	transform: translateY(-50%);
-	position: absolute;
-	z-index: 1;
-	width: 150px;
-	height: 50px;
-	transition: 500ms;
+button.custom .before,
+button.custom .after {
+    /* content: 'Hover!'; */
+    letter-spacing: 4px;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-50%);
+    position: fixed;
+    z-index: 1;
+    width: 150px;
+    height: 50px;
+    transition: 500ms;
 }
 
 button.custom .before {
-	overflow: hidden;
+    overflow: hidden;
     background: #101820FF;
-	color: rgba(255,255,255,0.9);
+    color: rgba(255, 255, 255, 0.9);
 }
 
 button.custom .after {
-	width: 0px;
-	overflow: hidden;
-	/* border-bottom: 2px solid rgba(0,0,0,0.9);
+    width: 0px;
+    overflow: hidden;
+    /* border-bottom: 2px solid rgba(0,0,0,0.9);
 	border-top: 2px solid rgba(0,0,0,0.9); */
-	border-bottom: 2px solid #101820FF;
-	border-top: 2px solid #101820FF;
-	transform: translateY(-50%) translateX(75px);
-	color: #101820FF;
-	font-weight: bold;
-	/* background: rgba(255,255,255,0); */
+    border-bottom: 2px solid #101820FF;
+    border-top: 2px solid #101820FF;
+    transform: translateY(-50%) translateX(75px);
+    color: #101820FF;
+    font-weight: bold;
+    /* background: rgba(255,255,255,0); */
 }
 
 button.custom:hover .before {
-	width: 0px;
-	transform: translateY(-50%) translateX(75px);
+    width: 0px;
+    transform: translateY(-50%) translateX(75px);
 }
 
 button.custom:hover .after {
-	width: 150px;
-	transform: translateY(-50%) translateX(0px);
+    width: 150px;
+    transform: translateY(-50%) translateX(0px);
 }
 
 button.custom:focus {
-	outline: none;
-}	
+    outline: none;
+}

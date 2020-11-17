@@ -90,8 +90,9 @@
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="request_brand_view">Request a Brand</a>
                                         <a class="dropdown-item" href="request_feature_view">Request a Feature</a>
-                                        <a class="dropdown-item" href="#">Feedback</a>
-                                        <a class="dropdown-item" href="#">Contact</a>
+                                        <a class="dropdown-item" href="feedback">Feedback</a>
+                                        <a class="dropdown-item" href="report">Report</a>
+                                        {{-- <a class="dropdown-item" href="#">Contact</a> --}}
                                     </div>
                                 </li>
 
@@ -178,19 +179,5 @@
     <div class="top-padding"></div>
 
 </body>
-
-<!-- Link to page
-	================================================== -->
-
-{{-- <a href="https://front.codes/" class="logo" target="_blank">
-		<img src="https://assets.codepen.io/1462889/fcy.png" alt="">
-	</a> --}}
-
-{{-- </body> --}}
-{{-- Sleek Border Line --}}
-{{-- <div>
-		<span class="sleek-border"></span>
-	</div>
---}}
 
 <script src="{{ asset('js/header.js') }}"></script>

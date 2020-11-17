@@ -222,16 +222,18 @@
 
                         {{-- <br> --}}
 
-                        {{--  Button: Add Fragrance --}}
                         <div class="form-group row">
                             <div class="margin-border">
                                 <h5 class="red-color">Function under development. Your input will help the development.</h5>
                                 <h5>Function: Fragrance Recommendations by Genie based on your preferences.</h5>
                                 <h5>You can tell us what you think about the fragrances you have used by clicking the "Add Fragrance" button.</h5>
+                                <h5>You can also create profiles for people you want to gift a fragrance by clicking "Add Profile" button and telling us which fragrances they have used.</h5>
                                 <h5>And this will speed up the development process.</h5>
                                 <p>For more information, see <a href="/faq">FAQ</a>.</p>
                             </div>
                         </div>
+
+                        {{--  Button: Add Fragrance --}}
                         <div class="form-group row mb-0">
                             <div class="center">
                                 <button type="button" class="btn btn-outline-dark" onclick="window.location='{{ url('/genie_input/' . $user_profile->id) }}'">

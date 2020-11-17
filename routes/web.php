@@ -52,10 +52,6 @@ Route::get('brand_ambassador_proposal', function () {
     return view('brand_ambassador.proposal');
 });
 
-Route::get('feature_slider_brand_ambassador', function () {
-    return view('forms.feature_slider_brand_ambassador');
-});
-
 Route::get('brands', 'Fragrance_Brand_Controller@all_brands');
 Route::get('brand/{id}', 'Fragrance_Brand_Controller@show');
 
@@ -147,6 +143,9 @@ Route::middleware(['role:brand_ambassador|premium_brand_ambassador|admin'])->gro
 
 // admin
 Route::middleware(['role:admin'])->group(function () {
+
+    Route::get('/send_mail', 'MailController@send_mail_index');
+    Route::post('/send_mail', 'MailController@send_mail');
 
     Route::get('/request_brand_panel', 'Admin_Controller@request_brand_status');
     Route::get('/request_brand_panel/{brand_name}/{new_status}', 'Admin_Controller@request_brand_status_change');

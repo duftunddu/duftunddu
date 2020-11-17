@@ -18,6 +18,7 @@
         <script src="{{ asset('js/scroll_down_button.js') }}" defer></script> --}}
 
         <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" defer>
         <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
         
@@ -46,16 +47,11 @@
                 background-size: cover;
                 background-repeat: no-repeat;
                 background-position: top right;
-                /* background-attachment: fixed; */
-                /* background-position: -2000px -3450px; */
-                /* background-size: 50%; */
 
                 display: flex;
                 align-items: left;
                 justify-content: left;
                 text-align: center;
-                /* padding-top: 7.73vw; */
-                /* padding-left: 10.1vw; */
                 padding-left: 7.0rem;
             }
             .flex-1-center .heading{
@@ -121,19 +117,14 @@
 
             .flex-3-center {
                 background-color: #FEFFFEEE;
-                /* font-size: 1.4vw; */
                 font-size: 1.156rem;
                 align-items: left;
                 display: flex;
                 justify-content: left;
-                /* padding-left: 1vw; */
                 padding-left: 0.83rem;
             }
             .headings  {
-                /* font-weight: 100 !important; */
-                /* color: #89163f !important; */
                 color: #f7527c !important;
-
             }
 
             .position-ref {
@@ -152,11 +143,9 @@
             }
 
             .title {
-                /* font-size: 6.0vw; */
                 font-size: 4.96rem;
                 letter-spacing: 1px;
                 font-family: 'Cinzel', serif;
-                /* background:rgba(255,255,255,0.1);  */
             }
 
             .heading{
@@ -166,43 +155,37 @@
             }
 
             h1, h2 {
-                /* letter-spacing: 0.2vw; */
                 letter-spacing: 3px;
             }
 
             p{
-                /* font-size: 2vw; */
                 font-size: 1.65rem;
                 font-weight: bold;
-                /* letter-spacing: 0.06vw; */
                 letter-spacing: 1px;
             }
 
             .like-links, 
             .links > a {
-                /* padding: 0 1.88vw; */
-                /* font-size: 0.98vw; */
                 font-size: 0.81rem;
                 font-weight: 300;
-                /* letter-spacing: 0.12vw; */
                 letter-spacing: 2px;
-                text-decoration: none;
+                text-decoration: underline;
                 text-transform: uppercase;
                 color: #f7527c;
-                /* color: #89163f; */
-                /* color:#905969; */
+            }
+            .like-links {
+                text-decoration: none;
             }
 
             a:hover {
                 color: #905969 !important;
-                text-decoration: none !important;
             }
 
             .m-b-md {
-                /* margin-bottom: 2.26vw; */
                 margin-bottom: 1.3rem;
             }
 
+            
             @media (max-width: 535px) {
                 .flex-1-center {
                     height: 91%;
@@ -249,8 +232,6 @@
                     padding-left: 4%;
                     padding-top: 12%;
                     padding-bottom:4%;
-                    /* display: flex; */
-                    /* padding-top: 7.73vw; */
                 }
                 .flex-2-heading{
                     font-size: 1.7rem;
@@ -280,10 +261,8 @@
                 }
 
                 p{
-                    /* font-size: 2vw; */
                     font-size: 1.65rem;
                     font-weight: bold;
-                    /* letter-spacing: 0.06vw; */
                     letter-spacing: 1px;
                 }
 
@@ -296,6 +275,13 @@
                     color: #f7527c;
                 }
             }
+
+            @media (max-height: 700px) {
+                .flex-2-body{
+                    font-size: 0.5rem;
+                }   
+            }
+
 
         </style>
 
