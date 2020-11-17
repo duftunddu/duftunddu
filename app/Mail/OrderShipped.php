@@ -35,7 +35,7 @@ class OrderShipped extends Mailable
      */
     public function build()
     {
-        return $this->view('view.hello');
+        return $this->view('emails.hello');
 
         // return $this->from('example@example.com')
                 // ->view('emails.orders.shipped');
