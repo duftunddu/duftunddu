@@ -62,9 +62,7 @@ class Handler extends ExceptionHandler
                     return redirect('/profile');
                 }
             }
-            // else{
-                return redirect()->route('login');
-            // }
+            return redirect()->route('login');
         }
         else if ($exception instanceof \Illuminate\Session\TokenMismatchException) {
             return redirect()->route('login');

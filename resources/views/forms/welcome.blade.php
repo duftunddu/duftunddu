@@ -8,6 +8,8 @@
         
         <title>Duft Und Du | The Fragrance Hub</title>
 
+        <link href="{{ asset('css/welcome.css') }}" rel="stylesheet">
+
         {{-- Typing Effect --}}
         <link href="{{ asset('css/typing_effect.css') }}" rel="stylesheet">
         <script src="{{ asset('js/typing_effect.js') }}" defer></script>
@@ -24,264 +26,6 @@
         
         <!-- Styles -->
         <style>
-
-            html, body {
-                background-color: #fff;
-                /* font-family: 'Nunito', sans-serif; */
-                font-weight: 200;
-                color: #212529;
-                height: 100%;
-                margin: 0;
-                font-size:100%;
-            }
-
-            .full-height {
-                height: 100%;
-            }
-
-            .flex-1-center {
-                height: 86.5%;
-                
-                background-image: url("../images/fragrance_model/laura-chouette-YGuaaoNnv3c-unsplash_desktop_usable_use.jpg");
-                background-image: url("../images/fragrance_model/laura-chouette-YGuaaoNnv3c-unsplash_desktop_usable_use.webp");
-                background-size: cover;
-                background-repeat: no-repeat;
-                background-position: top right;
-
-                display: flex;
-                align-items: left;
-                justify-content: left;
-                text-align: center;
-                padding-left: 7.0rem;
-            }
-            .flex-1-center .heading{
-                /* font-size: 3.2vw; */
-                font-size: 2.64rem;
-                font-weight: 100;
-                font-variant: small-caps;
-                color: #89163f;
-                text-align: center;
-                /* color: #571b34; */
-                /* color: #220e19; */
-            }
-            .flex-1-center h2{
-                /* font-size: 1.9vw; */
-                /* font-size: 25px; */
-                font-size: 1.56rem;
-            }
-            
-
-            .flex-2-left {
-                background-image: url('../images/fragrance_model/laura-chouette-o7BEFNmuDkU-unsplash_desktop_usable_use.jpg');
-                background-image: url('../images/fragrance_model/laura-chouette-o7BEFNmuDkU-unsplash_desktop_usable_use.webp');
-                background-size: cover;
-                background-repeat: no-repeat;
-                /* background-position: center center; */
-                background-attachment: fixed;
-            }
-            .flex-2-placement{
-                text-align: left;
-                align-items: left;
-                justify-content: left;
-                margin-right: 55%;
-                padding-left: 4%;
-                padding-top: 4%;
-                padding-bottom:4%;
-                /* display: flex; */
-                /* padding-top: 7.73vw; */
-            }
-            .flex-2-heading{
-                /* font-size: 2.3vw; */
-                font-size: 1.85rem;
-                font-weight: 100;
-                font-variant: small-caps;
-                color: #89163f;
-                /* color: #571b34; */
-                /* color: #220e19; */
-            }
-            .flex-2-body{
-                /* font-size: 1.4vw; */
-                /* font-size: 1.056rem; */
-                font-size: 1.15rem;
-                font-weight: 100;       
-                color: rgb(255, 250, 255);
-                /* color: #e8e7ec; */
-                /* color: #571b34; */
-                /* color: #2e1524; */
-                /* color: rgb(0, 255, 255);  */
-            }
-            .flex-2-body a{
-                color: #f7527c;
-            }
-
-
-            .flex-3-center {
-                background-color: #FEFFFEEE;
-                font-size: 1.156rem;
-                align-items: left;
-                display: flex;
-                justify-content: left;
-                padding-left: 0.83rem;
-            }
-            .headings  {
-                color: #f7527c !important;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 0.75vw;
-                top: 1.36vw;
-            }
-
-            .content {
-                text-align: center;
-                font-variant: small-caps;
-            }
-
-            .title {
-                font-size: 4.96rem;
-                letter-spacing: 1px;
-                font-family: 'Cinzel', serif;
-            }
-
-            .heading{
-                font-size: 0.9rem;
-                display: flex;
-                justify-content: center;
-            }
-
-            h1, h2 {
-                letter-spacing: 3px;
-            }
-
-            p{
-                font-size: 1.65rem;
-                font-weight: bold;
-                letter-spacing: 1px;
-            }
-
-            .like-links, 
-            .links > a {
-                font-size: 0.81rem;
-                font-weight: 300;
-                letter-spacing: 2px;
-                text-decoration: underline;
-                text-transform: uppercase;
-                color: #f7527c;
-            }
-            .like-links {
-                text-decoration: none;
-            }
-
-            a:hover {
-                color: #905969 !important;
-            }
-
-            .m-b-md {
-                margin-bottom: 1.3rem;
-            }
-
-            
-            @media (max-width: 535px) {
-                .flex-1-center {
-                    height: 91%;
-                    background-image: url("../images/fragrance_model/welcome_page_phone_3.jpg");
-                    background-image: url("../images/fragrance_model/welcome_page_phone_3.webp");
-                    background-size: cover;
-                    background-position: bottom;
-                    background-color: #fafbfb;
-                    margin-top: -1.4rem;
-
-                    display: flex;
-                    align-items: left;
-                    justify-content: left;
-                    text-align: center;
-                    padding-left: 0;
-                    padding: 10px;
-                    padding-bottom: 0;
-                }
-                .flex-1-center .heading{
-                    font-size: 2.25rem;
-                    font-weight: 100;
-                    font-variant: small-caps;
-                    color: #89163f;
-                    text-align: center;
-                }
-                .flex-1-center h2{
-                    font-size: 1.56rem;
-                }
-                
-
-                .flex-2-left {
-                    background-image: url('../images/fragrance_model/laura-chouette-o7BEFNmuDkU-unsplash_desktop_usable_use.jpg');
-                    background-image: url('../images/fragrance_model/laura-chouette-o7BEFNmuDkU-unsplash_desktop_usable_use.webp');
-                    /* background-size: cover; */
-                    background-repeat: no-repeat;
-                    background-attachment: fixed;             
-                    background-position: bottom center;
-                }
-                .flex-2-placement{
-                    text-align: left;
-                    align-items: left;
-                    justify-content: left;
-                    margin-right: 20%;
-                    padding-left: 4%;
-                    padding-top: 12%;
-                    padding-bottom:4%;
-                }
-                .flex-2-heading{
-                    font-size: 1.7rem;
-                }
-                .flex-2-body{
-                    font-size: 1rem;
-                }
-                
-
-                .flex-3-center {
-                    font-size: 1.076rem;
-                    align-items: left;
-                    display: flex;
-                    justify-content: left;
-                    padding-left: 0;
-                }
-
-                .title {
-                    padding-top: 1.5rem;
-                    font-size: 3.4rem;
-                }
-
-                .heading{
-                    /* font-size: 1.1vw; */
-                    font-size: 0.9rem;
-                    text-align: center;
-                }
-
-                p{
-                    font-size: 1.65rem;
-                    font-weight: bold;
-                    letter-spacing: 1px;
-                }
-
-                .links > a {
-                    font-size: 0.81rem;
-                    font-weight: 600;
-                    letter-spacing: 2px;
-                    text-decoration: none;
-                    text-transform: uppercase;
-                    color: #f7527c;
-                }
-            }
-
-            @media (max-height: 700px) {
-                .flex-2-body{
-                    font-size: 0.5rem;
-                }   
-            }
-
 
         </style>
 
@@ -320,13 +64,13 @@
 
                     <h2 class="like-links">{{_('Lets grant your wish to smell good ')}}</h2><br><br>
 
-                    <a href="search_engine"><h2>{{_('Fragrance Search')}}</h2></a><br>
-                    <h2 class="like-links">{{_('Fragrance Genie')}}</h2>
-                    <h2 class="like-links">{{_('Coming Soon')}}</h2>
+                    <a href="search_engine"><h2>{{_('Fragrance Search')}}</h2></a><br><br>
+                    
+                    <h2 class="like-links">Fragrance Genie<br>Coming Soon</h2>
 
                     <br><br>
                     
-                    <h2 class="like-links" style="color: #636b6f">{{_('PREMIUM FEATURES COMING SOON')}}</h2>
+                    <h2 class="like-links grey-color">{{_('PREMIUM FEATURES COMING SOON')}}</h2>
                     
                 </div>
 

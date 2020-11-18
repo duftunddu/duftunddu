@@ -163,7 +163,31 @@
             .m-b-md {
                 margin-bottom: 1.86rem;
             }
+        }
 
+        @media (max-width: 535px) and (max-height: 740px) {
+            .flex-center1 {
+                font-size: 1.0rem;
+            }
+
+            .icon{
+                width: 38px !important;
+                height: 38px !important;
+            }
+            
+            .block{
+                width: 16px !important;
+                height: 16px !important;
+            }
+
+            
+            .title {
+                font-size: 4.8rem;
+            }
+
+            .heading{
+                font-size: 0.95rem !important;
+            }
         }
 
         /* Header Fix */

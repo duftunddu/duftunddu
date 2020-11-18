@@ -111,10 +111,11 @@ class Fragrance_Brand_Controller extends Controller
       $location_id = Location::where('country_name', $request->input('location_id'))->first()->id;
       $availability_id = Location::where('country_name', $request->input('availability'))->first()->id;
       $availabilities_id = [];
-      for ($i = 0; $i < count($request->availabilities); $i++) {
-         $availabilities_id[$i] = Location::where('country_name', $request->input('availabilities')[$i])->first()->id;
+      if ($request->availabilities) {
+         for ($i = 0; $i < count($request->availabilities); $i++) {
+            $availabilities_id[$i] = Location::where('country_name', $request->input('availabilities')[$i])->first()->id;
+         }
       }
-
       DB::transaction(function () use ($request, $normal_name, $location_id, $availability_id, $availabilities_id) {
          
          $new                    = new fragrance_brand();
@@ -134,7 +135,7 @@ class Fragrance_Brand_Controller extends Controller
 
          $new                 = new Fragrance_Brand_Availability();
          $new->brand_id       = $brand_id;
-         $new->location_id    = $availability;
+         $new->location_id    = $availability_id;
 
          $new->save();
 
@@ -144,7 +145,7 @@ class Fragrance_Brand_Controller extends Controller
 
                $new                 = new Fragrance_Brand_Availability();
                $new->brand_id       = $brand_id;
-               $new->location_id    = $availabilities[$i];
+               $new->location_id    = $availabilities_id[$i];
 
                $new->save();
             }
@@ -173,8 +174,10 @@ class Fragrance_Brand_Controller extends Controller
       $location_id = Location::where('country_name', $request->input('location_id'))->first()->id;
       $availability_id = Location::where('country_name', $request->input('availability'))->first()->id;
       $availabilities_id = [];
-      for ($i = 0; $i < count($request->availabilities); $i++) {
-         $availabilities_id[$i] = Location::where('country_name', $request->input('availabilities')[$i])->first()->id;
+      if ($request->availabilities) {
+         for ($i = 0; $i < count($request->availabilities); $i++) {
+            $availabilities_id[$i] = Location::where('country_name', $request->input('availabilities')[$i])->first()->id;
+         }
       }
 
       DB::transaction(function () use ($request, $brand_name, $normal_name, $location_id, $availability_id, $availabilities_id) {

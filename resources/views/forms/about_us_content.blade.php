@@ -44,31 +44,30 @@
             background-size: cover;
             background-repeat: no-repeat; 
             background-position: 42.5% center;
-            background-attachment: fixed;
+            background-attachment: scroll;
         }
         .flex-4-placement{
-            text-align: center;
-            align-items: right;
-            justify-content: right;
             margin-left: 20%;
             margin-right: 3%;
             padding-top: 9%;
         }
         .flex-4-heading{
-            font-size: 5.5vh;
-            font-weight: 100;
-            font-variant: small-caps;
-            color: #89163f;
+            font-size: 2.4rem;
         }
         .flex-4-body{
-            font-size: 3vh;
-            font-weight: 100;
-            color: #e8e7ec;
+            /* font-size: 3vh; */
+            font-size: 1.3rem;
         }
-
     }
-}
 
+    @media (max-width: 535px) and (max-height: 740px) {
+        .flex-4-heading{
+            font-size: 2.2rem;
+        }
+        .flex-4-body{
+            font-size: 1.1rem;
+        }
+    }
 </style>
 
 <div class="flex-4-right position-ref full-height">

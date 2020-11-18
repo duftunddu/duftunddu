@@ -4,7 +4,9 @@
 {{-- Searchbar Scripts --}}
 <link href="{{ asset('css/searchbar.css') }}" rel="stylesheet">
 <script src="{{ asset('js/searchbar.js') }}" defer></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js" defer></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{{ asset('js/TweenMax.min.js') }}" defer></script>
 
     <head>
         

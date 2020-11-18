@@ -106,8 +106,8 @@ let currentVisible = lettersTotal;
 
 // whatever we do, start at [distanceThreshold.max]px from the element and end at [distanceThreshold.min]px from the element.
 const distanceThreshold = { min: 0, max: 200 };
-const distanceThresholdInputOpacity = { min: 0, max: 100 };
-const opacityInterval = { from: 0, to: 1 };
+const distanceThresholdInputOpacity = { min: 0.6, max: 100 };
+const opacityInterval = { from: 0.6, to: 1 };
 
 new Nearby(searchInput, {
     onProgress: (distance) => {
