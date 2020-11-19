@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+<title>Email Verificaiton | Duft Und Du</title>
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">

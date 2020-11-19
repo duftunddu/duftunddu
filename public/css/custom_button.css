@@ -25,7 +25,8 @@ button.custom .after {
     align-items: center;
     justify-content: center;
     transform: translateY(-50%);
-    position: fixed;
+    /* position: fixed; */
+    position: absolute;
     z-index: 1;
     width: 150px;
     height: 50px;

@@ -22,8 +22,6 @@ class Helper
                 'unidecode_string.py',
                 $name
             ], null, [
-                // 'PYTHONHOME' => 'C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.8_3.8.1520.0_x64__qbz5n2kfra8p0',
-                // 'PYTHONPATH' => 'C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.8_3.8.1520.0_x64__qbz5n2kfra8p0;C:\Users\Abdul Samad\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.8_qbz5n2kfra8p0\LocalCache\local-packages\Python38\site-packages',
                 'PYTHONHASHSEED' => 1,
             ]);
         }
@@ -31,7 +29,7 @@ class Helper
         if (App::environment('production')) {
             // The environment is either local OR staging...
             $process = new Process([
-                'C:\Anaconda3\envs\duft_und_du\python.exe',
+                'python3',
                 'unidecode_string.py',
                 $name
             ], null, [

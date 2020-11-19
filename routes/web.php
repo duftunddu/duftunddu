@@ -35,7 +35,7 @@ Route::get('catalog', function () {
     return view('forms.catalog');
 });
 
-Route::get('faq', function () {
+Route::get('/faq', function () {
     return view('forms.faq');
 });
 
@@ -68,9 +68,11 @@ Route::get('request_feature_view', 'Feature_Request_Controller@show');
 
 // Authorized Routes
 Auth::routes();
+Auth::routes(['verify' => true]);
 
 // new_user|user|genie_user|premium_user
-Route::middleware(['role:new_user|user|genie_user|premium_user|admin'])->group(function () {
+// Route::middleware(['role:new_user|user|genie_user|premium_user|admin'],'verified')->group(function () {
+    Route::middleware(['role:new_user|user|genie_user|premium_user|admin'])->group(function () {
     
     Route::get('/home', 'HomeController@index')->name('home');
 
@@ -144,8 +146,10 @@ Route::middleware(['role:brand_ambassador|premium_brand_ambassador|admin'])->gro
 // admin
 Route::middleware(['role:admin'])->group(function () {
 
-    Route::get('/send_mail', 'MailController@send_mail_index');
-    Route::post('/send_mail', 'MailController@send_mail');
+    Route::get('/email_panel', 'Email_Master_Controller@panel');
+    Route::post('/email_template_show', 'Email_Master_Controller@template_show');
+    Route::get('/email_template_show', 'Email_Master_Controller@template_show');
+    Route::post('/email_send', 'Email_Master_Controller@send');
 
     Route::get('/request_brand_panel', 'Admin_Controller@request_brand_status');
     Route::get('/request_brand_panel/{brand_name}/{new_status}', 'Admin_Controller@request_brand_status_change');

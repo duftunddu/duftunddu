@@ -33,9 +33,19 @@ class OrderShipped extends Mailable
      *
      * @return $this
      */
-    public function build()
+    public function build(Request $request)
     {
-        return $this->view('emails.hello');
+        // return (new App\Mail\OrderShipped($request))->render();
+        // return $this->view('emails.hello');
+
+        // return $this->from('example@example.com')
+        // ->markdown('emails.hello');
+
+        // return $this->from('example@example.com')
+        //         ->markdown('emails.hello');
+
+        // return $this->from($request->address_from)
+        // ->markdown('emails.order_shipped');
 
         // return $this->from('example@example.com')
                 // ->view('emails.orders.shipped');

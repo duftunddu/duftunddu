@@ -5,6 +5,11 @@
 /* #Primary
 ================================================== */
 
+html,
+body {
+    min-height: 100%;
+}
+
 body {
     font-family: 'Marcellus', sans-serif;
     /* z-index: 999; */
@@ -237,7 +242,7 @@ body {
 }
 
 .full-height {
-    height: 100vh;
+    height: 100%;
 }
 
 .over-hide {

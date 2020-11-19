@@ -41,7 +41,7 @@ class Fragrance_Brand_Controller extends Controller
       //    ->orderBy('country_name', 'asc')
       //    ->get()
       //    ->skip(1);
-      $countries = DB::table('Country_And_City')
+      $countries = DB::table('country_and_city')
          ->select('country_name')
          ->distinct()
          ->get();
@@ -64,12 +64,18 @@ class Fragrance_Brand_Controller extends Controller
       }
 
       $tiers     =  Brand_Tier::all();
-      $countries = DB::table('location')
-         ->select('country_name')
-         ->distinct('country_name')
-         ->orderBy('country_name', 'asc')
-         ->get()
-         ->skip(1);
+
+      $countries = DB::table('country_and_city')
+      ->select('country_name')
+      ->distinct()
+      ->get();
+
+      // $countries = DB::table('location')
+      //    ->select('country_name')
+      //    ->distinct('country_name')
+      //    ->orderBy('country_name', 'asc')
+      //    ->get()
+      //    ->skip(1);
       
       return view('brand_ambassador.brand_entry',[
           'ambassador_id'   =>    $ambassador->id,
