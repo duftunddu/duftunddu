@@ -48,7 +48,8 @@
                 align-items: right;
                 display: flex;
                 justify-content: right;
-                top: 5.0vw;
+                /* top: 5.0vw; */
+                top: 4.13rem;
                 padding-left: 55%;
             }
             #search-input{

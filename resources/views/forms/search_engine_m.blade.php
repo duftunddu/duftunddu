@@ -25,11 +25,12 @@
             html, body {
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
-                font-size: 3vw;
+                font-size: 100%;
                 color: #212529;
                 height: 100%;
-                /* height: 100vh; */
+                /* font-size: 3vw; */
                 margin: 0;
+                margin-top: -2.0rem;
             }
 
             .full-height {
@@ -67,6 +68,7 @@
                 align-items: center;
                 display: flex;
                 justify-content: center;
+                /* top: 5.0vw; */
                 /* margin-top: -30%; */
                 /* padding-top: 15vh; */
                 /* padding-top: 15vh; */

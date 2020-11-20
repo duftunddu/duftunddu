@@ -56,15 +56,18 @@ main {
 }
 
 .btn {
+    position: absolute;
+    display: flex;
     margin: 0;
     padding: 0;
-    top: -0.1vh;
-    right: 7.5vw;
+    /* top: -0.1vh; */
+    top: -1vh;
+    /* right: 7.5vw; */
+    right: 7.0vw;
     cursor: pointer;
     border: none;
     background: none;
     font-size: 1.2vw;
-    position: absolute;
     z-index: 10;
     color: #333;
 }

@@ -3,7 +3,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   {{-- Links --}}
-  <link href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap" rel="stylesheet">
+  {{-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> --}}
+  {{-- <link href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap" rel="stylesheet"> --}}
 
   <link href="{{ asset('css/footer.css') }}" rel="stylesheet">
   
@@ -58,8 +59,14 @@
   {{-- Footer: Last Row --}}
   <div class="footer-last">
 
-      <div class="footer-year">Duft Und Du Pvt. Ltd.</div>
+      {{-- <div class="footer-year">© 2020 date('Y')Duft Und Du Pvt. Ltd. All rights reserved.</div> --}}
+      <div class="footer-year"><?php
+      echo "Duft Und Du © " . date("Y") . " <br>All Rights Reserved";
+      ?></div>
+ 
+      {{-- echo "© 2020-" . date("Y") . " Duft Und Du Pvt. Ltd. All rights reserved."; --}}
       
+
       <div class="social-media">
 
         <a href="https://www.facebook.com/duftunddu">

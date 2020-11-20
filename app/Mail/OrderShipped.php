@@ -44,8 +44,8 @@ class OrderShipped extends Mailable
         // return $this->from('example@example.com')
         //         ->markdown('emails.hello');
 
-        // return $this->from($request->address_from)
-        // ->markdown('emails.order_shipped');
+        return $this->from($request->address_from)
+        ->markdown('emails.order_shipped');
 
         // return $this->from('example@example.com')
                 // ->view('emails.orders.shipped');

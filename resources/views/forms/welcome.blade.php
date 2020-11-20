@@ -24,10 +24,10 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" defer>
         <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
         
-        <!-- Styles -->
+        {{-- <!-- Styles -->
         <style>
 
-        </style>
+        </style> --}}
 
     </head>
 

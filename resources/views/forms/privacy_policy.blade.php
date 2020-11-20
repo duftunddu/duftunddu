@@ -53,7 +53,7 @@
             <div class="flex-4-placement">
                 
                 <br>
-                <h1>Terms And Conditions</h1>
+                <h1>Privacy Policy</h1>
 
                 <div class="flex-4-heading">
                     1. Information Collection and Use
@@ -140,7 +140,7 @@
                     <br>&emsp;&emsp;&emsp;&emsp;o	Report complains, suggestions.
                     <br>&emsp;&emsp;&emsp;&emsp;o	Clarification of Policy.
                     <br>&emsp;&emsp;•	Channels of Communication:
-                    <br>&emsp;&emsp;&emsp;&emsp;o	Email: duftunddu@outlook.com 
+                    <br>&emsp;&emsp;&emsp;&emsp;o	Email: customer-support@duftunddu.com 
                 </div>
 
             </div>

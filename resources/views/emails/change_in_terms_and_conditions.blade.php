@@ -1,17 +1,14 @@
-<title>Change In Terms & Conditions</title>
+@component('mail::message')
 
-<h1>Duft Und Du</h1>
+# Change In Terms & Conditions
 
-<h2>Change In Terms & Conditions</h2>
+We have made changes to our Terms & Conditions, which will take place after a week.
+No need to worry, the only parts affected by it are:<br>
+>1.
+>2.
+>3.
 
-Hi,
-<br><br>
-We are making a change to our Terms & Conditions, which will take place after a week.
-<br><br>
-Best Regards,
-<br>
-Duft Und Du.
-
-@component('mail::panel')
-This is the panel content.
+Best Regards,<br>
+{{ config('app.name') }}
 @endcomponent
+

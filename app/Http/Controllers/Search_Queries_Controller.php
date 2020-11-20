@@ -29,6 +29,9 @@ class Search_Queries_Controller extends Controller
         if($agent->isDesktop()){
             return view('forms.search_engine');
         }
+        // else if($agent->isTablet()){
+        //     return view('forms.search_engine');
+        // }
         else{
             $random = random_int(-1, 1);
             return view('forms.search_engine_m',[

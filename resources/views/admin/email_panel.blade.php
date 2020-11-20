@@ -12,14 +12,14 @@
         <div class="col-md-8">
             <form method="POST" id="email_template_show" target="_blank" action="{{ url('/email_template_show')}}">
                 @csrf
-                <input type="hidden" id="email_template" name="email_template" value="" />
+                <input type="hidden" id="email_template" name="email_template" value=""/>
 
             </form>
             <form method="POST" id="email_send" action="{{ url('/email_send')}}">
                 @csrf
 
                 <div class="card">
-                    <div class="card-header">{{ __('Send Email')}}</div>
+                    <div class="card-header">{{ __('Email PAnel')}}</div>
 
                     <div class="card-body">
 
@@ -37,6 +37,7 @@
                                         Name --
                                     </option>
                                     <option value="hello">Hello</option>
+                                    <option value="newsletter">Newsletter</option>
                                     <option value="change_in_terms_and_conditions">Change In Terms & Conditions</option>
                                     <option value="order_shipped">Order Shipped</option>
                                 </select>
@@ -54,7 +55,7 @@
                         <div class="form-group row">
                             <label for="email_template_show"
                                 class="col-md-4 col-from-label text-md-right">{{ __('Show Email Template:')}}</label>
-                            
+
                             <div class="col-md-6">
                                 <button type="submit" form="email_template_show" class="btn btn-outline-dark">
                                     {{ __('Show') }}
@@ -70,12 +71,13 @@
                             <div class="col-md-6">
 
                                 <select id="address_from" type="text"
-                                    class="form-control @error('address_from') is-invalid @enderror"
-                                    name="address_from" onblur="blurFunction()" required>
+                                    class="form-control @error('address_from') is-invalid @enderror" name="address_from"
+                                    onblur="blurFunction()" required>
                                     <option value="" selected="selected" disabled="disabled">-- Select Sender Address --
                                     </option>
                                     <option value="haise@duftunddu.com">Haise</option>
                                     <option value="customer_support@duftunddu.com">Customer Support</option>
+                                    <option value="test-no-reply@duftunddu.com">Test</option>
                                     <option value="newsletter@duftunddu.com">Newsletter</option>
                                     <option value="ceo-no-reply@duftunddu.com">CEO</option>
                                 </select>
@@ -89,7 +91,7 @@
                             </div>
                         </div>
 
-                        {{-- Address To --}}
+                        {{-- Address To Primary --}}
                         <div class="form-group row">
                             <label for="address_to"
                                 class="col-md-4 col-from-label text-md-right">{{ __('Send To:')}}</label>
@@ -97,12 +99,12 @@
                             <div class="col-md-6">
 
                                 <select id="address_to" type="text"
-                                    class="form-control @error('address_to') is-invalid @enderror"
-                                    name="address_to" required form="email_send" onblur="blurFunction()">
+                                    class="form-control @error('address_to') is-invalid @enderror" name="address_to"
+                                    required form="email_send" onblur="blurFunction()">
                                     <option value="" selected="selected" disabled="disabled">-- Select Receiver Address
                                         Name --
                                     </option>
-                                    <option value="newsletter_users">Users Subscribed To Newsletter </option>
+                                    <option value="newsletter">Subscribed To Newsletter</option>
                                     <option value="all_users">All Users</option>
                                     {{-- <option value="all_users">All Users</option> --}}
                                 </select>
@@ -116,25 +118,39 @@
                             </div>
                         </div>
 
-                        
+                        {{-- Address To Secondary --}}
+                        <div class="form-group row">
+                            <label for="address_to_sec" class="col-md-4 col-from-label text-md-right">{{ __('Address To Secondary:')}}</label>
+
+                            <div class="col-md-6">
+                                <input id="address_to_sec" type="text" class="form-control @error('address_to_sec') is-invalid @enderror" name="address_to_sec">
+
+                                @error('address_to_sec')
+                                <span class="invalid-feeback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
                         {{-- <div class="demo" id="demo" name="demo">
                         </div> --}}
 
                     </div><br>
-                
+
                     {{-- Button: Submit --}}
-                <div class="form-group row mb-0">
-                    <div class="col-md-6 offset-md-4">
-                        <button type="submit" form="email_send" class="custom">
-                            <span class="before">{{_('Submit')}}</span>
-                            <span class="after">{{_('Submit')}}</span>
-                        </button>
-                    </div>
-                </div><br>
+                    <div class="form-group row mb-0">
+                        <div class="col-md-6 offset-md-4">
+                            <button type="submit" form="email_send" class="custom">
+                                <span class="before">{{_('Submit')}}</span>
+                                <span class="after">{{_('Submit')}}</span>
+                            </button>
+                        </div>
+                    </div><br>
 
                 </div>
 
-                
+
             </form>
         </div>
     </div>

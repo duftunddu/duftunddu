@@ -254,7 +254,7 @@
     What are your customer services?
       </label>
       <div class="answers">
-        <p>Our Customer Service Representatives are outstanding individuals who understand the importance of knowing you. You can send your queries at duftunddu@outlook.com.</p>
+        <p>Our Customer Service Representatives are outstanding individuals who understand the importance of knowing you. You can send your queries at customer-support@duftunddu.com.</p>
 
       </div>
     </div>
@@ -266,7 +266,7 @@
     May I submit a question for FAQ?
       </label>
       <div class="answers">
-        We would like your Duft Und Du experience to be as user-friendly as possible, please feel free to submit a FAQ on duftunddu@outlook.com for inclusion in this section.
+        We would like your Duft Und Du experience to be as user-friendly as possible, please feel free to submit a FAQ on customer-support@duftunddu.com for inclusion in this section.
       </div>
     </div>
     <!-- _____________________________________________________ -->  
@@ -295,7 +295,7 @@
     What if I lose my username/password or I cannot log into my account?
       </label>
       <div class="answers">
-        <p>If you have entered the correct username/password and you’re still unable to log in, please contact Customer Support on duftunddu@outlook.com. Otherwise, you can reset your password through our reset portal.</p>
+        <p>If you have entered the correct username/password and you’re still unable to log in, please contact Customer Support on customer-support@duftunddu.com. Otherwise, you can reset your password through our reset portal.</p>
         
       </div>
     </div>
@@ -307,7 +307,7 @@
     Who do I contact with feedback regarding this site?
       </label>
       <div class="answers">
-        <p>All comments are welcome. Please submit your feedback <a href="feedback">here</a>, your suggestions and comments on duftunddu@outlook.com, and reports <a href="report">here</a>.</p>
+        <p>All comments are welcome. Please submit your feedback <a href="feedback">here</a>, your suggestions and comments on customer-support@duftunddu.com, and reports <a href="report">here</a>.</p>
         <p>To read our privacy policy, please click <a href="privacy_policy">here</a>.</p>
         
       </div>
