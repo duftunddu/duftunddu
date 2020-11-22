@@ -121,7 +121,7 @@
                                         @hasrole('admin')
                                             <a class="dropdown-item" href="/admin_links">Admin Links</a>
                                         @endhasrole
-                                        <a class="dropdown-item" href="/home">Dashboard</a>
+                                        <a class="dropdown-item" href="{{ url('home')}}">Dashboard</a>
                                         <a class="dropdown-item" href="#">Premium</a>
 
                                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
