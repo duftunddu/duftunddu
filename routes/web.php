@@ -67,12 +67,13 @@ Route::get('request_feature_view', 'Feature_Request_Controller@show');
 
 
 // Authorized Routes
-Auth::routes();
+// Auth::routes();
 Auth::routes(['verify' => true]);
 
 // new_user|user|genie_user|premium_user
 // Route::middleware(['role:new_user|user|genie_user|premium_user|admin'],'verified')->group(function () {
-    Route::middleware(['role:new_user|user|genie_user|premium_user|admin'])->group(function () {
+    Route::middleware(['role:new_user|user|genie_user|premium_user|admin','verified'])->group(function () {
+    // Route::middleware(['role:new_user|user|genie_user|premium_user|admin'])->group(function () {
     
     Route::get('/home', 'HomeController@index')->name('home');
 

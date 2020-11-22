@@ -25,9 +25,9 @@ class Helper
                 'PYTHONHASHSEED' => 1,
             ]);
         }
-        
-        if (App::environment('production')) {
-            // The environment is either local OR staging...
+        else{
+            // if (App::environment('production')) {
+            // The environment is not local ...
             $process = new Process([
                 'python3',
                 'unidecode_string.py',

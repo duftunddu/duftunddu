@@ -30,7 +30,8 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::PROFILE;
+    // protected $redirectTo = RouteServiceProvider::PROFILE;
+    protected $redirectTo = RouteServiceProvider::VERIFYEMAIL;
 
     /**
      * Create a new controller instance.
@@ -71,6 +72,7 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
+        // $user->sendEmailVerificationNotification();
         $user->assignRole('new_user');
 
         return $user;
