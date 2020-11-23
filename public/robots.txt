@@ -1,2 +1,17 @@
+# Notice: Collection of data on Duft Und Du through automated means is
+# prohibited unless you have express written permission from Duft UnD Du
+# and may only be conducted for the limited purpose contained in said
+# permission.
+# Contact customer-support@duftunddu.com
+
 User-agent: *
-Disallow:
+Allow: /search_engine
+Allow: /brand_ambassador_proposal
+Disallow: /
+Disallow: /password/
+Disallow: /password/reset
+Noindex: /password/
+Noindex: /password/reset
+Disallow: /database/
+Disallow: /scripts/
+Sitemap: http://www.duftunddu.com/sitemap.xml

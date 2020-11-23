@@ -4,6 +4,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="The Fragrance Hub. Get Personalized Fragrance Insights.">
         <link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico" />
         
         <title>Duft Und Du | The Fragrance Hub</title>
