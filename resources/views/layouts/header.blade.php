@@ -1,10 +1,3 @@
-{{-- <title>Header</title> --}}
-
-{{-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" defer></script> --}}
-{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" defer></script> --}}
-
-{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script> --}}
-
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" defer>
 
@@ -21,8 +14,7 @@
                 <div class="col-12">
                     <nav class="navbar navbar-expand-md navbar-light">
 
-                        {{-- <a class="navbar-brand" href="/" ><img src="https://assets.codepen.io/1462889/fcy.png" alt=""></a> target="_blank" --}}
-                        <a class="navbar-brand" href="/"><img style="float: left;" src="/../images/logo_header.png" alt=""></a> {{-- target="_blank" --}}
+                        <a class="navbar-brand" href="/"><img style="float: left;" src="{{ asset('images/logo_header.png') }}" alt=""></a> {{-- target="_blank" --}}
                         <a class="dnd-name" href="/">Duft Und Du</a>
                         
                         {{-- <button class="navbar-toggler" type="button" data-toggle="collapse"  --}}
@@ -39,9 +31,9 @@
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" 
                                         aria-expanded="false">Home</a>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="/search_engine">Search Engine</a>
-                                        {{-- <a class="dropdown-item" href="catalog">Catalog</a> --}}
-                                        <a class="dropdown-item" href="/about_us">About Us</a>
+                                        <a class="dropdown-item" href="{{ url('/search_engine') }}">Search Engine</a>
+                                        {{-- <a class="dropdown-item" href="{{ url('/catalog') }}">Catalog</a> --}}
+                                        <a class="dropdown-item" href="{{ url('/about_us') }}">About Us</a>
                                     </div>
                                 </li>
 
@@ -52,19 +44,19 @@
 
                                         @unlessrole('new_brand_ambassador|brand_ambassador|premium_brand_ambassador')
                                         {{-- If not roles --}}
-                                        <a class="dropdown-item" href="/brand_ambassador_proposal">Join Us</a>
-                                        <a class="dropdown-item" href="/brand_ambassador_proposal">Advertise</a>
+                                        <a class="dropdown-item" href="{{ url('/brand_ambassador_proposal') }}">Join Us</a>
+                                        <a class="dropdown-item" href="{{ url('/brand_ambassador_proposal') }}">Advertise</a>
                                         {{-- Redirect to Join Us --}}
                                         @else
                                         {{-- If roles --}}
                                         @unlessrole('new_brand_ambassador')
                                         {{-- If not new_brand_ambassador  --}}
-                                        <a class="dropdown-item" href="/ambassador_home">Dashboard</a>
-                                        <a class="dropdown-item" href="/brand_ambassador_proposal">Advertise</a>
+                                        <a class="dropdown-item" href="{{ url('/ambassador_home') }}">Dashboard</a>
+                                        <a class="dropdown-item" href="{{ url('/brand_ambassador_proposal') }}">Advertise</a>
                                         @else
                                         {{-- If new_brand_ambassador  --}}
-                                        <a class="dropdown-item" href="/brand_entry">Add Brand</a>
-                                        <a class="dropdown-item" href="/application_status">Application Status</a>
+                                        <a class="dropdown-item" href="{{ url('/brand_entry') }}">Add Brand</a>
+                                        <a class="dropdown-item" href="{{ url('/application_status') }}">Application Status</a>
                                         @endunlessrole
                                         @endunlessrole
                                         <a class="dropdown-item" href="#">Premium Features</a>
@@ -88,10 +80,10 @@
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
                                         aria-haspopup="true" aria-expanded="false">Contact Us</a>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="/request_brand_view">Request a Brand</a>
-                                        <a class="dropdown-item" href="/request_feature_view">Request a Feature</a>
-                                        <a class="dropdown-item" href="/feedback">Feedback</a>
-                                        <a class="dropdown-item" href="/report">Report</a>
+                                        <a class="dropdown-item" href="{{ url('/request_brand_view') }}">Request a Brand</a>
+                                        <a class="dropdown-item" href="{{ url('/request_feature_view') }}">Request a Feature</a>
+                                        <a class="dropdown-item" href="{{ url('/feedback') }}">Feedback</a>
+                                        <a class="dropdown-item" href="{{ url('/report') }}">Report</a>
                                         {{-- <a class="dropdown-item" href="#">Contact</a> --}}
                                     </div>
                                 </li>
@@ -119,9 +111,9 @@
                                     {{-- <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown"> --}}
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                         @hasrole('admin')
-                                            <a class="dropdown-item" href="/admin_links">Admin Links</a>
+                                            <a class="dropdown-item" href="{{ url('/admin_links') }}">Admin Links</a>
                                         @endhasrole
-                                        <a class="dropdown-item" href="{{ url('home')}}">Dashboard</a>
+                                        <a class="dropdown-item" href="{{ url('/home') }}">Dashboard</a>
                                         <a class="dropdown-item" href="#">Premium</a>
 
                                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();

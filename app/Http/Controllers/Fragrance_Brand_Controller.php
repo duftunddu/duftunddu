@@ -35,23 +35,15 @@ class Fragrance_Brand_Controller extends Controller
    public function index()
    {
       $tiers     =  Brand_Tier::all();
-      // $countries = DB::table('location')
-      //    ->select('country_name')
-      //    ->distinct('country_name')
-      //    ->orderBy('country_name', 'asc')
-      //    ->get()
-      //    ->skip(1);
+      
       $countries = DB::table('country_and_city')
          ->select('country_name')
          ->distinct()
          ->get();
 
-      // var_dump($countries);return;
-
       return view('admin.brand_entry',[
          'tiers'        =>    $tiers,
          'countries'    =>    $countries
-         // 'countries'    =>    $cities
       ]);
    }
 
@@ -59,7 +51,7 @@ class Fragrance_Brand_Controller extends Controller
    {
       $ambassador = Brand_Ambassador_Request::where('users_id', request()->user()->id)->first();
 
-      if ($ambassador->status == 2){
+      if ($ambassador->status == 'existing_brand_request'){
          return redirect('application_status');
       }
 
@@ -70,13 +62,6 @@ class Fragrance_Brand_Controller extends Controller
       ->distinct()
       ->get();
 
-      // $countries = DB::table('location')
-      //    ->select('country_name')
-      //    ->distinct('country_name')
-      //    ->orderBy('country_name', 'asc')
-      //    ->get()
-      //    ->skip(1);
-      
       return view('brand_ambassador.brand_entry',[
           'ambassador_id'   =>    $ambassador->id,
           'brand_name'      =>    $ambassador->brand_name,
@@ -218,7 +203,7 @@ class Fragrance_Brand_Controller extends Controller
 
          $ambassador = Brand_Ambassador_Request::where('users_id', request()->user()->id)->first();
          $ambassador->brand_id = $brand_id;
-         $ambassador->status = '2';
+         $ambassador->status = 'existing_brand_request';
          $ambassador->save();
 
       });

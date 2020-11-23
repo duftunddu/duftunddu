@@ -3,15 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use App\Mail\Mailing_Lists;
+// use App\Mail\Mailing_Lists;
 
 use Mail;
+use App\Mailing_Lists;
 use App\Mail\Mailer;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use App\Mail\Newsletter;
 use App\Mail\OrderShipped;
+use App\Mail\Brand_Ambassador_Invite;
 
 use Illuminate\Mail\Markdown;
 use Illuminate\Container\Container;
@@ -51,61 +54,72 @@ class Email_Master_Controller extends Controller
 
     public function send(Request $request)
     {
-        // $order = Order::findOrFail($orderId);
-
-
-        // Mail::to($request->user())->send(new OrderShipped($request));
-        
-        
-        
-        // Fetching Addresses of Receivers
-        if(strcmp($request->address_to, "newsletter") == 0){
-            // $recipients = Mailing_Lists::whereNotNull('users_id');
-            $recipients = Mailing_Lists::whereNotNull('newsletter');
+        // Checking if sending outputs are both filled or both empty, if so, return back.  
+        if ( !( empty($request->address_to_sec) xor empty($request->address_to) ) ){
+            return redirect()->back()->withInput($request->session()->all())->with('warning','No address specified.');
         }
-        else if(strcmp($request->address_to, "all_users") == 0){
-            $recipients = User::all();
-        }
-        
-        
+
+        // Get the template
+        $template = $this->resolve_template($request);
+
+        // Send Mail
         if($request->address_to_sec != NULL){
-            // Mail to All
-            if(strcmp($request->email_template_name, "hello") == 0){
-                foreach ($recipients as $recipient) {
-                    Mail::to($recipient)->send(new Hello($request));
-                }
-            }
-            
-            else if(strcmp($request->email_template_name, "newsletter") == 0){
-                foreach ($recipients as $recipient) {
-                    Mail::to($recipient)->send(new Newsletter($request));
-                }
-            }
-    
-            else if(strcmp($request->email_template_name, "change_in_terms_and_conditions") == 0){
-                foreach ($recipients as $recipient) {
-                    Mail::to($recipient)->send(new ChangeInTermsConditions($request));
-                }
-            }
 
-            else if(strcmp($request->email_template_name, "order_shipped") == 0){
-                foreach ($recipients as $recipient) {
-                    Mail::to($recipient)->send(new OrderShipped($request));
-                }
+            // Send to one address directly
+            Mail::to($request->address_to_sec)->send($template);
+        }
+        else {
+
+            // Get all recepients
+            $recipients = $this->resolve_address($request->address_to);
+
+            foreach ($recipients as $recipient) {
+                Mail::to($recipient)->send($template);
             }
         }
-        else{
-            Mail::to($request->address_to_sec)->send(new Hello($request));
-        }
 
-        // var_dump($request->email_template_name);
-        // var_dump($request->address_to_sec);
-        // var_dump($request->address_from);
-        // var_dump($request->address_to);
-        // User::all();
-        return;
         return redirect()->back();
     }
+
+    public function resolve_address($address_to){
+        
+        // Fetching Addresses of Receivers
+        if(strcmp($address_to, "newsletter") == 0){
+            $recipients = Mailing_Lists::whereNotNull('newsletter');
+        }
+        else if(strcmp($address_to, "all_users") == 0){
+            $recipients = User::all();
+        }
+        else{
+            $recipients = NULL;
+        }
+        return $recipients;
+    }
+
+    public function resolve_template($request){
+
+        // Mail to All
+        if(strcmp($request->email_template_name, "hello") == 0){
+            return new Hello($request);
+        }
+
+        else if(strcmp($request->email_template_name, "brand_ambassador_invite") == 0){
+            return new Brand_Ambassador_Invite($request);
+        }
+
+        else if(strcmp($request->email_template_name, "newsletter") == 0){
+            return new Newsletter($request);
+        }
+        
+        else if(strcmp($request->email_template_name, "change_in_terms_and_conditions") == 0){
+            return new ChangeInTermsConditions($request);
+        }
+        
+        else if(strcmp($request->email_template_name, "order_shipped") == 0){
+            return new OrderShipped($request);
+        }
+    }
+    
     
     // public function basic_email() {
     //     $data = array('name'=>"Virat Gandhi");

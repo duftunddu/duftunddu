@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class Newsletter extends Mailable
+class Brand_Ambassador_Invite extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -28,18 +28,18 @@ class Newsletter extends Mailable
      */
     public function build()
     {
-        // return $this->markdown('emails.newsletter');
+        // return $this->markdown('emails.brand_ambassador_invite');
 
-        $subject = "";
+        $subject = "Invitation to Join Duft Und Du.";
         if($this->request->subject == NULL){
             return $this->from($this->request->address_from)
                 ->subject($subject)
-                ->markdown('emails.newsletter');
+                ->markdown('emails.brand_ambassador_invite');
         }
         else{
             return $this->from($this->request->address_from)
                 ->subject($this->request->subject)
-                ->markdown('emails.newsletter');
+                ->markdown('emails.brand_ambassador_invite');
         }
     }
 }

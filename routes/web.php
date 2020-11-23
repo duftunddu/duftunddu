@@ -71,9 +71,7 @@ Route::get('request_feature_view', 'Feature_Request_Controller@show');
 Auth::routes(['verify' => true]);
 
 // new_user|user|genie_user|premium_user
-// Route::middleware(['role:new_user|user|genie_user|premium_user|admin'],'verified')->group(function () {
-    Route::middleware(['role:new_user|user|genie_user|premium_user|admin','verified'])->group(function () {
-    // Route::middleware(['role:new_user|user|genie_user|premium_user|admin'])->group(function () {
+Route::middleware(['role:new_user|user|genie_user|premium_user|admin', 'verified'])->group(function () {
     
     Route::get('/home', 'HomeController@index')->name('home');
 
@@ -83,7 +81,7 @@ Auth::routes(['verify' => true]);
 });
 
 // user|genie_user|premium_user
-Route::middleware(['role:user|genie_user|premium_user|admin'])->group(function () {
+Route::middleware(['role:user|genie_user|premium_user|admin', 'verified'])->group(function () {
     Route::get('home', 'HomeController@index')
     ->name('home');
     
@@ -103,7 +101,7 @@ Route::middleware(['role:user|genie_user|premium_user|admin'])->group(function (
 });
 
 // user|genie_user|premium_user|candidate_brand_ambassador|admin
-Route::middleware(['role:user|genie_user|premium_user|candidate_brand_ambassador|admin'])->group(function () {
+Route::middleware(['role:user|genie_user|premium_user|candidate_brand_ambassador|admin', 'verified'])->group(function () {
 
     Route::get('brand_ambassador_register', 'Brand_Ambassador_Request_Controller@index');
     Route::post('brand_ambassador_register', 'Brand_Ambassador_Request_Controller@store');
@@ -111,7 +109,7 @@ Route::middleware(['role:user|genie_user|premium_user|candidate_brand_ambassador
 });
 
 // candidate_brand_ambassador|new_brand_ambassador|admin
-Route::middleware(['role:candidate_brand_ambassador|new_brand_ambassador|admin'])->group(function () {
+Route::middleware(['role:candidate_brand_ambassador|new_brand_ambassador|admin', 'verified'])->group(function () {
 
     Route::get('application_status', 'Brand_Ambassador_Request_Controller@application_status');
 
@@ -126,7 +124,7 @@ Route::middleware(['role:new_brand_ambassador|admin'])->group(function () {
 });
 
 // brand_ambassador|premium_brand_ambassador
-Route::middleware(['role:brand_ambassador|premium_brand_ambassador|admin'])->group(function () {
+Route::middleware(['role:brand_ambassador|premium_brand_ambassador|admin', 'verified'])->group(function () {
 
     Route::get('ambassador_home', 'Brand_Ambassador_Controller@index');
 

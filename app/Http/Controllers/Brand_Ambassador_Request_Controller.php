@@ -82,20 +82,35 @@ class Brand_Ambassador_Request_Controller extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-        // 'name'            => 'unique:fragrance_brand',
-        'email_work'      => 'unique:brand_ambassador_request|unique:brand_ambassador_profile',
-        'linkedin'        => 'required|unique:brand_ambassador_request|unique:brand_ambassador_profile',
-        'website'         => 'required',
+            // 'name'            => 'unique:fragrance_brand',
+            'email_work'      => 'nullable|unique:brand_ambassador_request|unique:brand_ambassador_profile',
+            'linkedin'        => 'required|unique:brand_ambassador_request|unique:brand_ambassador_profile',
+            'website'         => 'required',
         ]);
 
         if(empty($request->input('name')) && empty($request->input('brand_id'))){
-            return redirect('brand_ambassador_register');
+            return redirect('brand_ambassador_register')->with('info','You forgot to select/add a brand.');
         }
 
         if(!empty($request->input('name')) && !empty($request->input('brand_id'))){
-            return redirect('brand_ambassador_register');
+            return redirect('brand_ambassador_register')->with('info','Please either select or add a brand.');
         }
 
+        if(request()->user()->hasRole('brand_ambassador')){
+            return redirect('/ambassador_home')->with('info','You are already a Brand Ambassador');
+        }
+
+        // Stopping if there are already three Ambassadors of the chosen brand
+        $brand_ambassador_count =
+        Brand_Ambassador_Profile::where('brand_id', $request->input('brand_id'))->count() 
+        + 
+        Brand_Ambassador_Request::where('brand_id', $request->input('brand_id'))->count();
+
+        if($brand_ambassador_count >= 3){
+            return redirect()->back()->with('info', 'This brand already has 3 Brand Ambassadors. If you think this is incorrect, you can read faq or contact us on customer-support@duftunddu.com');
+        }
+
+        // Storing the request.
         DB::transaction(function () use ($request) {
         
             $new                   = new brand_ambassador_request();
@@ -108,11 +123,11 @@ class Brand_Ambassador_Request_Controller extends Controller
         
             if(empty($request->input('name'))){
             // existing brand
-                $new->status           = '2';
+                $new->status           = 'existing_brand_request';
             }
             else{
             // new brand
-                $new->status           = '0';
+                $new->status           = 'new_brand_request';
             }
 
             $new->save();

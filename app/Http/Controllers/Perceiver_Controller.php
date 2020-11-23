@@ -17,6 +17,9 @@ use Carbon\Carbon;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
+use App\Helper\Helper;
+
 
 class Perceiver_Controller extends Controller
 {
@@ -47,7 +50,14 @@ class Perceiver_Controller extends Controller
     $accords     = Accord::all();
     $ingredients = Ingredient::all();
     $brands      = Fragrance_Brand::all();
-    $fragrances  = Fragrance::all();
+
+    $fragrances = DB::table('fragrance')
+    ->join('fragrance_brand', 'fragrance_brand.id', '=', 'fragrance.brand_id')
+    ->select('fragrance.id as f_id', 'fragrance.name as f_name', 'fragrance_brand.id as b_id', 'fragrance_brand.name as b_name')
+    ->orderBy('f_name')
+    ->get();
+
+    // Helper::var_dump_readable($fragrances);return;
     
     return view('forms.perceiver_fragrance',[
       'accords'       => $accords,
@@ -102,6 +112,15 @@ class Perceiver_Controller extends Controller
       // check account invasion
       if($profile->users_id != request()->user()->id){
         return redirect('home');
+      }
+
+      // Stopping the user from adding two instances of the same fragrance from the same profile 
+      if(
+        Perceiver::where('profile_id', $profile_id)
+        ->where('fragrance_id', $request->input('fragrance_id'))
+        ->exists()
+        ){
+          return redirect()->back()->with('error', 'This profile already has this fragrance.');
       }
 
       // Profile Details

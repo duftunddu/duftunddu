@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 use Jenssegers\Agent\Agent;
 
 use Carbon\Carbon;
+use App\Helper\Helper;
 
 class Controller extends BaseController {
     use AuthorizesRequests,

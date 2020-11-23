@@ -68,21 +68,21 @@ class Brand_Ambassador_Controller extends Controller
                     $j++;
                 }
             }
+            $max = max($week_count);
+            if($max%10 != 0){
+                $yaxis_limit = $max + (10 - $max%10); 
+            }
+            else if ($max == 0){
+                $yaxis_limit = 10;
+            }
+            else{
+                $yaxis_limit = $max;
+            }    
         }
         else{
             $queries = NULL;
             $week_count = NULL;
-        }
-
-        $max = max($week_count);
-        if($max%10 != 0){
-            $yaxis_limit = $max + (10 - $max%10); 
-        }
-        else if ($max == 0){
-            $yaxis_limit = 10;
-        }
-        else{
-            $yaxis_limit = $max;
+            $yaxis_limit = 5;
         }
         
         return view('brand_ambassador.home',[

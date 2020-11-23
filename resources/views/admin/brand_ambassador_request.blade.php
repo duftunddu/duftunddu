@@ -47,13 +47,13 @@
 
                                 @foreach($ambassadors as $ambassador)
 
-                                    @if($ambassador->status == 0)
+                                    @if($ambassador->status == "new_brand_request")
                                         <h4>Candidate</h4>
-                                    @elseif($ambassador->status == 1)
+                                    @elseif($ambassador->status == "new_brand_details_request")
                                         <h4>New, Brand Not Yet Added</h4>                                    
-                                    @elseif($ambassador->status == 2)
+                                    @elseif($ambassador->status == "existing_brand_request")
                                         <h4>New, Brand Added</h4>                                    
-                                    @elseif($ambassador->status == 3)
+                                    @elseif($ambassador->status == "rejected")
                                         <h4>New, Brand Not Yet Added</h4>                                    
                                     @endif
 
@@ -75,26 +75,26 @@
                                     <h4>{{$ambassador->website}}</h4>
                                     <small>Added on {{$ambassador->updated_at->format('d/M/y')}}</small>
 
-                                    @if($ambassador->status == 0)
+                                    @if($ambassador->status == 'new_brand_request')
                                     {{-- New Candidate: Candidate Profile has been filled, is Candidate_Brand Ambassador --}}
                                     {{-- Approve Profile to convert to New_Brand_Ambassador --}}
-                                        <h4><a href="/brand_ambassador_requests/1/{{$ambassador->id}}">Promote to New_Brand_Ambassador</a></h4>
-                                    @elseif($ambassador->status == 1)
+                                        <h4><a href="/brand_ambassador_requests/new_brand_details_request/{{$ambassador->id}}">Promote to New_Brand_Ambassador</a></h4>
+                                    @elseif($ambassador->status == 'new_brand_details_request')
                                     {{-- New Brand: Allow to Add or Select Brand, is New_Brand_Ambassador --}}
-                                        {{-- <h4><a href="/brand_ambassador_requests/2/{{$ambassador->id}}">Approve</a></h4> --}}
+                                        {{-- <h4><a href="/brand_ambassador_requests/existing_brand_request/{{$ambassador->id}}">Approve</a></h4> --}}
                                         <h4>Waiting for them to Pick Brand or to Add one</h4>
-                                    @elseif($ambassador->status == 2)
+                                    @elseif($ambassador->status == 'existing_brand_request')
                                     {{-- New Brand: Brand has been added --}}
                                     {{-- Approve to convert to Brand_Ambassador --}}
                                         <h4><a href="/brand/{{$ambassador->brand_id}}">Check Brand</a></h4>
-                                        <h4><a href="/brand_ambassador_requests/4/{{$ambassador->id}}">Approve</a></h4>
-                                    @elseif($ambassador->status == 3)
+                                        <h4><a href="/brand_ambassador_requests/brand_ambassador/{{$ambassador->id}}">Approve</a></h4>
+                                    @elseif($ambassador->status == 'rejected')
                                     {{-- Rejected: Insufficient Information --}}
                                     {{-- Approve to convert to Brand_Ambassador --}}
-                                        <h4><a href="/brand_ambassador_requests/1/{{$ambassador->id}}">Rejected - Approve</a></h4>
+                                        <h4><a href="/brand_ambassador_requests/new_brand_details_request/{{$ambassador->id}}">Rejected - Approve</a></h4>
                                     @endif
-                                    {{-- <h4><a href="/brand_ambassador_requests/4/{{$ambassador->id}}">Approve</a></h4> --}}
-                                    <h4><a href="/brand_ambassador_requests/3/{{$ambassador->id}}">Reject</a></h4>
+                                    {{-- <h4><a href="/brand_ambassador_requests/brand_ambassador/{{$ambassador->id}}">Approve</a></h4> --}}
+                                    <h4><a href="/brand_ambassador_requests/rejected/{{$ambassador->id}}">Reject</a></h4>
 
                                     <br><br>
 

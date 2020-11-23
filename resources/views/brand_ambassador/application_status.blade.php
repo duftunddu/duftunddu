@@ -24,8 +24,8 @@
 
                 <div class="card-body">
 
-                    {{-- Status = 0 --}}
-                    @if($ambassador->status == 0)
+                    {{-- Status = new_brand_request --}}
+                    @if( strcmp($ambassador->status, "new_brand_request") == 0 )
                     <div class="form-group row">
                         <label for="name" class="col-md-4 col-from-label text-md-right">{{ __('Status:')}}</label>
 
@@ -34,8 +34,8 @@
                         </div>
                     </div>
 
-                    {{-- Status = 1 --}}
-                    @elseif($ambassador->status == 1)
+                    {{-- Status = new_brand_details_request --}}
+                    @elseif( strcmp($ambassador->status, "new_brand_details_request") == 0 )
                     <div class="form-group row">
                         <label for="name" class="col-md-4 col-from-label text-md-right">{{ __('Status:')}}</label>
 
@@ -54,8 +54,8 @@
                     </div>
                     @endhasrole
 
-                    {{-- Status = 2 --}}
-                    @elseif($ambassador->status == 2)
+                    {{-- Status = existing_brand_request --}}
+                    @elseif( strcmp($ambassador->status, "existing_brand_request") == 0 )
                     <div class="form-group row">
                         <label for="name" class="col-md-4 col-from-label text-md-right">{{ __('Status:')}}</label>
 

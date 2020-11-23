@@ -45,7 +45,7 @@ h4 {
     margin: 0px 0;
     height: 0;
     overflow: hidden;
-    z-index: -1;
+    /* z-index: -1; */
     position: relative;
     opacity: 0;
     -webkit-transition: .7s ease;

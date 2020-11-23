@@ -32,11 +32,12 @@
 
                                 <select id="email_template_name" type="text"
                                     class="form-control @error('email_template_name') is-invalid @enderror"
-                                    name="email_template_name" required form="email_send" onblur="blurFunction()">
+                                    name="email_template_name" form="email_send" onblur="blurFunction()" value="{{ old('email_template_name') }}" required>
                                     <option value="" selected="selected" disabled="disabled">-- Select Email Template
                                         Name --
                                     </option>
                                     <option value="hello">Hello</option>
+                                    <option value="brand_ambassador_invite">Brand Ambassador Invite</option>
                                     <option value="newsletter">Newsletter</option>
                                     <option value="change_in_terms_and_conditions">Change In Terms & Conditions</option>
                                     <option value="order_shipped">Order Shipped</option>
@@ -63,6 +64,21 @@
                             </div>
                         </div>
 
+                        {{-- Subject --}}
+                        <div class="form-group row">
+                            <label for="subject" class="col-md-4 col-from-label text-md-right">{{ __('Subject:')}}</label>
+
+                            <div class="col-md-6">
+                                <input id="subject" type="text" class="form-control @error('subject') is-invalid @enderror" name="subject" value="{{ old('subject') }}">
+
+                                @error('subject')
+                                <span class="invalid-feeback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+                        
                         {{-- Address From --}}
                         <div class="form-group row">
                             <label for="address_from"
@@ -72,10 +88,11 @@
 
                                 <select id="address_from" type="text"
                                     class="form-control @error('address_from') is-invalid @enderror" name="address_from"
-                                    onblur="blurFunction()" required>
+                                    onblur="blurFunction()" value="{{ old('address_from') }}" required>
                                     <option value="" selected="selected" disabled="disabled">-- Select Sender Address --
                                     </option>
                                     <option value="haise@duftunddu.com">Haise</option>
+                                    <option value="no-reply@duftunddu.com">No Reply</option>
                                     <option value="customer_support@duftunddu.com">Customer Support</option>
                                     <option value="test-no-reply@duftunddu.com">Test</option>
                                     <option value="newsletter@duftunddu.com">Newsletter</option>
@@ -100,7 +117,7 @@
 
                                 <select id="address_to" type="text"
                                     class="form-control @error('address_to') is-invalid @enderror" name="address_to"
-                                    required form="email_send" onblur="blurFunction()">
+                                    form="email_send" onblur="blurFunction()" value="{{ old('address_to') }}">
                                     <option value="" selected="selected" disabled="disabled">-- Select Receiver Address
                                         Name --
                                     </option>
@@ -123,7 +140,7 @@
                             <label for="address_to_sec" class="col-md-4 col-from-label text-md-right">{{ __('Address To Secondary:')}}</label>
 
                             <div class="col-md-6">
-                                <input id="address_to_sec" type="text" class="form-control @error('address_to_sec') is-invalid @enderror" name="address_to_sec">
+                                <input id="address_to_sec" type="text" class="form-control @error('address_to_sec') is-invalid @enderror" name="address_to_sec" value="{{ old('address_to_sec') }}">
 
                                 @error('address_to_sec')
                                 <span class="invalid-feeback" role="alert">

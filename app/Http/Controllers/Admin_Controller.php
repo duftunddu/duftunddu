@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\DB;
 
 use Carbon\Carbon;
 
+use App\Helper\Helper;
+
 class Admin_Controller extends Controller
 {
     /**
@@ -57,7 +59,7 @@ class Admin_Controller extends Controller
             return redirect('request_feature_user_review');
         }
 
-        if($action == 0){
+        if( strcmp($action, "new_brand_request") == 0 ){
             // Approve
             $feature = Feature_Request_By_User::find($id);
 
@@ -124,10 +126,7 @@ class Admin_Controller extends Controller
     public function brand_ambassador_request()
     {
         $ambassadors = Brand_Ambassador_Request::all()
-        ->where('status', '<' , '4');
-        
-        // var_dump($ambassadors);
-        // return;
+            ->where('status', '!=' , 'brand_ambassador');
 
         return view('admin.brand_ambassador_request',[
             'ambassadors'        => $ambassadors,
@@ -143,14 +142,21 @@ class Admin_Controller extends Controller
         // 3 candidate_brand_ambassador / new_brand_ambassador, is rejected
         // 4 brand_ambassador, allows them to add fragrances, move to profile
 
-        // 0 can change to 1, 3, 4
-        // If they have selected their brand, 0 changes to 2, if new brand then 1
-        // 1 can change to 2, 3, 4
-        // 2 can change to 3, 4
-        // 3 can change to 4
+        // Regarding new_status:
+        // new_brand_request            = candidate_brand_ambassador, is pending
+        // new_brand_details_request    = new_brand_ambassador, allows users to add details of brand
+        // existing_brand_request       = new_brand_ambassador, brand has been added, review it and decide
+        // rejected                     = candidate_brand_ambassador / new_brand_ambassador, is rejected
+        // brand_ambassador             = brand_ambassador, allows them to add fragrances, move to profile
 
-        if ($new_status == 1){
-            // from 0 to 1. 0 to 2 is handled in Brand_Ambassador_Request_Controller
+        // new_brand_request can change to new_brand_details_request, rejected, brand_ambassador
+        // If they have selected their brand, new_brand_request changes to existing_brand_request, if new brand then new_brand_details_request
+        // new_brand_details_request can change to existing_brand_request, rejected, brand_ambassador
+        // existing_brand_request can change to rejected, brand_ambassador
+        // rejected can change to brand_ambassador
+
+        if (strcmp($new_status, "new_brand_details_request") == 0 ){
+            // from new_brand_request to new_brand_details_request. new_brand_request to existing_brand_request is handled in Brand_Ambassador_Request_Controller
             // New Candidate: Candidate Profile has been filled, is Candidate_Brand Ambassador
             // Approve Profile to convert to New_Brand_Ambassador
 
@@ -167,7 +173,7 @@ class Admin_Controller extends Controller
             }
 
         }
-        elseif($new_status == 3){
+        elseif( strcmp($new_status, "rejected") == 0 ){
             // Rejected
             DB::transaction(function () use ($new_status, $ambassador_id) {
                 $ambassador = Brand_Ambassador_Request::find($ambassador_id);
@@ -175,14 +181,18 @@ class Admin_Controller extends Controller
                 $ambassador->save();
             });
         }
-        elseif($new_status == 4){
+        elseif(strcmp($new_status, "brand_ambassador") == 0 ){
             // Converting newly added brand to full fledged Brand
             // And the user to full fledged Brand_Ambassador
 
             // Checking existence of brand. The code ensures the integrity but it's
             // 2AM and I am paranoid
             $ambassador = Brand_Ambassador_Request::find($ambassador_id);
-            $brand = Fragrance_Brand::firstWhere('name', $ambassador->brand_name);
+
+            // $brand = Fragrance_Brand::firstWhere('name', $ambassador->brand_name);
+            $brand = Fragrance_Brand::find($ambassador->brand_id);
+
+            // var_dump($brand);return;
 
             if(empty($brand)){
                 return redirect()->back()->with('error', 'Brand not found.');
@@ -198,11 +208,11 @@ class Admin_Controller extends Controller
                 $new->linkedin      = $ambassador->linkedin;
                 $new->email_work    = $ambassador->email_work;
                 $new->website       = $ambassador->website;
-                $new->status        = '0';
+                $new->status        = 'new_brand_request';
                 
                 $new->save();
 
-                $ambassador->status = '4';
+                $ambassador->status = 'brand_ambassador';
                 $ambassador->save();
             });
 

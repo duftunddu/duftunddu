@@ -78,7 +78,7 @@
     
     <!-- __________________________ SECTIONS ___________________________ --> 
     
-    <h4>Factors Affecting Fragrance</h4>
+    <h4 name="factors" id="factors">Factors Affecting Fragrance</h4>
     
     <div>
       <input type="checkbox" id="question_b1" name="q"  class="questions">
@@ -187,7 +187,7 @@
   
     <!-- __________________________ SECTIONS ___________________________ --> 
   
-    <h4>Feature Requests</h4>
+    <h4 name="feature_requests" id="feature_requests">Feature Requests</h4>
     
     <div>
       <input type="checkbox" id="question_d1" name="q"  class="questions">
@@ -224,10 +224,10 @@
     </div>
     <!-- _____________________________________________________ --> 
     
+    {{-- <div > --}}
     
     <!-- __________________________ SECTIONS ___________________________ --> 
-    
-    <h4>Genie</h4>
+    <h4 name="genie" id="genie">Genie</h4>
     
     <div>
       <input type="checkbox" id="question_e1" name="q"  class="questions">
@@ -240,6 +240,18 @@
         
       </div>
     </div>
+    <div>
+      <input type="checkbox" id="question_e2" name="q"  class="questions">
+      <div class="plus">+</div>
+      <label for="question_e2" class="question">
+    When will the Genie be available?
+      </label>
+      <div class="answers">
+        <p>It will be available shortly. Estimated time is one month. You can help us in development by adding fragrances on user dashboard.</p>
+        
+      </div>
+    </div>
+  
     <!-- _____________________________________________________ --> 
     
     
@@ -254,7 +266,7 @@
     What are your customer services?
       </label>
       <div class="answers">
-        <p>Our Customer Service Representatives are outstanding individuals who understand the importance of knowing you. You can send your queries at customer-support@duftunddu.com.</p>
+        <p>Our Customer Service Representatives are outstanding individuals who understand the importance of knowing you. You can send your queries at <a href="mailto:customer-support@duftunddu.com">customer support</a>.</p>
 
       </div>
     </div>
@@ -266,7 +278,7 @@
     May I submit a question for FAQ?
       </label>
       <div class="answers">
-        We would like your Duft Und Du experience to be as user-friendly as possible, please feel free to submit a FAQ on customer-support@duftunddu.com for inclusion in this section.
+        We would like your Duft Und Du experience to be as user-friendly as possible, please feel free to submit a FAQ on <a href="mailto:customer-support@duftunddu.com">customer support</a> for inclusion in this section.
       </div>
     </div>
     <!-- _____________________________________________________ -->  
@@ -295,7 +307,7 @@
     What if I lose my username/password or I cannot log into my account?
       </label>
       <div class="answers">
-        <p>If you have entered the correct username/password and you’re still unable to log in, please contact Customer Support on customer-support@duftunddu.com. Otherwise, you can reset your password through our reset portal.</p>
+        <p>If you have entered the correct username/password and you’re still unable to log in, please contact Customer Support on <a href="mailto:customer-support@duftunddu.com">customer support</a>. Otherwise, you can reset your password through our reset portal.</p>
         
       </div>
     </div>
@@ -307,8 +319,19 @@
     Who do I contact with feedback regarding this site?
       </label>
       <div class="answers">
-        <p>All comments are welcome. Please submit your feedback <a href="feedback">here</a>, your suggestions and comments on customer-support@duftunddu.com, and reports <a href="report">here</a>.</p>
+        <p>All comments are welcome. Please submit your feedback <a href="feedback">here</a>, your suggestions and comments on <a href="mailto:customer-support@duftunddu.com">customer support</a>, and reports <a href="report">here</a>.</p>
         <p>To read our privacy policy, please click <a href="privacy_policy">here</a>.</p>
+        
+      </div>
+    </div>
+    <div>
+      <input type="checkbox" id="question_g4" name="q" class="questions">
+      <div class="plus">+</div>
+      <label for="question_g4" class="question">
+    My account was terminated. Why?
+      </label>
+      <div class="answers">
+        <p>The system must have detected some suspicious activity, you can contact <a href="mailto:customer-support@duftunddu.com">customer support</a> to resolve the issue.</p>
         
       </div>
     </div>

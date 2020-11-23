@@ -59,7 +59,7 @@
                     1. Introduction
                 </div>
                 <div class="flex-4-body">
-                    &emsp;&emsp;•	These are the general terms of the company <?php echo "Duft Und Du SMC Pvt. Ltd. © " . date("Y") . " All Rights Reserved";?> with seat in Karachi, Pakistan, called Provider in the following clauses.
+                    &emsp;&emsp;•	These are the general terms of the company Duft Und Du SMC Pvt. Ltd. © {{ date('Y') }} All Rights Reserved, with seat in Karachi, Pakistan, called Provider in the following clauses.
                     <br>&emsp;&emsp;•	It's possible to register for the service offered by the Provider. By registering, the General Terms are accepted. A person that is registered, is called a User in the following clauses.
                 </div><br>
 

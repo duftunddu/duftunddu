@@ -30,7 +30,7 @@
                     <div class="card-body">
 
                             {{-- Brand --}}
-                            <div class="form-group row">
+                            {{-- <div class="form-group row">
                                 <label for="brand" class="col-md-4 col-from-label text-md-right">{{ __('Brand Name:')}}</label>
 
                                 <div class="col-md-6">
@@ -48,7 +48,7 @@
                                     </span>
                                     @enderror
                                 </div>
-                            </div>
+                            </div> --}}
 
                             {{-- Fragrance --}}
                             <div class="form-group row">
@@ -59,7 +59,7 @@
                                     <select id="fragrance_id" type="fragrance_id" class="form-control @error('fragrance_id') is-invalid @enderror" name="fragrance_id" value="{{ old('')}}" required>
                                         <option value ="" selected="selected" disabled="disabled">-- Select Fragrance --</option>
                                         @foreach($fragrances as $fragrance)
-                                            <option value="{{$fragrance->id}}">{{$fragrance->name}}</option>
+                                            <option value="{{$fragrance->f_id}}">{{$fragrance->f_name}} by {{$fragrance->b_name}}</option>
                                         @endforeach
                                     </select>
 

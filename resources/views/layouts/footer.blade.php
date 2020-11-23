@@ -58,14 +58,8 @@
 
   {{-- Footer: Last Row --}}
   <div class="footer-last">
-
-      {{-- <div class="footer-year">© 2020 date('Y')Duft Und Du Pvt. Ltd. All rights reserved.</div> --}}
-      <div class="footer-year"><?php
-      echo "Duft Und Du © " . date("Y") . " <br>All Rights Reserved";
-      ?></div>
- 
-      {{-- echo "© 2020-" . date("Y") . " Duft Und Du Pvt. Ltd. All rights reserved."; --}}
-      
+    
+      <div class="footer-year">Duft Und Du © {{ date('Y') }} <br>All Rights Reserved</div>
 
       <div class="social-media">
 

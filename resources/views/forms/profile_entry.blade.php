@@ -4,12 +4,13 @@
 
 @section('content')
 
-{{-- Button --}}
-<link href="{{ asset('css/custom_button.css') }}" rel="stylesheet">
-
 {{-- Range Slider Function --}}
 <link href="{{ asset('css/range_slider_sweat.css') }}" rel="stylesheet">
 <script src="{{ asset('js/range_slider_sweat.js') }}" defer></script>
+
+{{-- Button --}}
+<link href="{{ asset('css/custom_button.css') }}" rel="stylesheet">
+
 
     <div class="container">
         <div class="row justify-content-center">

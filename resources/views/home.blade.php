@@ -217,6 +217,7 @@
                                 <h5>Your Factors Affecting Fragrance are available.</h5>
                                 <h5>You can see Longevity, Suitability and Sustainability with fragrances 
                                 on  Search Engine.</h5>
+                                <p>For more information, see <a href="/faq#factors">FAQ</a>.</p>
                             </div>
                         </div>
 
@@ -229,7 +230,7 @@
                                 <h5>You can tell us what you think about the fragrances you have used by clicking the "Add Fragrance" button.</h5>
                                 <h5>You can also create profiles for people you want to gift a fragrance by clicking "Add Profile" button and telling us which fragrances they have used.</h5>
                                 <h5>And this will speed up the development process.</h5>
-                                <p>For more information, see <a href="/faq">FAQ</a>.</p>
+                                <p>For more information, see <a href="/faq#genie">FAQ</a>.</p>
                             </div>
                         </div>
 
