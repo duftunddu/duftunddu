@@ -16,9 +16,10 @@ class Brand_Ambassador_Invite extends Mailable
      *
      * @return void
      */
-    public function __construct($request)
+    public function __construct($request, $sender_name)
     {
         $this->request = $request;
+        $this->sender_name = $sender_name;
     }
 
     /**
@@ -32,12 +33,12 @@ class Brand_Ambassador_Invite extends Mailable
 
         $subject = "Invitation to Join Duft Und Du.";
         if($this->request->subject == NULL){
-            return $this->from($this->request->address_from)
+            return $this->from($this->request->address_from, $this->sender_name)
                 ->subject($subject)
                 ->markdown('emails.brand_ambassador_invite');
         }
         else{
-            return $this->from($this->request->address_from)
+            return $this->from($this->request->address_from , $this->sender_name)
                 ->subject($this->request->subject)
                 ->markdown('emails.brand_ambassador_invite');
         }

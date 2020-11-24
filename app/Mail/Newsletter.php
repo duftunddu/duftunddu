@@ -16,9 +16,10 @@ class Newsletter extends Mailable
      *
      * @return void
      */
-    public function __construct($request)
+    public function __construct($request, $sender_name)
     {
-        $this->request = $request;
+        $this->request      = $request;
+        $this->sender_name  = $sender_name;
     }
 
     /**
@@ -32,12 +33,12 @@ class Newsletter extends Mailable
 
         $subject = "";
         if($this->request->subject == NULL){
-            return $this->from($this->request->address_from)
+            return $this->from($this->request->address_from, $this->sender_name)
                 ->subject($subject)
                 ->markdown('emails.newsletter');
         }
         else{
-            return $this->from($this->request->address_from)
+            return $this->from($this->request->address_from, $this->sender_name)
                 ->subject($this->request->subject)
                 ->markdown('emails.newsletter');
         }

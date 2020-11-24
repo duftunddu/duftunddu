@@ -19,7 +19,7 @@
                 @csrf
 
                 <div class="card">
-                    <div class="card-header">{{ __('Email PAnel')}}</div>
+                    <div class="card-header">{{ __('Email Panel')}}</div>
 
                     <div class="card-body">
 

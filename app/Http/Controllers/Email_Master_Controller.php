@@ -60,7 +60,11 @@ class Email_Master_Controller extends Controller
         }
 
         // Get the template
-        $template = $this->resolve_template($request);
+        $sender_name = $this->resolve_sender_name($request->address_from);
+        // var_dump($sender_name);return;
+
+        // Get the template
+        $template = $this->resolve_template($request, $sender_name);
 
         // Send Mail
         if($request->address_to_sec != NULL){
@@ -96,30 +100,60 @@ class Email_Master_Controller extends Controller
         return $recipients;
     }
 
-    public function resolve_template($request){
+    public function resolve_template($request, $sender_name){
 
         // Mail to All
         if(strcmp($request->email_template_name, "hello") == 0){
-            return new Hello($request);
+            return new Hello($request, $sender_name);
         }
 
         else if(strcmp($request->email_template_name, "brand_ambassador_invite") == 0){
-            return new Brand_Ambassador_Invite($request);
+            return new Brand_Ambassador_Invite($request, $sender_name);
         }
 
         else if(strcmp($request->email_template_name, "newsletter") == 0){
-            return new Newsletter($request);
+            return new Newsletter($request, $sender_name);
         }
         
         else if(strcmp($request->email_template_name, "change_in_terms_and_conditions") == 0){
-            return new ChangeInTermsConditions($request);
+            return new ChangeInTermsConditions($request, $sender_name);
         }
         
         else if(strcmp($request->email_template_name, "order_shipped") == 0){
-            return new OrderShipped($request);
+            return new OrderShipped($request, $sender_name);
         }
     }
     
+    public function resolve_sender_name($address_from){
+
+        // Address Name
+        if(strcmp($address_from, "haise@duftunddu.com") == 0){
+            return "Haise | Duft Und Du";
+        }
+
+        else if(strcmp($address_from, "no-reply@duftunddu.com") == 0){
+            return "Duft Und Du";
+        }
+
+        else if(strcmp($address_from, "customer_support@duftunddu.com") == 0){
+            return "Customer Support | Duft Und Du";
+        }
+        
+        else if(strcmp($address_from, "test-no-reply@duftunddu.com") == 0){
+            return "Test | Duft Und Du";
+        }
+        
+        else if(strcmp($address_from, "newsletter@duftunddu.com") == 0){
+            return "Newsletter | Duft Und Du";
+        }
+
+        else if(strcmp($address_from, "ceo-no-reply@duftunddu.com") == 0){
+            return "CEO | Duft Und Du";
+        }
+
+        return "Duft Und Du";
+    }
+
     
     // public function basic_email() {
     //     $data = array('name'=>"Virat Gandhi");

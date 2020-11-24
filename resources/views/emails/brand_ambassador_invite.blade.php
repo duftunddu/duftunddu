@@ -8,9 +8,7 @@ Hi! You are receiving this message because people asked for your brand.
 Duft Und Du is an online fragrance portal startup where you can list out your fragrances.
 <br>
 
-{{-- Uncomment this when sending --}}
-{{-- <img src="{{ $message->embed('images/for_emails/ambassador_proposal.png') }}"> --}}
-<img src="{{ asset('images/for_emails/ambassador_proposal.png') }}" alt="Ambassador Proposal">
+<img src="{{ asset('images/for_emails/ambassador_proposal.png') }}" alt="Ambassador Proposal" style="object-fit:contain;">
 
 We conducted a survey to find out favourite brands of people, and your brand was mentioned by many.
 
@@ -29,6 +27,7 @@ We are officially launching on 28/Nov/2020. That should give you ample time to s
 
 If you have any queries, you can mail us at <a href="mailto:customer-support@duftunddu.com">customer-support@duftunddu.com</a>.
 @endcomponent
+
 
 
 Regards,<br>
