@@ -12,7 +12,7 @@ Duft Und Du is an online fragrance portal startup where you can list out your fr
 <img src="{{ $message->embed('images/for_emails/ambassador_proposal.png') }}">
 {{-- <img src="{{ asset('images/for_emails/ambassador_proposal.png') }}" alt="Ambassador Proposal"> --}}
 
-We conducted a survey to find out favourite brands of people of Karachi, and your brand was mentioned by many.
+We conducted a survey to find out favourite brands of people, and your brand was mentioned by many.
 
 
 You can add your fragrances to the portal by assigning a brand ambassador in simple steps mentioned <a href="https://duftunddu.com/brand_ambassador_proposal">here</a>.
