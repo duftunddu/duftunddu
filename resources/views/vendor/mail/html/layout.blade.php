@@ -6,6 +6,13 @@
 </head>
 <body>
 <style>
+@media only screen and (min-width: 800px) {
+img {
+width: 600px !important;
+}
+
+}
+
 @media only screen and (max-width: 600px) {
 .inner-body {
 width: 100% !important;
