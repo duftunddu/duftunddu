@@ -9,8 +9,8 @@ Duft Und Du is an online fragrance portal startup where you can list out your fr
 <br>
 
 {{-- Uncomment this when sending --}}
-<img src="{{ $message->embed('images/for_emails/ambassador_proposal.png') }}">
-{{-- <img src="{{ asset('images/for_emails/ambassador_proposal.png') }}" alt="Ambassador Proposal"> --}}
+{{-- <img src="{{ $message->embed('images/for_emails/ambassador_proposal.png') }}"> --}}
+<img src="{{ asset('images/for_emails/ambassador_proposal.png') }}" alt="Ambassador Proposal">
 
 We conducted a survey to find out favourite brands of people, and your brand was mentioned by many.
 
