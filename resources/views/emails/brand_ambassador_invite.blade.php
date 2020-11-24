@@ -8,7 +8,7 @@ Hi! You are receiving this message because people asked for your brand.
 Duft Und Du is an online fragrance portal startup where you can list out your fragrances.
 <br>
 
-<img src="{{ asset('images/for_emails/ambassador_proposal.png') }}" alt="Ambassador Proposal" style="object-fit:contain; max-width:700px; height:auto;">
+<img src="{{ asset('images/for_emails/ambassador_proposal.png') }}" alt="Ambassador Proposal" style="object-fit:contain; display:block; margin:auto; max-width:500px; height:auto;">
 
 We conducted a survey to find out favourite brands of people, and your brand was mentioned by many.
 
