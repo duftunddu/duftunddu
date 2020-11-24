@@ -77,7 +77,11 @@ p.sub {
 }
 
 img {
-    max-width: 100%;
+    /* max-width: 100%; */
+    display: block;
+    margin: auto;
+    max-width: 500px;
+    height: auto;
 }
 
 /* Layout */
