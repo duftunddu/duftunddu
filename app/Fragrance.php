@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Volosyuk\SimpleEloquent\SimpleEloquent;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property int $id
@@ -22,6 +23,7 @@ use Volosyuk\SimpleEloquent\SimpleEloquent;
 class Fragrance extends Model
 {
     use SimpleEloquent;
+    use SoftDeletes;
     
     /**
      * The table associated with the model.

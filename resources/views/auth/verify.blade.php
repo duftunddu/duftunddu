@@ -17,6 +17,7 @@
                     @endif
 
                     {{ __('Before proceeding, please check your email for a verification link.') }}
+                    {{ __("Don't forget to check your spam/junk folder.") }}
                     {{ __('If you did not receive the email') }},
                     <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
                         @csrf

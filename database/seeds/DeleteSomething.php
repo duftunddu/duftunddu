@@ -12,6 +12,6 @@ class DeleteSomething extends Seeder
      */
     public function run()
     {
-        Fragrance_Brand::where('name',"Garçon")->first()->delete();
+        Fragrance_Brand::where('name',"DummyTestBrand")->first()->delete();
     }
 }

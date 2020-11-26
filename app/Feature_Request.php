@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property integer $id
@@ -19,6 +20,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Feature_Request extends Model
 {
+    use SoftDeletes;
+
     /**
      * The table associated with the model.
      * 
