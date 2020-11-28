@@ -44,7 +44,8 @@ class Controller extends BaseController {
     }
 
     public function try () {
-        $accords=accord::all();
+        $accords=accord::pluck('name')->toArray();
+        // var_dump($accords); return;
         return view('forms.try', [ 'countries'=> $accords]);
     }
 

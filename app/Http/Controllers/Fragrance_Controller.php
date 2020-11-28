@@ -18,8 +18,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
-use AshAllenDesign\LaravelExchangeRates\Classes\ExchangeRate;
-
 use App\Helper\Helper;
 
 class Fragrance_Controller extends Controller
@@ -47,14 +45,14 @@ class Fragrance_Controller extends Controller
       $ingredients = Ingredient::all();
       $brands      = Fragrance_Brand::all();
       
-      $currencies  = new ExchangeRate();
+      $currencies     =   Helper::currencies();
       
       return view('admin.fragrance_entry',[
         'types'         => $types,
         'accords'       => $accords,
         'ingredients'   => $ingredients,
         'brands'        => $brands,
-        'currencies'    => $currencies->currencies()
+        'currencies'    => $currencies
         ]);
   }
 
@@ -64,10 +62,10 @@ class Fragrance_Controller extends Controller
 
     $brand = Fragrance_Brand::find($ambassador->brand_id);
     
-    $types       = Fragrance_Type::all();
-    $accords     = Accord::all();
-    $ingredients = Ingredient::all();
-    $currencies  = new ExchangeRate();
+    $types          = Fragrance_Type::all();
+    $accords        = Accord::all();
+    $ingredients    = Ingredient::all();
+    $currencies     = Helper::currencies();
     
     return view('brand_ambassador.fragrance_entry',[
       'brand'         => $brand,
@@ -75,7 +73,7 @@ class Fragrance_Controller extends Controller
       'accords'       => $accords,
       'ingredients'   => $ingredients,
       
-      'currencies'    => $currencies->currencies()
+      'currencies'    => $currencies
     ]);
   }
 
@@ -344,9 +342,16 @@ class Fragrance_Controller extends Controller
             ->join('skin_type', 'skin_type.id', '=', 'fragrance_profile.skin_type_id')
             ->join('climate', 'climate.id', '=', 'fragrance_profile.climate_id')
             ->join('season', 'season.id', '=', 'fragrance_profile.season_id')
-            ->select('fragrance_profile.location_id', 'fragrance_profile.sweat', 'fragrance_profile.height', 'fragrance_profile.weight', 'skin_type.name as skin', 'climate.name as climate', 'season.name as season')
+            ->select('fragrance_profile.currency', 'fragrance_profile.location_id', 'fragrance_profile.sweat', 'fragrance_profile.height', 'fragrance_profile.weight', 'skin_type.name as skin', 'climate.name as climate', 'season.name as season')
             ->first();
           
+          if($fragrance->currency != $frag_profile->currency){
+
+            $fragrance->cost = Helper::currency_convert($fragrance->cost, $fragrance->currency, $frag_profile->currency);
+            $fragrance->currency = $frag_profile->currency;
+          }
+
+
           $location = Location::find($frag_profile->location_id);
           
           // https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
@@ -563,7 +568,6 @@ class Fragrance_Controller extends Controller
             'bmi_weight'                  => $bmi_weight,
             'skin_weight'                 => $skin_weight
           ];
-
 
           $weights =  json_encode($weights);
         }

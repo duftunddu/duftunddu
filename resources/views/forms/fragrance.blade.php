@@ -229,7 +229,11 @@
 
                                 <h4>Type: {{$type->name}}</h4>
                                 <h4>Gender: {{$fragrance->gender}}</h4>
-                                <h4>Cost: {{$fragrance->cost}} {{$fragrance->currency}}</h4>
+                                <h4>Cost: {{$fragrance->cost}} {{$fragrance->currency}}
+                                    <span data-toggle="tooltip"
+                                    data-placement="top" data-html="true"
+                                    title="This is an estimated cost.">*</span>
+                                </h4>
                                 <br>
                                 <h4>Accords:</h4>
         

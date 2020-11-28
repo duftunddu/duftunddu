@@ -2,7 +2,7 @@
 
 <link href="{{ asset('css/paragraph.css') }}" rel="stylesheet">
 
-<title>{{_('Request A features | Duft Und Du')}}</title>
+<title>{{_('Request a Feature | Duft Und Du')}}</title>
 
 <style>
     .center {

@@ -4,7 +4,10 @@ namespace App\Helper;
 
 use App;
 use App\Location;
+
+use Carbon\Carbon;
 use Symfony\Component\Process\Process;
+use AshAllenDesign\LaravelExchangeRates\Classes\ExchangeRate;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 
 class Helper
@@ -36,8 +39,6 @@ class Helper
                 'PYTHONHASHSEED' => 1,
             ]);
         }
-
-
       
       $process->run();
 
@@ -58,6 +59,24 @@ class Helper
 
     public static function current_location(){
         return Location::firstWhere('ip_to', '>', ip2long(request()->ip()));
+    }
+
+    public static function currencies(){
+        $currencies     =   new ExchangeRate();
+        $currencies = $currencies->currencies();
+        array_push($currencies,"PKR");
+        sort($currencies);
+        return $currencies;
+    }
+    
+    public static function currency_convert($cost, $from, $to){
+        $exchangeRates = new ExchangeRate();
+        if($from == 'PKR'){
+            return round($exchangeRates->convert($cost, $from, 'USD') * 163,2);
+        }
+        else{
+            return round($exchangeRates->convert($cost, $from, $to),2);
+        }
     }
 
     // It is said that it Returns a pure array not a stdClass knockoff,

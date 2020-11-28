@@ -13,8 +13,6 @@ use Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-use AshAllenDesign\LaravelExchangeRates\Classes\ExchangeRate;
-
 use App\Helper\Helper;
 
 class Fragrance_Profile_Controller extends Controller
@@ -41,14 +39,14 @@ class Fragrance_Profile_Controller extends Controller
         $climates       =   Climate::all();
         $seasons        =   Season::all();
         
-        $currencies     =   new ExchangeRate();
+        $currencies     =   Helper::currencies();
 
         return view('forms.profile_entry',[
             'professions'       =>    $professions,
             'skin_types'        =>    $skin_types,
             'climates'          =>    $climates,
             'seasons'           =>    $seasons,
-            'currencies'        =>    $currencies->currencies()
+            'currencies'        =>    $currencies
         ]);
     }
 
