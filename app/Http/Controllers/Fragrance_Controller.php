@@ -277,7 +277,7 @@ class Fragrance_Controller extends Controller
   {
     $brand = Fragrance_Brand::find($id);
     
-    if(empty($brand)){
+    if(is_null($brand)){
       return redirect()->route('search');
     }
 
@@ -301,7 +301,7 @@ class Fragrance_Controller extends Controller
   {
     $fragrance = Fragrance::find($id);
 
-    if(empty($fragrance)){
+    if(is_null($fragrance)){
       return redirect()->route('search');
     }
 

@@ -187,7 +187,7 @@ class Admin_Controller extends Controller
 
             // var_dump($brand);return;
 
-            if(empty($brand)){
+            if(is_null($brand)){
                 return redirect()->back()->with('error', 'Brand not found.');
             }
 

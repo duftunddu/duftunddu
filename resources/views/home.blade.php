@@ -143,7 +143,7 @@
                     @endif
     
                     {{-- User Fragrances --}}
-                    @if (!empty($fav_brand))
+                    @if (!is_null($fav_brand))
 
                         {{-- Favorite Brand --}}
                         <div class="form-group row">
@@ -191,7 +191,7 @@
 
                         {{-- Button: Genie --}}
                         {{-- Only appears fav_brand exists --}}
-                        @if (!empty($fav_brand))
+                        @if (!is_null($fav_brand))
                         {{-- <div class="form-group row">
                             <div class="center">
                                 <button type="submit" class="custom" onclick="window.location='{{ url('/genie_output/' . $user_profile->id) }}'">
@@ -300,7 +300,7 @@
                         </div>
                         
                         {{-- No Body of Accordion if no Fragrances --}}
-                        @if(!empty($profile[0]->f_name))
+                        @if(!is_null($profile[0]->f_name))
                         
                         {{-- Body --}}
                         <div class="as-accordion-collapse" id="collapseExample">

@@ -27,6 +27,10 @@
         display:flex;
         justify-content: center;
     }
+    .gender-png{
+        max-width:60px;
+        max-height:60px;
+    }
 
     .rating {
         /* position: absolute; */
@@ -131,6 +135,8 @@
 
                         {{-- On Left --}}
                         <div class="column">
+                            <h4 for="about you" class="center color-red">{{ __('You')}} </h4><br>
+
                             <div class="right">
                                 @auth
 
@@ -226,9 +232,22 @@
 
                         {{-- On Right --}}
                         <div class="column">
+                            
+                                <h4 for="about fragrance" class="center color-highlight-purple">{{ __('Fragrance')}} </h4><br>
+
+                                {{-- <h4>Gender: {{$fragrance->gender}}</h4> --}}
+                                @if($fragrance->gender == 'Male')
+                                <img class="gender-png" src="{{ asset('images/vector_graphics/gender/male_symbol.png') }}"
+                                alt="Ambassador Proposal">
+                                @elseif($fragrance->gender == 'Female')
+                                <img class="gender-png" src="{{ asset('images/vector_graphics/gender/female_symbol.png') }}"
+                                alt="Ambassador Proposal">
+                                @else
+                                <img class="gender-png" src="{{ asset('images/vector_graphics/gender/unisex_symbol.png') }}"
+                                alt="Ambassador Proposal">
+                                @endif
 
                                 <h4>Type: {{$type->name}}</h4>
-                                <h4>Gender: {{$fragrance->gender}}</h4>
                                 <h4>Cost: {{$fragrance->cost}} {{$fragrance->currency}}
                                     <span data-toggle="tooltip"
                                     data-placement="top" data-html="true"

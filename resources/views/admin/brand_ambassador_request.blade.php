@@ -41,7 +41,7 @@
                     <div class="card-body">
                         <div class="col-md-9">
 
-                            @if(!empty($ambassadors))
+                            @if(!is_null($ambassadors))
                                 Don't forget to check the new brand before approving.
                                 <br><br>
 
@@ -58,13 +58,13 @@
                                     @endif
 
 
-                                    @if(empty($ambassador->brand_id))
+                                    @if(is_null($ambassador->brand_id))
                                         <h4>New Brand</h4>
                                     @else
                                         <h4>{{$ambassador->brand_id}}</h4>                                    
                                     @endif
 
-                                    @if(empty($ambassador->brand_name))
+                                    @if(is_null($ambassador->brand_name))
                                         <h4>Existing Brand</h4>
                                     @else
                                         <h4>{{$ambassador->brand_name}}</h4>                                    

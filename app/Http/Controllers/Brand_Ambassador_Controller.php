@@ -99,7 +99,7 @@ class Brand_Ambassador_Controller extends Controller
         $ambassador = Brand_Ambassador_Profile::firstWhere('users_id', request()->user()->id);
         $fragrances = Fragrance::where('brand_id', $ambassador->brand_id)->get();
 
-        if(!empty($fragrances)){
+        if(!is_null($fragrances)){
             $date = Carbon::today()->subDays(7);
             $only_fragrances = Fragrance::where('brand_id', $ambassador->brand_id)->pluck('normal_name');
             $queries = Search_Queries::where('created_at', '>=', $date)

@@ -88,11 +88,11 @@ class Brand_Ambassador_Request_Controller extends Controller
             'website'         => 'required',
         ]);
 
-        if(empty($request->input('name')) && empty($request->input('brand_id'))){
+        if(is_null($request->input('name')) && is_null($request->input('brand_id'))){
             return redirect('brand_ambassador_register')->with('info','You forgot to select/add a brand.');
         }
 
-        if(!empty($request->input('name')) && !empty($request->input('brand_id'))){
+        if(!is_null($request->input('name')) && !is_null($request->input('brand_id'))){
             return redirect('brand_ambassador_register')->with('info','Please either select or add a brand.');
         }
 
@@ -121,7 +121,7 @@ class Brand_Ambassador_Request_Controller extends Controller
             $new->email_work       = $request->input('email_work');
             $new->website          = $request->input('website');
         
-            if(empty($request->input('name'))){
+            if(is_null($request->input('name'))){
             // existing brand
                 $new->status           = 'existing_brand_request';
             }

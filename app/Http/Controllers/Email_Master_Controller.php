@@ -54,8 +54,8 @@ class Email_Master_Controller extends Controller
 
     public function send(Request $request)
     {
-        // Checking if sending outputs are both filled or both empty, if so, return back.  
-        if ( !( empty($request->address_to_sec) xor empty($request->address_to) ) ){
+        // Checking if sending outputs are both filled or both is_null, if so, return back.  
+        if ( !( is_null($request->address_to_sec) xor is_null($request->address_to) ) ){
             return redirect()->back()->withInput($request->session()->all())->with('warning','No address specified.');
         }
 

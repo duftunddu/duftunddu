@@ -152,7 +152,7 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
 
-            <h2>{{ __('Request A features')}}</h2>
+            <h2>{{ __('Request A Feature')}}</h2>
 
             <p>
                 You can submit a request here by either
@@ -205,6 +205,7 @@
                         @if($from[$i] == 'staff')
                         <td data-label="Suggested By">Duft Und Du <img 
                             src="{{ asset('images/vector_graphics/verified_black_tick.svg') }}" 
+                            src="{{ asset('images/vector_graphics/verified_black_tick.png') }}" 
                             alt="verified tick"
                             height="15"
                             width="15" style="padding-bottom:3px;"/></td>

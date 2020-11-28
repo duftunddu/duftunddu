@@ -33,7 +33,7 @@ class HomeController extends Controller
         $user_profile = Fragrance_Profile::where('users_id', request()->user()->id)->first();
 
 
-        if (empty($user_profile)){
+        if (is_null($user_profile)){
             return redirect('profile');
         }
 

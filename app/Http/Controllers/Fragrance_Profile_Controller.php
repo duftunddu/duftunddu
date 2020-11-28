@@ -10,6 +10,7 @@ use App\Profession;
 use App\Fragrance_Profile;
 
 use Validator;
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -34,10 +35,10 @@ class Fragrance_Profile_Controller extends Controller
      */
     public function index()
     {
-        $professions    =   Profession::all();
-        $skin_types     =   Skin_Type::all();
-        $climates       =   Climate::all();
-        $seasons        =   Season::all();
+        $professions    =   Profession::select('name')->get();
+        $skin_types     =   Skin_Type::select('name')->get();
+        $climates       =   Climate::select('name')->get();
+        $seasons        =   Season::select('name')->get();
         
         $currencies     =   Helper::currencies();
 
@@ -68,33 +69,38 @@ class Fragrance_Profile_Controller extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'gender'            => 'required',
+        $this->validate(
+            $request, [
+            'gender'            =>  ['required', Rule::in(['Male', 'Female','Other'])],
             'dob'               => 'required',
-            'profession_id'     => 'required',
-            'skin_type_id'      => 'required',
+            'profession'        => 'required|exists:profession,name',
+            'skin_type'         => 'required|exists:skin_type,name',
             'sweat'             => 'required',
-            // 'height_feet'       => 'nullable|required_if:height_cent,null|required_with:height_inches',
-            // 'height_feet'       => ['nullable|required_if:height_cent,null|required_with:height_inches'],
-            // 'height_inches'     => 'nullable|required_if:height_cent,null|required_with:height_feet',
-            // 'height_cent'       => 'nullable|required_if:height_feet,null|required_if:height_inches,null',
-            // 'weight'            => 'required',
-            'climate_id'        => 'required',
-            'season_id'         => 'required',
-        ]);
+            'climate'           => 'required|exists:climate,name',
+            'season'            => 'required|exists:season,name',
+            ],
+            
+            $messages = [
+                'gender.in'             => 'The :attribute is invalid. Please select one from the list.',
+                'profession.exists'     => 'The :attribute is invalid. Please select one from the list.',
+                'skin_type.exists'      => 'The :attribute is invalid. Please select one from the list.',
+                'climate.exists'        => 'The :attribute is invalid. Please select one from the list.',
+                'season.exists'         => 'The :attribute is invalid. Please select one from the list.',
+            ],
+        );
         
         $valid = false;
         $height_unit = '';
         $validator = Validator::make([], []);
-        if( empty($request->height_cent) && empty($request->height_feet) && empty($request->height_inches) ){
+        if( is_null($request->height_cent) && is_null($request->height_feet) && is_null($request->height_inches) ){
             $valid = false;
             $validator->getMessageBag()->add('height_cent',     'Enter height either in feet & inches or centimeters.');
             $validator->getMessageBag()->add('height_inches',   'Enter height either in feet & inches or centimeters.');
             $validator->getMessageBag()->add('height_feet',   "");
         }
         else 
-        if( !empty($request->height_cent) ){
-            if( (empty($request->height_feet) && empty($request->height_inches)) ){
+        if( !is_null($request->height_cent) ){
+            if( (is_null($request->height_feet) && is_null($request->height_inches)) ){
                 $height_unit = 'cent';
                 $valid = true;
             }
@@ -106,15 +112,15 @@ class Fragrance_Profile_Controller extends Controller
             }
         }
         else{
-            if( (!empty($request->height_feet) && !empty($request->height_inches)) ){
+            if( (!is_null($request->height_feet) && !is_null($request->height_inches)) ){
                 $height_unit = 'feet';
                 $valid = true;
             }
-            else if( empty($request->height_feet) ){
+            else if( is_null($request->height_feet) ){
                 $valid = false;
                 $validator->getMessageBag()->add('height_feet', 'Inches are required with Feet.');
             }
-            else if( empty($request->height_inches) ){
+            else if( is_null($request->height_inches) ){
                 $valid = false;
                 $validator->getMessageBag()->add('height_inches', 'Feet is required with inches. Put zero if zero inches.');
             }
@@ -127,20 +133,20 @@ class Fragrance_Profile_Controller extends Controller
                 ->withInput();
         }
 
-        $weight_unit = '';
         $valid = false;
+        $weight_unit = '';
         $validator = Validator::make([], []);
-        if( empty($request->kgs) && empty($request->lbs) ){
+        if( is_null($request->kgs) && is_null($request->lbs) ){
             $valid = false;
             $validator->getMessageBag()->add('kgs',  'Enter weight either in kgs or pounds.');
             $validator->getMessageBag()->add('lbs',  'Enter weight either in kgs or pounds.');
         }
-        else if( (!empty($request->kgs) && !empty($request->lbs)) ){
+        else if( (!is_null($request->kgs) && !is_null($request->lbs)) ){
             $valid = false;
             $validator->getMessageBag()->add('kgs',   'Enter weight either in kgs or pounds. Not in both.');
             $validator->getMessageBag()->add('lbs',   'Enter weight either in kgs or pounds. Not in both.');
         }
-        else if( empty($request->kgs) ){
+        else if( is_null($request->kgs) ){
             $valid = true;
             $weight_unit = 'lbs';
         }
@@ -177,9 +183,16 @@ class Fragrance_Profile_Controller extends Controller
             $weight = $request->input('lbs') * 2.205;
         }
 
+        $profession_id = Profession::where('name', $request->input('profession'))->pluck('id')->first();
+        $skin_type_id  = Skin_type::where('name', $request->input('skin_type'))->pluck('id')->first();
+        $climate_id    = Climate::where('name', $request->input('climate'))->pluck('id')->first();
+        $season_id     = Season::where('name', $request->input('season'))->pluck('id')->first();
+
         $location = Helper::current_location();
 
-        DB::transaction(function () use ($request, $user_check, $location) {
+        DB::transaction(function () use (
+            $request, $user_check, $location, $height, $weight,
+            $profession_id, $skin_type_id, $climate_id, $season_id) {
             
             $new                    = new Fragrance_Profile();
             $new->users_id          = request()->user()->id;
@@ -188,14 +201,14 @@ class Fragrance_Profile_Controller extends Controller
             $new->name              = $request->input('name');
             $new->gender            = $request->input('gender');
             $new->dob               = $request->input('dob');
-            $new->profession_id     = $request->input('profession_id');
-            $new->skin_type_id      = $request->input('skin_type_id');
+            $new->profession_id     = $profession_id;
+            $new->skin_type_id      = $skin_type_id;
             $new->sweat             = $request->input('sweat');
             $new->height            = $height;
             $new->weight            = $weight;
             $new->location_id       = $location->id;
-            $new->climate_id        = $request->input('climate_id');
-            $new->season_id         = $request->input('season_id');
+            $new->climate_id        = $climate_id;
+            $new->season_id         = $season_id;
             $new->currency          = $request->input('currency');
 
             $new->save();

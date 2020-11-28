@@ -52,24 +52,19 @@
 
                                     <div class="col-md-6">
 
-                                        <select id="gender" type="text" class="form-control @error('gender') is-invalid @enderror" name="gender" value="{{ old('gender')}}" required>
-                                            <option value="" selected="selected" disabled="disabled">-- Select Gender --</option>
-                                            <option value="Male">
-                                                {{'Male'}}
-                                            </option>
-                                            <option value="Female">
-                                                {{'Female'}}
-                                            </option>
-                                            <option value="Other">
-                                                {{'Other'}}
-                                            </option>
-                                        </select>
+                                        <input list="genders" id="gender" type="text" placeholder="-- Select Gender --" class="form-control @error('gender') is-invalid @enderror" name="gender" value="{{ old('gender')}}" required/>
+                                            <datalist id="genders">
+                                                <option value="Male"></option>
+                                                <option value="Female"></option>
+                                                <option value="Other"></option>
+                                            </datalist>
+            
+                                            @error('gender')
+                                            <span class="invalid-feeback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
 
-                                        @error('gender')
-                                        <span class="invalid-feeback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
                                     </div>
                                 </div>
 
@@ -93,20 +88,18 @@
                                     <label for="profession_id" class="col-md-4 col-from-label text-md-right">{{ __('Profession:')}}</label>
 
                                     <div class="col-md-6">
-
-                                        <select id="profession_id" type="number" class="form-control @error('profession_id') is-invalid @enderror" name="profession_id" value="{{ old('profession_id')}}" required>
-                                            <option value="" selected="selected" disabled="disabled">-- Select Profession --</option>
+                                        <input list="professions" id="profession" type="text" placeholder="-- Select Profession --" class="form-control @error('profession') is-invalid @enderror" name="profession" value="{{ old('profession')}}" required/>
+                                            <datalist id="professions">
                                                 @foreach($professions as $profession)
-                                                    <option value="{{$profession->id}}">{{$profession->name}}</option>
+                                                    <option value="{{$profession->name}}"></option>
                                                 @endforeach
-                                            </select>
+                                            </datalist>
             
-                                        @if($errors->has('profession_id'))
-                                            <div class="invalid-feedback">
-                                                {{ $errors->first('profession_id')}}
-                                            </div>
-                                        @endif
-
+                                            @error('profession')
+                                            <span class="invalid-feeback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
                                     </div>
                                 </div>
 
@@ -115,19 +108,18 @@
                                     <label for="skin_type_id" class="col-md-4 col-from-label text-md-right">{{ __('Skin Type:')}}</label>
 
                                     <div class="col-md-6">
-
-                                        <select id="skin_type_id" type="number" class="form-control @error('skin_type_id') is-invalid @enderror" name="skin_type_id" value="{{ old('skin_type_id')}}" required>
-                                            <option value="" selected="selected" disabled="disabled">-- Select Skin Type --</option>
-                                                @foreach($skin_types as $skin_type)
-                                                    <option value="{{$skin_type->id}}">{{$skin_type->name}}</option>
-                                                @endforeach
-                                            </select>
-            
-                                        @if($errors->has('skin_type_id'))
-                                            <div class="invalid-feedback">
-                                                {{ $errors->first('skin_type_id')}}
-                                            </div>
-                                        @endif
+                                        <input list="skin_types" id="skin_type" type="text" placeholder="-- Select Skin Type --" class="form-control @error('skin_type') is-invalid @enderror" name="skin_type" value="{{ old('skin_type')}}" required/>
+                                        <datalist id="skin_types">
+                                            @foreach($skin_types as $skin_type)
+                                                <option value="{{$skin_type->name}}"></option>
+                                            @endforeach
+                                        </datalist>
+        
+                                        @error('skin_type')
+                                        <span class="invalid-feeback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
 
                                     </div>
                                 </div>
@@ -235,18 +227,19 @@
 
                                     <div class="col-md-6">
 
-                                        <select id="climate_id" type="number" class="form-control @error('climate_id') is-invalid @enderror" name="climate_id" value="{{ old('climate_id')}}" required>
-                                            <option value="" selected="selected" disabled="disabled">-- Select Climate --</option>
-                                                @foreach($climates as $climate)
-                                                    <option value="{{$climate->id}}">{{$climate->name}}</option>
-                                                @endforeach
-                                            </select>
-            
-                                        @if($errors->has('climate_id'))
-                                            <div class="invalid-feedback">
-                                                {{ $errors->first('climate_id')}}
-                                            </div>
-                                        @endif
+                                        <input list="climates" id="climate" type="text" placeholder="-- Select Climate --" class="form-control @error('climate') is-invalid @enderror" name="climate" value="{{ old('climate')}}" required/>
+                                        <datalist id="climates">
+                                            @foreach($climates as $climate)
+                                                <option value="{{$climate->name}}"></option>
+                                            @endforeach
+                                        </datalist>
+        
+                                        @error('climate')
+                                        <span class="invalid-feeback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+
                                     </div>
                                 </div>
 
@@ -256,18 +249,18 @@
 
                                     <div class="col-md-6">
 
-                                        <select id="season_id" type="number" class="form-control @error('season_id') is-invalid @enderror" name="season_id" value="{{ old('season_id')}}" required>
-                                            <option value="" selected="selected" disabled="disabled">-- Select Season --</option>
-                                                @foreach($seasons as $season)
-                                                    <option value="{{$season->id}}">{{$season->name}}</option>
-                                                @endforeach
-                                            </select>
-            
-                                        @if($errors->has('season_id'))
-                                            <div class="invalid-feedback">
-                                                {{ $errors->first('season_id')}}
-                                            </div>
-                                        @endif
+                                        <input list="seasons" id="season" type="text" placeholder="-- Select Season --" class="form-control @error('season') is-invalid @enderror" name="season" value="{{ old('season')}}" required/>
+                                        <datalist id="seasons">
+                                            @foreach($seasons as $season)
+                                                <option value="{{$season->name}}"></option>
+                                            @endforeach
+                                        </datalist>
+        
+                                        @error('season')
+                                        <span class="invalid-feeback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
                                         
                                     </div>
                                 </div>
