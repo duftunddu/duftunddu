@@ -59,7 +59,7 @@ class Admin_Controller extends Controller
             return redirect('request_feature_user_review');
         }
 
-        if( strcmp($action, "new_brand_request") == 0 ){
+        if( strcmp($action, "approve") == 0 ){
             // Approve
             $feature = Feature_Request_By_User::find($id);
 
@@ -135,13 +135,6 @@ class Admin_Controller extends Controller
 
     public function brand_ambassador_request_response($new_status, $ambassador_id)
     {
-        // Regarding new_status:
-        // 0 candidate_brand_ambassador, is pending
-        // 1 new_brand_ambassador, allows users to add
-        // 2 new_brand_ambassador, brand has been added, review it and decide
-        // 3 candidate_brand_ambassador / new_brand_ambassador, is rejected
-        // 4 brand_ambassador, allows them to add fragrances, move to profile
-
         // Regarding new_status:
         // new_brand_request            = candidate_brand_ambassador, is pending
         // new_brand_details_request    = new_brand_ambassador, allows users to add details of brand

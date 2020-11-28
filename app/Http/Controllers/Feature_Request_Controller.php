@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Feature_Request;
 use App\Feature_Request_Record;
 use Illuminate\Http\Request;
@@ -76,12 +77,27 @@ class Feature_Request_Controller extends Controller
         $features = Feature_Request::where('status', '!=', "Processed (Added)")
         ->where('feature_request.updated_at', '>', $date)
         ->join('users', 'users.id', 'feature_request.users_id')
-        ->select('users.name as user', 'feature_request.*')
+        ->select('users.id as user_id', 'users.name as user', 'feature_request.*')
         ->orderBy('votes', 'desc')
         ->get();
 
+        $users_ids = $features->flatten()->pluck('users_id')->toArray();
+        
+        $users = collect();
+        $from = collect();
+        foreach ($users_ids as $user_id){
+            // $users->push(User::find($user_id));
+            if(User::find($user_id)->hasRole('admin')){
+                $from->push('staff');
+            }
+            else{
+                $from->push('user');
+            }
+        }
+
         return view('forms.request_feature_view',[
-            'features'        =>    $features,
+            'features'      =>    $features,
+            'from'          =>    $from,
         ]);
     }
 

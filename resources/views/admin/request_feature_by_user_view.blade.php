@@ -177,8 +177,8 @@
                         <td data-label="Description">{{$request->description}}</td>
                         <td data-label="Implementation">{{$request->mplementation}}</td>
                         <td data-label="Approve/Delete"><a
-                                href="/request_feature_user_review/{{$request->id}}/0">Approve</a> / <a
-                                href="/request_feature_user_review/{{$request->id}}/1">Delete</a></td>
+                                href="/request_feature_user_review/{{$request->id}}/approve">Approve</a> / <a
+                                href="/request_feature_user_review/{{$request->id}}/delete">Delete</a></td>
                         <td data-label="Added On">{{$request->created_at->format('d/M/y')}}</td>
                         <td data-label="Added by">{{$request->user->name}}</td>
                     </tr>

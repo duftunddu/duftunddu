@@ -94,10 +94,11 @@ body {
     /* border-radius: 50%; */
     /* color: var(--body-color); */
     /* padding: 1.14vh; */
+    /* padding: 1.14vh; */
     flex-shrink: 0;
     width: 5.1vh;
     height: 5.1vh;
-    /* margin-right: 4vh; */
+    margin-right: 4vh;
 }
 
 .sleek-border {
@@ -169,13 +170,14 @@ body {
         flex-shrink: 0;
         width: 5.1vh;
         height: 5.1vh;
-        /* margin-right: 2vh; */
         margin-bottom: 0.9vh;
         padding-bottom: 5vh;
+        margin-right: 2vh;
     }
 
     .social-media svg {
         width: 4.5vh;
+        height: 4.5vh;
     }
 
     .footer-links {

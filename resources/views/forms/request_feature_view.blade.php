@@ -2,7 +2,7 @@
 
 <link href="{{ asset('css/paragraph.css') }}" rel="stylesheet">
 
-<title>{{_('Request A Feature | Duft Und Du')}}</title>
+<title>{{_('Request A features | Duft Und Du')}}</title>
 
 <style>
     .center {
@@ -152,17 +152,17 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
 
-            <h2>{{ __('Request A Feature')}}</h2>
+            <h2>{{ __('Request A features')}}</h2>
 
             <p>
                 You can submit a request here by either
-                voting for the Feature if it is already in the list or submitting it.
+                voting for the features if it is already in the list or submitting it.
             </p><br>
 
             {{-- Informing Guests that Voting Rights are only given to users --}}
             @guest
             <p>
-                <a href="login">Login</a> or <a href="register">Sign Up</a> to Request or Vote for A Feature.
+                <a href="login">Login</a> or <a href="register">Sign Up</a> to Request or Vote for A features.
             </p><br>
             @endguest
 
@@ -186,24 +186,33 @@
                 <tbody>
 
                     {{-- Data --}}
-                    @foreach($features as $feature)
+                    @for ($i = 0; $i < $features->count(); $i++)
+
                     <tr>
-                        <td data-label="Feature Name">{{$feature->name}}</td>
-                        <td data-label="Description">{{$feature->description}}</td>
-                        <td data-label="Request Status">{{$feature->status}}</td>
-                        <td data-label="Votes">{{$feature->votes}}</td>
+                        <td data-label="features Name">{{$features[$i]->name}}</td>
+                        <td data-label="Description">{{$features[$i]->description}}</td>
+                        <td data-label="Request Status">{{$features[$i]->status}}</td>
+                        <td data-label="Votes">{{$features[$i]->votes}}</td>
                         @auth
                         <td data-label="Vote">
-                            <button type="button" class="btn btn-outline-dark" name="{{$feature->id}}"
-                                id="{{$feature->id}}" onclick="handleVote(this.id);">
+                            <button type="button" class="btn btn-outline-dark" name="{{$features[$i]->id}}"
+                                id="{{$features[$i]->id}}" onclick="handleVote(this.id);">
                                 {{ __('Vote') }}
                             </button>
                         </td>
                         @endauth
-                        <td data-label="Added On">{{$feature->created_at->format('d/M/y')}}</td>
-                        <td data-label="Suggested By">{{$feature->user}}</td>
+                        <td data-label="Added On">{{$features[$i]->created_at->format('d/M/y')}}</td>
+                        @if($from[$i] == 'staff')
+                        <td data-label="Suggested By">Duft Und Du <img 
+                            src="{{ asset('images/vector_graphics/verified_black_tick.svg') }}" 
+                            alt="verified tick"
+                            height="15"
+                            width="15" style="padding-bottom:3px;"/></td>
+                        @else
+                        <td data-label="Suggested By">{{$features[$i]->user}}</td>
+                        @endif
                     </tr>
-                    @endforeach
+                    @endfor
 
                 </tbody>
             </table>
@@ -213,12 +222,12 @@
             <br><br>
 
             @auth
-            {{--  Button: Add Feature --}}
+            {{--  Button: Add features --}}
             <div class="form-group row">
                 <div class="center">
                     <button type="button" class="btn btn-outline-dark"
                         onclick="window.location='{{ url('/request_feature_user/') }}'">
-                        {{ __('Add New Feature') }}
+                        {{ __('Add New features') }}
                     </button>
                 </div>
             </div>
@@ -236,14 +245,14 @@
 
 {{-- Vote --}}
 <script>
-    function handleVote(feature) {
+    function handleVote(features) {
         $.ajax({
             type: 'POST',
             url: '/vote_feature',
             data: {
                 "_token": "{{ csrf_token() }}",
                 value: 1,
-                feature_id: feature
+                feature_id: features
             },
             success: function (data) {
                 alert(data);

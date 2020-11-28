@@ -11,8 +11,10 @@
 {{-- Button --}}
 <link href="{{ asset('css/custom_button.css') }}" rel="stylesheet">
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/fontawesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/solid.min.css">
 
-    <div class="container">
+<div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
 
@@ -20,7 +22,10 @@
                     @csrf
 
                     <div class="card">
-                        <div class="card-header">{{ __('User Details')}}</div>
+                        <div class="card-header">{{ __('User Details')}}&nbsp;&nbsp; <i class="fas fa-info" data-toggle="tooltip"
+                            data-placement="top" data-html="true"
+                            title="This information is used in your personal insights.<br>We will never sell your data.
+                            <br>For more information, read Privacy Policy."></i></div>
 
                         <div class="card-body">
 
@@ -89,7 +94,7 @@
 
                                     <div class="col-md-6">
 
-                                        <select id="profession_id" type="number" class="form-control @error('profession_id') is-invalid @enderror" name="profession_id" value="{{ old('')}}" required>
+                                        <select id="profession_id" type="number" class="form-control @error('profession_id') is-invalid @enderror" name="profession_id" value="{{ old('profession_id')}}" required>
                                             <option value="" selected="selected" disabled="disabled">-- Select Profession --</option>
                                                 @foreach($professions as $profession)
                                                     <option value="{{$profession->id}}">{{$profession->name}}</option>
@@ -111,7 +116,7 @@
 
                                     <div class="col-md-6">
 
-                                        <select id="skin_type_id" type="number" class="form-control @error('skin_type_id') is-invalid @enderror" name="skin_type_id" value="{{ old('')}}" required>
+                                        <select id="skin_type_id" type="number" class="form-control @error('skin_type_id') is-invalid @enderror" name="skin_type_id" value="{{ old('skin_type_id')}}" required>
                                             <option value="" selected="selected" disabled="disabled">-- Select Skin Type --</option>
                                                 @foreach($skin_types as $skin_type)
                                                     <option value="{{$skin_type->id}}">{{$skin_type->name}}</option>
@@ -134,7 +139,7 @@
                                     <div class="col-md-6">
 
                                         <div class="slideContainer">
-                                            <input type="range" min="0" max="100" value="0" class="slider myRange" id="myRange" name="sweat" required>
+                                            <input type="range" min="0" max="100" class="slider myRange" class="form-control @error('sweat') is-invalid @enderror" id="myRange" name="sweat" value="0" value="{{ old('sweat')}}" required>
                                             <label>{{_('Value: ')}}<span class="value"></span></label>
                                           </div>
                                         
@@ -149,12 +154,39 @@
 
                                 {{-- Height --}}
                                 <div class="form-group row">
-                                    <label for="height" class="col-md-4 col-from-label text-md-right">{{ __('Height (in inches):')}}</label>
+                                    <label for="height" id ="height" name="height" class="col-md-4 col-from-label text-md-right">{{ __('Height:')}} </label>
+                                    <div class="col-md-6">
+                                        Enter height either in ft. & inches or cms.
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="height in feet and inches" class="col-md-4 col-from-label text-md-right">{{ __('Feet & Inches:')}}</label>
 
                                     <div class="col-md-6">
-                                        <input id="height" type="number" step="0.01" min="12" max="110" placeholder="65 inch" class="form-control @error('height') is-invalid @enderror" name="height" value="{{ old('height')}}" required>
+                                        <div style="display:flex; flex-direction:row;">
+                                            <input id="height_feet" type="number" step="1" min="1" max="9" placeholder="5 feet" class="form-control @error('height_feet') is-invalid @enderror" name="height_feet" value="{{ old('height_feet')}}">
+                                            <input id="height_inches" type="number" step="0.1" min="0" max="12" placeholder="7 inch" class="form-control @error('height_inches') is-invalid @enderror" name="height_inches" value="{{ old('height_inches')}}">
+                                        </div>
 
-                                        @error('height')
+                                        @error('height_feet')
+                                        <span class="invalid-feeback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                        @error('height_inches')
+                                        <span class="invalid-feeback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="height in centimeters" class="col-md-4 col-from-label text-md-right">{{ __('Centimeters:')}}</label>
+
+                                    <div class="col-md-6">
+                                        <input id="height_cent" type="number" step="1" min="20" max="300" placeholder="150 centimeters" class="form-control @error('height_cent') is-invalid @enderror" name="height_cent" value="{{ old('height_cent')}}">
+                                        
+                                        @error('height_cent')
                                         <span class="invalid-feeback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -164,12 +196,32 @@
                                 
                                 {{-- Weight --}}
                                 <div class="form-group row">
-                                    <label for="weight" class="col-md-4 col-from-label text-md-right">{{ __('Weight (in kg.):')}}</label>
+                                    <label for="weight" id ="weight" name="weight" class="col-md-4 col-from-label text-md-right">{{ __('Weight:')}}</label>
 
                                     <div class="col-md-6">
-                                        <input id="weight" type="number" step="0.01" min="15" max="500" placeholder="55 kg" class="form-control @error('weight') is-invalid @enderror" name="weight" value="{{ old('weight')}}" required>
+                                        Enter weight either in kgs or lbs:
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="weight in kgs" class="col-md-4 col-from-label text-md-right">{{ __('Kgs:')}}</label>
 
-                                        @error('weight')
+                                    <div class="col-md-6">
+                                        <input id="kgs" type="number" step="0.01" min="15" max="500" placeholder="55 kg" class="form-control @error('kgs') is-invalid @enderror" name="kgs" value="{{ old('kgs')}}">
+
+                                        @error('kgs')
+                                        <span class="invalid-feeback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="weight in lbs" class="col-md-4 col-from-label text-md-right">{{ __('Pounds:')}}</label>
+
+                                    <div class="col-md-6">
+                                        <input id="lbs" type="number" step="0.1" min="20" max="1000" placeholder="70 lbs" class="form-control @error('lbs') is-invalid @enderror" name="lbs" value="{{ old('lbs')}}">
+
+                                        @error('lbs')
                                         <span class="invalid-feeback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -183,7 +235,7 @@
 
                                     <div class="col-md-6">
 
-                                        <select id="climate_id" type="number" class="form-control @error('climate_id') is-invalid @enderror" name="climate_id" value="{{ old('')}}" required>
+                                        <select id="climate_id" type="number" class="form-control @error('climate_id') is-invalid @enderror" name="climate_id" value="{{ old('climate_id')}}" required>
                                             <option value="" selected="selected" disabled="disabled">-- Select Climate --</option>
                                                 @foreach($climates as $climate)
                                                     <option value="{{$climate->id}}">{{$climate->name}}</option>
@@ -204,7 +256,7 @@
 
                                     <div class="col-md-6">
 
-                                        <select id="season_id" type="number" class="form-control @error('season_id') is-invalid @enderror" name="season_id" value="{{ old('')}}" required>
+                                        <select id="season_id" type="number" class="form-control @error('season_id') is-invalid @enderror" name="season_id" value="{{ old('season_id')}}" required>
                                             <option value="" selected="selected" disabled="disabled">-- Select Season --</option>
                                                 @foreach($seasons as $season)
                                                     <option value="{{$season->id}}">{{$season->name}}</option>
@@ -260,4 +312,20 @@
             </div>
         </div>
     </div>
+    
+    {{-- TODO: #1 Hide the fields, Let the user select their input method, and show the selected one. --}}
+    {{-- <script>
+        $(function () {
+            $('div[name="showthis"]').hide();
+    
+            //show it when the checkbox is clicked
+            $('input[name="checkbox"]').on('click', function () {
+                if ($(this).prop('checked')) {
+                    $('div[name="showthis"]').fadeIn();
+                } else {
+                    $('div[name="showthis"]').fadeOut();
+                }
+            });
+        });
+    </script> --}}
 @endsection

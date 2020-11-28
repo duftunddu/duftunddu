@@ -226,7 +226,6 @@
 
                         {{-- On Right --}}
                         <div class="column">
-                            {{-- <div class="col-md-9"> --}}
 
                                 <h4>Type: {{$type->name}}</h4>
                                 <h4>Gender: {{$fragrance->gender}}</h4>
@@ -251,7 +250,6 @@
 
                                 <br>
 
-                            {{-- </div> --}}
                         </div>
 
                     </div>
@@ -333,7 +331,6 @@
         });
     }
 </script>
-    
 
 {{-- Toggle Effect --}}
 {{-- <script>
