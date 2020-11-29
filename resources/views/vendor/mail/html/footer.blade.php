@@ -4,6 +4,8 @@
 <tr>
 <td class="content-cell" align="center">
     {{ Illuminate\Mail\Markdown::parse("For any queries, contact customer-support@duftunddu.com.") }}
+    {{ Illuminate\Mail\Markdown::parse("Established in Karachi, Pakistan. | <a href='/unsubscribe'>Unsubscribe</a>.") }}
+    {{-- {{ Illuminate\Mail\Markdown::parse("Established in Karachi, Pakistan. | <a href='/unsubscribe/{$email_type}/{$user_id}'>Unsubscribe</a>.") }} --}}
     {{ Illuminate\Mail\Markdown::parse($slot) }}
 </td>
 </tr>

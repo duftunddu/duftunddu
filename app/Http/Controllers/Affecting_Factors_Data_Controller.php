@@ -35,7 +35,7 @@ class Affecting_Factors_Data_Controller extends Controller {
      */
     public function store(Request $request) {
         // TODO: Change this to whatever the new thing is:
-        $model_version=Model_Version::where('type', 'affecting_factors')->latest()->first();
+        $model_version = Model_Version::where('type', 'affecting_factors')->latest()->first();
 
         $location=Helper::current_location();
         $weights=json_decode($request->weights);

@@ -18,8 +18,6 @@ use App\Mail\Brand_Ambassador_Invite;
 
 use Illuminate\Mail\Markdown;
 use Illuminate\Container\Container;
-// use App\Order;
-// use Illuminate\Support\Facades\Mail;
 
 class Email_Master_Controller extends Controller
 {
@@ -39,16 +37,32 @@ class Email_Master_Controller extends Controller
     
     public function template_show(Request $request)
     {
+        // $user_id = User::where('email', $request->address_from)->first();
+        // if(is_null($user_id)){
+        //     $user_id = 0;
+        // }
+        // else{
+        //     $user_id = $user_id->id;
+        // }
+        // $email_type = $request->email_template_name;
+
         if($request->email_template == NULL){
             return "Looks like you forgot to select the template.";
         }
 
         $markdown = Container::getInstance()->make(Markdown::class);
 
-        $html = $markdown->render("emails.{$request->email_template}");
+        $html = $markdown->render("emails.{$request->email_template}",
+        // [
+        //     'user_id'        => $user_id,
+        //     'email_type'        => $email_type,
+        // ]
+        );
 
         return view('emails.empty',[
-                'html' => $html,
+            'html' => $html,
+            // 'user_id' => $user_id,
+            // 'email_type' => $email_type,
         ]);
     }
 

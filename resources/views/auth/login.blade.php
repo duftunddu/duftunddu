@@ -5,6 +5,29 @@
 {{-- Button --}}
 <link href="{{ asset('css/custom_button.css') }}" rel="stylesheet">
 
+<style>
+    .pass-pad{
+        margin-bottom:40px;
+    }
+    .sign-up-pad{
+        margin-top:-10px;
+        margin-bottom:-10px;
+    }
+    .side-pad{
+        margin-left: 37px;
+    }
+
+    @media (max-width: 767px) {
+    .pass-pad{
+        margin-bottom:0;
+    }
+    .sign-up-pad{
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+}
+</style>
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -65,13 +88,20 @@
                                 </button>
 
                                 @if (Route::has('password.request'))
-                                    <a style="margin-bottom:40px" class="btn btn-link" href="{{ route('password.request') }}">
+                                    <a class="btn btn-link pass-pad" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                                 @endif
                             </div>
                         </div>
-                        
+
+                        {{-- Sign Up --}}
+                        <div class="form-group row mb-0">
+                            <div class="col-md-8 offset-md-4 sign-up-pad" >
+                                <a class="btn btn-link side-pad" href="{{ url('/register') }}">Sign Up</a>
+                            </div>
+                        </div>
+
                     </form>
                 </div>
             </div>

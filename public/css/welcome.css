@@ -109,6 +109,10 @@ body {
     padding-left: 0.83rem;
 }
 
+.flex-4-right {
+    background-repeat: no-repeat;
+}
+
 .headings {
     color: #f7527c !important;
 }

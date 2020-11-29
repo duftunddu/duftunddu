@@ -73,8 +73,8 @@
                                     <input class="form-check-input" type="checkbox" name="terms_conditions" id="terms_conditions" required>
 
                                     <label class="form-check-label" for="terms_conditions">
-                                        {{-- {{ __('I agree to the Terms & Conditions') }} --}}
-                                        I agree to the <a href="/terms_and_conditions">Terms & Conditions</a>
+                                        {{-- I agree to the Terms & Conditions --}}
+                                        I have read the <a href="{{ url('/terms_and_conditions') }}">Terms & Conditions</a> and I agree to them.
                                     </label>
                                 
                                 </div>
@@ -88,6 +88,13 @@
                                     <span class="before">{{_('Register')}}</span>
                                     <span class="after">{{_('Register')}}</span>
                                 </button>
+                            </div>
+                        </div><br>
+
+                        {{-- Login --}}
+                        <div class="form-group row mb-0">
+                            <div class="col-md-8 offset-md-4" style="margin-bottom:-10px;margin-top:-10px;">
+                                &emsp;&emsp;&nbsp;<a class="btn btn-link" href="{{ url('/login') }}">Sign Up</a>
                             </div>
                         </div>
 
