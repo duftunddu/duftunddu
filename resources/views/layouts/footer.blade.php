@@ -2,16 +2,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  {{-- Links --}}
-  {{-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> --}}
-  {{-- <link href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap" rel="stylesheet"> --}}
-
   <link href="{{ asset('css/footer.css') }}" rel="stylesheet">
   
   {{-- Style --}}
   <style>
     .footer, .footer-last{
-      /* background-color: #FFFAFF; */
       color: black;
       font-family: 'Marcellus', serif;
     }
@@ -48,7 +43,6 @@
 
           <a href="feedback">Feedback</a>
           <a href="privacy_policy">Privacy Policy</a>
-          <a href="credits">Credits</a>
           <a href="report">Report</a>
         
         </div>

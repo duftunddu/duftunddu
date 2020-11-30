@@ -141,6 +141,8 @@
                     <br>&emsp;&emsp;&emsp;&emsp;o	Clarification of Policy.
                     <br>&emsp;&emsp;•	Channels of Communication:
                     <br>&emsp;&emsp;&emsp;&emsp;o	Email: customer-support@duftunddu.com 
+                    <br>&emsp;&emsp;•	Credits to Open Source Communities:
+                    <br>&emsp;&emsp;&emsp;&emsp;o	<a href="/credits">Credits Page</a>
                 </div>
 
             </div>

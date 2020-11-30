@@ -39,6 +39,10 @@ Route::get('/faq', function () {
     return view('forms.faq');
 });
 
+Route::get('/credits', function () {
+    return view('forms.credits');
+});
+
 Route::get('terms_and_conditions', function () {
     return view('forms.terms_and_conditions');
 });
