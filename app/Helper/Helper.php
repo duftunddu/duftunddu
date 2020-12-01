@@ -71,11 +71,18 @@ class Helper
     
     public static function currency_convert($cost, $from, $to){
         $exchangeRates = new ExchangeRate();
+        $usd_to_pkr = 163.2;
+
+        // If both 'from' and 'to' are PKR then this function won't even be called. 
+
         if($from == 'PKR'){
-            return round($exchangeRates->convert($cost, $from, 'USD') * 163,2);
+            return round($exchangeRates->convert($cost * $usd_to_pkr, 'USD', $to));
+        }
+        else if($to == 'PKR'){
+            return round($exchangeRates->convert($cost, $from, 'USD') * $usd_to_pkr);
         }
         else{
-            return round($exchangeRates->convert($cost, $from, $to),2);
+            return round($exchangeRates->convert($cost, $from, $to));
         }
     }
 

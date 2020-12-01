@@ -2,6 +2,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" defer></script>
 
 <canvas id="myChart" width="80%" height="50%"></canvas>
+{{-- <canvas id="myChart" width="5rem" height="2.5rem"></canvas> --}}
 
 <script defer>
     window.addEventListener('DOMContentLoaded', function() {
@@ -63,6 +64,7 @@
                     }],
                     xAxes: [{
                         gridLines: {
+                            drawTicks: false,
                             zeroLineColor: "transparent"
                         },
                         ticks: {

@@ -308,18 +308,18 @@ class Fragrance_Controller extends Controller
     $type = Fragrance_Type::find($fragrance->type_id)->first();
 
     $accords = DB::table('fragrance_accord')
-        ->join('accord', 'accord.id', '=', 'fragrance_accord.accord_id')
-        // ->where('fragrance_accord.id', $id)
-        ->select('accord.name')
-        ->pluck('name')
-        ->toArray();
+      ->where('fragrance_accord.fragrance_id', $id)
+      ->join('accord', 'accord.id', '=', 'fragrance_accord.accord_id')
+      ->select('accord.name')
+      ->pluck('name')
+      ->toArray();
     
     $notes = DB::table('fragrance_ingredient')
-        ->join('ingredient', 'ingredient.id', '=', 'fragrance_ingredient.ingredient_id')
-        // ->where('fragrance_ingredient.id', $id)
-        ->select('ingredient.name', 'fragrance_ingredient.intensity')
-        ->orderBy('intensity', 'desc')
-        ->get();
+      ->where('fragrance_ingredient.fragrance_id', $id)
+      ->join('ingredient', 'ingredient.id', '=', 'fragrance_ingredient.ingredient_id')
+      ->select('ingredient.name', 'fragrance_ingredient.intensity')
+      ->orderBy('intensity', 'desc')
+      ->get();
 
     // For Brand Ambassadors
     $allow_edit = FALSE;
@@ -342,9 +342,11 @@ class Fragrance_Controller extends Controller
             ->join('skin_type', 'skin_type.id', '=', 'fragrance_profile.skin_type_id')
             ->join('climate', 'climate.id', '=', 'fragrance_profile.climate_id')
             ->join('season', 'season.id', '=', 'fragrance_profile.season_id')
-            ->select('fragrance_profile.currency', 'fragrance_profile.location_id', 'fragrance_profile.sweat', 'fragrance_profile.height', 'fragrance_profile.weight', 'skin_type.name as skin', 'climate.name as climate', 'season.name as season')
+            ->select('fragrance_profile.gender', 'fragrance_profile.currency', 'fragrance_profile.location_id', 'fragrance_profile.sweat', 'fragrance_profile.height', 'fragrance_profile.weight', 'skin_type.name as skin', 'climate.name as climate', 'season.name as season')
             ->first();
           
+          $user_gender = $frag_profile->gender;
+
           if($fragrance->currency != $frag_profile->currency){
 
             $fragrance->cost = Helper::currency_convert($fragrance->cost, $fragrance->currency, $frag_profile->currency);
@@ -574,10 +576,11 @@ class Fragrance_Controller extends Controller
     }
     else{
       // $logged_in = FALSE;
-      $weights = $longevity = $suitability = $sustainability = NULL;
+      $user_gender = $weights = $longevity = $suitability = $sustainability = NULL;
     }
 
     return view('forms.fragrance',[
+        'user_gender'       => $user_gender,
         'fragrance'         => $fragrance,
         'type'              => $type,
         'accords'           => $accords,

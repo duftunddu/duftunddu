@@ -7,25 +7,36 @@
 
 <style>
     .pass-pad{
-        margin-bottom:40px;
+        margin-bottom:7px;
+    }
+    .pass-button{
+        margin-left: 10px;
     }
     .sign-up-pad{
-        margin-top:-10px;
-        margin-bottom:-10px;
+        margin-top:-60px;
+        /* margin-bottom:-50px; */
     }
     .side-pad{
-        margin-left: 37px;
+        margin-left: 15px;
     }
 
     @media (max-width: 767px) {
-    .pass-pad{
-        margin-bottom:0;
+        .pass-button{
+            margin-left: -7px;
+        }
+        .sign-up-pad{
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        .side-pad{
+            margin-left: 15px;
+        }
     }
-    .sign-up-pad{
-        margin-top: 0;
-        margin-bottom: 0;
+    @media (max-width: 400px) {
+        .pass-pad{
+            margin-left: -7px;
+        }
     }
-}
 </style>
 
 @section('content')
@@ -80,25 +91,30 @@
                         </div>
 
                         {{-- Button: Login --}}
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="custom">
-                                    <span class="before">{{_('Login')}}</span>
-                                    <span class="after">{{_('Login')}}</span>
-                                </button>
+                        {{-- <div class="form-group row"> --}}
+                            <div class="offset-md-4 mb-0 pass-button">
+                                {{-- <div class="col-md-9"> --}}
 
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link pass-pad" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
+                                    <button type="submit" class="custom">
+                                        <span class="before">{{_('Login')}}</span>
+                                        <span class="after">{{_('Login')}}</span>
+                                    </button>
+
+                                    @if (Route::has('password.request'))
+                                        <a class="btn btn-link pass-pad" href="{{ route('password.request') }}">
+                                            {{ __('Forgot Your Password?') }}
+                                        </a>
+                                    @endif
+                                {{-- </div> --}}
                             </div>
-                        </div>
+                        {{-- </div> --}}
 
                         {{-- Sign Up --}}
                         <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4 sign-up-pad" >
-                                <a class="btn btn-link side-pad" href="{{ url('/register') }}">Sign Up</a>
+                            <div class="col-md-6 offset-md-4">
+                                <div class="col-md-6">
+                                    <a class="btn btn-link side-pad" href="{{ url('/register') }}">Sign Up</a>
+                                </div>
                             </div>
                         </div>
 

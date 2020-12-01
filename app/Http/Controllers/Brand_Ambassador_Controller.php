@@ -43,15 +43,27 @@ class Brand_Ambassador_Controller extends Controller
 
         // fetching the search counts for the past week
         if($fragrances->isNotEmpty()){
+            // Taking fragrances names
+            $only_fragrances = Fragrance::where('brand_id', $ambassador->brand_id)->select(DB::raw("CONCAT(fragrance.name,' ',fragrance.normal_name) as frag"))->pluck('frag');
+            // ->get();
+    
+            // Creating regex for query
+            $words = [];
+            foreach($only_fragrances as $fragrance_name){
+                $words =  array_merge($words, explode(' ', $fragrance_name));
+            }
+            $words = array_unique($words);
+            $regex = implode('|', $words);
+
+            // Seraching through queries
             $date = Carbon::today()->subDays(7);
-            $only_fragrances = Fragrance::where('brand_id', $ambassador->brand_id)->pluck('normal_name');
             $queries = Search_Queries::where('created_at', '>=', $date)
-                ->where('query', '=', $only_fragrances)
+                ->where('query', 'regexp', $regex)
                 ->select(DB::raw('DATE(created_at) as date'), DB::raw('count(*) as count'))
                 ->groupBy('date',)
                 ->orderBy('date', 'asc')
                 ->get();
-        
+
             $dates          = $queries->pluck('date')->toArray();
             $fetched_counts = $queries->pluck('count')->toArray();
 

@@ -83,18 +83,24 @@
 
                         {{-- Button: Register --}}
                         <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
+                            <div class="col-md-9 offset-md-4">
+                                <div class="col-md-9">
+
                                 <button type="submit" class="custom">
                                     <span class="before">{{_('Register')}}</span>
                                     <span class="after">{{_('Register')}}</span>
                                 </button>
                             </div>
-                        </div><br>
+                        </div>
+                        </div>
+                        <br>
 
                         {{-- Login --}}
                         <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4" style="margin-bottom:-10px;margin-top:-10px;">
-                                &emsp;&emsp;&nbsp;<a class="btn btn-link" href="{{ url('/login') }}">Sign Up</a>
+                            <div class="col-md-8 offset-md-4">
+                                <div class="col-md-9">
+                                    &nbsp;&nbsp;&nbsp;<a class="btn btn-link" href="{{ url('/login') }}">Login</a>
+                                </div>
                             </div>
                         </div>
 

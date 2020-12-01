@@ -7,57 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     {{-- Styles --}}
-    <style>
-        .center{
-            display: block;
-            margin:0 auto;
-        }
-
-        #myChart{
-            z-index: 5;
-        }
-
-        h5{
-            opacity: 1;
-            transform: translate(0);
-            transition: all 200ms linear;
-            transition-delay: 700ms;
-        }
-        body.hero-anime h5{
-            opacity: 0;
-            transform: translateY(8px);
-            transition-delay: 700ms;
-        }
-
-        button.btn{
-            opacity: 1;
-            transform: translate(0);
-            transition: all 200ms linear;
-            transition-delay: 800ms;
-        }
-        body.hero-anime button.btn{
-            opacity: 0;
-            transform: translateY(8px);
-            transition-delay: 800ms;
-        }
-
-        small{
-            opacity: 1;
-            transform: translate(0);
-            transition: all 250ms linear;
-            transition-delay: 1000ms;
-        }
-        body.hero-anime small{
-            opacity: 0;
-            transform: translateY(50px);
-            transition-delay: 1000ms;
-        }
-
-    </style>
+    <link href="{{ asset('css/brand_ambassador_home.css') }}" rel="stylesheet">
 
     {{-- Button --}}
     <link href="{{ asset('css/custom_button.css') }}" rel="stylesheet">
-    
 </head>
 
 @section('content')

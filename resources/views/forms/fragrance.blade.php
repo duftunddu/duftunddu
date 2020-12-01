@@ -27,15 +27,51 @@
 
                         {{-- On Left --}}
                         <div class="column">
-                            @auth()
-                            <h4 for="about you" class="center color-red">{{ Auth::user()->name }}</h4><br>
+
+                            {{-- Heading: User Name --}}
+                            <h4 for="user name" class="center color-red">
+                            @auth
+                            {{ Auth::user()->name }}
                             @else
-                            <h4 for="about you" class="center color-red">{{ __('You')}}</h4><br>
+                            {{ __('You')}}
                             @endauth
+                            &thinsp;
+
+                            {{-- Gender Image --}}
+                            @if($user_gender == 'Male')
+                            <img class="gender-png" class="gender-png" data-toggle="tooltip" data-placement="top" data-html="true"
+                            title="Gender is Male." alt="Male Symbol"
+                                src="{{ asset('images/vector_graphics/gender/male_symbol.png') }}">
+                            @elseif($user_gender == 'Female')
+                            <img class="gender-png" data-toggle="tooltip" data-placement="top" data-html="true"
+                            title="Gender is Female." alt="Female Symbol"
+                                src="{{ asset('images/vector_graphics/gender/female_symbol.png') }}">
+                            @else
+                            <img class="gender-png" class="gender-png" data-toggle="tooltip" data-placement="top" data-html="true"
+                            title="Gender is Other." alt="OTher Symbol"
+                                src="{{ asset('images/vector_graphics/gender/unisex_symbol.png') }}">
+                            @endif
+                            </h4>
+                            <h5 for="personal numbers" class="center color-red">Personal Numbers</h4>
+                            <br>
 
                             <div class="left-border">
                                 <div class="left">
                                     @auth
+
+                                    {{-- @if($user_gender == 'Male')
+                                    <img class="gender-png" class="gender-png" data-toggle="tooltip" data-placement="top" data-html="true"
+                                    title="Gender is Male." alt="Male Symbol"
+                                        src="{{ asset('images/vector_graphics/gender/male_symbol.png') }}">
+                                    @elseif($user_gender == 'Female')
+                                    <img class="gender-png" data-toggle="tooltip" data-placement="top" data-html="true"
+                                    title="Gender is Female." alt="Female Symbol"
+                                        src="{{ asset('images/vector_graphics/gender/female_symbol.png') }}">
+                                    @else
+                                    <img class="gender-png" class="gender-png" data-toggle="tooltip" data-placement="top" data-html="true"
+                                    title="Gender is Other." alt="OTher Symbol"
+                                        src="{{ asset('images/vector_graphics/gender/unisex_symbol.png') }}">
+                                    @endif --}}
 
                                     <h4 class="hsl-color" data-toggle="tooltip" data-placement="top" data-html="true"
                                         title="How long the fragrance lasts.<br>100 is max.">Longevity: {{$longevity}}
@@ -119,10 +155,9 @@
                                     </section><br>
 
                                     <br>
-                                    <p>
-                                        {{-- version 1.0.<br> --}}
-                                        These are personalized numbers.<br>
-                                        These factors were researched and calculated using your personal data.<br>
+                                    <p class="color-light-gray right-align">v 1.1</p>
+                                    <p>These are your personalized numbers.<br>
+                                        {{-- These factors were researched and calculated using your personal data.<br> --}}
                                         Please leave feedback on fragrances you have used previously.<br>
                                         Your input will help us predict better!
                                     </p><br>
@@ -141,12 +176,11 @@
 
                                     @endauth
                                     @guest
-                                    <h4 class="color-red">You are missing out on Factors Affecting Fragrance Wearability
-                                    </h4>
+                                    <h4 class="color-red">You are missing out on Factors Affecting Fragrance Wearability.</h4>
                                     <h4 class="color-red"><a href="/login">Log In</a> / <a href="/register">Sign Up</a>
                                         to see if <span class="color-highlight-purple">{{ __($fragrance->name)}}</span>
                                         will suit you.</h4>
-                                    <p>For more info, visit <a href="/faq">FAQ</a>.</p>
+                                    <p class="color-light-gray right-align">For more info, visit <a href="/faq">FAQ</a>.</p>
                                     @endguest
 
                                 </div>
@@ -156,13 +190,30 @@
                         {{-- On Right --}}
                         <div class="column">
 
-                            <h4 for="about fragrance" class="center color-highlight-purple">{{ __('Fragrance')}} </h4>
+                            {{-- Heading: Fragrance Name --}}
+                            <h4 for="fragrance name" class="center color-highlight-purple">{{ __($fragrance->name)}}
+                                @if($fragrance->gender == 'Male')
+                                <img class="gender-png" class="gender-png" data-toggle="tooltip" data-placement="top" data-html="true"
+                                title="Fragrance is masculine." alt="Male Symbol"
+                                    src="{{ asset('images/vector_graphics/gender/male_symbol.png') }}">
+                                @elseif($fragrance->gender == 'Female')
+                                <img class="gender-png" data-toggle="tooltip" data-placement="top" data-html="true"
+                                title="Fragrance is feminine." alt="Female Symbol"
+                                    src="{{ asset('images/vector_graphics/gender/female_symbol.png') }}">
+                                @else
+                                <img class="gender-png" class="gender-png" data-toggle="tooltip" data-placement="top" data-html="true"
+                                title="Fragrance is unisex." alt="Unisex Symbol"
+                                    src="{{ asset('images/vector_graphics/gender/unisex_symbol.png') }}">
+                                @endif
+                            </h4>
+                            <h5 for="fragrance details" class="center color-highlight-purple">Fragrance Details</h4>
                             <br>
+
                             <div class="right-border">
                                 <div class="right">
 
                                     {{-- <h4>Gender: {{$fragrance->gender}}</h4> --}}
-                                    @if($fragrance->gender == 'Male')
+                                    {{-- @if($fragrance->gender == 'Male')
                                     <img class="gender-png" class="gender-png" data-toggle="tooltip" data-placement="top" data-html="true"
                                     title="Fragrance is masculine." alt="Male Symbol"
                                         src="{{ asset('images/vector_graphics/gender/male_symbol.png') }}">
@@ -174,7 +225,7 @@
                                     <img class="gender-png" class="gender-png" data-toggle="tooltip" data-placement="top" data-html="true"
                                     title="Fragrance is unisex." alt="Unisex Symbol"
                                         src="{{ asset('images/vector_graphics/gender/unisex_symbol.png') }}">
-                                    @endif
+                                    @endif --}}
 
                                     <h4>Type: {{$type->name}}</h4>
                                     <h4>Cost: {{$fragrance->cost}} {{$fragrance->currency}}
@@ -185,19 +236,29 @@
                                     <h4>Accords:</h4>
 
                                     @foreach($accords as $accord)
+                                    @if (!($loop->last))
+                                    <h5>{{$accord}},</h5>
+                                    @endif
+                                    @if ($loop->last)
                                     <h5>{{$accord}}</h5>
-                                    @endforeach
+                                    @endif
+                                    @endforeach<br>
 
                                     <br>
 
                                     <h4>Notes:</h4>
                                     @foreach($notes as $note)
+                                    @if (!($loop->last))
+                                    <h5>{{$note->name}},</h5>
+                                    @endif
+                                    @if ($loop->last)
                                     <h5>{{$note->name}}</h5>
-                                    @endforeach
+                                    @endif
+                                    @endforeach<br>
 
                                     <br>
 
-                                    <p>Added on {{$fragrance->created_at->format('d/M/y')}}</p>
+                                    <p class="color-light-gray left-align">Added on {{$fragrance->created_at->format('d/M/y')}}</p>
 
                                 </div>
                             </div>

@@ -62,16 +62,16 @@ class Search_Queries_Controller extends Controller
             'searchbox' =>  'required|max:40',
         ]);
 
-        $queries = explode(' ', $request->searchbox);
-        
+        $words = explode(' ', $request->searchbox);
+        $regex = implode('|', $words);
+
         $results = DB::table('fragrance')
             ->join('fragrance_brand', 'fragrance_brand.id', '=', 'fragrance.brand_id')
-            ->whereIn('fragrance.name', $queries)
+            ->where('fragrance.name', 'regexp', $regex)
             ->select('fragrance.id as f_id','fragrance.name as f_name', 'fragrance_brand.id as b_id','fragrance_brand.name as b_name')
             ->paginate(10);
 
-        $params = ['searchbox' => $request->searchbox];
-    
+        $params = ['searchbox' => $request->searchbox];    
 
         if($request->page == NULL){
             
@@ -87,6 +87,7 @@ class Search_Queries_Controller extends Controller
                 DB::transaction(function () use ($request, $location, $agent) {
                     $new = new Search_Queries();
                     $new->query = $request->searchbox;
+                    $new->location_id     = $location->id;
                     $new->device              = $agent->device();
                     $new->platform            = $agent->platform();
                     $new->browser             = $agent->browser();
@@ -109,7 +110,6 @@ class Search_Queries_Controller extends Controller
                             $new->sweat           = $profile->sweat;
                             $new->height          = $profile->height;
                             $new->weight          = $profile->weight;
-                            $new->location_id     = $location->id;
                             $new->climate_id      = $profile->climate_id;
                             $new->season_id       = $profile->season_id;
                         }
@@ -120,7 +120,6 @@ class Search_Queries_Controller extends Controller
             } else {
                 //page was refeshed
             }
-        
         }
 
         return view('forms.search_results',[
