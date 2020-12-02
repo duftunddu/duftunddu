@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-{{-- Searchbar Scripts --}}
-<link href="{{ asset('css/searchbar.css') }}" rel="stylesheet">
-<script src="{{ asset('js/searchbar.js') }}" defer></script>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="{{ asset('js/TweenMax.min.js') }}" defer></script>
-
     <head>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-G1D0YSC2FS"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-G1D0YSC2FS');
+        </script>
         
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,116 +19,20 @@
 
         <title>{{('Search Engine | Duft Und Du')}}</title>
 
+        {{-- Searchbar Scripts --}}
+        <link href="{{ asset('css/searchbar.css') }}" rel="stylesheet">
+        <script src="{{ asset('js/searchbar.js') }}" defer></script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="{{ asset('js/TweenMax.min.js') }}" defer></script>
+
+
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
         
         <!-- Styles -->
-        <style>
-
-            html, body {
-                background-image: url('../images/fragrance_model/laura-chouette-5qRgJ8ISEpA-unsplash_use.jpg');
-                background-image: url('../images/fragrance_model/laura-chouette-5qRgJ8ISEpA-unsplash_use.webp');
-                /* background-attachment: fixed; */
-                background-repeat: no-repeat;
-                /* background-position: -50px top; */
-                background-position: left 77px;
-                background-size: cover;
-                background-color: #f5f5f3;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                color: #212529;
-                height: 100%;
-                margin: 0;
-                font-size: 100%;
-            }
-
-            .full-height {
-                height: 100%;
-            }
-
-            .flex-center {
-                align-items: right;
-                display: flex;
-                justify-content: right;
-                /* top: 5.0vw; */
-                top: 4.13rem;
-                padding-left: 55%;
-            }
-            #search-input{
-                font-family: 'Nunito';
-                color: #636b6f; 
-                font-size: 1rem;
-                font-weight: bold;
-                width:26.5rem;
-                letter-spacing:1px;
-            }
-            .search__feedback{
-                color:rgba(202, 56, 73, 0.7);
-                letter-spacing: 0.152rem;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-family: 'Cinzel', serif;
-                font-variant: small-caps;
-                /* font-size: 6.2vw; */
-                font-size: 5.125rem;
-                letter-spacing: 1px;
-            }
-
-            .heading{
-                /* font-size: 2.7vw; */
-                font-size: 2.23rem;
-                font-weight: 600;
-                /* letter-spacing: .25vw; */
-                letter-spacing: .2rem;
-            }
-
-            /* .links > a {
-                padding: 0 1.88px;
-                font-size: 0.97vw;
-                font-weight: 600;
-                letter-spacing: .15vw;
-                text-decoration: none;
-                text-transform: uppercase;
-            } */
-
-            .top-pad{
-                font-family: 'Nunito', serif;
-                /* padding-top: 18vh; */
-                padding-top: 7.8525rem;
-                /* font-size: 1.7vw; */
-                font-size: 1.4rem;
-                font-weight: 600;
-                /* letter-spacing: .25vw; */
-                letter-spacing: .2rem;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                /* margin-bottom: 2.26vw; */
-                margin-bottom: 1.868rem;
-            }
-
-            .footer-pad{
-                /* margin-top: -3vh; */
-                margin-top: -1.3rem;
-            }
-            
-            /* .searchbox {
-                line-height: 3.78vw;
-                height: 3.78vw;
-                width: 3vw;
-            } */
-        </style>
+        <link href="{{ asset('css/search_engine.css') }}" rel="stylesheet">
     </head>
     
     <body>

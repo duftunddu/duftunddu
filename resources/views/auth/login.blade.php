@@ -7,7 +7,7 @@
 
 <style>
     .pass-pad{
-        margin-bottom:7px;
+        margin-bottom:45px;
     }
     .pass-button{
         margin-left: 10px;

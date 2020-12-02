@@ -1,13 +1,24 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-<link href="{{ asset('css/searchbar_m.css') }}" rel="stylesheet">
-<script src="{{ asset('js/searchbar.js') }}" defer></script>
+    {{-- Searchbar Scripts --}}
+    <link href="{{ asset('css/searchbar_m.css') }}" rel="stylesheet">
+    <script src="{{ asset('js/searchbar.js') }}" defer></script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{{ asset('js/TweenMax.min.js') }}" defer></script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="{{ asset('js/TweenMax.min.js') }}" defer></script>
 
     <head>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-G1D0YSC2FS"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-G1D0YSC2FS');
+        </script>
         
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,128 +33,17 @@
 
         <!-- Styles -->
         <style>
-
-            html, body {
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                font-size: 100%;
-                color: #212529;
-                height: 100%;
-                /* font-size: 3vw; */
-                margin: 0;
-                margin-top: -2.0rem;
-            }
-
-            .full-height {
-                /* height: 70vh; */
-                height: 90% !important;
-            }
-
             .background{
-
-                @if($random > 0)
-                background-image: url('../images/fragrance_model/applying_fragrance/person-holding-clear-glass-bottle-4659793_small_use.jpg');
+                @if($random > 0) background-image: url('../images/fragrance_model/applying_fragrance/person-holding-clear-glass-bottle-4659793_small_use.jpg');
                 background-image: url('../images/fragrance_model/applying_fragrance/person-holding-clear-glass-bottle-4659793_small_use.webp');
-                @elseif($random < 0)
-                background-image: url('../images/fragrance_model/laura-chouette-2H_8WbVPRxM-unsplash_search_use.jpg');
+                @elseif($random < 0) background-image: url('../images/fragrance_model/laura-chouette-2H_8WbVPRxM-unsplash_search_use.jpg');
                 background-image: url('../images/fragrance_model/laura-chouette-2H_8WbVPRxM-unsplash_search_use.webp');
-                @else
-                background-image: url('../images/fragrance_model/applying_fragrance/person-holding-clear-glass-round-mirror-4659792_small_use.jpg');
+                @else background-image: url('../images/fragrance_model/applying_fragrance/person-holding-clear-glass-round-mirror-4659792_small_use.jpg');
                 background-image: url('../images/fragrance_model/applying_fragrance/person-holding-clear-glass-round-mirror-4659792_small_use.webp');
-                @endif
-
-                height: 89%;
-                width: 100%;
-                position: absolute;
-                
-                background-size: cover;
-                background-repeat: no-repeat;
-
-                transition: all 1s ease-in;
-                -webkit-transition: all 1s ease-in;
-                -o-transition: all 1s ease-in;
-                -moz-transition: all 1s ease-in;
+                @endif 
             }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-                /* top: 5.0vw; */
-                /* margin-top: -30%; */
-                /* padding-top: 15vh; */
-                /* padding-top: 15vh; */
-                /* padding-left: 10.9vw; */
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .content {
-                text-align: center;
-                opacity: 0;
-                transition: all 1s ease-in;
-                -webkit-transition: all 1s ease-in;
-                -o-transition: all 1s ease-in;
-                -moz-transition: all 1s ease-in;
-
-            }
-
-            .title {
-                font-family: 'Cinzel', serif;
-                font-variant: small-caps;
-                font-size: 14vw;
-                letter-spacing: 1px;
-                /* font-size: 12vw; */
-            }
-
-            .heading{
-                font-size: 10vw;
-            }
-            
-            .m-b-md {
-                margin-bottom: 2.26vw;
-            }
-
-            .top-pad{
-                font-family: 'Nunito', serif;
-                padding-top: 18vh;
-                font-size: 4.5vw;
-                font-weight: 600;
-                letter-spacing: .25vw;
-                text-transform: uppercase;
-            }
-
-            .search__input{
-                font-family: 'Nunito';
-                color: #636b6f;
-                font-size: 4.5vw;
-                font-weight: bold;
-                width:70vw;
-                letter-spacing:1.2px;
-                line-height: 7vw;
-                /* height: 6.5vw; */
-            }
-            
-            /* .links > a { */
-                /* padding: 0 1.88px; */
-                /* font-size: 1.2vh; */
-                /* font-size: 2.8vw;
-                font-weight: 600;
-                letter-spacing: .2vw;
-                text-decoration: none;
-                text-transform: uppercase;
-                color: #636b6f; */
-            /* } */
-
-            /* .searchbox {
-                line-height: 3.78vh;
-                height: 3.78vh;
-                width: 3vh;
-            } */
-
         </style>
+        <link href="{{ asset('css/search_engine_m.css') }}" rel="stylesheet">
     </head>
     
     <body>
