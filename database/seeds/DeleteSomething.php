@@ -1,7 +1,10 @@
 <?php
 
+use Carbon\Carbon;
+
 use App\User;
 use App\Request_Brand;
+use App\Search_Queries;
 use App\Feature_Request;
 use App\Fragrance_Brand;
 use Illuminate\Database\Seeder;
@@ -19,5 +22,16 @@ class DeleteSomething extends Seeder
         // User::where('name','Cocaine Wraith')->update(['name' => "Daaniyal Riaz"]);
         // Request_Brand::where('name','Test Brand')->delete();
         // Feature_Request::where('name','Indoor vs Outdoor')->update('deleted_at','null');
+        
+        // To add records to search queries. 
+        // $date = Carbon::today()->subDays(1);
+        
+        // for($i =0; $i<8; $i++){
+        //     Search_Queries::create([
+        //         'created_at'=>$date,
+        //         'location_id'=>'25',
+        //         'query'=>'ein',
+        //         ]);
+        // }
     }
 }

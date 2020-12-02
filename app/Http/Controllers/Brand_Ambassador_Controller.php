@@ -56,7 +56,7 @@ class Brand_Ambassador_Controller extends Controller
             $regex = implode('|', $words);
 
             // Seraching through queries
-            $date = Carbon::today()->subDays(7);
+            $date = Carbon::today()->subDays(6);
             $queries = Search_Queries::where('created_at', '>=', $date)
                 ->where('query', 'regexp', $regex)
                 ->select(DB::raw('DATE(created_at) as date'), DB::raw('count(*) as count'))
@@ -70,16 +70,19 @@ class Brand_Ambassador_Controller extends Controller
             // Filling the rest of the days
             $week_count = array(0,0,0,0,0,0,0);
             
-            $j = 0; 
+            $j = 0;
             for($i=0; $i < 7; $i++){
                 if(count($dates) < $j+1){
                     break;
                 }
-                if($date->addDays(1)->toDateString() == $dates[$j]){
+
+                if($date->toDateString() == $dates[$j]){
                     $week_count[$i] = $fetched_counts[$j];
                     $j++;
                 }
+                $date->addDays(1);
             }
+            
             $max = max($week_count);
             if($max%10 != 0){
                 $yaxis_limit = $max + (10 - $max%10); 

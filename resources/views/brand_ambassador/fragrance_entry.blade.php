@@ -3,11 +3,16 @@
 <title>{{('Fragrance Entry | Duft Und Du')}}</title>
 
 @section('content')
+
 {{-- Add Another Function --}}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 
-{{-- Button --}}
+{{-- Button: Submit --}}
 <link href="{{ asset('css/custom_button.css') }}" rel="stylesheet">
+
+{{-- Button: Info --}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/fontawesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/solid.min.css">
 
 <div class="container">
 
@@ -18,38 +23,22 @@
 
                 {{-- Fragrance Table --}}
                 <div class="card">
-                    <div class="card-header">{{ __('Fragrance Entry')}}</div>
+                    <div class="card-header">{{ __('Fragrance Entry')}} &thinsp;
+                        <i class="fas fa-info" data-toggle="tooltip"
+                        data-placement="right" data-html="true"
+                        title="Tap the fields below to reveal best practices and insights.  
+                        <br>Entering incorrect data will mislead your audience.
+                        <br>For more info, read FAQ."></i>
+                    </div>
 
                     <div class="card-body">
-
-                        {{-- Brands --}}
-                        {{-- <div class="form-group row">
-                            <label for="brand_id"
-                                class="col-md-4 col-from-label text-md-right">{{ __('Brand Name:')}}</label>
-
-                            <div class="col-md-6">
-
-                                <select id="brand_id" type="number"
-                                    class="form-control @error('brand_id') is-invalid @enderror" name="brand_id"
-                                    value="{{ old('brand_id')}}" required>
-                                    <option value="" selected="selected" disabled="disabled">-- Select Brand --</option>
-                                    @foreach($brands as $brand)
-                                    <option value="{{$brand->id}}">{{$brand->name}}</option>
-                                    @endforeach
-                                </select>
-
-                                @error('brand_id')
-                                <span class="invalid-feeback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div> --}}
 
                         {{-- Fragrance Name --}}
                         <div class="form-group row">
                             <label for="name"
-                                class="col-md-4 col-from-label text-md-right">{{ __('Fragrance Name:')}}</label>
+                                class="col-md-4 col-from-label text-md-right" data-toggle="tooltip"
+                                data-placement="top" data-html="true"
+                                title="Name of your fragrance."> {{ __('Fragrance Name:')}}</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" placeholder="Mon Paris"
@@ -66,7 +55,11 @@
 
                         {{-- Type --}}
                         <div class="form-group row">
-                            <label for="type_id" class="col-md-4 col-from-label text-md-right">{{ __('Type:')}}</label>
+                            {{-- Tooltip & Label --}}
+                            <label for="type_id"
+                            class="col-md-4 col-from-label text-md-right" data-toggle="tooltip"
+                            data-placement="top" data-html="true"
+                            title="Contributes to Longevity."> {{ __('Type:')}} </label>
 
                             <div class="col-md-6">
 
@@ -91,7 +84,9 @@
                         {{-- Gender --}}
                         <div class="form-group row">
                             <label for="gender"
-                                class="col-md-4 col-from-label text-md-right">{{ __('This Fragrance Suits:')}}</label>
+                                class="col-md-4 col-from-label text-md-right" data-toggle="tooltip"
+                                data-placement="top" data-html="true"
+                                title="Gender suitability.">{{ __('This Fragrance Suits:')}}</label>
 
                             <div class="col-md-6">
 
@@ -120,7 +115,10 @@
 
                         {{-- Cost --}}
                         <div class="form-group row">
-                            <label for="cost" class="col-md-4 col-from-label text-md-right">{{ __('Cost:')}}</label>
+                            <label for="cost" 
+                            class="col-md-4 col-from-label text-md-right" data-toggle="tooltip"
+                            data-placement="top" data-html="true"
+                            title="Cost of Fragrance.">{{ __('Cost:')}}</label>
 
                             <div class="col-md-6">
                                 <input id="cost" type="number" placeholder="1000" min="1" max="4294967295"
@@ -138,7 +136,11 @@
                         {{-- Currency --}}
                         <div class="form-group row">
                             <label for="currency"
-                                class="col-md-4 col-from-label text-md-right">{{ __('Currency:')}}</label>
+                                class="col-md-4 col-from-label text-md-right"data-toggle="tooltip"
+                                data-placement="top" data-html="true"
+                                title="Select your preferred currency.
+                                <br>Don't worry, we'll show the audience the cost in
+                                thier preferred currency.">{{ __('Currency:')}}</label>
 
                             <div class="col-md-6">
 
@@ -176,7 +178,9 @@
                             {{-- Name --}}
                             <div class="form-group row">
                                 <label for="accord_id"
-                                    class="col-md-4 col-from-label text-md-right">{{ __('Accord:')}}</label>
+                                    class="col-md-4 col-from-label text-md-right" data-toggle="tooltip"
+                                    data-placement="top" data-html="true"
+                                    title="Contributes to Suitability.">{{ __('Accord:')}}</label>
 
                                 <div class="col-md-6">
 
@@ -228,7 +232,9 @@
                             {{-- Name --}}
                             <div class="form-group row">
                                 <label for="ingredient_id"
-                                    class="col-md-4 col-from-label text-md-right">{{ __('Ingredient:')}}</label>
+                                    class="col-md-4 col-from-label text-md-right" data-toggle="tooltip"
+                                    data-placement="top" data-html="true"
+                                    title="Contributes to Suitability.">{{ __('Ingredient:')}}</label>
 
                                 <div class="col-md-6">
 
@@ -253,7 +259,11 @@
 
                             {{-- Note --}}
                             <div class="form-group row">
-                                <label for="note" class="col-md-4 col-from-label text-md-right">{{ __('Note:')}}</label>
+                                <label for="note" 
+                                class="col-md-4 col-from-label text-md-right" data-toggle="tooltip"
+                                data-placement="top" data-html="true"
+                                title="Contributes to Genie.
+                                <br>Function under development.">{{ __('Note:')}}</label>
 
                                 <div class="col-md-6">
 
@@ -285,7 +295,10 @@
                             {{-- Intensity --}}
                             <div class="form-group row">
                                 <label for="intensity"
-                                    class="col-md-4 col-from-label text-md-right">{{ __('Intensity:')}}</label>
+                                    class="col-md-4 col-from-label text-md-right" data-toggle="tooltip"
+                                    data-placement="top" data-html="true"
+                                    title="Contributes to Sillage.
+                                    <br>Function under development.">{{ __('Intensity:')}}</label>
 
                                 <div class="col-md-6">
 
@@ -328,8 +341,6 @@
 
                         <br>
                         <br>
-
-
 
                     </div>
                 </div>
