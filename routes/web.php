@@ -235,6 +235,12 @@ Route::middleware(['role:admin'])->group(function () {
     });
 });
 
+Route::get('/hehe', function () {
+    return "hehehehehehe";
+});
+Route::get('/admin/{slug}', function () {
+    return view('welcome');
+});
 // sample
 // Route::middleware(['role:user|admin'])->group(function () {
 // });
