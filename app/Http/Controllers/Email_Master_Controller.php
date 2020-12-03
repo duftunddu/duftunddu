@@ -53,12 +53,12 @@ class Email_Master_Controller extends Controller
 
         $markdown = Container::getInstance()->make(Markdown::class);
 
-        $html = $markdown->render("emails.{$request->email_template}",
+        $html = $markdown->render("emails.{$request->email_template}");
         // [
         //     'user_id'        => $user_id,
         //     'email_type'        => $email_type,
         // ]
-        );
+        
 
         return view('emails.empty',[
             'html' => $html,
