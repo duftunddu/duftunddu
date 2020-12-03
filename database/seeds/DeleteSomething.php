@@ -21,7 +21,7 @@ class DeleteSomething extends Seeder
         // Fragrance_Brand::where('name',"DummyTestBrand")->first()->delete();
         // User::where('name','Cocaine Wraith')->update(['name' => "Daaniyal Riaz"]);
         // Request_Brand::where('name','Test Brand')->delete();
-        // Feature_Request::where('name','Indoor vs Outdoor')->update('deleted_at','null');
+        Request_Brand::where('name','J.')->update('status','Queued');
         
         // To add records to search queries. 
         // $date = Carbon::today()->subDays(1);
