@@ -5,6 +5,7 @@
 Congratulations!
 You have earned a badge.
 @endcomponent
+<br>
 
 Hi {{$user->name}},
 {{-- Hi user_name, --}}
@@ -13,10 +14,12 @@ Hi {{$user->name}},
 The feature request you put in, has been accepted, and delivered.
 <br>
 
+@component('mail::panel')
 ## {{ $feature->name }}
 {{-- ## feature_name --}}
 {{ $feature->description }}
 {{-- feature_description --}}
+@endcomponent
 <br><br>
 
 @component('mail::panel')

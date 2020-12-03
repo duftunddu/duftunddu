@@ -123,7 +123,7 @@ class Email_Master_Controller extends Controller
             }
             else {
                 // Not using "find" cause the next method is expecting array
-                $recipients = User::where('id', $recipients[0]->id)->get();
+                $recipients = User::where('id', $recipients[0]->users_id)->get();
             }
         }
         else{
