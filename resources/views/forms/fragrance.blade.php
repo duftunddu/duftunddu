@@ -9,6 +9,13 @@
 {{-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" defer></script> --}}
 {{-- <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/flick/jquery-ui.css"> --}}
 
+<style>
+    /* #back-color {
+        color:white !important;
+        background: linear-gradient(90deg, rgba(0, 0, 0, 1) 27%, rgba(255, 255, 255, 1) 100%) !important;
+    } */
+</style>
+
 <link href="{{ asset('css/fragrance.css') }}" rel="stylesheet">
 
 {{-- JQuery for Ajax --}}
@@ -58,21 +65,26 @@
                             <div class="left-border">
                                 <div class="left">
                                     @auth
-
-                                    {{-- @if($user_gender == 'Male')
-                                    <img class="gender-png" class="gender-png" data-toggle="tooltip" data-placement="top" data-html="true"
-                                    title="Gender is Male." alt="Male Symbol"
-                                        src="{{ asset('images/vector_graphics/gender/male_symbol.png') }}">
-                                    @elseif($user_gender == 'Female')
-                                    <img class="gender-png" data-toggle="tooltip" data-placement="top" data-html="true"
-                                    title="Gender is Female." alt="Female Symbol"
-                                        src="{{ asset('images/vector_graphics/gender/female_symbol.png') }}">
+                                    
+                                    {{-- Indoor vs Outdoor --}}
+                                    @if($sillage->value > 50)
+                                    {{-- Outdoor--}}
+                                    <h4 data-toggle="tooltip" data-placement="top" data-html="true"
+                                        title="Better suited for outdoors, based on fragrance and your region.">
+                                        <span style="color:white; 
+                                        background: linear-gradient(90deg, rgb(247,82,124, 1) {{100 - ($sillage->value)}}%, rgb(255, 255, 255, 1) 100%);"
+                                    >&nbsp;Outdoor / Indoor&nbsp;</span></h4>
+                                    
                                     @else
-                                    <img class="gender-png" class="gender-png" data-toggle="tooltip" data-placement="top" data-html="true"
-                                    title="Gender is Other." alt="OTher Symbol"
-                                        src="{{ asset('images/vector_graphics/gender/unisex_symbol.png') }}">
-                                    @endif --}}
+                                    {{-- Indoor --}}
+                                    <h4 data-toggle="tooltip" data-placement="top" data-html="true"
+                                        title="Better suited for indoors, based on fragrance and your region."><span style="color:white; 
+                                        background: linear-gradient(90deg, rgb(247,82,124, 1) {{$sillage->value}}%, rgb(255, 255, 255, 1) 100%);"
+                                    >&nbsp;Indoor / Outdoor&nbsp;</span></h4>
+                                    
+                                    @endif
 
+                                    {{-- Longevity --}}
                                     <h4 class="hsl-color" data-toggle="tooltip" data-placement="top" data-html="true"
                                         title="How long the fragrance lasts.<br>100 is max.">Longevity: {{$longevity}}
                                     </h4>
@@ -100,6 +112,7 @@
                                         <label for="star_1" title="One">&#9733;</label>
                                     </section><br><br>
 
+                                    {{-- Suitability --}}
                                     <h4 class="hsl-color" data-toggle="tooltip" data-placement="top" data-html="true"
                                         title="Depends on season.<br>100 is average.<br>Above 100 is better.">
                                         Suitability: {{$suitability}}</h4>
@@ -127,6 +140,7 @@
                                         <label for="sstar_1" title="One">&#9733;</label>
                                     </section><br><br>
 
+                                    {{-- Sustainability --}}
                                     <h4 class="hsl-color" data-toggle="tooltip" data-placement="top" data-html="true"
                                         title="How much heat affects the longevity of fragrance.<br>100 means unaffected. Below 100 means it will wear off sooner.">
                                         Sustainability: {{$sustainability}}</h4>
@@ -157,7 +171,6 @@
                                     <br>
                                     <p class="color-light-gray right-align">v 1.1</p>
                                     <p>These are your personalized numbers.<br>
-                                        {{-- These factors were researched and calculated using your personal data.<br> --}}
                                         Please leave feedback on fragrances you have used previously.<br>
                                         Your input will help us predict better!
                                     </p><br>
@@ -192,6 +205,9 @@
 
                             {{-- Heading: Fragrance Name --}}
                             <h4 for="fragrance name" class="center color-highlight-purple">{{ __($fragrance->name)}}
+                            &thinsp;
+
+                                {{-- Gender Suitability --}}
                                 @if($fragrance->gender == 'Male')
                                 <img class="gender-png" class="gender-png" data-toggle="tooltip" data-placement="top" data-html="true"
                                 title="Fragrance is masculine." alt="Male Symbol"
@@ -211,21 +227,6 @@
 
                             <div class="right-border">
                                 <div class="right">
-
-                                    {{-- <h4>Gender: {{$fragrance->gender}}</h4> --}}
-                                    {{-- @if($fragrance->gender == 'Male')
-                                    <img class="gender-png" class="gender-png" data-toggle="tooltip" data-placement="top" data-html="true"
-                                    title="Fragrance is masculine." alt="Male Symbol"
-                                        src="{{ asset('images/vector_graphics/gender/male_symbol.png') }}">
-                                    @elseif($fragrance->gender == 'Female')
-                                    <img class="gender-png" data-toggle="tooltip" data-placement="top" data-html="true"
-                                    title="Fragrance is feminine." alt="Female Symbol"
-                                        src="{{ asset('images/vector_graphics/gender/female_symbol.png') }}">
-                                    @else
-                                    <img class="gender-png" class="gender-png" data-toggle="tooltip" data-placement="top" data-html="true"
-                                    title="Fragrance is unisex." alt="Unisex Symbol"
-                                        src="{{ asset('images/vector_graphics/gender/unisex_symbol.png') }}">
-                                    @endif --}}
 
                                     <h4>Type: {{$type->name}}</h4>
                                     <h4>Cost: {{$fragrance->cost}} {{$fragrance->currency}}

@@ -5,7 +5,11 @@
 @section('content')
 
 {{-- Add Another Function --}}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script> --}}
+
+{{-- Range Slider Function --}}
+<link href="{{ asset('css/range_slider_sillage.css') }}" rel="stylesheet">
+<script src="{{ asset('js/range_slider_sillage.js') }}" defer></script>
 
 {{-- Button: Submit --}}
 <link href="{{ asset('css/custom_button.css') }}" rel="stylesheet">
@@ -113,6 +117,29 @@
                             </div>
                         </div>
 
+                        {{-- Sillage --}}
+                        <div class="form-group row">
+                            <label for="sillage" class="col-md-4 col-from-label text-md-right" data-toggle="tooltip"
+                            data-placement="top" data-html="true"
+                            title="Contributes to Indoor/Outdoor.">{{ __('Sillage:')}}</label>
+
+                            <div class="col-md-6">
+
+                                <div class="slideContainer">
+                                    <input type="range" min="0" max="100" class="slider myRange" class="form-control @error('sillage') is-invalid @enderror" id="myRange" name="sillage" value="0" value="{{ old('sillage')}}" required>
+                                    <label>{{_('Value: ')}}<span class="value"></span></label>
+                                  </div>
+                                
+                                @error('sillage')
+                                <span class="invalid-feeback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            
+                            </div>
+                        </div>
+
+
                         {{-- Cost --}}
                         <div class="form-group row">
                             <label for="cost" 
@@ -186,7 +213,7 @@
 
                                     <select id="accord_id" type="number"
                                         class="form-control @error('accord_id') is-invalid @enderror" name="accord_id"
-                                        required>
+                                        value="{{ old('accord_id')}}" required>
                                         <option value="" selected="selected" disabled="disabled">-- Select Accord --
                                         </option>
 
@@ -240,7 +267,7 @@
 
                                     <select id="ingredient_id" type="number"
                                         class="form-control @error('ingredient_id') is-invalid @enderror"
-                                        name="ingredient_id" value="{{ old('')}}" required>
+                                        name="ingredient_id" value="{{ old('ingredient_id')}}" required>
                                         <option value="" selected="selected" disabled="disabled">-- Select Ingredient --
                                         </option>
                                         @foreach($ingredients as $ingredient)
@@ -269,7 +296,7 @@
 
                                     <select id="note" type="text"
                                         class="form-control @error('note') is-invalid @enderror" name="note"
-                                        value="{{ old('')}}" required>
+                                        value="{{ old('note')}}" required>
                                         <option value="" selected="selected" disabled="disabled">-- Select Note --
                                         </option>
                                         <option value="Top">
@@ -297,14 +324,13 @@
                                 <label for="intensity"
                                     class="col-md-4 col-from-label text-md-right" data-toggle="tooltip"
                                     data-placement="top" data-html="true"
-                                    title="Contributes to Sillage.
-                                    <br>Function under development.">{{ __('Intensity:')}}</label>
+                                    title="Contributes to Sillage.">{{ __('Intensity:')}}</label>
 
                                 <div class="col-md-6">
 
                                     <select id="intensity" type="number"
                                         class="form-control @error('intensity') is-invalid @enderror" name="intensity"
-                                        required>
+                                        value="{{ old('intensity')}}" required>
                                         <option value="" selected="selected" disabled="disabled">-- Select Intensity --
                                         </option>
                                         <option value="1">{{'1'}}</option>

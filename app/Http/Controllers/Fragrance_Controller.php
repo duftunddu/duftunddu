@@ -180,12 +180,12 @@ class Fragrance_Controller extends Controller
   public function store_ba(Request $request)
   {
       $validatedData = $request->validate([
-        'name'                 => 'required|unique:fragrance',
+        'name'                 => 'required',
         'type_id'              => 'required',
         'gender'               => 'required',
+        'sillage'              => 'required',
         'cost'                 => 'required',
         'currency'             => 'required',
-        
         'accord_id'            => 'required',
         'ingredient_id'        => 'required',
       ]);
@@ -193,8 +193,11 @@ class Fragrance_Controller extends Controller
       $ambassador = Brand_Ambassador_Profile::where('users_id', request()->user()->id)->first();
 
       $normal_name = Helper::normalize_name($request->input('name'));
+      
+      // Average Humidity near Brand Ambassador
+      $avg_hum= Helper::avg_hum(Fragrance_Profile::where('users_id', $ambassador->users_id)->first()->location_id);
 
-      DB::transaction(function () use ($request, $ambassador, $normal_name) {
+      DB::transaction(function () use ($request, $ambassador, $normal_name, $avg_hum) {
 
       $new                            = new fragrance();
       $new->brand_id                  = $ambassador->brand_id;
@@ -202,6 +205,8 @@ class Fragrance_Controller extends Controller
       $new->normal_name               = $normal_name;
       $new->type_id                   = $request->input('type_id');
       $new->gender                    = $request->input('gender');
+      $new->sillage                   = $request->input('sillage');
+      $new->avg_hum                   = $avg_hum;
       $new->cost                      = $request->input('cost');
       $new->currency                  = $request->input('currency');
       $new->created_by                = request()->user()->id;
@@ -307,6 +312,11 @@ class Fragrance_Controller extends Controller
 
     $type = Fragrance_Type::find($fragrance->type_id)->first();
 
+    $sillage = (object) [
+      'value'       => $fragrance->sillage,
+      'percent'     => $fragrance->sillage
+    ];
+    
     $accords = DB::table('fragrance_accord')
       ->where('fragrance_accord.fragrance_id', $id)
       ->join('accord', 'accord.id', '=', 'fragrance_accord.accord_id')
@@ -352,7 +362,6 @@ class Fragrance_Controller extends Controller
             $fragrance->cost = Helper::currency_convert($fragrance->cost, $fragrance->currency, $frag_profile->currency);
             $fragrance->currency = $frag_profile->currency;
           }
-
 
           $location = Location::find($frag_profile->location_id);
           
@@ -525,9 +534,21 @@ class Fragrance_Controller extends Controller
               $bmi_weight->weight = 1.1;
             }
 
+            // Sillage
+            if($fragrance->avg_hum == 0){
+              $sillage->value =  10;
+            }
+            else{
+              $sillage->value = ( (($strength_of_fragrance*10) / $fragrance->avg_hum) + ($fragrance->sillage / $fragrance->avg_hum) ) / 2;
+              $sillage->value = $sillage->value * $avg_hum;
+            }
+            if($sillage->value>100){
+              $sillage->value = 100;
+            }
+            // var_dump($strength_of_fragrance, $fragrance->avg_hum, $fragrance->sillage, $avg_hum);return;
+           
             // Dryness of Skin: If you have dry skin, your fragrance will never be able to last as long as you want it to.
             // The reason? There’s nothing for the fragrance to hang on to, thus making it evaporate even faster.
-            // $skin_weight = [1.2, 1.1, 0.9, 0.8];
             $skin_weight = (object) [
               'condition' => NULL,
               'weight'    => NULL
@@ -583,6 +604,7 @@ class Fragrance_Controller extends Controller
         'user_gender'       => $user_gender,
         'fragrance'         => $fragrance,
         'type'              => $type,
+        'sillage'           => $sillage,
         'accords'           => $accords,
         'notes'             => $notes,
         'allow_edit'        => $allow_edit,

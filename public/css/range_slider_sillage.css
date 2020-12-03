@@ -1,0 +1,66 @@
+/* Source: https://codepen.io/Aceamar/pen/LKLXKK */
+
+.main {
+    width: 800px;
+}
+
+label {
+    padding-left: 7px;
+    width: 24%;
+    opacity: 0.7;
+    display: inline-block
+}
+
+.slideContainer {
+    width: 120%;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 65%;
+    height: 5px;
+    background: linear-gradient(90deg, rgb(137, 22, 63) 5%, rgb(247, 244, 251) 0%);
+    /* background: linear-gradient(90deg, rgb(249, 194, 104) 5%, rgb(31, 50, 86) 0%); */
+    /* background: linear-gradient(90deg, rgb(117, 252, 117) 5%, rgb(214, 214, 214) 0%); */
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    border-radius: 12px;
+    box-shadow: 0px 1px 10px 1px rgb(87, 63, 76);
+}
+
+.slider::after {
+    content: "100";
+    color: white;
+    font-size: 2rem;
+    position: absolute;
+    left: 80%;
+    top: 26%;
+}
+
+.slider::before {
+    /* content:"0"; */
+    color: white;
+    font-size: 2rem;
+    position: absolute;
+    left: 12%;
+    top: 26%;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    /* background: rgb(128, 128, 128); */
+    /* background: white; */
+    /* background: rgb(206, 153, 63); */
+    background: rgb(87, 63, 76);
+    cursor: pointer;
+    border-radius: 50%;
+}

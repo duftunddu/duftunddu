@@ -41,6 +41,7 @@
                                     <option value="newsletter">Newsletter</option>
                                     <option value="change_in_terms_and_conditions">Change In Terms & Conditions</option>
                                     <option value="order_shipped">Order Shipped</option>
+                                    <option value="feature_request_complete">Feature Request Completion</option>
                                 </select>
 
                                 @error('email_template_name')
@@ -123,7 +124,7 @@
                                     </option>
                                     <option value="newsletter">Subscribed To Newsletter</option>
                                     <option value="all_users">All Users</option>
-                                    {{-- <option value="all_users">All Users</option> --}}
+                                    <option value="feature_request_complete">Feature Request Complete</option>
                                 </select>
 
                                 @error('address_to')

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
-// use App\Mail\Mailing_Lists;
+use App\Feature_Request;
 
 use Mail;
 use App\Mailing_Lists;
@@ -14,6 +14,7 @@ use App\Http\Controllers\Controller;
 
 use App\Mail\Newsletter;
 use App\Mail\OrderShipped;
+use App\Mail\Feature_Request_Complete;
 use App\Mail\Brand_Ambassador_Invite;
 
 use Illuminate\Mail\Markdown;
@@ -75,7 +76,6 @@ class Email_Master_Controller extends Controller
 
         // Get the template
         $sender_name = $this->resolve_sender_name($request->address_from);
-        // var_dump($sender_name);return;
 
         // Get the template
         $template = $this->resolve_template($request, $sender_name);
@@ -89,17 +89,25 @@ class Email_Master_Controller extends Controller
         else {
 
             // Get all recepients
-            $recipients = $this->resolve_address($request->address_to);
+            $recipients = $this->resolve_address($request->address_to, $request);
 
+            
+            if(is_null($recipients)){
+                return redirect()->back()->with('error', "Can't find Feature.");
+            }
+    
             foreach ($recipients as $recipient) {
                 Mail::to($recipient)->send($template);
             }
+            // var_dump($recipients);
+            // return;
+    
         }
 
         return redirect()->back();
     }
 
-    public function resolve_address($address_to){
+    public function resolve_address($address_to, $request){
         
         // Fetching Addresses of Receivers
         if(strcmp($address_to, "newsletter") == 0){
@@ -107,6 +115,16 @@ class Email_Master_Controller extends Controller
         }
         else if(strcmp($address_to, "all_users") == 0){
             $recipients = User::all();
+        }
+        else if(strcmp($address_to, "feature_request_complete") == 0){
+            $recipients = Feature_Request::where('name', $request->subject)->get();
+            if($recipients->isEmpty()){
+                return NULL;
+            }
+            else {
+                // Not using "find" cause the next method is expecting array
+                $recipients = User::where('id', $recipients[0]->id)->get();
+            }
         }
         else{
             $recipients = NULL;
@@ -133,9 +151,15 @@ class Email_Master_Controller extends Controller
             return new ChangeInTermsConditions($request, $sender_name);
         }
         
+        else if(strcmp($request->email_template_name, "feature_request_complete") == 0){
+            return new Feature_Request_Complete($request, $sender_name);
+        }
+
         else if(strcmp($request->email_template_name, "order_shipped") == 0){
             return new OrderShipped($request, $sender_name);
         }
+        
+        
     }
     
     public function resolve_sender_name($address_from){
