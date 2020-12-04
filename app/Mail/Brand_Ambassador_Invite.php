@@ -33,7 +33,7 @@ class Brand_Ambassador_Invite extends Mailable
      *
      * @return void
      */
-    public function __construct($request, $sender_name)
+    public function __construct($request, $sender_name, $dummy_user = NULL)
     {
         $user_id = User::where('email', $request->address_from)->first();
         if(is_null($user_id)){
@@ -63,23 +63,13 @@ class Brand_Ambassador_Invite extends Mailable
         $this->email_type = 5;
 
         $subject = "Invitation to Join Duft Und Du.";
-        if($this->request->subject == NULL){
-            return $this->from($this->request->address_from, $this->sender_name)
-                ->subject($subject)
-                ->markdown('emails.brand_ambassador_invite')
-                ->with([
-                    'email_type' => $this->email_type,
-                    'user_id' => $this->user_id,
-                ]);
-        }
-        else{
-            return $this->from($this->request->address_from , $this->sender_name)
-                ->subject($this->request->subject)
-                ->markdown('emails.brand_ambassador_invite')
-                ->with([
-                    'user_id' => $this->user_id,
-                    'email_type' => $this->email_type,
-                ]);
-        }
+
+        return $this->from($this->request->address_from, $this->sender_name)
+            ->subject($this->request->subject ?: $subject)
+            ->markdown('emails.brand_ambassador_invite')
+            ->with([
+                'email_type' => $this->email_type,
+                'user_id' => $this->user_id,
+        ]);
     }
 }

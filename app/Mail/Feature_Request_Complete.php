@@ -39,7 +39,7 @@ class Feature_Request_Complete extends Mailable
      *
      * @return void
      */
-    public function __construct($request, $sender_name)
+    public function __construct($request, $sender_name, $dummy_user = NULL)
     {
         $this->request      = $request;
         $this->sender_name  = $sender_name;

@@ -77,31 +77,40 @@ class Email_Master_Controller extends Controller
         // Get the template
         $sender_name = $this->resolve_sender_name($request->address_from);
 
-        // Get the template
-        $template = $this->resolve_template($request, $sender_name);
+        $dummy_user = new User([
+            'id'        =>  NULL,
+            'name'      => 'Test',
+            'email'     => 'sam_here@outlook.com',
+        ]);
 
         // Send Mail
         if($request->address_to_sec != NULL){
+            // Only one recipient
+
+            // Get the template
+            $template = $this->resolve_template($request, $sender_name, User::where('email', $request->address_to_sec)->first(), $dummy_user);
 
             // Send to one address directly
             Mail::to($request->address_to_sec)->send($template);
+
         }
         else {
-
             // Get all recepients
             $recipients = $this->resolve_address($request->address_to, $request);
 
-            
+            // Only for feature_request_complete; The subject field is used as the feature name
+            // And when it is wrong, admin is returned back to email panel. 
             if(is_null($recipients)){
                 return redirect()->back()->with('error', "Can't find Feature.");
             }
     
+            // Sending one by one
             foreach ($recipients as $recipient) {
+                
+                // Get the template
+                $template = $this->resolve_template($request, $sender_name, $recipient);
                 Mail::to($recipient)->send($template);
             }
-            // var_dump($recipients);
-            // return;
-    
         }
 
         return redirect()->back();
@@ -132,33 +141,32 @@ class Email_Master_Controller extends Controller
         return $recipients;
     }
 
-    public function resolve_template($request, $sender_name){
+    public function resolve_template($request, $sender_name, $user, $dummy_user = NULL){
 
         // Mail to All
         if(strcmp($request->email_template_name, "hello") == 0){
-            return new Hello($request, $sender_name);
+            return new Hello($request, $sender_name, $user);
         }
 
         else if(strcmp($request->email_template_name, "brand_ambassador_invite") == 0){
-            return new Brand_Ambassador_Invite($request, $sender_name);
+            return new Brand_Ambassador_Invite($request, $sender_name, $user);
         }
 
         else if(strcmp($request->email_template_name, "newsletter") == 0){
-            return new Newsletter($request, $sender_name);
+            return new Newsletter($request, $sender_name, $user, $dummy_user);
         }
         
         else if(strcmp($request->email_template_name, "change_in_terms_and_conditions") == 0){
-            return new ChangeInTermsConditions($request, $sender_name);
+            return new ChangeInTermsConditions($request, $sender_name, $user);
         }
         
         else if(strcmp($request->email_template_name, "feature_request_complete") == 0){
-            return new Feature_Request_Complete($request, $sender_name);
+            return new Feature_Request_Complete($request, $sender_name, $user);
         }
 
         else if(strcmp($request->email_template_name, "order_shipped") == 0){
-            return new OrderShipped($request, $sender_name);
+            return new OrderShipped($request, $sender_name, $user);
         }
-        
         
     }
     

@@ -21,8 +21,6 @@ Route::post('feedback', 'Feedback_Form_Controller@store');
 Route::get('report', 'Feedback_Comment_Controller@index');
 Route::post('report', 'Feedback_Comment_Controller@store');
 
-// Route::get('/', 'Controller@landing_page');
-
 Route::get('/', function () {
     return view('forms.welcome');
 });
@@ -50,7 +48,6 @@ Route::get('terms_and_conditions', function () {
 Route::get('privacy_policy', function () {
     return view('forms.privacy_policy');
 });
-
 
 Route::get('brand_ambassador_proposal', function () {
     return view('brand_ambassador.proposal');

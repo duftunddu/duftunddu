@@ -303,3 +303,24 @@ img {
 .break-all {
     word-break: break-all;
 }
+
+.flex-row {
+    display: flex;
+    direction: row;
+    flex-wrap: nowrap;
+    gap: 15px;
+    margin-bottom: 15px;
+    justify-content: center;
+
+    /* font-size: 15px; */
+}
+
+.flex-img-child {
+    height: 45px;
+    width: 45px;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
