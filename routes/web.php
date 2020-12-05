@@ -232,6 +232,10 @@ Route::middleware(['role:admin'])->group(function () {
     });
 });
 
+Route::get('/ad_api', "Controller@ad_index");
+Route::get('/admin/{slug}', function () {
+    return view('welcome');
+});
 // sample
 // Route::middleware(['role:user|admin'])->group(function () {
 // });
