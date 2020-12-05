@@ -235,9 +235,7 @@ Route::middleware(['role:admin'])->group(function () {
     });
 });
 
-Route::get('/hehe', function () {
-    return "hehehehehehe";
-});
+Route::get('/ad_api', "Controller@ad_index");
 Route::get('/admin/{slug}', function () {
     return view('welcome');
 });

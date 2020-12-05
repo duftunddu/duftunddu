@@ -10,57 +10,13 @@ export default new Vuex.Store({
       storage: window.sessionStorage,
     })], 
     state: {
-      pages: [{
-        "id": 2,
-        "name": "Page 0"
-      }, {
-        "id": 7,
-        "name": "Page 1"
-      }, {
-        "id": 1,
-        "name": "Page 2"
-      }, {
-        "id": 17,
-        "name": "Page 3"
-      }, {
-        "id": 22,
-        "name": "Page 4"
-      }, {
-        "id": 27,
-        name: "Bablu"
-      }],
-      tiers: [{
-        "id": 2,
-        "name": "Petier 0"
-      }, {
-        "id": 7,
-        "name": "Petier 1"
-      }, {
-        "id": 1,
-        "name": "Petier 2"
-      }, {
-        "id": 17,
-        "name": "Petier 3"
-      }, {
-        "id": 22,
-        "name": "Petier 4"
-      }],
-      countries: [{
-        "id": 2,
-        "name": "Pakistan"
-      }, {
-        "id": 7,
-        "name": "India"
-      }, {
-        "id": 1,
-        "name": "Bangladesh"
-      }, {
-        "id": 17,
-        "name": "Kerala"
-      }, {
-        "id": 22,
-        "name": "Countryside"
-      }],
+      imageOrText: 0,
+      adText: "",
+      adLink: "",
+      views: "",
+      pages: [],
+      tiers: [],
+      countries: [],
       item: {
               page: [],
               tier: [],
@@ -74,7 +30,7 @@ export default new Vuex.Store({
       },
     actions: {
       getDATAFROMTHEMADAFUCKINGAPI(context){
-        axios.get("/hehe")
+        axios.get("/ad_api")
 
                .then((response)=>{
                   console.log(response.data)
@@ -91,7 +47,7 @@ export default new Vuex.Store({
     },
     mutations: {
       addDataToStore(state,data) {
-         return state.category = data
+         return [state.pages, state.tiers, state.countries, state.rates, state.images] = [data.pages, data.tiers, data.countries, data.rates, data.images]
       }
  }
 
