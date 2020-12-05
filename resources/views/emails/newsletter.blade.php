@@ -1,8 +1,8 @@
 @component('mail::message')
 # The Fragrance Hub
 
-Hi {{$user->name}},
-{{-- ## Hi user_name, --}}
+{{-- Hi {{$user->name}}, --}}
+## Hi user_name,
 <br>
 
 @component('mail::panel')
@@ -40,8 +40,8 @@ This is with regards to an email survey you filled out in the beginning of 2020.
 <table class="footer" align="center" width="570" cellpadding="0" cellspacing="0" role="presentation">
 <tr>
 <td class="content" align="center">
-{{ Illuminate\Mail\Markdown::parse("If you think this email is not meant for you, you can just ignore it. | <a href='/unsubscribe/$user->email/newsletter'>Unsubscribe</a>.") }}
-{{-- {{ Illuminate\Mail\Markdown::parse("If you think this email is not meant for you, you can just ignore it. | <a href='/unsubscribe/user_id/newsletter'>Unsubscribe</a>.") }} --}}
+{{-- {{ Illuminate\Mail\Markdown::parse("If you think this email is not meant for you, you can just ignore it. | <a href='/unsubscribe/$user->email/newsletter'>Unsubscribe</a>.") }} --}}
+{{ Illuminate\Mail\Markdown::parse("If you think this email is not meant for you, you can just ignore it. | <a href='/unsubscribe/user_id/newsletter'>Unsubscribe</a>.") }}
 </td>
 </tr>
 </table>

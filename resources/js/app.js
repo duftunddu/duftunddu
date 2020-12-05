@@ -10,19 +10,20 @@ window.Vue = require('vue')
 import router from './router'
 import store from './store'
 
-Vue.component('mainapp',require('./components/mainapp.vue').default)
+Vue.component('layout', require('./components/layout.vue').default)
 
 const app = new Vue({
     el: '#app',
     router,
     store,
     computed: {
-    name: {
-        get () {
-            return this.$store.state.name
-        },
-        set (value) {
-            this.$store.commit('updateName', value)
+        name: {
+            get() {
+                return this.$store.state.name
+            },
+            set(value) {
+                this.$store.commit('updateName', value)
+            }
         }
-    }}
+    }
 })

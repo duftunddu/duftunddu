@@ -146,6 +146,11 @@ Route::middleware(['role:brand_ambassador|premium_brand_ambassador|admin', 'veri
 // admin
 Route::middleware(['role:admin'])->group(function () {
 
+    Route::get('/ad_api', "Controller@ad_index");
+    Route::get('/ad/{page_name}', function () {
+        return view('vue_layout');
+    });
+
     Route::get('/email_panel', 'Email_Master_Controller@panel');
     Route::post('/email_template_show', 'Email_Master_Controller@template_show');
     Route::get('/email_template_show', 'Email_Master_Controller@template_show');
@@ -232,10 +237,6 @@ Route::middleware(['role:admin'])->group(function () {
     });
 });
 
-Route::get('/ad_api', "Controller@ad_index");
-Route::get('/admin/{slug}', function () {
-    return view('welcome');
-});
 // sample
 // Route::middleware(['role:user|admin'])->group(function () {
 // });
