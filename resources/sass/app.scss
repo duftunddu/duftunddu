@@ -6,3 +6,25 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+/* Manually Added */
+
+a:link {
+    color: #8167a9;
+}
+
+/* visited link */
+a:visited {
+    color: #533c77;
+}
+
+/* mouse over link */
+a:hover {
+    color: #141414 !important;
+    text-decoration: none !important;
+}
+
+/* selected link */
+a:active {
+    color: #101820FF;
+}
