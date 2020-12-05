@@ -304,6 +304,17 @@ img {
     word-break: break-all;
 }
 
+
+/* Mine */
+
+.image {
+    max-width: 500px;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    margin: auto;
+}
+
 .flex-row {
     display: flex;
     direction: row;
