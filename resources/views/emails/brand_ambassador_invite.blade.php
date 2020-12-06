@@ -12,9 +12,7 @@ We provide users with personalized fragrance insights, which no other service do
 <br>
 
 @component('mail::panel')
-<div class="image">
 <img src="{{ asset('images/for_emails/ambassador_proposal_final.jpg') }}" alt="Brand Ambassador Proposal" style="object-fit:contain; display:block; margin:auto; max-width:500px; height:auto;">
-</div>
 @endcomponent
 <br> 
 
@@ -31,18 +29,15 @@ And you can assign upto 3 Brand Ambassadors to manage your brand.
 
 @component('mail::panel')
 Personal Insights
-<div class="image">
-<img src="{{ asset('images/for_emails/indoor_outdoor.png') }}" alt="Brand Ambassador Proposal">
-</div>
+<br><br>
+<img src="{{ asset('images/for_emails/indoor_outdoor.png') }}" alt="Personalized Insights" style="object-fit:contain; display:block; margin:auto; max-width:500px; height:auto;">
 @endcomponent
 <br>
 
 @component('mail::panel')
 Ambassador Dashboard
-<br>
-<div class="image">
-<img src="{{ asset('images/for_emails/ambassador-chart-better.png') }}" alt="Brand Ambassador Proposal">
-</div>
+<br><br>
+<img src="{{ asset('images/for_emails/ambassador-chart-better_final.png') }}" alt="Brand Ambassador Dashboard" style="object-fit:contain; display:block; margin:auto; max-width:500px; height:auto;">
 @endcomponent
 <br>
 
