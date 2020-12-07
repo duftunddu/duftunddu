@@ -2,8 +2,8 @@
 # The Fragrance Hub
 
 @component('mail::panel')
-{{-- ## Hi! user_name --}}
-## Hi! {{$user->name}},
+## Hi! user_name
+{{-- ## Hi! {{$user->name}}, --}}
 ### Welcome to Duft Und Du.
 @endcomponent
 
@@ -58,4 +58,13 @@ Join Now
 
 Regards,<br>
 {{ config('app.name') }}
+<br><br>
+
+<table class="footer" align="center" width="570" cellpadding="0" cellspacing="0" role="presentation">
+<tr>
+<td class="content" align="center">
+{{ Illuminate\Mail\Markdown::parse("If you think this email is not meant for you, you can just ignore it. | <a href='/unsubscribe/brand_ambassador_invite'>Unsubscribe</a>.") }}
+</td>
+</tr>
+</table>
 @endcomponent
