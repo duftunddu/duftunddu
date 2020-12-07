@@ -149,7 +149,7 @@ class Email_Master_Controller extends Controller
         }
 
         else if(strcmp($request->email_template_name, "brand_ambassador_invite") == 0){
-            return new Brand_Ambassador_Invite($request, $sender_name, $user);
+            return new Brand_Ambassador_Invite($request, $sender_name, $user, $dummy_user);
         }
 
         else if(strcmp($request->email_template_name, "newsletter") == 0){
