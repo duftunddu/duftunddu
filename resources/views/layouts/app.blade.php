@@ -38,7 +38,7 @@
 
 <body>
 
-    {{-- @include('layouts.preloader') --}}
+    @include('layouts.preloader')
 
     @include('layouts.header')
     <div id="app">
