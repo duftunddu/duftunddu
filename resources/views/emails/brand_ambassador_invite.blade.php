@@ -48,21 +48,12 @@ Ambassador Dashboard
 <br> 
 
 
-@component('mail::panel')
-We are officially launching on 7/Dec/2020. The clock is ticking. ⏱
-<br> 
-
-If you have any queries, you can mail us at <a href="mailto:customer-support@duftunddu.com">customer-support@duftunddu.com</a>.
-@endcomponent
-<br>
-
-
 @component('mail::button', ['url' => 'https://duftunddu.com'])
 Join Now
 @endcomponent
 <br> 
 
-We don't add the fragrances ourselves or outsource it to a third-party to preserve the authenticity of the brand and its fragrances.
+<small>We don't add the fragrances ourselves or outsource it to a third-party to preserve the authenticity of the brand and its fragrances.</small>
 <br>
 
 Regards,<br>

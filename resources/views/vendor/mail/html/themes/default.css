@@ -306,29 +306,6 @@ img {
 
 
 /* Mine */
-
-/* .image {
-    max-width: 500px;
-    height: auto;
-    object-fit: contain;
-    display: block;
-    margin: auto;
-} */
-
-/* .flex-row {
-    display: flex;
-    direction: row;
-    flex-wrap: nowrap;
-    gap: 15px;
-    margin-bottom: 15px;
-    justify-content: center;
-} */
-
-/* .flex-img-child {
-    max-height: 45px;
-    max-width: 45px;
-} */
-
 .center {
     display: flex;
     justify-content: center;
