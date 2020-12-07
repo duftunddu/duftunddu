@@ -75,7 +75,7 @@ class Feature_Request_Controller extends Controller
     {
         $date = Carbon::today()->subDays(7);
         $features = Feature_Request::where('status', '!=', "Processed (Added)")
-        ->where('feature_request.updated_at', '>', $date)
+        ->where('feature_request.updated_at', '<', $date)
         ->join('users', 'users.id', 'feature_request.users_id')
         ->select('users.id as user_id', 'users.name as user', 'feature_request.*')
         ->orderBy('votes', 'desc')

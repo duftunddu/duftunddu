@@ -79,7 +79,7 @@ class Request_Brand_Controller extends Controller
     {
         $date = Carbon::today()->subDays(7);
         $brands = Request_Brand::where('status', '!=', "Processed (Added)")
-        ->where('request_brand.updated_at', '>', $date)
+        ->where('request_brand.updated_at', '<', $date)
         ->join('users', 'users.id', 'request_brand.users_id')
         ->select('users.name as user', 'request_brand.*')
         ->orderBy('votes', 'desc')
