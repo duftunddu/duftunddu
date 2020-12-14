@@ -81,15 +81,17 @@ class Admin_Controller extends Controller
             'users_id'          => 'required',
             'name'              => 'required|max:40',
             'description'       => 'required|max:256',
+            'ack_ba_check'      => 'required',
             'implementation'    => 'max:500',
         ]);
-        
+
         Feature_Request::create([
-            'users_id'          => $request->input('users_id'),
-            'name'              => $request->input('name'),
-            'description'       => $request->input('description'),
-            'status'            => "Queued",
-            'votes'             => 1,
+            'users_id'              => $request->input('users_id'),
+            'name'                  => $request->input('name'),
+            'description'           => $request->input('description'),
+            'status'                => "Queued",
+            'votes'                 => 1,
+            'for_brand_ambassador'  => !is_null($request->input('for_brand_ambassador')),
         ]);
 
         Feature_Request_By_User::destroy($request->input('feature_id'));
@@ -100,13 +102,18 @@ class Admin_Controller extends Controller
     // Feature Requests
     public function request_feature_status()
     {
-        $date = Carbon::today()->subDays(7);
-        $features = Feature_Request::where('status', '!=', "Processed (Added)")
-        ->where('feature_request.updated_at', '>', $date)
-        ->join('users', 'users.id', 'feature_request.users_id')
-        ->select('users.name as user', 'feature_request.*')
-        ->orderBy('votes', 'desc')
-        ->get();
+        $date = Carbon::today()->subMonths(1);
+
+        $features = Feature_Request::join('users', 'users.id', 'feature_request.users_id')
+            ->select('users.name as user', 'feature_request.*')
+            ->orderBy('votes', 'desc')
+            ->get();
+
+        $old_features = Feature_Request::where('feature_request.updated_at', '<', $date)
+            ->where('status', '=', "Added")
+            ->get();
+
+        $features = $features->diff($old_features);
 
         return view('admin.request_feature_view',[
             'features'        =>    $features,
@@ -201,7 +208,7 @@ class Admin_Controller extends Controller
                 $new->linkedin      = $ambassador->linkedin;
                 $new->email_work    = $ambassador->email_work;
                 $new->website       = $ambassador->website;
-                $new->status        = 'new_brand_request';
+                $new->status        = 'on';
                 
                 $new->save();
 
@@ -231,13 +238,18 @@ class Admin_Controller extends Controller
     // Brand Requests
     public function request_brand_status()
     {
-        $date = Carbon::today()->subDays(7);
-        $brands = Request_Brand::where('status', '!=', "Processed (Added)")
-        ->where('request_brand.updated_at', '>', $date)
-        ->join('users', 'users.id', 'request_brand.users_id')
-        ->select('users.name as user', 'request_brand.*')
-        ->orderBy('votes', 'desc')
-        ->get();
+        $date = Carbon::today()->subMonths(1);
+
+        $brands = Request_Brand::join('users', 'users.id', 'request_brand.users_id')
+            ->select('users.name as user', 'request_brand.*')
+            ->orderBy('votes', 'desc')
+            ->get();
+
+        $old_brands = Request_Brand::where('request_brand.updated_at', '<', $date)
+            ->where('status', '=', "Added")
+            ->get();
+
+        $brands = $brands->diff($old_brands);
 
         return view('admin.request_brand_view',[
             'brands'        =>    $brands,

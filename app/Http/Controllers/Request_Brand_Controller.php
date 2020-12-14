@@ -77,13 +77,18 @@ class Request_Brand_Controller extends Controller
      */
     public function show()
     {
-        $date = Carbon::today()->subDays(7);
-        $brands = Request_Brand::where('status', '!=', "Processed (Added)")
-        ->where('request_brand.updated_at', '<', $date)
-        ->join('users', 'users.id', 'request_brand.users_id')
-        ->select('users.name as user', 'request_brand.*')
-        ->orderBy('votes', 'desc')
-        ->get();
+        $date = Carbon::today()->subMonths(1);
+
+        $brands = Request_Brand::join('users', 'users.id', 'request_brand.users_id')
+            ->select('users.name as user', 'request_brand.*')
+            ->orderBy('votes', 'desc')
+            ->get();
+
+        $old_brands = Request_Brand::where('request_brand.updated_at', '<', $date)
+            ->where('status', '=', "Added")
+            ->get();
+
+        $brands = $brands->diff($old_brands);
 
         return view('forms.request_brand_view',[
             'brands'        =>    $brands,

@@ -95,7 +95,7 @@
                         @else
                         <div class="para">
                             <h5>Requests Limit Reached.</h5>
-                            You can only post one request at one time.<br>
+                            You can only post one request at a time.<br>
                             Your request is under review. You can post your next request after this one is processed.
                         </div>
                         @endif

@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $status
  * @property int $votes
  * @property string $deleted_at
+ * @property boolean $for_brand_ambassador
  * @property User $user
  * @property FeatureRequestRecord[] $featureRequestRecords
  */
@@ -39,7 +40,7 @@ class Feature_Request extends Model
     /**
      * @var array
      */
-    protected $fillable = ['users_id', 'created_at', 'updated_at', 'name', 'description', 'status', 'votes', 'deleted_at'];
+    protected $fillable = ['users_id', 'created_at', 'updated_at', 'name', 'description', 'status', 'votes', 'deleted_at', 'for_brand_ambassador'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

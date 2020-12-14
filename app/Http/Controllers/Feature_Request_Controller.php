@@ -73,13 +73,18 @@ class Feature_Request_Controller extends Controller
      */
     public function show(Feature_Request $feature_Request)
     {
-        $date = Carbon::today()->subDays(7);
-        $features = Feature_Request::where('status', '!=', "Processed (Added)")
-        ->where('feature_request.updated_at', '<', $date)
-        ->join('users', 'users.id', 'feature_request.users_id')
-        ->select('users.id as user_id', 'users.name as user', 'feature_request.*')
-        ->orderBy('votes', 'desc')
-        ->get();
+        $date = Carbon::today()->subMonths(1);
+
+        $features = Feature_Request::join('users', 'users.id', 'feature_request.users_id')
+            ->select('users.name as user', 'feature_request.*')
+            ->orderBy('votes', 'desc')
+            ->get();
+
+        $old_features = Feature_Request::where('feature_request.updated_at', '<', $date)
+            ->where('status', '=', "Added")
+            ->get();
+
+        $features = $features->diff($old_features);
 
         $users_ids = $features->flatten()->pluck('users_id')->toArray();
         

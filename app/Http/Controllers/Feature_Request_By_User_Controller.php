@@ -55,7 +55,7 @@ class Feature_Request_By_User_Controller extends Controller
             'implementation'    => $request->input('implementation'),
         ]);
 
-        return redirect('home')->with('success','Your request has been queued for processing. Thank your for contributing.');
+        return redirect('home')->with('success','Your request has been queued for processing. Thank you for contributing.');
     }
 
     /**

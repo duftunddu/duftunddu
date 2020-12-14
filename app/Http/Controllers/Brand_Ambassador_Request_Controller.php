@@ -11,6 +11,7 @@ use App\Brand_Ambassador_Profile;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+// use Illuminate\Notifications\Notifiable;
 
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;
@@ -134,7 +135,10 @@ class Brand_Ambassador_Request_Controller extends Controller
         }); 
 
         request()->user()->assignRole('candidate_brand_ambassador');
-
+        
+        // Notification::send(request()->user(), new User_Activity_Notification($invoice));
+        // Notification::send(request()->user(), new User_Activity_Notification("New Brand Ambassador Request"));
+        
         // Return
         return redirect('application_status')->with('success', 'Your application is submitted. It will be verified shortly.');
     }
