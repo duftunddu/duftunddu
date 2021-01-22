@@ -2,7 +2,7 @@
 
 namespace App\Helper;
 
-use App;
+// use App;
 use App\Location;
 
 use Carbon\Carbon;
@@ -17,6 +17,7 @@ class Helper
         //
     }
 
+    // Normalizers
     public static function normalize_name($name){
         
         if (App::environment('local')) {
@@ -58,10 +59,12 @@ class Helper
         return;
     }
 
+    // Location Helpers
     public static function current_location(){
         return Location::firstWhere('ip_to', '>', ip2long(request()->ip()));
     }
 
+    // Currency Helpers
     public static function currencies(){
         $currencies     =   new ExchangeRate();
         $currencies = $currencies->currencies();
@@ -87,6 +90,29 @@ class Helper
         }
     }
 
+    // Fragrance Helpers
+    public static function weather_data($location_id = NULL){
+        
+        // check if the data exists and if it is old
+        if(session()->has('weather') && session('weather_datestamp') == Carbon::now()->format('d')){
+            return session('weather');
+        }
+        else{
+            // if location_id is null, find the location.
+            $location = ($location_id) ? Location::find($location_id) : current_location();
+
+            // get weather data
+            // https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
+            $weather_data_json  = Http::get("https://api.openweathermap.org/data/2.5/onecall?lat={$location->latitude}&lon={$location->longitude}&units=imperial&exclude=current,minutely,hourly,alerts&appid=7120811d6e66b35f6be4b030be29c4d3");   
+            
+            // store in session
+            session(['weather' => $weather_data_json]);
+            session(['weather_datestamp' => Carbon::now()->format('d')]);
+            
+            return $weather_data_json;
+        }
+    }
+
     public static function avg_hum($location_id){
         $location = Location::find($location_id);
           
@@ -103,6 +129,36 @@ class Helper
         return $sum_hum/8;
     }
     
+    public function fragrance_json() {
+
+        $obj = (object) [
+            'avg_temp'                      => $weights->avg_temp,
+            'avg_hum'                       => $weights->avg_hum,
+            'bmi'                           => $weights->bmi,
+            'fragrance_type_condition'      => $weights->fragrance_type_weight->condition,
+            'fragrance_type_weight'         => $weights->fragrance_type_weight->weight,
+            'sustainability_heat_condition' => $weights->sustainability_heat_weight->condition,
+            'sustainability_heat_weight'    => $weights->sustainability_heat_weight->weight,
+            'humidity_condition'            => $weights->humidity_weight->condition,
+            'humidity_weight'               => $weights->humidity_weight->weight,
+            'warm_cold_condition_1'         => $weights->warm_cold_weight->condition_1,
+            'warm_cold_condition_2'         => $weights->warm_cold_weight->condition_2,
+            'warm_cold_weight'              => $weights->warm_cold_weight->weight,
+            'sweat_condition_1'             => $weights->sweat_weight->condition_1,
+            'sweat_condition_2'             => $weights->sweat_weight->condition_2,
+            'sweat_weight'                  => $weights->sweat_weight->weight,
+            'bmi_condition'                 => $weights->bmi_weight->condition,
+            'bmi_weight'                    => $weights->bmi_weight->weight,
+            'skin_condition'                => $weights->skin_weight->condition,
+            'skin_weight'                   => $weights->skin_weight->weight,
+            'type'                          => $request->type,
+            'rating'                        => $request->value,
+        ];
+
+        return json_encode($obj);
+    }
+
+    // Useless but kept for I don't know what
     // It is said that it Returns a pure array not a stdClass knockoff,
     // I tried and was disappointed but further testing is required
     public static function convert_collection_to_array($array_with_stdClass){

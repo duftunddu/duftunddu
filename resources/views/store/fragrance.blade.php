@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.app_store')
 
 <title>{{__($fragrance->name)}} {{(' | Duft Und Du')}}</title>
 
 {{-- Stylesheet --}}
 <link href="{{ asset('css/fragrance.css') }}" rel="stylesheet">
-{{-- <link href="{{ asset('css/store_scroll_bar.css') }}" rel="stylesheet"> --}}
+<link href="{{ asset('css/store_scroll_bar.css') }}" rel="stylesheet">
 
 <style>
     /* Fragracnce Picture */
@@ -38,9 +38,6 @@
 
 @section('content')
 
-{{-- JQuery for Ajax --}}
-{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
-
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -54,7 +51,6 @@
                             <div class="reflect"></div>
                         </div>
                     </div> --}}
-
 
                     <br>
                     
@@ -279,102 +275,4 @@
 <div id="csrf">
     @csrf
 </div>
-
-
-{{-- HSL Color --}}
-{{-- <script>
-    document.querySelectorAll(".hsl-color").forEach(function (e) {
-        let s = e.innerText;
-        let n =  parseInt(s.substring(s.indexOf(":") + 1).trim()) + 350;
-        console.log(n);
-        // e.style.color = "hsl(" + n + ",100%,39%)";
-        e.style.color = "hsl(" + n + ",70%,50%)";
-        // e.style.backgroundColor= "hsl("+n+",50%,50%)";
-    })
-</script> --}}
-
-{{-- Longevity --}}
-{{-- <script>
-    function handleLongevity(Longevity) {
-        var weights = {
-            !!json_encode($weights) !!
-        };
-        $.ajax({
-            type: 'POST',
-            url: '/affecting_factors_data',
-            //    data:{"_token": "{{ csrf_token() }}", value: Longevity.value, type: "Longevity"},
-            data: {
-                "_token": "{{ csrf_token() }}",
-                value: Longevity.value,
-                type: "Longevity",
-                weights: weights
-            },
-            success: function (data) {
-                alert(data);
-            }
-        });
-    }
-</script> --}}
-
-{{-- Suitability --}}
-{{-- <script>
-    function handleSuitability(Suitability) {
-        var weights = {
-            !!json_encode($weights) !!
-        };
-        $.ajax({
-            type: 'POST',
-            url: '/affecting_factors_data',
-            //    data:{"_token": "{{ csrf_token() }}", value: Suitability.value, type: "Suitability"},
-            data: {
-                "_token": "{{ csrf_token() }}",
-                value: Suitability.value,
-                type: "Suitability",
-                weights: weights
-            },
-            success: function (data) {
-                alert(data);
-            }
-        });
-    }
-</script> --}}
-
-{{-- Sustainability --}}
-{{-- <script>
-    function handleSustainability(Sustainability) {
-        var weights = {
-            !!json_encode($weights) !!
-        };
-        $.ajax({
-            type: 'POST',
-            url: '/affecting_factors_data',
-            //    data:{"_token": "{{ csrf_token() }}", value: Sustainability.value, type: "Sustainability"},
-            data: {
-                "_token": "{{ csrf_token() }}",
-                value: Sustainability.value,
-                type: "Sustainability",
-                weights: weights
-            },
-            success: function (data) {
-                alert(data);
-            }
-        });
-    }
-</script> --}}
-
-{{-- Toggle Effect --}}
-{{-- <script>
-    $( function() {
-      function runEffect() {
-        // Run the effect
-        $( "#effect-open-close" ).toggle( 'fold', {options:"swing"}, 1000 );
-      };
-   
-      // Set effect from select menu value
-      $( "#toggle-button" ).on( "click", function() {
-        runEffect();
-      });
-    } );
-</script> --}}
-
 @endsection

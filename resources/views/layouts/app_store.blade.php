@@ -34,22 +34,23 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    {{-- Store Scrollbar --}}
+    <link href="{{ asset('css/store_scroll_bar.css') }}" rel="stylesheet">
+
 </head>
 
 <body>
 
-    @include('layouts.preloader')
+    {{-- @include('layouts.preloader') --}}
 
     @include('layouts.header')
-
     <div id="app">
         <main class="py-4">
             @include('layouts.flash_message')
             @yield('content')
         </main>
     </div>
-
-    @include('layouts.footer')
 
 </body>
 

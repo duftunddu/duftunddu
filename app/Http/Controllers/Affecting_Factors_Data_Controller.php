@@ -68,7 +68,6 @@ class Affecting_Factors_Data_Controller extends Controller {
             'skin_weight'                   => $weights->skin_weight->weight,
             'type'                          => $request->type,
             'rating'                        => $request->value,
-
         ]);
 
         echo "Thank you for your feedback";

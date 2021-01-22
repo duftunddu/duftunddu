@@ -1,0 +1,267 @@
+.card-body {
+    background-color: rgba(247, 247, 247, 0.3);
+}
+
+.left {
+    text-align: right;
+    margin-right: 20px;
+    margin-left: 20px;
+    color: #f7527c;
+}
+
+.left-border {
+    margin-right: 5px;
+    border-right: 1px solid rgba(247, 82, 124, 0.5);
+}
+
+/* .left p {
+    text-align: justify;
+} */
+
+.right {
+    text-align: left;
+    margin-left: 20px;
+    margin-right: 20px;
+    color: #8167a9;
+}
+
+.right-border {
+    margin-left: 5px;
+    border-left: 1px solid rgba(129, 103, 169, 0.5);
+}
+
+.row-pad {
+    display: flex;
+    margin-top: -2.25rem;
+}
+
+.column {
+    flex: 50%;
+}
+
+h5 {
+    display: inline;
+}
+
+.color-light-gray {
+    color: #999;
+}
+
+.right-align {
+    text-align: right;
+}
+
+.left-align {
+    text-align: left;
+}
+
+.right h4 {
+    color: #f7527c;
+}
+
+.left h4 {
+    color: #8167a9;
+}
+
+@media (max-width: 500px) {
+    h4 {
+        /* font-size: 1.25rem; */
+        font-size: 1.35rem !important;
+    }
+
+    h5 {
+        /* font-size: 1.1rem; */
+        font-size: 1.1rem !important;
+    }
+
+    p {
+        font-size: 0.9rem;
+    }
+
+    .left {
+        margin-right: 10px;
+        margin-left: 0;
+    }
+
+    .left p {
+        text-align: justify;
+    }
+
+    .left-border {
+        margin-right: 2px;
+    }
+
+    .right {
+        text-align: left;
+        margin-left: 10px;
+        margin-right: 0;
+    }
+
+    .right-border {
+        margin-left: 2px;
+    }
+
+    .right-align {
+        text-align: right !important;
+    }
+
+    .left-align {
+        text-align: left !important;
+    }
+
+    .review-bar-cont {
+        width: 12rem !important;
+        border-radius: 25px;
+    }
+
+    .review-bar {
+        padding: 0.65rem;
+        border-radius: 25px;
+    }
+}
+
+@media (max-width: 400px) {
+    h4 {
+        font-size: 1.1rem !important;
+    }
+
+    h5 {
+        font-size: 1.0rem !important;
+    }
+
+    .review-bar-cont {
+        width: 9rem !important;
+    }
+
+    .review-bar {
+        padding: 0.55rem !important;
+    }
+}
+
+.color-red {
+    color: #f7527c;
+}
+
+.color-purple {
+    color: #8167a9;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+/* .gender-png {
+    max-width: 60px;
+    max-height: 60px;
+} */
+
+.gender-png {
+    display: inline;
+    margin-top: -0.25rem;
+    max-width: 2rem;
+    max-height: 2rem;
+}
+
+.rating {
+    /* position: absolute; */
+    /* top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0; */
+    width: 150px;
+    height: 30px;
+    /* padding: 5px 10px; */
+    /* margin: auto; */
+    /* align-content: right; */
+    /* text-content: right; */
+    /* justify-content: right; */
+    float: right;
+    border-radius: 30px;
+    background: #FFFAFF;
+    display: block;
+    overflow: hidden;
+
+    box-shadow: 0 1px #CCC,
+        0 2px #DDD,
+        0 9px 6px -3px #999;
+
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    font-size: 1.5rem;
+}
+
+.rating:not(:checked)>input {
+    display: none;
+}
+
+/* - - - - - RATE */
+/* .rate { */
+/* top: -65px; */
+/* } */
+
+.rate:not(:checked)>label {
+    cursor: pointer;
+    float: right;
+    width: 30px;
+    height: 30px;
+    display: block;
+
+    /* color: rgba(0, 135, 211, .4); */
+    color: rgba(211, 0, 53, .4);
+    line-height: 33px;
+    text-align: center;
+}
+
+.rate:not(:checked)>label:hover,
+.rate:not(:checked)>label:hover~label {
+    /* color: rgba(0, 135, 211, .6); */
+    color: rgba(211, 0, 53, .6);
+}
+
+.rate>input:checked+label:hover,
+.rate>input:checked+label:hover~label,
+.rate>input:checked~label:hover,
+.rate>input:checked~label:hover~label,
+.rate>label:hover~input:checked~label {
+    /* color: rgba(0, 135, 211, .8); */
+    color: rgba(211, 0, 53, .8);
+}
+
+.rate>input:checked~label {
+    /* color: rgb(0, 135, 211); */
+    color: rgb(211, 0, 53);
+}
+
+
+/* Review bar */
+.review-bar-cont {
+    width: 13rem;
+    border: 1px solid #f0587b;
+    border-radius: 25px;
+    float: right;
+}
+
+.review-bar {
+    background-color: #f0587b;
+    padding: 0.65rem;
+    border-radius: 25px;
+}
+
+
+
+.wrapper {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate (-50%, -50%);
+}
+
+.wrapper img {
+    width: 600px;
+    height: auto;
+}
+
+.img-area {
+    -webkit-box-reflect: below 35px -webkit-gradient(linear, right, top, right bottom, from(transparent), to(rgba(255, 255, 255, 0.4)));
+}

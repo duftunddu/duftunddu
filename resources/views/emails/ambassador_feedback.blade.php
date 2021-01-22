@@ -2,8 +2,8 @@
 # The Fragrance Hub
 
 @component('mail::panel')
-## Hi! user_name
-{{-- ## Hi! {{$user->name}}, --}}
+{{-- ## Hi! user_name --}}
+## Hi! {{$user->name}},
 ### Welcome to Duft Und Du.
 @endcomponent
 

@@ -2,61 +2,33 @@
 
 <title>{{__($fragrance->name)}} {{(' | Duft Und Du')}}</title>
 
-{{-- Stylesheet --}}
-<link href="{{ asset('css/fragrance.css') }}" rel="stylesheet">
-{{-- <link href="{{ asset('css/store_scroll_bar.css') }}" rel="stylesheet"> --}}
-
-<style>
-    /* Fragracnce Picture */
-    .reflect{
-        background-image: url('https://static.toiimg.com/thumb/msid-63080082,imgsize-293543,width-800,height-600,resizemode-75/63080082.jpg');
-    }
-
-    .outdoor {
-        background: linear-gradient(90deg, rgb(247,82,124, 1) {{100 - ($sillage->value)}}%, rgb(255, 255, 255, 1) 100%);
-    }
-
-    .indoor {
-        background: linear-gradient(90deg, rgb(247,82,124, 1) {{$sillage->value}}%, rgb(255, 255, 255, 1) 100%);
-    }
-
-
-    /* Reviews */
-    .longevity {
-        width: {{$longevity<100 ? $longevity : 100 }}%;
-    }
-
-    .suitability {
-        width: {{$suitability<100 ? $suitability : 100 }}%;
-    }
-
-    .sustainability {
-        width: {{$sustainability<100 ? $sustainability : 100 }}%;
-    }
-
-</style>
-
 @section('content')
 
+{{-- Toggle Box --}}
+{{-- <script src="https://code.jquery.com/jquery-1.12.4.js" defer></script> --}}
+{{-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" defer></script> --}}
+{{-- <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/flick/jquery-ui.css"> --}}
+
+<style>
+    /* #back-color {
+        color:white !important;
+        background: linear-gradient(90deg, rgba(0, 0, 0, 1) 27%, rgba(255, 255, 255, 1) 100%) !important;
+    } */
+</style>
+
+<link href="{{ asset('css/fragrance.css') }}" rel="stylesheet">
+
 {{-- JQuery for Ajax --}}
-{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            {{-- <div class="card"> --}}
+            <div class="card">
 
-                {{-- <div class="card-header">{{'Fragrance: '}} {{ __($fragrance->name)}}</div> --}}
-                {{-- <div class="card-body"> --}}
-                    {{-- <h4 for="&" class="wide center">{{ __('&')}} </h4>     --}}
-                    {{-- <div class="wide center">
-                        <div class="img-ref-div center-img">
-                            <div class="reflect"></div>
-                        </div>
-                    </div> --}}
-
-
-                    <br>
+                <div class="card-header">{{'Fragrance: '}} {{ __($fragrance->name)}}</div>
+                <div class="card-body">
+                    <h4 for="&" class="wide center">{{ __('&')}} </h4>    
                     
                     <div class="row-pad">
 
@@ -91,7 +63,6 @@
                             <br>
 
                             <div class="left-border">
-                                <div class="left-top-border"></div>
                                 <div class="left">
                                     @auth
                                     
@@ -100,64 +71,109 @@
                                     {{-- Outdoor--}}
                                     <h4 data-toggle="tooltip" data-placement="top" data-html="true"
                                         title="Better suited for outdoors, based on fragrance and your region.">
-                                        <span class="doors outdoor">&nbsp;Outdoor / Indoor&nbsp;</span></h4>
+                                        <span style="color:white; 
+                                        background: linear-gradient(90deg, rgb(247,82,124, 1) {{100 - ($sillage->value)}}%, rgb(255, 255, 255, 1) 100%);"
+                                    >&nbsp;Outdoor / Indoor&nbsp;</span></h4>
                                     
                                     @else
                                     {{-- Indoor --}}
                                     <h4 data-toggle="tooltip" data-placement="top" data-html="true"
-                                        title="Better suited for indoors, based on fragrance and your region.">
-                                        <span class="doors indoor">&nbsp;Indoor / Outdoor&nbsp;</span></h4>
+                                        title="Better suited for indoors, based on fragrance and your region."><span style="color:white; 
+                                        background: linear-gradient(90deg, rgb(247,82,124, 1) {{$sillage->value}}%, rgb(255, 255, 255, 1) 100%);"
+                                    >&nbsp;Indoor / Outdoor&nbsp;</span></h4>
                                     
                                     @endif
-                                    {{-- <br> --}}
-
-                                    <hr class="hr-purple-line">
-                                    {{-- <br> --}}
 
                                     {{-- Longevity --}}
                                     <h4 class="hsl-color" data-toggle="tooltip" data-placement="top" data-html="true"
-                                        title="How long the fragrance lasts.<br>100 is max.">Longevity: <span class="color-red">{{$longevity}}</span>
+                                        title="How long the fragrance lasts.<br>100 is max.">Longevity: {{$longevity}}
                                     </h4>
-                                    {{-- Bar --}}
-                                    <div class="review-bar-cont"> 
-                                        <div class="review-bar longevity"></div> 
-                                    </div>
-                                    <br><br><br>
-
-                                    {{-- <hr class="hr-purple-line"> --}}
+                                    <!-- RATE -->
+                                    <section class="rate rating">
+                                        <!-- FIFTH STAR -->
+                                        <input type="radio" id="star_5" name="longevity" value="5"
+                                            onclick="handleLongevity(this);" />
+                                        <label for="star_5" title="Five">&#9733;</label>
+                                        <!-- FOURTH STAR -->
+                                        <input type="radio" id="star_4" name="longevity" value="4"
+                                            onclick="handleLongevity(this);" />
+                                        <label for="star_4" title="Four">&#9733;</label>
+                                        <!-- THIRD STAR -->
+                                        <input type="radio" id="star_3" name="longevity" value="3"
+                                            onclick="handleLongevity(this);" />
+                                        <label for="star_3" title="Three">&#9733;</label>
+                                        <!-- SECOND STAR -->
+                                        <input type="radio" id="star_2" name="longevity" value="2"
+                                            onclick="handleLongevity(this);" />
+                                        <label for="star_2" title="Two">&#9733;</label>
+                                        <!-- FIRST STAR -->
+                                        <input type="radio" id="star_1" name="longevity" value="1"
+                                            onclick="handleLongevity(this);" />
+                                        <label for="star_1" title="One">&#9733;</label>
+                                    </section><br><br>
 
                                     {{-- Suitability --}}
                                     <h4 class="hsl-color" data-toggle="tooltip" data-placement="top" data-html="true"
                                         title="Depends on season.<br>100 is average.<br>Above 100 is better.">
-                                        Suitability: <span class="color-red">{{$suitability}}</span></h4>
-                                    {{-- Bar --}}
-                                    <div class="review-bar-cont"> 
-                                        <div class="review-bar suitability"></div> 
-                                    </div>
-                                    <br><br><br>
-
-                                    {{-- <hr class="hr-purple-line"> --}}
+                                        Suitability: {{$suitability}}</h4>
+                                    <!-- RATE -->
+                                    <section class="rate rating">
+                                        <!-- FIFTH STAR -->
+                                        <input type="radio" id="sstar_5" name="suitability" value="5"
+                                            onclick="handleSuitability(this);" />
+                                        <label for="sstar_5" title="Five">&#9733;</label>
+                                        <!-- FOURTH STAR -->
+                                        <input type="radio" id="sstar_4" name="suitability" value="4"
+                                            onclick="handleSuitability(this);" />
+                                        <label for="sstar_4" title="Four">&#9733;</label>
+                                        <!-- THIRD STAR -->
+                                        <input type="radio" id="sstar_3" name="suitability" value="3"
+                                            onclick="handleSuitability(this);" />
+                                        <label for="sstar_3" title="Three">&#9733;</label>
+                                        <!-- SECOND STAR -->
+                                        <input type="radio" id="sstar_2" name="suitability" value="2"
+                                            onclick="handleSuitability(this);" />
+                                        <label for="sstar_2" title="Two">&#9733;</label>
+                                        <!-- FIRST STAR -->
+                                        <input type="radio" id="sstar_1" name="suitability" value="1"
+                                            onclick="handleSuitability(this);" />
+                                        <label for="sstar_1" title="One">&#9733;</label>
+                                    </section><br><br>
 
                                     {{-- Sustainability --}}
                                     <h4 class="hsl-color" data-toggle="tooltip" data-placement="top" data-html="true"
                                         title="How much heat affects the longevity of fragrance.<br>100 means unaffected. Below 100 means it will wear off sooner.">
-                                        Sustainability: <span class="color-red">{{$sustainability}}</span></h4>
-                                    {{-- Bar --}}
-                                    <div class="review-bar-cont"> 
-                                        <div class="review-bar sustainability"></div> 
-                                    </div>    
+                                        Sustainability: {{$sustainability}}</h4>
+                                    <!-- RATE -->
+                                    <section class="rate rating">
+                                        <!-- FIFTH STAR -->
+                                        <input type="radio" id="astar_5" name="sustainability" value="5"
+                                            onclick="handleSustainability(this);" />
+                                        <label for="astar_5" title="Five">&#9733;</label>
+                                        <!-- FOURTH STAR -->
+                                        <input type="radio" id="astar_4" name="sustainability" value="4"
+                                            onclick="handleSustainability(this);" />
+                                        <label for="astar_4" title="Four">&#9733;</label>
+                                        <!-- THIRD STAR -->
+                                        <input type="radio" id="astar_3" name="sustainability" value="3"
+                                            onclick="handleSustainability(this);" />
+                                        <label for="astar_3" title="Three">&#9733;</label>
+                                        <!-- SECOND STAR -->
+                                        <input type="radio" id="astar_2" name="sustainability" value="2"
+                                            onclick="handleSustainability(this);" />
+                                        <label for="astar_2" title="Two">&#9733;</label>
+                                        <!-- FIRST STAR -->
+                                        <input type="radio" id="astar_1" name="sustainability" value="1"
+                                            onclick="handleSustainability(this);" />
+                                        <label for="astar_1" title="One">&#9733;</label>
+                                    </section><br>
+
                                     <br>
-                                    
-                                    {{-- <br><br> --}}
-
-                                    <hr class="hr-purple-line">
-
                                     <p class="color-light-gray right-align">v 1.1</p>
-                                    {{-- <p>These are your personalized numbers.<br>
+                                    <p>These are your personalized numbers.<br>
                                         Please leave feedback on fragrances you have used previously.<br>
                                         Your input will help us predict better!
-                                    </p> --}}
-                                    <br>
+                                    </p><br>
 
                                     {{-- Toggler --}}
                                     {{-- <div class="toggler">
@@ -175,7 +191,7 @@
                                     @guest
                                     <h4 class="color-red">You are missing out on Factors Affecting Fragrance Wearability.</h4>
                                     <h4 class="color-red"><a href="/login">Log In</a> / <a href="/register">Sign Up</a>
-                                        to see if <span class="color-purple">{{ __($fragrance->name)}}</span>
+                                        to see if <span class="color-highlight-purple">{{ __($fragrance->name)}}</span>
                                         will suit you.</h4>
                                     <p class="color-light-gray right-align">For more info, visit <a href="/faq">FAQ</a>.</p>
                                     @endguest
@@ -188,7 +204,7 @@
                         <div class="column">
 
                             {{-- Heading: Fragrance Name --}}
-                            <h4 for="fragrance name" class="center color-purple">{{ __($fragrance->name)}}
+                            <h4 for="fragrance name" class="center color-highlight-purple">{{ __($fragrance->name)}}
                             &thinsp;
 
                                 {{-- Gender Suitability --}}
@@ -206,27 +222,18 @@
                                     src="{{ asset('images/vector_graphics/gender/unisex_symbol.png') }}">
                                 @endif
                             </h4>
-                            <h5 for="fragrance details" class="center color-purple">Fragrance Details</h4>
+                            <h5 for="fragrance details" class="center color-highlight-purple">Fragrance Details</h4>
                             <br>
 
                             <div class="right-border">
-                                <div class="right-top-border"></div>
                                 <div class="right">
 
-                                    {{-- Fragrance Image --}}
-                                    {{-- <div class="img-ref-div center-img">
-                                        <div class="reflect"></div>
-                                    </div> --}}
-                                    
-                                    {{-- Text --}}
-                                    <h4>Type: <span class="color-purple">{{$type->name}}</span></h4>
-                                    <h4>Cost: <span class="color-purple">{{$fragrance->cost}} {{$fragrance->currency}}
+                                    <h4>Type: {{$type->name}}</h4>
+                                    <h4>Cost: {{$fragrance->cost}} {{$fragrance->currency}}
                                         <span data-toggle="tooltip" data-placement="top" data-html="true"
-                                            title="This is an estimated cost.">*</span></span>
+                                            title="This is an estimated cost.">*</span>
                                     </h4>
-
-                                    <hr class="hr-red-line">
-
+                                    <br>
                                     <h4>Accords:</h4>
 
                                     @foreach($accords as $accord)
@@ -238,7 +245,7 @@
                                     @endif
                                     @endforeach<br>
 
-                                    <hr class="hr-red-line">
+                                    <br>
 
                                     <h4>Notes:</h4>
                                     @foreach($notes as $note)
@@ -250,7 +257,7 @@
                                     @endif
                                     @endforeach<br>
 
-                                    <hr class="hr-red-line">
+                                    <br>
 
                                     <p class="color-light-gray left-align">Added on {{$fragrance->created_at->format('d/M/y')}}</p>
 
@@ -270,8 +277,8 @@
                     </div><br>
                     @endif
 
-                {{-- </div> --}}
-            {{-- </div> --}}
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -282,7 +289,7 @@
 
 
 {{-- HSL Color --}}
-{{-- <script>
+<script>
     document.querySelectorAll(".hsl-color").forEach(function (e) {
         let s = e.innerText;
         let n =  parseInt(s.substring(s.indexOf(":") + 1).trim()) + 350;
@@ -291,10 +298,10 @@
         e.style.color = "hsl(" + n + ",70%,50%)";
         // e.style.backgroundColor= "hsl("+n+",50%,50%)";
     })
-</script> --}}
+</script>
 
 {{-- Longevity --}}
-{{-- <script>
+<script>
     function handleLongevity(Longevity) {
         var weights = {
             !!json_encode($weights) !!
@@ -314,10 +321,10 @@
             }
         });
     }
-</script> --}}
+</script>
 
 {{-- Suitability --}}
-{{-- <script>
+<script>
     function handleSuitability(Suitability) {
         var weights = {
             !!json_encode($weights) !!
@@ -337,10 +344,10 @@
             }
         });
     }
-</script> --}}
+</script>
 
 {{-- Sustainability --}}
-{{-- <script>
+<script>
     function handleSustainability(Sustainability) {
         var weights = {
             !!json_encode($weights) !!
@@ -360,7 +367,7 @@
             }
         });
     }
-</script> --}}
+</script>
 
 {{-- Toggle Effect --}}
 {{-- <script>

@@ -1,0 +1,84 @@
+html {
+    overflow: auto;
+    scroll-behavior: smooth;
+}
+
+body {
+    position: absolute;
+    /* top: 20px; */
+    top: 0;
+    left: 20px;
+    bottom: 20px;
+    /* right: 20px; */
+    right: 10px;
+    padding: 10px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    /* background-color: #F5F5F5; */
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background-color: #F5F5F5;
+
+    /* Bottom & Top scrollbar margins */
+    margin-top: 130px;
+    margin-bottom: 40px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+
+    background-image: -webkit-gradient(linear, left bottom, left top,
+            color-stop(1, rgb(129, 103, 169)),
+            color-stop(0, rgb(137, 22, 63)));
+    /* color-stop(0.44, rgb(122, 153, 217)),
+            color-stop(0.72, rgb(73, 125, 189)),
+            color-stop(0.86, rgb(28, 58, 148))); */
+}
+
+/* Button */
+::-webkit-scrollbar-button {
+    width: 0;
+    height: 0;
+    display: none;
+}
+
+::-webkit-scrollbar-corner {
+    background-color: transparent;
+}
+
+/* ::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(255, 0, 0, 0.4);
+} */
+
+
+::-webkit-scrollbar:vertical {
+    width: 10px;
+}
+
+::-webkit-scrollbar:horizontal {
+    height: 10px;
+}
+
+@media (max-width: 576px) {
+    ::-webkit-scrollbar:vertical {
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar:horizontal {
+        height: 8px;
+    }
+}

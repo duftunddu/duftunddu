@@ -14,8 +14,9 @@ use App\Http\Controllers\Controller;
 
 use App\Mail\Newsletter;
 use App\Mail\OrderShipped;
-use App\Mail\Feature_Request_Complete;
+use App\Mail\Ambassador_Feedback;
 use App\Mail\Brand_Ambassador_Invite;
+use App\Mail\Feature_Request_Complete;
 
 use Illuminate\Mail\Markdown;
 use Illuminate\Container\Container;
@@ -156,6 +157,10 @@ class Email_Master_Controller extends Controller
             return new Newsletter($request, $sender_name, $user, $dummy_user);
         }
         
+        else if(strcmp($request->email_template_name, "ambassador_feedback") == 0){
+            return new Ambassador_Feedback($request, $sender_name, $user, $dummy_user);
+        }
+
         else if(strcmp($request->email_template_name, "change_in_terms_and_conditions") == 0){
             return new ChangeInTermsConditions($request, $sender_name, $user);
         }

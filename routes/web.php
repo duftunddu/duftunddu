@@ -11,25 +11,25 @@
     |
 */
 
-Route::get('search_engine', 'Search_Queries_Controller@index')->name('search');
-Route::get('search_results', 'Search_Queries_Controller@store');
+Route::get('/search_engine', 'Search_Queries_Controller@index')->name('search');
+Route::get('/search_results', 'Search_Queries_Controller@store');
 // Route::post('search_results', 'Search_Queries_Controller@store');
 
-Route::get('feedback', 'Feedback_Form_Controller@index');
-Route::post('feedback', 'Feedback_Form_Controller@store');
+Route::get('/feedback', 'Feedback_Form_Controller@index');
+Route::post('/feedback', 'Feedback_Form_Controller@store');
 
-Route::get('report', 'Feedback_Comment_Controller@index');
-Route::post('report', 'Feedback_Comment_Controller@store');
+Route::get('/report', 'Feedback_Comment_Controller@index');
+Route::post('/report', 'Feedback_Comment_Controller@store');
 
 Route::get('/', function () {
     return view('forms.welcome');
 });
 
-Route::get('about_us', function () {
+Route::get('/about_us', function () {
     return view('forms.about_us');
 });
 
-Route::get('catalog', function () {
+Route::get('/catalog', function () {
     return view('forms.catalog');
 });
 
@@ -41,30 +41,30 @@ Route::get('/credits', function () {
     return view('forms.credits');
 });
 
-Route::get('terms_and_conditions', function () {
+Route::get('/terms_and_conditions', function () {
     return view('forms.terms_and_conditions');
 });
 
-Route::get('privacy_policy', function () {
+Route::get('/privacy_policy', function () {
     return view('forms.privacy_policy');
 });
 
-Route::get('brand_ambassador_proposal', function () {
+Route::get('/brand_ambassador_proposal', function () {
     return view('brand_ambassador.proposal');
 });
 
-Route::get('brands', 'Fragrance_Brand_Controller@all_brands');
-Route::get('brand/{id}', 'Fragrance_Brand_Controller@show');
+Route::get('/brands', 'Fragrance_Brand_Controller@all_brands');
+Route::get('/brand/{id}', 'Fragrance_Brand_Controller@show');
 
-Route::get('fragrances_array/{id}', 'Fragrance_Controller@all_fragrances_array');
-Route::get('fragrances/{id}', 'Fragrance_Controller@all_fragrances');
-Route::get('fragrance/{id}', 'Fragrance_Controller@show');
-Route::post('affecting_factors_data', 'Affecting_Factors_Data_Controller@store');
+Route::get('/fragrances_array/{id}', 'Fragrance_Controller@all_fragrances_array');
+Route::get('/fragrances/{brand_id}', 'Fragrance_Controller@all_fragrances');
+Route::get('/fragrance/{fragrance_id}', 'Fragrance_Controller@show');
+Route::post('/affecting_factors_data', 'Affecting_Factors_Data_Controller@store');
 
-Route::post('cities_of_country', 'Controller@cities_of_country');
+Route::post('/cities_of_country', 'Controller@cities_of_country');
 
-Route::get('request_brand_view', 'Request_Brand_Controller@show');
-Route::get('request_feature_view', 'Feature_Request_Controller@show');
+Route::get('/request_brand_view', 'Request_Brand_Controller@show');
+Route::get('/request_feature_view', 'Feature_Request_Controller@show');
 
 
 // Authorized Routes
@@ -83,68 +83,86 @@ Route::middleware(['role:new_user|user|genie_user|premium_user|admin', 'verified
 
 // user|genie_user|premium_user
 Route::middleware(['role:user|genie_user|premium_user|admin', 'verified'])->group(function () {
-    Route::get('home', 'HomeController@index')
+    Route::get('/home', 'HomeController@index')
     ->name('home');
     
     Route::get('/genie_input/{profile_id}', 'Perceiver_Controller@index');
     Route::post('/genie_input/{profile_id}', 'Perceiver_Controller@store');
 
-    Route::get('genie_output', 'Perceiver_Controller@output');
-    Route::post('genie_output', 'Perceiver_Controller@output');
+    Route::get('/genie_output', 'Perceiver_Controller@output');
+    Route::post('/genie_output', 'Perceiver_Controller@output');
 
-    Route::get('request_brand', 'Request_Brand_Controller@index');
-    Route::post('request_brand', 'Request_Brand_Controller@store');
-    Route::post('vote_brand', 'Request_Brand_Controller@vote');
+    Route::get('/request_brand', 'Request_Brand_Controller@index');
+    Route::post('/request_brand', 'Request_Brand_Controller@store');
+    Route::post('/vote_brand', 'Request_Brand_Controller@vote');
     
-    Route::get('request_feature_user', 'Feature_Request_By_User_Controller@index');
-    Route::post('request_feature_user', 'Feature_Request_By_User_Controller@store');
-    Route::post('vote_feature', 'Feature_Request_Controller@store');
+    Route::get('/request_feature_user', 'Feature_Request_By_User_Controller@index');
+    Route::post('/request_feature_user', 'Feature_Request_By_User_Controller@store');
+    Route::post('/vote_feature', 'Feature_Request_Controller@store');
 });
 
 // user|genie_user|premium_user|candidate_brand_ambassador|admin
 Route::middleware(['role:user|genie_user|premium_user|candidate_brand_ambassador|admin', 'verified'])->group(function () {
 
-    Route::get('brand_ambassador_register', 'Brand_Ambassador_Request_Controller@index');
-    Route::post('brand_ambassador_register', 'Brand_Ambassador_Request_Controller@store');
+    Route::get('/brand_ambassador_register', 'Brand_Ambassador_Request_Controller@index');
+    Route::post('/brand_ambassador_register', 'Brand_Ambassador_Request_Controller@store');
 
 });
 
 // candidate_brand_ambassador|new_brand_ambassador|admin
 Route::middleware(['role:candidate_brand_ambassador|new_brand_ambassador|admin', 'verified'])->group(function () {
 
-    Route::get('application_status', 'Brand_Ambassador_Request_Controller@application_status');
+    Route::get('/application_status', 'Brand_Ambassador_Request_Controller@application_status');
 
 });
 
 // new_brand_ambassador|admin
 Route::middleware(['role:new_brand_ambassador|admin'])->group(function () {
 
-    Route::get('brand_entry', 'Fragrance_Brand_Controller@index_ba');
-    Route::post('brand_entry/{brand_name}', 'Fragrance_Brand_Controller@store_ba');
+    Route::get('/brand_entry', 'Fragrance_Brand_Controller@index_ba');
+    Route::post('/brand_entry/{brand_name}', 'Fragrance_Brand_Controller@store_ba');
 
 });
 
 // brand_ambassador|premium_brand_ambassador
 Route::middleware(['role:brand_ambassador|premium_brand_ambassador|admin', 'verified'])->group(function () {
 
-    Route::get('ambassador_home', 'Brand_Ambassador_Controller@index');
+    Route::get('/ambassador_home', 'Brand_Ambassador_Controller@index');
 
     // Only Admins are allowed to enter Accords and Ingredients for the time being. 
-    // Route::get('accord_entry', 'Accord_Controller@index_ba');
-    // Route::post('accord_entry', 'Accord_Controller@store_ba');
+    // Route::get('/accord_entry', 'Accord_Controller@index_ba');
+    // Route::post('/accord_entry', 'Accord_Controller@store_ba');
 
-    // Route::get('note_entry', 'Ingredient_Controller@index_ba');
-    // Route::post('note_entry', 'Ingredient_Controller@store_ba');
+    // Route::get('/note_entry', 'Ingredient_Controller@index_ba');
+    // Route::post('/note_entry', 'Ingredient_Controller@store_ba');
 
-    Route::get('fragrance_entry', 'Fragrance_Controller@index_ba');
-    Route::post('fragrance_entry', 'Fragrance_Controller@store_ba');
+    Route::get('/fragrance_entry', 'Fragrance_Controller@index_ba');
+    Route::post('/fragrance_entry', 'Fragrance_Controller@store_ba');
     
-    Route::get('advertise', 'Brand_Ambassador_Controller@advertise');
+    Route::get('/advertise', 'Brand_Ambassador_Controller@advertise');
     
 });
 
 // admin
 Route::middleware(['role:admin'])->group(function () {
+
+    // Store
+    // Landing page
+    Route::get('/store', "Controller@store_index");
+    Route::get('/store_profile', "Controller@store_profile_entry");
+    Route::get('/store_fragrance/{fragrance_id}', "Controller@store_fragrance_show");
+
+
+    // Store stats
+    Route::get('/store_home', "Controller@store_call");
+
+    // Webstore
+    Route::get('/webstore_client', function () {
+        return view('webstore.client');
+    });
+    
+    // Webstore API
+    Route::get('/api_call', "Controller@api_call");
 
     Route::get('/ad_api', "Controller@ad_index");
     Route::get('/ad/{page_name}', function () {

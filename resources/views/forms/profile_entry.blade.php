@@ -12,8 +12,8 @@
 <link href="{{ asset('css/custom_button.css') }}" rel="stylesheet">
 
 {{-- Button: Info --}}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/fontawesome.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/solid.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/fontawesome.min.css" defer>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/solid.min.css" defer>
 
 <div class="container">
         <div class="row justify-content-center">
@@ -25,7 +25,7 @@
                     <div class="card">
                         <div class="card-header">{{ __('User Details')}}&nbsp;&nbsp; <i class="fas fa-info" data-toggle="tooltip"
                             data-placement="top" data-html="true"
-                            title="This information is used in your personal insights.<br>We will never sell your data.
+                            title="This information is used in your personal insights.
                             <br>For more information, read Privacy Policy."></i></div>
 
                         <div class="card-body">
