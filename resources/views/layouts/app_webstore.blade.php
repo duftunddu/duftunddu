@@ -17,6 +17,7 @@
 </style>
 
 <link href="{{ asset('css/fragrance.css') }}" rel="stylesheet">
+<link href="{{ asset('css/colour-palette.css') }}" rel="stylesheet">
 
 {{-- JQuery for Ajax --}}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

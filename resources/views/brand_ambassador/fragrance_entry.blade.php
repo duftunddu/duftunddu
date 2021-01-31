@@ -125,8 +125,8 @@
 
                             <div class="col-md-6">
 
-                                <div class="slideContainer">
-                                    <input type="range" min="0" max="100" class="slider myRange" class="form-control @error('sillage') is-invalid @enderror" id="myRange" name="sillage" value="0" value="{{ old('sillage')}}" required>
+                                <div class="slideContainer-sillage">
+                                    <input type="range" min="0" max="100" class="slider sillage" class="form-control @error('sillage') is-invalid @enderror" id="sillage" name="sillage" value="0" value="{{ old('sillage')}}" required>
                                     <label>{{_('Value: ')}}<span class="value"></span></label>
                                   </div>
                                 
@@ -138,7 +138,6 @@
                             
                             </div>
                         </div>
-
 
                         {{-- Cost --}}
                         <div class="form-group row">

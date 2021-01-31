@@ -40,6 +40,178 @@ class Admin_Controller extends Controller
         //
     }
 
+
+    // Stores
+    // Stores Requests
+    public function stores_requests()
+    {
+        $store_requests = Store::whereNull('request_status')
+        ->get();
+        
+        $webstore_requests = Webstore::whereNull('request_status')
+        ->get();
+        
+        // var_dump($ambassadors);
+        // return;
+
+        return view('admin.stores_requests',[
+            'store_requests'        => $store_requests,
+            'webstore_requests'     => $webstore_requests,
+        ]);
+    }
+
+    public function stores_requests_response($store_type, $id, $action)
+    {
+        // Store or Webstore
+        if ( strcmp($store_type, "store") == 0 ) {
+
+            // Exists or Not
+            if(!Store::exists($id)){
+                return redirect()->back()->with('error', 'ID does not exist');
+            }
+
+            // Find and Update
+            $store = Store::find($id)
+            ->update(['request_status' => $action]);
+
+            // Assign Appropriate Roles
+            if ( strcmp($action, "approved") == 0 ) {
+                // Assign store_owner and remove new_store_owner
+                if($user->hasRole('new_store_owner')){
+                    $user->removeRole('new_store_owner');
+                }
+                if($user->hasRole('store_owner')){
+                    $user->assignRole('store_owner');
+                }
+
+                if(!$user->hasRole('service_user')){
+                    $user->assignRole('service_user');
+                }
+                
+                return redirect()->back()->with('success',"The {$store->name} request was approved");
+            }
+            return redirect()->back()->with('error',"The {$store->name} request was rejected");
+        }
+        else if ( strcmp($store_type, "webstore") == 0 ) {
+
+            // Exists or Not
+            if(!Webstore::exists($id)){
+                return redirect()->back()->with('error', 'ID does not exist');
+            }
+
+            // Find and Update
+            $store = Webstore::find($id)
+            ->update(['request_status' => $action]);
+
+            // Assign Appropriate Roles
+            if ( strcmp($action, "approved") == 0 ) {
+                // Assign store_owner and remove new_store_owner
+                if($user->hasRole('new_webstore_owner')){
+                    $user->removeRole('new_webstore_owner');
+                }
+                if(!$user->hasRole('webstore_owner')){
+                    $user->assignRole('webstore_owner');
+                }
+
+                if(!$user->hasRole('service_user')){
+                    $user->assignRole('service_user');
+                }
+                
+                return redirect()->back()->with('success',"The {$store->name} request was approved");
+            }
+            return redirect()->back()->with('error',"The {$store->name} request was rejected");
+        }
+
+        return redirect()->back()->with('error',"Something went wrong beyond the defined exceptions, look into this.");
+    }
+    // End of Stores Requests
+
+    // Stores Panel
+    public function stores_panel()
+    {
+        $store_requests = Store::where('request_status', 'approved')
+        ->get();
+        
+        $webstore_requests = Webstore::where('request_status', 'approved')
+        ->get();
+        
+        // var_dump($ambassadors);
+        // return;
+
+        return view('admin.stores_requests',[
+            'store_requests'        => $store_requests,
+            'webstore_requests'     => $webstore_requests,
+        ]);
+    }
+
+    public function stores_panel_response($store_type, $id, $action)
+    {
+        // Store or Webstore
+        if ( strcmp($store_type, "store") == 0 ) {
+
+            // Exists or Not
+            if(!Store::exists($id)){
+                return redirect()->back()->with('error', 'ID does not exist');
+            }
+
+            // Find and Update
+            $store = Store::find($id)
+            ->update(['request_status' => $action]);
+
+            // Assign Appropriate Roles
+            if ( strcmp($action, "Approved") == 0 ) {
+                // Assign store_owner and remove new_store_owner
+                if($user->hasRole('new_store_owner')){
+                    $user->removeRole('new_store_owner');
+                }
+                if($user->hasRole('store_owner')){
+                    $user->assignRole('store_owner');
+                }
+
+                if(!$user->hasRole('service_user')){
+                    $user->assignRole('service_user');
+                }
+                
+                return redirect()->back()->with('success',"The {$store->name} request was approved");
+            }
+            return redirect()->back()->with('error',"The {$store->name} request was rejected");
+        }
+        else if ( strcmp($store_type, "webstore") == 0 ) {
+
+            // Exists or Not
+            if(!Webstore::exists($id)){
+                return redirect()->back()->with('error', 'ID does not exist');
+            }
+
+            // Find and Update
+            $store = Webstore::find($id)
+            ->update(['request_status' => $action]);
+
+            // Assign Appropriate Roles
+            if ( strcmp($action, "Approved") == 0 ) {
+                // Assign store_owner and remove new_store_owner
+                if($user->hasRole('new_webstore_owner')){
+                    $user->removeRole('new_webstore_owner');
+                }
+                if(!$user->hasRole('webstore_owner')){
+                    $user->assignRole('webstore_owner');
+                }
+
+                if(!$user->hasRole('service_user')){
+                    $user->assignRole('service_user');
+                }
+                
+                return redirect()->back()->with('success',"The {$store->name} request was approved");
+            }
+            return redirect()->back()->with('error',"The {$store->name} request was rejected");
+        }
+
+        return redirect()->back()->with('error',"Something went wrong beyond the defined exceptions, look into this.");
+    }
+    // End of Stores Panel
+    // End of Stores
+
+
     // Feature Requests By User
     public function request_feature_user_review()
     {

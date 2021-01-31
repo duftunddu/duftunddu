@@ -7,8 +7,7 @@
     <link href="{{ asset('css/custom_button.css') }}" rel="stylesheet">
 
     {{-- Button: Info --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/fontawesome.min.css"
-        defer>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/fontawesome.min.css" defer>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/solid.min.css" defer>
 </head>
 
@@ -146,10 +145,8 @@
 
                             <div class="col-md-6">
 
-                                <div class="slideContainer">
-                                    <input type="range" min="0" max="100" class="slider myRange"
-                                        class="form-control @error('sweat') is-invalid @enderror" id="myRange"
-                                        name="sweat" value="0" value="{{ old('sweat')}}" required>
+                                <div class="slideContainer-sweat">
+                                    <input type="range" min="0" max="100" class="slider sweat" class="form-control @error('sweat') is-invalid @enderror" id="sweat" name="sweat" value="0" value="{{ old('sweat')}}" required>
                                     <label>{{_('Value: ')}}<span class="value"></span></label>
                                 </div>
 

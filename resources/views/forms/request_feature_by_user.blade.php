@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-<title>{{_('Request Feature By User | Admin Panel | The Fragrance Hub | Duft Und Du')}}</title>
+<title>{{_('Request Feature By User | The Fragrance Hub | Duft Und Du')}}</title>
 
 {{-- Button --}}
 <link href="{{ asset('css/custom_button.css') }}" rel="stylesheet">

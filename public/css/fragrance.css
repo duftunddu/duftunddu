@@ -4,7 +4,7 @@
 
 .left {
     text-align: right;
-    color: #f7527c;
+    color: var(--lux-red);
 }
 
 .left,
@@ -34,7 +34,7 @@
 
 .right {
     text-align: left;
-    color: #8167a9;
+    color: var(--lux-purple);
 }
 
 .right-border {
@@ -43,15 +43,6 @@
 
 .right-top-border {
     border-top: 1px solid rgba(129, 103, 169, 0.5);
-}
-
-.row-pad {
-    display: flex;
-    margin-top: -2.25rem;
-}
-
-.column {
-    flex: 50%;
 }
 
 h4 {
@@ -66,7 +57,7 @@ h5 {
 }
 
 .color-light-gray {
-    color: #999;
+    color: var(--de-emphasize-gray);
 }
 
 .right-align {
@@ -78,19 +69,11 @@ h5 {
 }
 
 .right h4 {
-    color: #f7527c;
+    color: var(--lux-red);
 }
 
 .left h4 {
-    color: #8167a9;
-}
-
-.color-red {
-    color: #f7527c;
-}
-
-.color-purple {
-    color: #8167a9;
+    color: var(--lux-purple);
 }
 
 .center {

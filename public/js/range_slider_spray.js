@@ -1,7 +1,7 @@
-var containers = document.getElementsByClassName("slideContainer-sweat");
+var containers = document.getElementsByClassName("slideContainer-spray");
 
 for (let i = 0; i < containers.length; i++) {
-    slider = containers[i].querySelector(".sweat");
+    slider = containers[i].querySelector(".spray");
     output = containers[i].querySelector(".value");
     output.innerHTML = slider.value;
     console.log(output);
@@ -11,8 +11,8 @@ for (let i = 0; i < containers.length; i++) {
 
     slider.addEventListener("input", function (e) {
         console.log("hallo");
-        var x = e.target.value;
-        var color = 'linear-gradient(90deg, rgb(128, 128, 128)' + x + '% , rgb(214, 214, 214)' + x + '%)';
+        var x = e.target.value * 12.5;
+        var color = 'linear-gradient(90deg, rgb(16, 24, 32)' + x + '% , rgb(247, 244, 251)' + x + '%)';
         e.target.style.background = color;
     });
 }

@@ -26,7 +26,7 @@ class Brand_Ambassador_Request_Controller extends Controller
     
     public function __construct()
     {
-        $this->middleware('auth');
+        // 
     }
 
     /**
@@ -38,10 +38,13 @@ class Brand_Ambassador_Request_Controller extends Controller
     {
         // These checks were made when I was paranoid. Evaluate whether they are necessary.
         if (request()->user()->hasAnyRole('candidate_brand_ambassador', 'new_brand_ambassador')){
-            return redirect('application_status');
+            return redirect('/brand_ambassador_application_status');
         }
-        elseif(request()->user()->hasRole('brand_ambassador')){            
-            return redirect('ambassador_home');
+        else if(request()->user()->hasRole('brand_ambassador')){
+            return redirect('/ambassador_home');
+        }
+        else if(request()->user()->hasRole('user')){
+            return redirect('/brand_ambassador_proposal');
         }
 
         $brands = Fragrance_Brand::all();
@@ -61,7 +64,7 @@ class Brand_Ambassador_Request_Controller extends Controller
 
         return view('brand_ambassador.application_status',[
             'ambassador' => $ambassador
-        ]);        
+        ]);
     }
 
     /**
@@ -140,7 +143,7 @@ class Brand_Ambassador_Request_Controller extends Controller
         // Notification::send(request()->user(), new User_Activity_Notification("New Brand Ambassador Request"));
         
         // Return
-        return redirect('application_status')->with('success', 'Your application is submitted. It will be verified shortly.');
+        return redirect('brand_ambassador_application_status')->with('success', 'Your application is submitted. It will be reviewed shortly.');
     }
 
     /**

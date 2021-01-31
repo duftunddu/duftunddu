@@ -121,7 +121,7 @@
 
     {{-- Accordion --}}
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> --}}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
 
 </head>
 
@@ -141,6 +141,18 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    
+                    <br>
+
+                    {{--  Button: Add Fragrance Review --}}
+                    <div class="form-group row">
+                        <div class="center">
+                            <button type="button" class="btn btn-outline-dark" onclick="window.location='{{ url('/fragrance_review_entry/') }}'">
+                                {{ __('Add Fragrance Review') }}
+                            </button>
+                        </div>
+                    </div>
+
     
                     {{-- User Fragrances --}}
                     @if (!is_null($fav_brand))
@@ -187,6 +199,24 @@
                             </div>
                         </div>
 
+                        {{--  Button: Fragrance Review Home --}}
+                        {{-- <div class="form-group row">
+                            <div class="center">
+                                <button type="button" class="btn btn-outline-dark" onclick="window.location='{{ url('/fragrance_review_home/') }}'">
+                                    {{ __('Fragrance Review Home') }}
+                                </button>
+                            </div>
+                        </div> --}}
+
+                        {{--  Button: Add Fragrance Review --}}
+                        <div class="form-group row">
+                            <div class="center">
+                                <button type="button" class="btn btn-outline-dark" onclick="window.location='{{ url('/fragrance_review_entry/') }}'">
+                                    {{ __('Add Fragrance Review') }}
+                                </button>
+                            </div>
+                        </div>
+
                         <br>
 
                         {{-- Button: Genie --}}
@@ -214,10 +244,10 @@
                         
                         <div class="form-group row">
                             <div class="margin-border purple-color">
-                                <h5>Your Factors Affecting Fragrance are available.</h5>
+                                {{-- <h5>Your Factors Affecting Fragrance are available.</h5>
                                 <h5>You can see Longevity, Suitability and Sustainability with fragrances 
                                 on  Search Engine.</h5>
-                                <p>For more information, see <a href="/faq#factors">FAQ</a>.</p>
+                                <p>For more information, see <a href="/faq#factors">FAQ</a>.</p> --}}
                             </div>
                         </div>
 
@@ -225,23 +255,23 @@
 
                         <div class="form-group row">
                             <div class="margin-border">
-                                <h5 class="red-color">Function under development. Your input will help the development.</h5>
+                                {{-- <h5 class="red-color">Function under development. Your input will help the development.</h5>
                                 <h5>Function: Fragrance Recommendations by Genie based on your preferences.</h5>
                                 <h5>You can tell us what you think about the fragrances you have used by clicking the "Add Fragrance" button.</h5>
                                 <h5>You can also create profiles for people you want to gift a fragrance by clicking "Add Profile" button and telling us which fragrances they have used.</h5>
                                 <h5>And this will speed up the development process.</h5>
-                                <p>For more information, see <a href="/faq#genie">FAQ</a>.</p>
+                                <p>For more information, see <a href="/faq#genie">FAQ</a>.</p> --}}
                             </div>
                         </div>
 
                         {{--  Button: Add Fragrance --}}
-                        <div class="form-group row mb-0">
+                        {{-- <div class="form-group row mb-0">
                             <div class="center">
                                 <button type="button" class="btn btn-outline-dark" onclick="window.location='{{ url('/genie_input/' . $user_profile->id) }}'">
                                     {{ __('Add Fragrance') }}
                                 </button>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <br>
 
@@ -251,13 +281,13 @@
                     {{-- Only appears if there are no Profiles --}}
                     @if( $profiles->isEmpty() )
 
-                        <div class="form-group row mb-0">
+                        {{-- <div class="form-group row mb-0">
                             <div class="center">        
                                 <button type="submit" class="btn btn-dark"  onclick="window.location='{{ url('profile') }}'">
                                     {{ __('Add Profile') }}
                                 </button>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <br>
                     @endif

@@ -2,14 +2,15 @@
 
 <title>{{('Add Details | The AI Powered Fragrance Genie')}}</title>
 
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    {{-- Button --}}
+    <link href="{{ asset('css/custom_button.css') }}" rel="stylesheet">
+</head>
+
 @section('content')
-
-{{-- Button --}}
-<link href="{{ asset('css/custom_button.css') }}" rel="stylesheet">
-
-{{-- Range Slider Function --}}
-<link href="{{ asset('css/range_slider_sweat.css') }}" rel="stylesheet">
-<script src="{{ asset('js/range_slider_sweat.js') }}" defer></script>
 
 <div class="container">
     <div class="row justify-content-center">

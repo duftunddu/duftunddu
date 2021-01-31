@@ -12,7 +12,7 @@ class Accord_Controller extends Controller {
      * @return void
      */
     public function __construct() {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     /**
@@ -65,7 +65,7 @@ class Accord_Controller extends Controller {
                 $new->save();
         });
 
-        return redirect('accord_entry')->with('success', 'Accord added successfully.');
+        return redirect('/accord_entry')->with('success', 'Accord added successfully.');
     }
 
     /**

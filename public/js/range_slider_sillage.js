@@ -1,9 +1,7 @@
-// Source: https://codepen.io/Aceamar/pen/LKLXKK
-
-var containers = document.getElementsByClassName("slideContainer");
+var containers = document.getElementsByClassName("slideContainer-sillage");
 
 for (let i = 0; i < containers.length; i++) {
-    slider = containers[i].querySelector(".myRange");
+    slider = containers[i].querySelector(".sillage");
     output = containers[i].querySelector(".value");
     output.innerHTML = slider.value;
     console.log(output);
@@ -14,8 +12,6 @@ for (let i = 0; i < containers.length; i++) {
     slider.addEventListener("input", function (e) {
         console.log("hallo");
         var x = e.target.value;
-        // var color = 'linear-gradient(90deg, rgb(128, 128, 128)' + x + '% , rgb(214, 214, 214)' + x + '%)';
-        // var color = 'linear-gradient(90deg, rgb(249, 194, 104)' + x + '% , rgb(31, 50, 86)' + x + '%)';
         var color = 'linear-gradient(90deg, rgb(137,22,63)' + x + '% , rgb(247, 244, 251)' + x + '%)';
         e.target.style.background = color;
     });

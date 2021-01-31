@@ -1,0 +1,32 @@
+:root {
+    --lux-black-box: #101820FF;
+    --lux-black-font: #212529;
+    --lux-purple: #8167a9;
+    --lux-red: #f7527c;
+    --lux-light-red: #f0587b;
+    --de-emphasize-gray: #999;
+}
+
+.lux-black-box {
+    color: var(--lux-black-box);
+}
+
+.lux-black-font {
+    color: var(--lux-black-font);
+}
+
+.lux-purple {
+    color: var(--lux-purple);
+}
+
+.lux-red {
+    color: var(--lux-red);
+}
+
+.lux-light-red {
+    color: var(--lux-light-red);
+}
+
+.de-gray {
+    color: var(--de-emphasize-gray);
+}

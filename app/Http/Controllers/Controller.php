@@ -48,61 +48,6 @@ class Controller extends BaseController {
 
     // Store
     // index
-    public function store_index(){
-
-        // $weights = (object) [
-        //     'avg_temp'                    => 5,
-        //     'avg_hum'                     => 56,
-        //     'bmi'                         => 567,
-        //     'fragrance_type_weight'       => 5678,
-        //     'humidity_weight'             => "qdsklfsd sdf qsdklf ksd",
-        //     'sustainability_heat_weight'  => "djfklsdjfldk",
-        //     'warm_cold_weight'            => 5678,
-        //     'sweat_weight'                => 567,
-        //     'bmi_weight'                  => 56,
-        //     'skin_weight'                 => 5
-        //   ];
-
-        // $json = json_encode($weights);
-        // $json = "https://duftunddu.com/".$json;
-
-        // $json = urlencode($json);
-
-        // var_dump($json);return;
-        // var_dump(filter_var($json, FILTER_VALIDATE_URL));return;
-        // $myJSON = JSON.stringify(obj);
-
-        // var_dump($json);
-        // return;
-
-
-
-        // Only allow store owners to access this
-
-        return view('store.landing', [
-            // 'countries'=> $accords
-        ]);
-    }
-
-    // profile_entry
-    public function store_profile_entry(){
-        // Only allow store owners to access this
-
-        $professions    =   Profession::select('name')->get();
-        $skin_types     =   Skin_Type::select('name')->get();
-        $climates       =   Climate::select('name')->get();
-        $seasons        =   Season::select('name')->get();
-        
-        $currencies     =   Helper::currencies();
-
-        return view('store.profile_entry',[
-            'professions'       =>    $professions,
-            'skin_types'        =>    $skin_types,
-            'climates'          =>    $climates,
-            'seasons'           =>    $seasons,
-            'currencies'        =>    $currencies
-        ]);
-    }
 
     // show fragrance
     public function store_fragrance_show($id)

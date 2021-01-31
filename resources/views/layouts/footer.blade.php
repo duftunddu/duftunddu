@@ -28,12 +28,12 @@
     <div class="footer-row">
         <div class="footer-links">
 
-          <a href="request_brand_view">Request A Brand</a>
-          <a href="search_engine">Search Engine</a>
+          <a href="/faq">FAQ</a>
+          <a href="/search_engine">Search Engine</a>
           {{-- <a href="#">Copyright</a> --}}
           {{-- <a href="#">Creators</a> --}}
-          <a href="advertisement">Advertise</a>
-          <a href="about_us">About Us</a>
+          <a href="/advertisement">Advertise</a>
+          <a href="/about_us">About Us</a>
 
         </div>
     </div>
@@ -41,9 +41,9 @@
     <div class="footer-row">
         <div class="footer-links link-footer">
 
-          <a href="feedback">Feedback</a>
-          <a href="privacy_policy">Privacy Policy</a>
-          <a href="report">Report</a>
+          <a href="/feedback">Feedback</a>
+          <a href="/privacy_policy">Privacy Policy</a>
+          <a href="/report">Report</a>
         
         </div>
     </div>

@@ -2,39 +2,45 @@
 
 <title>{{__($fragrance->name)}} {{(' | Duft Und Du')}}</title>
 
-{{-- Stylesheet --}}
-<link href="{{ asset('css/fragrance.css') }}" rel="stylesheet">
-<link href="{{ asset('css/store_scroll_bar.css') }}" rel="stylesheet">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<style>
-    /* Fragracnce Picture */
-    .reflect{
-        background-image: url('https://static.toiimg.com/thumb/msid-63080082,imgsize-293543,width-800,height-600,resizemode-75/63080082.jpg');
-    }
+    {{-- Stylesheet --}}
+    <link href="{{ asset('css/fragrance.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/store_scroll_bar.css') }}" rel="stylesheet">
 
-    .outdoor {
-        background: linear-gradient(90deg, rgb(247,82,124, 1) {{100 - ($sillage->value)}}%, rgb(255, 255, 255, 1) 100%);
-    }
+    <style>
+        /* Fragracnce Picture */
+        .reflect{
+            background-image: url('https://static.toiimg.com/thumb/msid-63080082,imgsize-293543,width-800,height-600,resizemode-75/63080082.jpg');
+        }
 
-    .indoor {
-        background: linear-gradient(90deg, rgb(247,82,124, 1) {{$sillage->value}}%, rgb(255, 255, 255, 1) 100%);
-    }
+        .outdoor {
+            background: linear-gradient(90deg, rgb(247,82,124, 1) {{100 - ($sillage->value)}}%, rgb(255, 255, 255, 1) 100%);
+        }
+
+        .indoor {
+            background: linear-gradient(90deg, rgb(247,82,124, 1) {{$sillage->value}}%, rgb(255, 255, 255, 1) 100%);
+        }
 
 
-    /* Reviews */
-    .longevity {
-        width: {{$longevity<100 ? $longevity : 100 }}%;
-    }
+        /* Reviews */
+        .longevity {
+            width: {{$longevity<100 ? $longevity : 100 }}%;
+        }
 
-    .suitability {
-        width: {{$suitability<100 ? $suitability : 100 }}%;
-    }
+        .suitability {
+            width: {{$suitability<100 ? $suitability : 100 }}%;
+        }
 
-    .sustainability {
-        width: {{$sustainability<100 ? $sustainability : 100 }}%;
-    }
+        .sustainability {
+            width: {{$sustainability<100 ? $sustainability : 100 }}%;
+        }
+    </style>
+    
+</head>
 
-</style>
 
 @section('content')
 
@@ -210,9 +216,9 @@
                                 <div class="right">
 
                                     {{-- Fragrance Image --}}
-                                    {{-- <div class="img-ref-div center-img">
+                                    <div class="img-ref-div center-img">
                                         <div class="reflect"></div>
-                                    </div> --}}
+                                    </div>
                                     
                                     {{-- Text --}}
                                     <h4>Type: <span class="color-purple">{{$type->name}}</span></h4>

@@ -27,68 +27,105 @@
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav ml-auto py-4 py-md-0">
 
+                                {{-- Home --}}
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">{{-- active --}}
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" 
                                         aria-expanded="false">Home</a>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="{{ url('/search_engine') }}">Search Engine</a>
-                                        {{-- <a class="dropdown-item" href="{{ url('/catalog') }}">Catalog</a> --}}
                                         <a class="dropdown-item" href="{{ url('/about_us') }}">About Us</a>
                                     </div>
                                 </li>
 
+                                {{-- Services --}}
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="/brand_ambassador"
-                                        role="button" aria-haspopup="true" aria-expanded="false">Brand Ambassador</a>
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
+                                        role="button" aria-haspopup="true" aria-expanded="false">Services</a>
                                     <div class="dropdown-menu">
+                                        
+                                        {{-- Dashboards --}}
+                                        @hasrole('brand_ambassador')
+                                        <a class="dropdown-item" href="{{ url('/ambassador_home') }}">Ambassador Dashboard</a>
+                                        @endhasrole
+                                        @hasrole('store_owner')
+                                        <a class="dropdown-item" href="{{ url('/store_home') }}">Shop Dashboard</a>
+                                        @endhasrole
+                                        @hasrole('webstore_owner')
+                                        <a class="dropdown-item" href="{{ url('/webstore_home') }}">Online Store Dashboard</a>
+                                        @endhasrole
 
-                                        @unlessrole('new_brand_ambassador|brand_ambassador|premium_brand_ambassador')
-                                        {{-- If not roles --}}
-                                        <a class="dropdown-item" href="{{ url('/brand_ambassador_proposal') }}">Join Us</a>
-                                        <a class="dropdown-item" href="{{ url('/brand_ambassador_proposal') }}">Advertise</a>
-                                        {{-- Redirect to Join Us --}}
-                                        @else
-                                        {{-- If roles --}}
-                                        @unlessrole('new_brand_ambassador')
-                                        {{-- If not new_brand_ambassador  --}}
-                                        <a class="dropdown-item" href="{{ url('/ambassador_home') }}">Dashboard</a>
-                                        <a class="dropdown-item" href="{{ url('/brand_ambassador_proposal') }}">Advertise</a>
-                                        @else
-                                        {{-- If new_brand_ambassador  --}}
+                                        {{-- Application Status --}}
+                                        @hasrole('new_brand_ambassador')
                                         <a class="dropdown-item" href="{{ url('/brand_entry') }}">Add Brand</a>
-                                        <a class="dropdown-item" href="{{ url('/application_status') }}">Application Status</a>
+                                        <a class="dropdown-item" href="{{ url('/brand_ambassador_application_status') }}">Application Status</a>
+                                        @endhasrole
+                                        @hasrole('new_store_owner')
+                                        <a class="dropdown-item" href="{{ url('/store_application_status') }}">Shop Application Status</a>
+                                        @endhasrole
+                                        @hasrole('new_webstore_owner')
+                                        <a class="dropdown-item" href="{{ url('/webstore_application_status') }}">Online Store Application Status</a>
+                                        @endhasrole
+
+                                        {{-- Services Home --}}
+                                        @hasrole('services_user')
+                                        <a class="dropdown-item" href="{{ url('/services_home') }}">Services Dashboard</a>
+                                        @endhasrole
+                                        
+                                        {{-- Services list if not subscribed to any  --}}
+                                        @unlessrole('services_user')
+                                        <a class="dropdown-item" href="{{ url('/brand_ambassador_proposal') }}">For Brands</a>
+                                        <a class="dropdown-item" href="{{ url('/store_proposal') }}">For Shops</a>
+                                        <a class="dropdown-item" href="{{ url('/webstore_proposal') }}">For Online Stores</a>
+                                        <a class="dropdown-item" href="{{ url('/services_register') }}">Register Service</a>
                                         @endunlessrole
-                                        @endunlessrole
+                                        
+                                        <a class="dropdown-item" href="{{ url('/advertise_proposal') }}">Advertise</a>
                                         <a class="dropdown-item" href="#">Premium Features</a>
 
                                     </div>
                                 </li>
 
+                                {{-- Participate --}}
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
+                                        role="button" aria-haspopup="true" aria-expanded="false">Participate</a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">Join Us</a>
+                                        <a class="dropdown-item" href="#">Research</a>
+                                    </div>
+                                </li>
+
+                                {{-- Insights --}}
+                                {{-- <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
                                         role="button" aria-haspopup="true" aria-expanded="false">Insights</a>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="#">Coming Soon</a>
                                     </div>
-                                </li>
+                                </li> --}}
 
-                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                {{-- FAQ --}}
+                                {{-- <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                     <a class="nav-link" href="/faq">FAQ</a>
-                                </li>
+                                </li> --}}
 
+                                {{-- Contact Us --}}
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
                                         aria-haspopup="true" aria-expanded="false">Contact Us</a>
                                     <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="{{ url('/faq') }}">FAQ</a>
                                         <a class="dropdown-item" href="{{ url('/request_brand_view') }}">Request a Brand</a>
                                         <a class="dropdown-item" href="{{ url('/request_feature_view') }}">Request a Feature</a>
                                         <a class="dropdown-item" href="{{ url('/feedback') }}">Feedback</a>
                                         <a class="dropdown-item" href="{{ url('/report') }}">Report</a>
+                                        {{-- Add FB, Insta, Linkedin, email address to contact details  --}}
+                                        <a class="dropdown-item" href="{{ url('/contact_details') }}">Contact Details</a>
                                         {{-- <a class="dropdown-item" href="#">Contact</a> --}}
                                     </div>
                                 </li>
 
-                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4"></li>
+                                {{-- <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4"></li> --}}
 
                                 <!-- Authentication Links -->
                                 @guest

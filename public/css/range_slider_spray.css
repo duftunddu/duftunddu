@@ -1,0 +1,14 @@
+/* Change #spray to #id of whatever */
+
+#spray {
+    background: linear-gradient(90deg, rgb(33, 37, 41) 5%, rgb(247, 244, 251) 0%);
+    box-shadow: 0px 1px 10px 1px rgb(33, 37, 41);
+}
+
+#spray:hover {
+    opacity: 1;
+}
+
+#spray::-webkit-slider-thumb {
+    background: var(--lux-black-font);
+}

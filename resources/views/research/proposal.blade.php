@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-<title>{{_('Research Proposal | The Fragrance Hub | Duft Und Du')}}</title>
+<title>{{_('Brand Ambassador Sign Up Procedure | The Fragrance Hub | Duft Und Du')}}</title>
 
 <head>
     <meta charset="utf-8">
@@ -8,7 +8,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/button_brand_ambassador.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/research_proposal.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/brand_ambassador_proposal.css') }}" rel="stylesheet">
 </head>
 
 @section('content')

@@ -11,6 +11,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 
 {{-- Range Slider Function --}}
+<link href="{{ asset('css/range_slider.css') }}" rel="stylesheet">
 <link href="{{ asset('css/range_slider_like.css') }}" rel="stylesheet">
 <script src="{{ asset('js/range_slider_like.js') }}" defer></script>
 
@@ -77,8 +78,8 @@
 
                                 <div class="col-md-6">
 
-                                    <div class="slideContainer">
-                                        <input type="range" min="0" max="100" value="0" class="slider myRange" id="myRange" name="like" required>
+                                    <div class="slideContainer-like">
+                                            <input type="range" min="0" max="100" class="slider like" class="form-control @error('like') is-invalid @enderror" id="like" name="like" value="0" value="{{ old('like')}}" required>
                                         <label>{{_('Value: ')}}<span class="value"></span></label>
                                       </div>
                                     

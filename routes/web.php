@@ -112,7 +112,7 @@ Route::middleware(['role:user|genie_user|premium_user|candidate_brand_ambassador
 // candidate_brand_ambassador|new_brand_ambassador|admin
 Route::middleware(['role:candidate_brand_ambassador|new_brand_ambassador|admin', 'verified'])->group(function () {
 
-    Route::get('/application_status', 'Brand_Ambassador_Request_Controller@application_status');
+    Route::get('/brand_ambassador_application_status', 'Brand_Ambassador_Request_Controller@application_status');
 
 });
 
@@ -145,16 +145,47 @@ Route::middleware(['role:brand_ambassador|premium_brand_ambassador|admin', 'veri
 
 // admin
 Route::middleware(['role:admin'])->group(function () {
+    
+    // Research
+    Route::get('/research_proposal', function () {
+        return view('research.proposal');
+    });
+    Route::get('/fragrance_review_home', 'Research_Controller@home');
+    
+    // Research Entry
+    Route::get('/fragrance_review_entry', 'Research_Controller@index');
+    Route::get('/fragrance_review_entry', 'Research_Controller@index');
+    // End of Research Entry
+    // End of Research
+    
+
+    // Services
+    // Service Registration
+    Route::get('/services_register', "Services_Controller@index");
+    Route::post('/services_register', "Services_Controller@store");
+
+    // Service Home
+    // middleware service_home
+    Route::get('/services_home', "Services_Controller@home");
+    // End of Services
 
     // Store
     // Landing page
-    Route::get('/store', "Controller@store_index");
-    Route::get('/store_profile', "Controller@store_profile_entry");
+    // Register Store
+    Route::get('/store_register', "Store_Request_Controller@index");
+    Route::post('/store_register', "Store_Request_Controller@store");
+
+    // Store Application Status
+    Route::get('/store_application_status', "Store_Request_Controller@show");
+
+    // Store Fragrance
+    Route::get('/store_profile', "Store_Controller@profile_entry");
     Route::get('/store_fragrance/{fragrance_id}', "Controller@store_fragrance_show");
+    
+    // Store Home
+    Route::get('/store_home', "Store_Controller@index");
+    // End of Store
 
-
-    // Store stats
-    Route::get('/store_home', "Controller@store_call");
 
     // Webstore
     Route::get('/webstore_client', function () {
@@ -168,6 +199,17 @@ Route::middleware(['role:admin'])->group(function () {
     Route::get('/ad/{page_name}', function () {
         return view('vue_layout');
     });
+    // End of Webstore
+
+    // Stores  Panel
+    Route::get('/stores_panel', 'Admin_Controller@stores_panel');
+    Route::get('/stores/{store_type}/{id}/{action}', 'Admin_Controller@stores_panel_response');
+
+    // Stores Requests Panel
+    Route::get('/stores_requests_panel', 'Admin_Controller@stores_requests');
+    Route::get('/stores_requests/{store_type}/{id}/{action}', 'Admin_Controller@stores_requests_response');
+    // End of Store
+
 
     Route::get('/email_panel', 'Email_Master_Controller@panel');
     Route::post('/email_template_show', 'Email_Master_Controller@template_show');
