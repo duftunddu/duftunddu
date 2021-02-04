@@ -34,7 +34,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/colour-palette.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/colour-palette.css') }}" rel="stylesheet" defer>
 
     {{-- Store Scrollbar --}}
     <link href="{{ asset('css/store_scroll_bar.css') }}" rel="stylesheet">
@@ -43,7 +43,7 @@
 
 <body>
 
-    {{-- @include('layouts.preloader') --}}
+    @include('layouts.preloader')
 
     @include('layouts.header')
     <div id="app">

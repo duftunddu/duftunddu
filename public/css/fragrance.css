@@ -2,6 +2,15 @@
     background-color: rgba(247, 247, 247, 0.3);
 }
 
+.row-pad {
+    display: flex;
+    margin-top: -2.25rem;
+}
+
+.column {
+    flex: 50%;
+}
+
 .left {
     text-align: right;
     color: var(--lux-red);

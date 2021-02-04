@@ -4,6 +4,7 @@
 
 {{-- Button --}}
 <link href="{{ asset('css/custom_button.css') }}" rel="stylesheet">
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 @section('content')
 <div class="container">
@@ -15,7 +16,6 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
-
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
@@ -81,6 +81,17 @@
                             </div>
                         </div>
 
+                        {{-- Captcha - Google v2 --}}
+                        <div class="form-group row mb-0">
+                            <div class="col-md-9 offset-md-4">
+                                <div class="col-md-9">
+                                    <div class="g-recaptcha" data-sitekey="6Le4qOsZAAAAAIztp49Lp9JqnOuOSfhx9GcJe1Gd"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <br>
+
                         {{-- Button: Register --}}
                         <div class="form-group row mb-0">
                             <div class="col-md-9 offset-md-4">
@@ -90,8 +101,8 @@
                                     <span class="before">{{_('Register')}}</span>
                                     <span class="after">{{_('Register')}}</span>
                                 </button>
+                                </div>
                             </div>
-                        </div>
                         </div>
                         <br>
 

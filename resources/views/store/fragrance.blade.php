@@ -66,7 +66,7 @@
                         <div class="column">
 
                             {{-- Heading: User Name --}}
-                            <h4 for="user name" class="center color-red">
+                            <h4 for="user name" class="center lux-red">
                             @auth
                             {{ Auth::user()->name }}
                             @else
@@ -89,7 +89,7 @@
                                 src="{{ asset('images/vector_graphics/gender/unisex_symbol.png') }}">
                             @endif
                             </h4>
-                            <h5 for="personal numbers" class="center color-red">Personal Numbers</h4>
+                            <h5 for="personal numbers" class="center lux-red">Personal Numbers</h4>
                             <br>
 
                             <div class="left-border">
@@ -118,7 +118,7 @@
 
                                     {{-- Longevity --}}
                                     <h4 class="hsl-color" data-toggle="tooltip" data-placement="top" data-html="true"
-                                        title="How long the fragrance lasts.<br>100 is max.">Longevity: <span class="color-red">{{$longevity}}</span>
+                                        title="How long the fragrance lasts.<br>100 is max.">Longevity: <span class="lux-red">{{$longevity}}</span>
                                     </h4>
                                     {{-- Bar --}}
                                     <div class="review-bar-cont"> 
@@ -131,7 +131,7 @@
                                     {{-- Suitability --}}
                                     <h4 class="hsl-color" data-toggle="tooltip" data-placement="top" data-html="true"
                                         title="Depends on season.<br>100 is average.<br>Above 100 is better.">
-                                        Suitability: <span class="color-red">{{$suitability}}</span></h4>
+                                        Suitability: <span class="lux-red">{{$suitability}}</span></h4>
                                     {{-- Bar --}}
                                     <div class="review-bar-cont"> 
                                         <div class="review-bar suitability"></div> 
@@ -143,7 +143,7 @@
                                     {{-- Sustainability --}}
                                     <h4 class="hsl-color" data-toggle="tooltip" data-placement="top" data-html="true"
                                         title="How much heat affects the longevity of fragrance.<br>100 means unaffected. Below 100 means it will wear off sooner.">
-                                        Sustainability: <span class="color-red">{{$sustainability}}</span></h4>
+                                        Sustainability: <span class="lux-red">{{$sustainability}}</span></h4>
                                     {{-- Bar --}}
                                     <div class="review-bar-cont"> 
                                         <div class="review-bar sustainability"></div> 
@@ -154,7 +154,7 @@
 
                                     <hr class="hr-purple-line">
 
-                                    <p class="color-light-gray right-align">v 1.1</p>
+                                    <p class="de-gray right-align">v 1.1</p>
                                     {{-- <p>These are your personalized numbers.<br>
                                         Please leave feedback on fragrances you have used previously.<br>
                                         Your input will help us predict better!
@@ -175,11 +175,11 @@
 
                                     @endauth
                                     @guest
-                                    <h4 class="color-red">You are missing out on Factors Affecting Fragrance Wearability.</h4>
-                                    <h4 class="color-red"><a href="/login">Log In</a> / <a href="/register">Sign Up</a>
-                                        to see if <span class="color-purple">{{ __($fragrance->name)}}</span>
+                                    <h4 class="lux-red">You are missing out on Factors Affecting Fragrance Wearability.</h4>
+                                    <h4 class="lux-red"><a href="/login">Log In</a> / <a href="/register">Sign Up</a>
+                                        to see if <span class="lux-purple">{{ __($fragrance->name)}}</span>
                                         will suit you.</h4>
-                                    <p class="color-light-gray right-align">For more info, visit <a href="/faq">FAQ</a>.</p>
+                                    <p class="de-gray right-align">For more info, visit <a href="/faq">FAQ</a>.</p>
                                     @endguest
 
                                 </div>
@@ -190,7 +190,7 @@
                         <div class="column">
 
                             {{-- Heading: Fragrance Name --}}
-                            <h4 for="fragrance name" class="center color-purple">{{ __($fragrance->name)}}
+                            <h4 for="fragrance name" class="center lux-purple">{{ __($fragrance->name)}}
                             &thinsp;
 
                                 {{-- Gender Suitability --}}
@@ -208,7 +208,7 @@
                                     src="{{ asset('images/vector_graphics/gender/unisex_symbol.png') }}">
                                 @endif
                             </h4>
-                            <h5 for="fragrance details" class="center color-purple">Fragrance Details</h4>
+                            <h5 for="fragrance details" class="center lux-purple">Fragrance Details</h4>
                             <br>
 
                             <div class="right-border">
@@ -221,8 +221,8 @@
                                     </div>
                                     
                                     {{-- Text --}}
-                                    <h4>Type: <span class="color-purple">{{$type->name}}</span></h4>
-                                    <h4>Cost: <span class="color-purple">{{$fragrance->cost}} {{$fragrance->currency}}
+                                    <h4>Type: <span class="lux-purple">{{$type->name}}</span></h4>
+                                    <h4>Cost: <span class="lux-purple">{{$fragrance->cost}} {{$fragrance->currency}}
                                         <span data-toggle="tooltip" data-placement="top" data-html="true"
                                             title="This is an estimated cost.">*</span></span>
                                     </h4>
@@ -254,7 +254,7 @@
 
                                     <hr class="hr-red-line">
 
-                                    <p class="color-light-gray left-align">Added on {{$fragrance->created_at->format('d/M/y')}}</p>
+                                    <p class="de-gray left-align">Added on {{$fragrance->created_at->format('d/M/y')}}</p>
 
                                 </div>
                             </div>

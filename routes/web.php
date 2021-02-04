@@ -150,12 +150,15 @@ Route::middleware(['role:admin'])->group(function () {
     Route::get('/research_proposal', function () {
         return view('research.proposal');
     });
-    Route::get('/fragrance_review_home', 'Research_Controller@home');
+    // Route::get('/fragrance_review_home', 'Research_Controller@index');
     
     // Research Entry
-    Route::get('/fragrance_review_entry', 'Research_Controller@index');
-    Route::get('/fragrance_review_entry', 'Research_Controller@index');
+    Route::get('/fragrance_review_entry', 'User_Fragrance_Review_Controller@index');
+    Route::post('/fragrance_review_entry', 'User_Fragrance_Review_Controller@store');
     // End of Research Entry
+
+    Route::get('user_fragrance_review_download', 'Admin_Controller@user_fragrance_review_show');
+    Route::get('user_fragrance_review/download', 'Admin_Controller@user_fragrance_review_export');
     // End of Research
     
 

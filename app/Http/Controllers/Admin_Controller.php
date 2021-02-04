@@ -9,12 +9,13 @@ use App\Brand_Ambassador_Request;
 use App\Brand_Ambassador_Profile;
 use App\Feature_Request_By_User;
 use App\Feature_Request;
+use App\User_Fragrance_Review;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+// use Excel;
 use Carbon\Carbon;
-
 use App\Helper\Helper;
 
 class Admin_Controller extends Controller
@@ -38,6 +39,27 @@ class Admin_Controller extends Controller
     public function index()
     {
         //
+    }
+
+    // Research
+    public function user_fragrance_review_show()
+    {
+        return view('admin.user_fragrance_review_download',[
+            'reviews' => User_Fragrance_Review::all()
+        ]);
+    }
+
+    public function user_fragrance_review_export()
+    {
+        return Excel::download(new User_Fragrance_Review, 'user_fragrance_review.csv');
+
+        // return Excel::create('Filename', function($excel) {
+
+        // })->download('csv');
+        
+        // return view('admin.user_fragrance_review_export',[
+        //     'reviews' => User_Fragrance_Review::all()
+        // ]);
     }
 
 

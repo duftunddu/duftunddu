@@ -106,15 +106,15 @@ class Controller extends BaseController {
             $user_gender = $frag_profile->gender;
 
             if($fragrance->currency != $frag_profile->currency){
-                $fragrance->cost = Helper::currency_convert($fragrance->cost, $fragrance->currency, $frag_profile->currency);
+                $fragrance->cost = Helper::convert_currency($fragrance->cost, $fragrance->currency, $frag_profile->currency);
                 $fragrance->currency = $frag_profile->currency;
             }
 
-            $weather_data_json = Helper::weather_data($frag_profile->location_id);
+            $weather_data_json = Helper::get_weather_data($frag_profile->location_id);
 
             // var_dump($weather_data_json->successful());return;
-            if($weather_data_json->successful()){
-
+            if(Helper::get_weather_success()){
+            
                 //TODO: Create separate functions for each of the following, fetch weights in those functions from database.   
 
                 // Sum of Weekly Variables
@@ -122,8 +122,8 @@ class Controller extends BaseController {
                 $sum_hum  = 0;
 
                 for ($i = 0; $i < 8; $i++){
-                $sum_temp += $weather_data_json['daily'][$i]['temp']['day'];
-                $sum_hum  += $weather_data_json['daily'][$i]['humidity'];
+                    $sum_temp += $weather_data_json->daily[$i]->temp->day;
+                    $sum_hum  += $weather_data_json->daily[$i]->humidity;
                 }
 
                 // Average Temperature

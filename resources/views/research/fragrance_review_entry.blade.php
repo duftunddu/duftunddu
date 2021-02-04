@@ -34,7 +34,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
 
-            <form method="POST" action="{{ url('profile')}}">
+            <form method="POST" action="{{ url('/fragrance_review_entry')}}">
                 @csrf
 
                 <div class="card">
@@ -46,14 +46,17 @@
 
                         {{-- Explanation --}}
                         <div class="form-group row">
-                            <div class="col-md-9 offset-md-2">
-                                <h5>Guidelines</h5>
+                            <div class="col-md-9 offset-md-4">
+                                <h5 class="lux-red">Thank you for Participating</h5>
+                                {{-- <h5>Guidelines</h5>
                                 The shop name and its address will be public.<br>
                                 Providing full information supports your applicaton for approval.<br>
                                 <small>Any suspicious behaviour may result in suspension or terminaton of
-                                    account.</small>
+                                    account.</small> --}}
                             </div>
-                        </div><br>
+                        </div>
+                        
+                        {{-- <br> --}}
 
                         {{-- Brand --}}
                         <div class="form-group row">
@@ -163,7 +166,7 @@
 
                         {{-- Sprays --}}
                         <div class="form-group row">
-                            <label for="like" class="col-md-4 col-from-label text-md-right" data-toggle="tooltip"
+                            <label for="spray" class="col-md-4 col-from-label text-md-right" data-toggle="tooltip"
                                 data-placement="top" data-html="true"
                                 title="How many sprays did you apply?.">{{ __('No. of Sprays:')}}</label>
 
