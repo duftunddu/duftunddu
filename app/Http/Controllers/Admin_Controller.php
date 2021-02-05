@@ -11,6 +11,9 @@ use App\Feature_Request_By_User;
 use App\Feature_Request;
 use App\User_Fragrance_Review;
 
+use App\Exports\User_Fragrance_Reviews_Data;
+use Maatwebsite\Excel\Facades\Excel;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -51,8 +54,8 @@ class Admin_Controller extends Controller
 
     public function user_fragrance_review_export()
     {
-        return Excel::download(new User_Fragrance_Review, 'user_fragrance_review.csv');
-
+        return Excel::download(new User_Fragrance_Reviews_Data, 'user_fragrance_review.csv');
+        // return Excel::download(new DisneyplusExport, 'disney.xlsx');
         // return Excel::create('Filename', function($excel) {
 
         // })->download('csv');
