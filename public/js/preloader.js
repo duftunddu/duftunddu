@@ -3,11 +3,11 @@ $(document).ready(function () {
 
     setTimeout(function () {
         $('#ctn-preloader').addClass('loaded');
-        // Una vez haya terminado el preloader aparezca el scroll
+        // Once the preloader has finished, the scroll appears
         $('body').removeClass('no-scroll-y');
 
         if ($('#ctn-preloader').hasClass('loaded')) {
-            // Es para que una vez que se haya ido el preloader se elimine toda la seccion preloader
+            // It is so that once the preloader is gone, the entire preloader section is deleted
             $('#preloader').delay(2000).queue(function () {
                 $(this).remove();
             });
