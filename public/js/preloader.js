@@ -8,10 +8,10 @@ $(document).ready(function () {
 
         if ($('#ctn-preloader').hasClass('loaded')) {
             // Es para que una vez que se haya ido el preloader se elimine toda la seccion preloader
-            $('#preloader').delay(1000).queue(function () {
+            $('#preloader').delay(2000).queue(function () {
                 $(this).remove();
             });
         }
-    }, 3000);
+    }, 0);
 
 });
