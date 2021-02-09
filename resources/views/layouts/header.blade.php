@@ -67,12 +67,12 @@
                                         @endhasrole
 
                                         {{-- Services Home --}}
-                                        @hasrole('services_user')
+                                        @hasrole('service_user')
                                         <a class="dropdown-item" href="{{ url('/services_home') }}">Services Dashboard</a>
                                         @endhasrole
                                         
                                         {{-- Services list if not subscribed to any  --}}
-                                        @unlessrole('services_user')
+                                        @unlessrole('service_user')
                                         <a class="dropdown-item" href="{{ url('/brand_ambassador_proposal') }}">For Brands</a>
                                         <a class="dropdown-item" href="{{ url('/store_proposal') }}">For Shops</a>
                                         <a class="dropdown-item" href="{{ url('/webstore_proposal') }}">For Online Stores</a>

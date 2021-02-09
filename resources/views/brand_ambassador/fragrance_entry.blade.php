@@ -4,9 +4,6 @@
 
 @section('content')
 
-{{-- Add Another Function --}}
-{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script> --}}
-
 {{-- Range Slider Function --}}
 <link href="{{ asset('css/range_slider_sillage.css') }}" rel="stylesheet">
 <script src="{{ asset('js/range_slider_sillage.js') }}" defer></script>

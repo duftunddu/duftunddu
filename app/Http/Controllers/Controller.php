@@ -359,7 +359,6 @@ class Controller extends BaseController {
         ]);
     }
 
-
     public function cities_of_country(Request $request)
     {
         $cities = Country_And_City::select('city_name')->where('country_name', $request->country)->get();

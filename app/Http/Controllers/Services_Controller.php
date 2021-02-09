@@ -27,8 +27,8 @@ class Services_Controller extends Controller
 
     public function home(){
 
-        // Change to services_user
-        // if(request()->user()->hasRole('services_user')) {
+        // Change to service_user
+        // if(!request()->user()->hasRole('service_user')) {
         // }
         return view('forms.services_home');
     }
@@ -41,7 +41,6 @@ class Services_Controller extends Controller
     */
     public function store(Request $request)
     {
-
         if(!Auth::check()) {
             return redirect()->back()->with('error','Please login to proceed.');
         }
@@ -63,7 +62,6 @@ class Services_Controller extends Controller
             if(request()->user()->hasRole('brand_ambassador')) {
                 return redirect()->back()->with('error','You are already a Brand Ambassador. You cannot be ambassador of two brands.');
             }
-    
             return redirect('/brand_ambassador_register');
         }
         else if($request->shop){

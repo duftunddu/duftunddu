@@ -182,7 +182,7 @@
                         </div>
 
                         {{-- Country --}}
-                        <div class="form-group row">
+                        {{-- <div class="form-group row">
                             <label for="country_id"
                                 class="col-md-4 col-from-label text-md-right">{{ __('Country:')}}</label>
 
@@ -203,10 +203,10 @@
                                 </div>
                                 @endif
                             </div>
-                        </div>
+                        </div> --}}
 
                         {{-- City --}}
-                        <div class="form-group row">
+                        {{-- <div class="form-group row">
                             <label for="city_id" class="col-md-4 col-from-label text-md-right">{{ __('City:')}}</label>
 
                             <div class="col-md-6">
@@ -225,7 +225,7 @@
                                 </div>
                                 @endif
                             </div>
-                        </div>
+                        </div> --}}
 
                         {{-- Climate --}}
                         <div class="form-group row">

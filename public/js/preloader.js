@@ -1,6 +1,5 @@
 // Preloader
-$(document).ready(function () {
-
+document.addEventListener("DOMContentLoaded", function (event) {
     setTimeout(function () {
         $('#ctn-preloader').addClass('loaded');
         // Once the preloader has finished, the scroll appears
@@ -13,5 +12,4 @@ $(document).ready(function () {
             });
         }
     }, 0);
-
 });

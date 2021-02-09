@@ -1,5 +1,5 @@
 // Preloader
-$(document).ready(function () {
+document.addEventListener("DOMContentLoaded", function (event) {
 
     setTimeout(function () {
         $('#ctn-preloader').addClass('loaded');

@@ -13,7 +13,6 @@
     <link href="{{ asset('css/custom_button.css') }}" rel="stylesheet">
 </head>
 
-
 @section('content')
     <div class="container">
         <div class="row justify-content-center">

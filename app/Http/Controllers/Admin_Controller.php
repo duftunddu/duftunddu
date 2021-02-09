@@ -44,6 +44,7 @@ class Admin_Controller extends Controller
         //
     }
 
+
     // Research
     public function user_fragrance_review_show()
     {
@@ -51,7 +52,10 @@ class Admin_Controller extends Controller
             'reviews' => User_Fragrance_Review::all()
         ]);
     }
+    // End of Research
 
+
+    // Exports
     public function user_fragrance_review_export()
     {
         return Excel::download(new User_Fragrance_Reviews_Data, 'user_fragrance_review.csv');
@@ -64,6 +68,7 @@ class Admin_Controller extends Controller
         //     'reviews' => User_Fragrance_Review::all()
         // ]);
     }
+    // End of Exports
 
 
     // Stores
@@ -105,7 +110,7 @@ class Admin_Controller extends Controller
                 if($user->hasRole('new_store_owner')){
                     $user->removeRole('new_store_owner');
                 }
-                if($user->hasRole('store_owner')){
+                if(!$user->hasRole('store_owner')){
                     $user->assignRole('store_owner');
                 }
 
@@ -151,8 +156,9 @@ class Admin_Controller extends Controller
     }
     // End of Stores Requests
 
+
     // Stores Panel
-    public function stores_panel()
+    public function store_panel()
     {
         $store_requests = Store::where('request_status', 'approved')
         ->get();
@@ -169,7 +175,7 @@ class Admin_Controller extends Controller
         ]);
     }
 
-    public function stores_panel_response($store_type, $id, $action)
+    public function store_panel_response($store_type, $id, $action)
     {
         // Store or Webstore
         if ( strcmp($store_type, "store") == 0 ) {
@@ -189,7 +195,7 @@ class Admin_Controller extends Controller
                 if($user->hasRole('new_store_owner')){
                     $user->removeRole('new_store_owner');
                 }
-                if($user->hasRole('store_owner')){
+                if(!$user->hasRole('store_owner')){
                     $user->assignRole('store_owner');
                 }
 
@@ -295,6 +301,8 @@ class Admin_Controller extends Controller
 
         return redirect('request_feature_user_review')->with('success',"{$request->name} approved.");
     }
+    // End of Feature Requests By User
+
 
     // Feature Requests
     public function request_feature_status()
@@ -325,6 +333,8 @@ class Admin_Controller extends Controller
 
         return redirect()->back();
     }
+    // End of Feature Requests
+
 
     // Brand Ambassador
     public function brand_ambassador_request()
@@ -431,6 +441,8 @@ class Admin_Controller extends Controller
 
         return redirect()->back()->with('success','Approval Successful.');
     }
+    // End of Brand Ambassador
+
 
     // Brand Requests
     public function request_brand_status()
@@ -461,5 +473,5 @@ class Admin_Controller extends Controller
 
         return redirect()->back();
     }
-
+    // End of Brand Requests
 }

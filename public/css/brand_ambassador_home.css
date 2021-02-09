@@ -20,12 +20,12 @@ body.hero-anime h5 {
     transition-delay: 700ms;
 }
 
-button.btn {
+/* button.btn {
     opacity: 1;
     transform: translate(0);
     transition: all 200ms linear;
     transition-delay: 800ms;
-}
+} */
 
 body.hero-anime button.btn {
     opacity: 0;

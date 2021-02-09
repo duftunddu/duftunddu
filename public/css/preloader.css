@@ -1,4 +1,3 @@
-/* Preloader */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
 
 * {
@@ -6,7 +5,6 @@
     margin: 0;
     padding: 0;
 }
-
 
 html {
     z-index: 1000 !important;
@@ -35,19 +33,19 @@ html {
     z-index: 100;
 }
 
-/* Spinner cargando */
+/* Loading Spinner */
 .ctn-preloader .animation-preloader .spinner {
     animation: spinner 1s infinite linear;
     border-radius: 50%;
     border: 3px solid rgba(0, 0, 0, 0.2);
     border-top-color: #000000;
-    /* No se identa por orden alfabetico para que no lo sobre-escriba */
+    /* It is not identified in alphabetical order so that it does not over-write it */
     height: 9em;
     margin: 0 auto 3.5em auto;
     width: 9em;
 }
 
-/* Texto cargando */
+/* Loading Text */
 .ctn-preloader .animation-preloader .txt-loading {
     /* font: bold 5em 'Montserrat', sans-serif; */
     font: 300 5em 'Montserrat', sans-serif;
@@ -111,13 +109,13 @@ html {
     right: 0;
 }
 
-/* Efecto de fade en la animación de cargando */
+/* Fade effect on loading animation */
 .loaded .animation-preloader {
     opacity: 0;
     transition: 0.3s ease-out;
 }
 
-/* Efecto de cortina */
+/* Curtain effect */
 .loaded .loader-section.section-left {
     transform: translateX(-101%);
     transition: 0.7s 0.3s all cubic-bezier(0.1, 0.1, 0.1, 1.000);
@@ -128,14 +126,14 @@ html {
     transition: 0.7s 0.3s all cubic-bezier(0.1, 0.1, 0.1, 1.000);
 }
 
-/* Animación del preloader */
+/* Animation of the preloader */
 @keyframes spinner {
     to {
         transform: rotateZ(360deg);
     }
 }
 
-/* Animación de las letras cargando del preloader */
+/* Animation of letters loading from the preloader */
 @keyframes letters-loading {
 
     0%,
@@ -152,17 +150,16 @@ html {
     }
 }
 
-/* Tamaño de portatil hacia atras (portatil, tablet, celular) */
+/* Laptop size back (laptop, tablet, cell phone) */
 @media screen and (max-width: 767px) {
 
-    /* Preloader */
-    /* Spinner cargando */
+    /* Loading Spinner */
     .ctn-preloader .animation-preloader .spinner {
         height: 8em;
         width: 8em;
     }
 
-    /* Texto cargando */
+    /* Loading Text */
     .ctn-preloader .animation-preloader .txt-loading {
         /* font: bold 3.5em 'Montserrat', sans-serif; */
         font: 300 3.5em 'Montserrat', sans-serif;
@@ -171,18 +168,15 @@ html {
 
 @media screen and (max-width: 500px) {
 
-    /* Prelaoder */
-    /* Spinner cargando */
+    /* Loading Spinner */
     .ctn-preloader .animation-preloader .spinner {
         height: 7em;
         width: 7em;
     }
 
-    /* Texto cargando */
+    /* Loading Text */
     .ctn-preloader .animation-preloader .txt-loading {
         /* font: bold 2em 'Montserrat', sans-serif; */
         font: 300 2em 'Montserrat', sans-serif;
     }
 }
-
-/* End of Preloader */

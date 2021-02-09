@@ -1,16 +1,13 @@
 @extends('layouts.app')
 
-<title>{{_('Ambassador Dashboard | The Fragrance Genie | Duft Und Du')}} </title>
+<title>{{_('Store Dashboard | The Fragrance Hub | Duft Und Du')}} </title>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     {{-- Styles --}}
-    <link href="{{ asset('css/brand_ambassador_home.css') }}" rel="stylesheet">
-
-    {{-- Button --}}
-    <link href="{{ asset('css/custom_button.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/store_home.css') }}" rel="stylesheet">
 </head>
 
 @section('content')
@@ -30,51 +27,48 @@
                         </div>
                     @endif
 
-                    <br>
-                    {{-- Chart --}}
-                    @if($queries_data != NULL)
-                    
-                        @include('features.ambassador_dashboard_chart')<br>
-                        
-                    @else
-                        <div class="form-group row mb-0">
-                            <div class="center">
-                                <h5>It looks empty in here...</h5>
-                            </div>
+                    {{-- Get User Review --}}
+                    <div class="form-group row mb-0">
+                        <div class="center">
+                            <button type="button" class="btn btn-lux-lipstick-red" onclick="window.location='{{ url('fragrance_entry/') }}'">
+                                Get User Review
+                            </button>
                         </div>
-                    @endif
-                    <br>
+                    </div><br>
 
                     {{-- Total Fragrances --}}
                     <div class="form-group row mb-0">
                         <div class="center">
-                            <h5>{{ __('Total Fragrances: ')}} {{__(count($fragrances))}}</h5>
+                            <h5>Total Fragrances: {{__($no_of_f)}}</h5>
                         </div>
-                    </div>
+                    </div><br>
 
-                    <br>
+                    {{-- Get Fragrance Suitability --}}
+                    <div class="form-group row mb-0">
+                        <div class="center">
+                            <button type="button" class="btn btn-lux-pastel-purple" onclick="window.location='{{ url('fragrance_suitability/') }}'">
+                                Get Fragrance Suitability
+                            </button>
+                        </div>
+                    </div><br>
 
                     {{--  Button: Add Fragrance --}}
                     <div class="form-group row mb-0">
                         <div class="center">
-                            <button type="button" class="btn btn-outline-dark" onclick="window.location='{{ url('fragrance_entry') }}'">
-                                {{ __('Add Fragrance') }}
+                            <button type="button" class="btn btn-outline-dark" onclick="window.location='{{ url('fragrance_entry/') }}'">
+                                Add Fragrance
                             </button>
                         </div>
-                    </div>
-
-                    <br>
+                    </div><br>
 
                     {{-- All Fragrances --}}
                     <div class="form-group row mb-0">
                         <div class="center">
-                            <button type="button" class="btn btn-dark" onclick="window.location='{{ url('fragrances/'.$ambassador->brand_id) }}'">
-                                {{ __('All Fragrances') }}
+                            <button type="button" class="btn btn-dark" onclick="window.location='{{ url('fragrances/') }}'">
+                                All Fragrances
                             </button>
                         </div>
-                    </div>
-
-                    <br>
+                    </div><br>
 
                 </div>
             </div>

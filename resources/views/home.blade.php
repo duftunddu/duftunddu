@@ -76,10 +76,10 @@
         }
 
         button.btn{
-            opacity: 1;
+            /* opacity: 1;
             transform: translate(0);
             transition: all 200ms linear;
-            transition-delay: 800ms;
+            transition-delay: 800ms; */
         }
         body.hero-anime button.btn{
             opacity: 0;

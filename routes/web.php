@@ -161,6 +161,11 @@ Route::middleware(['role:admin'])->group(function () {
     Route::get('user_fragrance_review/download', 'Admin_Controller@user_fragrance_review_export');
     // End of Research
     
+    // Show all unavailable Brands & Fragrances
+
+    // Add Fragrance
+    
+    // Add Brand
 
     // Services
     // Service Registration
@@ -186,7 +191,7 @@ Route::middleware(['role:admin'])->group(function () {
     Route::get('/store_fragrance/{fragrance_id}', "Controller@store_fragrance_show");
     
     // Store Home
-    Route::get('/store_home', "Store_Controller@index");
+    Route::get('/store_home', "Store_Controller@home");
     // End of Store
 
 
@@ -195,6 +200,8 @@ Route::middleware(['role:admin'])->group(function () {
         return view('webstore.client');
     });
     
+    Route::get('/webstore_home', "Webstore_Controller@home");
+
     // Webstore API
     Route::get('/api_call', "Controller@api_call");
 
@@ -205,22 +212,26 @@ Route::middleware(['role:admin'])->group(function () {
     // End of Webstore
 
     // Stores  Panel
-    Route::get('/stores_panel', 'Admin_Controller@stores_panel');
-    Route::get('/stores/{store_type}/{id}/{action}', 'Admin_Controller@stores_panel_response');
+    Route::get('/store_panel', 'Admin_Controller@store_panel');
+    Route::get('/store/{store_type}/{id}/{action}', 'Admin_Controller@store_panel_response');
 
     // Stores Requests Panel
     Route::get('/stores_requests_panel', 'Admin_Controller@stores_requests');
     Route::get('/stores_requests/{store_type}/{id}/{action}', 'Admin_Controller@stores_requests_response');
     // End of Store
 
-
+    // Email
     Route::get('/email_panel', 'Email_Master_Controller@panel');
-    Route::post('/email_template_show', 'Email_Master_Controller@template_show');
-    Route::get('/email_template_show', 'Email_Master_Controller@template_show');
     Route::post('/email_send', 'Email_Master_Controller@send');
 
+    Route::get('/email_template_show', 'Email_Master_Controller@template_show');
+    Route::post('/email_template_show', 'Email_Master_Controller@template_show');
+    // End of Email
+
+    // Brand Ambassdador
     Route::get('/request_brand_panel', 'Admin_Controller@request_brand_status');
     Route::get('/request_brand_panel/{brand_name}/{new_status}', 'Admin_Controller@request_brand_status_change');
+    // End of Brand Ambassdador
 
     Route::get('/request_feature_panel', 'Admin_Controller@request_feature_status');
     Route::get('/request_feature_panel/{feature_id}/{new_status}', 'Admin_Controller@request_feature_status_change');
@@ -229,11 +240,13 @@ Route::middleware(['role:admin'])->group(function () {
     Route::get('/request_feature_user_review/{id}/{action}', 'Admin_Controller@request_feature_user_action');
     Route::post('/request_feature_user_add', 'Admin_Controller@request_feature_user_store');
 
+    // Accords & Notes
     Route::get('accord_entry', 'Accord_Controller@index');
     Route::post('accord_entry', 'Accord_Controller@store');
 
     Route::get('note_entry', 'Ingredient_Controller@index');
     Route::post('note_entry', 'Ingredient_Controller@store');
+    // End of Accords & Notes
 
     Route::get('/brand_entry_admin', 'Fragrance_Brand_Controller@index');
     Route::post('/brand_entry_admin', 'Fragrance_Brand_Controller@store');
@@ -247,6 +260,7 @@ Route::middleware(['role:admin'])->group(function () {
     Route::get('/brand_ambassador_requests', 'Admin_Controller@brand_ambassador_request');
     Route::get('/brand_ambassador_requests/{status}/{ambassador_id}', 'Admin_Controller@brand_ambassador_request_response');
 
+    // Individual Tests
     Route::get('footer', function () {
         return view('layouts.footer');
     });
@@ -298,6 +312,7 @@ Route::middleware(['role:admin'])->group(function () {
     Route::get('button_learn_more', function () {
         return view('forms.button_learn_more');
     });
+    // End of Individual Tests
 });
 
 // sample

@@ -14,7 +14,7 @@ class RolesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('role_has_permissions')->truncate();
+        // DB::table('role_has_permissions')->truncate();
 
         // User
         // fill_user_profile	new_user
@@ -78,7 +78,15 @@ class RolesTableSeeder extends Seeder
 
         // admin
         $role = Role::firstOrCreate(['name' => 'admin']);
+        $role = Role::firstOrCreate(['name' => 'moderator']);
         
+        // service_user
+        $role = Role::firstOrCreate(['name' => 'service_user']);
+        $role = Role::firstOrCreate(['name' => 'new_store_owner']);
+        $role = Role::firstOrCreate(['name' => 'new_webstore_owner']);
+        $role = Role::firstOrCreate(['name' => 'store_owner']);
+        $role = Role::firstOrCreate(['name' => 'webstore_owner']);
+
         // $role->givePermissionTo('fill_user_profile');
 
         // $role->givePermissionTo('get_user_analytics');
