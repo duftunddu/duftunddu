@@ -20,13 +20,12 @@
         
         <title>Duft Und Du | The Fragrance Hub</title>
 
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('css/welcome.css') }}" rel="stylesheet">
 
         {{-- Typing Effect --}}
         <link href="{{ asset('css/typing_effect.css') }}" rel="stylesheet">
         <script src="{{ asset('js/typing_effect.js') }}" defer></script>
-
-        {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> --}}
         
         {{-- <link href="{{ asset('css/scroll_down_button.css') }}" rel="stylesheet" defer>
         <script src="{{ asset('js/scroll_down_button.js') }}" defer></script> --}}
@@ -34,13 +33,7 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" defer>
-        <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
-        
-        {{-- <!-- Styles -->
-        <style>
-
-        </style> --}}
-
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet" defer>
     </head>
 
     <body>

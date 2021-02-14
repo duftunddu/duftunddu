@@ -44,6 +44,7 @@ class CreateUserFragranceReviewTable extends Migration
             $table->timestamp('wear_off_time')->nullable();
             $table->float('indoor_time_percentage')->nullable();
             $table->unsignedTinyInteger('number_of_sprays')->nullable();
+            $table->float('projection')->nullable();
             $table->float('sillage')->nullable();
             $table->unsignedTinyInteger('like')->nullable();
 

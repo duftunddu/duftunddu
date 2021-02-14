@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Store;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class Store_Request_Controller extends Controller
 {
@@ -21,6 +23,13 @@ class Store_Request_Controller extends Controller
      * @return \Illuminate\Http\Response
     */
     public function index(){
+        if(request()->user()->hasRole('new_store_owner')){
+            return redirect('store_application_status')->with('info', 'Your cannot submit another application at the moment. For more info, read the FAQ or mail us at customer-support@duftunddu.com .');
+        }
+        else if(request()->user()->hasRole('new_webstore_owner')){
+            return redirect('webstore_application_status')->with('info', 'Your cannot submit another application at the moment. For more info, read the FAQ or mail us at customer-support@duftunddu.com .');        
+        }
+
         return view('store.register');
     }
 
@@ -41,6 +50,10 @@ class Store_Request_Controller extends Controller
             'social'            => 'nullable',
         ]);
 
+        if(request()->user()->hasAnyRole('new_store_owner', 'new_webstore_owner', 'candidate_brand_ambassador', 'new_brand_ambassador')){
+            return redirect('/home');
+        }
+        
         DB::transaction(function () use ($request) {
         
             $new                    = new store();
@@ -50,14 +63,15 @@ class Store_Request_Controller extends Controller
             // $new->latitude          = $request->input('latitude');
             // $new->longitude         = $request->input('longitude');
             $new->contact_number    = $request->input('contact_number');
-            $new->social            = $request->input('social');
+            $new->social_link       = $request->input('social');
             
+            $new->store             = TRUE;
+            $new->webstore          = FALSE;
+
             $new->save();
         });
 
-        if(!request()->user()->hasRole('new_store_owner')){
-            request()->user()->assignRole('new_store_owner');
-        }
+        request()->user()->assignRole('new_store_owner');
 
         return redirect('/store_application_status')->with('success', 'Your application is submitted. It will be reviewed shortly.');
     }
@@ -70,8 +84,9 @@ class Store_Request_Controller extends Controller
     */
     public function show()
     {
+        // Application Status
         if(!request()->user()->hasRole('new_store_owner')){
-            return redirect('store_dashboard');
+            return redirect('/store_home');
         }
 
         $store = Store::firstWhere('users_id', request()->user()->id);

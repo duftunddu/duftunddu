@@ -36,20 +36,17 @@
                     </div>
 
                     {{-- Status = Rejected --}}
-                    @elseif( strcmp($store->request_status, "Rejected") == 0 )
+                    @else
                     <div class="form-group row">
                         <label for="name" class="col-md-4 col-from-label text-md-right">{{ __('Status:')}}</label>
 
                         <div class="col-md-6">
                             Your request is Rejected. For possible reasons, read our <a href="{{ url('/faq') }}">FAQ</a>.
-                        {{-- </div> --}}
-                        {{-- <div class="col-md-6"> --}}
-
                             <br>
-
                             For further inquiry, you can mail us at <a href="mailto:customer-support@duftunddu.com">customer support</a>.<br>
                             The response might take some time as inquiries take time to process.
                         </div>
+
                     </div>
                     @endif
                     
@@ -57,5 +54,5 @@
             </div>
         </div>
     </div>
-
-    @endsection
+</div>
+@endsection

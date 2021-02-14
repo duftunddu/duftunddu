@@ -13,7 +13,7 @@
               <div class="circle"></div>
             </div>
           </div>
-          <span class="headings">Our Team</span>
+          <h4>Our Team</h4>
         </div>
       </a>
         <div class="addon fadein">
@@ -30,7 +30,7 @@
               <div class="circle"></div>
             </div>
           </div>
-          <span class="headings">Innovating</span>
+          <h4>Innovating</h4>
         </div>
       </a>
         <div class="addon">
@@ -47,7 +47,7 @@
               <div class="circle"></div>
             </div>
           </div>
-          <span class="headings">Maximizing Accuracy</span>
+          <h4>Maximizing Accuracy</h4>
         </div>
       </a>
         <div class="addon">

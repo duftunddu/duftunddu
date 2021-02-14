@@ -20,9 +20,8 @@ class User_Fragrance_Review_Controller extends Controller
      */
     public function index()
     {
-        // $brands      = Fragrance_Brand::all();
         $brands      = Fragrance_Brand::pluck('name');
-        $fragrances  = Fragrance::all();
+        $fragrances  = Fragrance::pluck('name');
       
         return view('research.fragrance_review_entry',[
             'brands'         => $brands,
@@ -55,6 +54,7 @@ class User_Fragrance_Review_Controller extends Controller
             'wear_off_time'     =>  'required',
             'in_out'            =>  'required',
             'spray'             =>  'required',
+            'projection'        =>  'required',
             'sillage'           =>  'required',
             'like'              =>  'required',
         ]);
@@ -134,6 +134,7 @@ class User_Fragrance_Review_Controller extends Controller
                 $new->wear_off_time             =   $wear_off_time;
                 $new->indoor_time_percentage    =   $request->input('in_out');
                 $new->number_of_sprays          =   $request->input('spray');
+                $new->projection                =   $request->input('projection');
                 $new->sillage                   =   $request->input('sillage');
                 $new->like                      =   $request->input('like');
 
@@ -157,7 +158,8 @@ class User_Fragrance_Review_Controller extends Controller
                 $new->save();
         });
 
-        return redirect('/home')->with('success', 'Thank you for participating, we hope to see you again.');
+        return redirect('/home')->with('success', 'Thank you for participating. Remember us the next time you 
+        need personalized fragrnance reviews for yourself or to gift someone.');
     }
 
     /**

@@ -67,9 +67,9 @@
                                         @endhasrole
 
                                         {{-- Services Home --}}
-                                        @hasrole('service_user')
+                                        {{-- @hasrole('service_user')
                                         <a class="dropdown-item" href="{{ url('/services_home') }}">Services Dashboard</a>
-                                        @endhasrole
+                                        @endhasrole --}}
                                         
                                         {{-- Services list if not subscribed to any  --}}
                                         @unlessrole('service_user')
@@ -80,7 +80,7 @@
                                         @endunlessrole
                                         
                                         <a class="dropdown-item" href="{{ url('/advertise_proposal') }}">Advertise</a>
-                                        <a class="dropdown-item" href="#">Premium Features</a>
+                                        {{-- <a class="dropdown-item" href="#">Premium Features</a> --}}
 
                                     </div>
                                 </li>
@@ -151,7 +151,7 @@
                                             <a class="dropdown-item" href="{{ url('/admin_links') }}">Admin Links</a>
                                         @endhasrole
                                         <a class="dropdown-item" href="{{ url('/home') }}">Dashboard</a>
-                                        <a class="dropdown-item" href="#">Premium</a>
+                                        {{-- <a class="dropdown-item" href="#">Premium Features</a> --}}
 
                                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
 															document.getElementById('logout-form').submit();">

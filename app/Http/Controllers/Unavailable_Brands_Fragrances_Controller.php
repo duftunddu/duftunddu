@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Store;
+use App\Store_Stock;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class Webstore_Controller extends Controller
+class Unavailable_Brands_Fragrances_Controller extends Controller
 {
     /**
      * Create a new controller instance.
@@ -23,23 +25,31 @@ class Webstore_Controller extends Controller
      * @return \Illuminate\Http\Response
     */
     public function index(){
-        return view('forms.webstore_register');
+        // return view('admin.unavailable_brands_fragrances_panel');
+
+        $all = Store_Stock::whereNull('fragrance_brand_id')->orWhereNull('fragrance_id')->get();
+
+        dd($all);
+
+        return view('admin.unavailable_brands_fragrances_panel',[
+            'all'   =>  $all,
+        ]);
     }
+    
 
     public function home(){
-        if(!request()->user()->hasRole('webstore_owner')) {
+        if(!request()->user()->hasRole('store_owner')) {
             return redirect('/services_register');
         }
         
-        // $no_of_f = Webstore::write the rest
+        // $no_of_f = Store::write the rest
         $no_of_f = 5;
 
-        // $store_id = Webstore::where('users_id',request()->user()->id)->first()->id;
+        // $store_id = Store::where('users_id',request()->user()->id)->first()->id;
         $store_id = 2;
 
-        return view('webstore.home',[
+        return view('store.home',[
             'no_of_f'   =>  $no_of_f,
-            'api_key'   =>  $api_key,
         ]);
     }
 
@@ -51,7 +61,7 @@ class Webstore_Controller extends Controller
      */
     public function store(Request $request) {
 
-        $validatedData = $request->validate([ 
+        // $validatedData = $request->validate([ 
         //     'accord_familiy_id' => 'required',
         //     'name'              => 'required|unique:accord',
         // ]);
@@ -67,8 +77,4 @@ class Webstore_Controller extends Controller
 
         // return redirect('/accord_entry')->with('success', 'Accord added successfully.');
     }
-
-
-    // To get the domain the call is coming from
-    // $_SERVER['HTTP_REFERER']
 }

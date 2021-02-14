@@ -28,8 +28,9 @@ class Services_Controller extends Controller
     public function home(){
 
         // Change to service_user
-        // if(!request()->user()->hasRole('service_user')) {
-        // }
+        if(!request()->user()->hasRole('service_user')) {
+            return redirect('/services_register');
+        }
         return view('forms.services_home');
     }
 
@@ -65,16 +66,14 @@ class Services_Controller extends Controller
             return redirect('/brand_ambassador_register');
         }
         else if($request->shop){
-            return redirect('/store_proposal');
+            return redirect('/store_register');
         }
         else if($request->online_store){
-            return redirect('/webstore_proposal');
+            return redirect('/webstore_register');
         }
     }
 
     // return view('admin.accord_entry',[
     //     'accords' => $accords,
     // ]);
-
-
 }

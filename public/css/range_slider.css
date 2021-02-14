@@ -4,7 +4,7 @@
 
 label {
     padding-left: 7px;
-    width: 24%;
+    width: 29%;
     opacity: 0.8;
     display: inline-block
 }
@@ -17,7 +17,7 @@ label {
 
 input[type=range] {
     -webkit-appearance: none;
-    width: 65%;
+    width: 69%;
     height: 7px;
     outline: none;
     opacity: 0.9;

@@ -55,7 +55,7 @@
                     {{--  Button: Add Fragrance --}}
                     <div class="form-group row mb-0">
                         <div class="center">
-                            <button type="button" class="btn btn-outline-dark" onclick="window.location='{{ url('fragrance_entry/') }}'">
+                            <button type="button" class="btn btn-outline-dark" onclick="window.location='{{ url('/fragrance_entry') }}'">
                                 Add Fragrance
                             </button>
                         </div>

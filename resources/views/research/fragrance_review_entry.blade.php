@@ -9,15 +9,6 @@
     {{-- Scripts --}}
     <link href="{{ asset('css/fragrance_review_entry.css') }}" rel="stylesheet" defer>
 
-    {{-- Range Slider Function --}}
-    <link href="{{ asset('css/range_slider.css') }}" rel="stylesheet" defer>
-    <link href="{{ asset('css/range_slider_spray.css') }}" rel="stylesheet" defer>
-    <link href="{{ asset('css/range_slider_sillage.css') }}" rel="stylesheet" defer>
-    <link href="{{ asset('css/range_slider_like.css') }}" rel="stylesheet" defer>
-
-    {{-- Button: Submit --}}
-    <link href="{{ asset('css/custom_button.css') }}" rel="stylesheet">
-
     {{-- Button: Info --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/fontawesome.min.css" defer>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/solid.min.css" defer>
@@ -27,6 +18,7 @@
 
 {{-- Range Slider Function --}}
 <script src="{{ asset('js/range_slider_spray.js') }}" defer></script>
+<script src="{{ asset('js/range_slider_projection.js') }}" defer></script>
 <script src="{{ asset('js/range_slider_sillage.js') }}" defer></script>
 <script src="{{ asset('js/range_slider_like.js') }}" defer></script>
 
@@ -56,7 +48,6 @@
                             </div>
                         </div>
                         
-                        {{-- <br> --}}
 
                         {{-- Brand --}}
                         <div class="form-group row">
@@ -91,7 +82,7 @@
                                     value="{{ old('fragrance')}}" required />
                                 <datalist id="fragrances">
                                     @foreach($fragrances as $fragrance)
-                                    <option value="{{$fragrance->name}}"></option>
+                                    <option value="{{$fragrance}}"></option>
                                     @endforeach
                                 </datalist>
 
@@ -188,16 +179,40 @@
                             </div>
                         </div>
 
+                        {{-- Projection --}}
+                        <div class="form-group row">
+                            <label for="projection" class="col-md-4 col-from-label text-md-right" data-toggle="tooltip"
+                                data-placement="top" data-html="true"
+                                title="How far-off can you smell the scent?<br>In Inches.">{{ __('Projection (inches):')}}</label>
+
+                            <div class="col-md-6">
+
+                                <div class="slideContainer-projection">
+                                    <input type="range" min="0" max="100" step="0.5" class="slider projection"
+                                        class="form-control @error('projection') is-invalid @enderror" id="projection"
+                                        name="projection" value="0" value="{{ old('projection')}}" required>
+                                    <label>{{_('Value: ')}}<span class="value"></span></label>
+                                </div>
+
+                                @error('projection')
+                                <span class="invalid-feeback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+
+                            </div>
+                        </div>
+
                         {{-- Sillage --}}
                         <div class="form-group row">
                             <label for="sillage" class="col-md-4 col-from-label text-md-right" data-toggle="tooltip"
                                 data-placement="top" data-html="true"
-                                title="How far off can you smell the perfume?">{{ __('Sillage:')}}</label>
+                                title="How long does the trail last?<br>In Seconds.">Sillage (seconds):</label>
 
                             <div class="col-md-6">
 
                                 <div class="slideContainer-sillage">
-                                    <input type="range" min="0" max="100" step="1" class="slider sillage"
+                                    <input type="range" min="0" max="100" step="0.5" class="slider sillage"
                                         class="form-control @error('sillage') is-invalid @enderror" id="sillage"
                                         name="sillage" value="0" value="{{ old('sillage')}}" required>
                                     <label>{{_('Value: ')}}<span class="value"></span></label>
@@ -222,8 +237,9 @@
                                 <div class="slideContainer-like">
                                     <input type="range" min="0" max="100" step="1" class="slider like"
                                         class="form-control @error('like') is-invalid @enderror" id="like" name="like"
-                                        value="0" value="{{ old('like')}}" required>
+                                        value="0" value="{{ old('like')}}" onmousemove="like_feedback()" required>
                                     <label>{{_('Value: ')}}<span class="value"></span></label>
+                                    <label id="like-feedback" class="col-md-9"></label>
                                 </div>
 
                                 @error('like')
@@ -234,7 +250,7 @@
 
                             </div>
                         </div>
-                        
+
                         <br>
 
                         {{-- Button: Submit --}}
@@ -254,4 +270,5 @@
         </div>
     </div>
 </div>
+<script src="{{ asset('js/fragrance_review_entry.js') }}" defer></script>
 @endsection
