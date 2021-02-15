@@ -1,9 +1,27 @@
 @import "colour-palette.css";
 
+
+/* Buttons */
+
+/* Button: Lux Black Box */
+/* Original Button Hover Background Changed */
+.btn-outline-dark:hover,
+.btn-outline-dark:focus,
+.btn-outline-dark:active,
+.btn-outline-dark:visited,
+.btn-outline-dark.active,
+.open .dropdown-toggle.mod {
+    background-color: var(--lux-black-box) !important;
+    color: #FFFFFF !important;
+    border-color: rgba(16, 24, 32, 1);
+    box-shadow: 0 0 0 .2rem rgba(0, 0, 0, 0.1) !important;
+}
+
+
 /* Button: Purple */
 .btn-lux-pastel-purple {
-    color: #B399D4 !important;
-    background-color: #FFFFFF;
+    color: #FFFFFF !important;
+    background-color: #B399D4 !important;
     border-color: #B399D4 !important;
 }
 
@@ -13,14 +31,15 @@
 .btn-lux-pastel-purple:visited,
 .btn-lux-pastel-purple.active,
 .open .dropdown-toggle.btn-lux-pastel-purple {
-    color: #B399D4;
-    background-color: #FFFFFF;
-    border-color: #B399D4;
+    color: #B399D4 !important;
+    background-color: #FFFFFF !important;
+    border-color: #B399D4 !important;
+    box-shadow: 0 0 0 .2rem rgba(179, 153, 212, 0.5) !important;
 }
 
 .btn-lux-pastel-purple:focus,
 .btn-lux-pastel-purple.focus {
-    box-shadow: 0 0 0 .2rem rgba(96, 63, 131, 0.2) !important;
+    box-shadow: 0 0 0 .2rem rgba(179, 153, 212, 0.5) !important;
 }
 
 .btn-lux-pastel-purple:active,
@@ -69,7 +88,7 @@ fieldset[disabled] .btn-lux-pastel-purple.active {
     color: rgba(202, 56, 73, 0.9) !important;
     background-color: #FFFFFF !important;
     border-color: #CA3849 !important;
-    box-shadow: 0 0 0 .2rem rgba(202, 56, 73, 0.6) !important;
+    box-shadow: 0 0 0 .2rem rgba(206, 153, 159, 0.6) !important;
 }
 
 .btn-lux-lipstick-red:active,

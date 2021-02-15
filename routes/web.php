@@ -179,9 +179,12 @@ Route::middleware(['role:store_owner|admin'])->group(function () {
     // Stock
     Route::get('/stock', "Store_Controller@show_stock");
     
-    // Add To Stock
+    // Add / Remove Stock
     Route::get('/add_to_stock', "Store_Controller@add_to_stock_view");
     Route::post('/add_to_stock', "Store_Controller@add_to_stock");
+    Route::get('/remove_from_stock/{stock_id}', "Store_Controller@remove_from_stock");
+
+    Route::get('/stock_suitability', "Store_Controller@stock_suitability");
 });
 
 
@@ -224,6 +227,8 @@ Route::middleware(['role:admin'])->group(function () {
     // Add Moderator and Move to Moderator
     // Unavailable Brands & Fragrances
     Route::get('/unavailable_brands_fragrances_panel', "Unavailable_Brands_Fragrances_Controller@index");
+    Route::post('/add_brand/{brand_name}/', 'Fragrance_Brand_Controller@store_mod');
+    Route::post('/add_fragrance/{fragrance_name}/', 'Fragrance_Controller@store_mod');
     // End of Unavailable Brands & Fragrances
 
 

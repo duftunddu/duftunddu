@@ -12,8 +12,9 @@
     <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"
         type="text/css" />
 
-    {{-- Button --}}
-    {{-- <link href="{{ asset('css/custom_button.css') }}" rel="stylesheet" defer> --}}
+    {{-- Button: Info --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/fontawesome.min.css" defer>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/solid.min.css" defer>
 </head>
 
 @section('content')
@@ -26,50 +27,47 @@
         <div class="col-md-8">
 
             <div class="card">
-                <div class="card-header">{{ __('Stock Details')}}</div>
+                <div class="card-header">Stock Details &nbsp;&nbsp; <i class="fas fa-info"
+                    data-toggle="tooltip" data-placement="top" data-html="true" title="This is your private inventory.
+                    You can only get reviews for fragrances that you add here."></i> 
+
+                </div>
                 <div class="card-body">
-
+                    
                     <div data-ng-app="table" data-ng-controller="table-controller">
-                        
-                        {{-- Searchbars --}}
 
-                        {{-- Add New Fragrances --}}
-                        {{-- <div class="form-group row offset-md-0 searchbars">
-                            <div class="col-md-4">
-                                Add Fragrance to Stock:
-                            </div>
-                            <div class="col-md-5">
-                                <input type="text" class="form-control mr-1 search" placeholder="Type Fragrance Name" aria-placeholder="Type Fragrance Name" />
-                            </div>
-                            us<div class="col-md-1">
-                                <button type="button" class="btn btn-outline-dark fit-small" onclick="window.location='{{ url('fragrance_entry/') }}'">
-                                    Add Fragrance
-                                </button>
-                            </div>
-                        </div> --}}
-
+                        {{-- If Stock is Not Empty --}}
+                        @if($stock->isNotEmpty())
                         {{-- Search --}}
                         <div class="form-group row offset-md-0 searchbars">
                             <div class="col-md-4">
                                 Search Stock:
                             </div>
                             <div class="col-md-5">
-                                <input type="text" data-ng-model="table" class="form-control search" placeholder="Type Fragrance Name" aria-placeholder="Type Fragrance Name" />
+                                <input type="text" data-ng-model="table" class="form-control search" placeholder="type here" aria-placeholder="Type Fragrance Name" />
                             </div>
                         </div>
                         
                         {{-- Table --}}
-                        <table>
-                            <tr>
-                                <th>Name</th>
-                                <th>City</th>
-                                <th>Country</th>
+                        <table class="middle">
+                            <tr class="tab-head">
+                                <th>Brand</th>
+                                <th>Fragrance</th>
+                                <th>+ / -</th>
                             </tr>
                             <tr data-ng-repeat="unavailable in array | filter: table">
-                                <td><% unavailable.id %> </td>
-                                <td><% unavailable.fragrance_brand_name %> </td>
-                                <td><% unavailable.fragrance_name %> </td>
+                                <td class="middle"><% unavailable.fragrance_brand_name %></td>
+                                <td class="middle"><% unavailable.fragrance_name %></td>
+                                <td class="middle"><a href="/remove_from_stock/<% unavailable.id %>">Remove</a></td>
                             </tr>
+
+                            {{-- Move Add To Stock Here, using AJAX --}}
+                            {{-- <tr>
+                                <td class="middle"><input type="text" data-ng-model="table" class="form-control search" placeholder="Type Fragrance Name" aria-placeholder="Type Fragrance Name" /></td>
+                                <td class="middle">a</td>
+                                <td class="middle"><a href="/add_to_stock/">Add</a></td>
+                            </tr> --}}
+
                         </table>    
 
                         {{-- Pagination Links --}}
@@ -77,6 +75,15 @@
                             data-max-size="maxSize" data-boundary-links="true"></div>
                         
                     </div>
+                    @else
+                    {{-- If Stock is Empty --}}
+                    <br>
+                    <div class="form-group row mb-0">
+                        <div class="center de-gray">
+                            No Fragrance Available in Stock.
+                        </div>
+                    </div>
+                    @endif
                     
                     <br>
 
@@ -97,79 +104,7 @@
 
 <script>
     // Turn array to json
-    {{-- // var $arr_of_unavail = {!! json_encode($stock->toArray(), JSON_HEX_TAG) !!}; --}}
-
     var $arr_of_unavail = {!! json_encode($stock, JSON_HEX_TAG) !!};
-
-    {{-- var $arr_of_unavail = [{
-                "Name": "Alfreds Futterkiste",
-                "City": "Berlin",
-                "Country": "Germany"
-            }]; --}}
-
-    {{--
-            var $arr_of_unavail = [{
-                "Name": "Alfreds Futterkiste",
-                "City": "Berlin",
-                "Country": "Germany"
-            }, {
-                "Name": "Ana Trujillo Emparedados y helados",
-                "City": "México D.F.",
-                "Country": "Mexico"
-            }, {
-                "Name": "Antonio Moreno Taquería",
-                "City": "México D.F.",
-                "Country": "Mexico"
-            }, {
-                "Name": "Around the Horn",
-                "City": "London",
-                "Country": "UK"
-            }, {
-                "Name": "B's Beverages",
-                "City": "London",
-                "Country": "UK"
-            }, {
-                "Name": "Berglunds snabbköp",
-                "City": "Luleå",
-                "Country": "Sweden"
-            }, {
-                "Name": "Blauer See Delikatessen",
-                "City": "Mannheim",
-                "Country": "Germany"
-            }, {
-                "Name": "Blondel père et fils",
-                "City": "Strasbourg",
-                "Country": "France"
-            }, {
-                "Name": "Bólido Comidas preparadas",
-                "City": "Madrid",
-                "Country": "Spain"
-            }, {
-                "Name": "Bon app'",
-                "City": "Marseille",
-                "Country": "France"
-            }, {
-                "Name": "Bottom-Dollar Marketse",
-                "City": "Tsawassen",
-                "Country": "Canada"
-            }, {
-                "Name": "Cactus Comidas para llevar",
-                "City": "Buenos Aires",
-                "Country": "Argentina"
-            }, {
-                "Name": "Centro comercial Moctezuma",
-                "City": "México D.F.",
-                "Country": "Mexico"
-            }, {
-                "Name": "Chop-suey Chinese",
-                "City": "Bern",
-                "Country": "Switzerland"
-            }, {
-                "Name": "Comércio Mineiro",
-                "City": "São Paulo",
-                "Country": "Brazil"
-            }];
-            --}}
 </script>
 
 <script src="{{ asset('js/stock.js') }}"></script>

@@ -1,5 +1,8 @@
 <?php namespace App\Helper;
 
+// To Remove Accents
+use App;
+
 use App\Location;
 
 use Carbon\Carbon;
@@ -14,7 +17,7 @@ class Helper {
     }
 
     // Normalizers
-    public static function normalize_name($name) {
+    public static function remove_accents($name) {
 
         if (App::environment('local')) {
             // The environment is local

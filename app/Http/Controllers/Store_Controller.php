@@ -8,29 +8,25 @@ use App\Fragrance_Brand;
 use App\Store;
 use App\Store_Stock;
 
+use App\Helper\Helper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class Store_Controller extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+
     public function __construct() {
         // 
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-    */
+
+    // Register
     public function index(){
         return view('forms.store_register');
     }
 
+
+    // Home
     public function home(){
         if(!request()->user()->hasRole('store_owner')) {
             return redirect('/services_register');
@@ -47,39 +43,23 @@ class Store_Controller extends Controller
         ]);
     }
 
+
+    // Stock Suitability
+    public function stock_suitability(){
+        // 
+    }
+
+
+    // Stock
     public function show_stock() {
 
         $stock = Store_Stock::where('store_id', Store::find(request()->user()->id)->id)
         ->where('available', TRUE)
+        ->select('id', 'fragrance_brand_name', 'fragrance_name')
+        ->orderBy('fragrance_brand_name')
         ->get();
 
-        // $json = json_encode($stock);
-
-        // $var = (object) [
-        //     [
-        //         "Name" => "Alfreds Futterkiste",
-        //         "City" => "Berlin",
-        //         "Country"=> "Germany"
-        //     ],[
-        //         "Name" => "Alfreds Futterkiste",
-        //         "City" => "Berlin",
-        //         "Country"=> "Germany"
-        //     ]
-        // ];
-
-        // $myObj->name = "John";
-        // $myObj->age = 30;
-        // $myObj->city = "New York";
-
-        // $var = json_encode($var);
-
-        // var_dump($var);
-        // var_dump($json); return;
-        
-        // dd(Store::find(request()->user()->id));
-
         return view('store.stock',[
-            // 'fragrances'    =>  $fragrances,
             'stock'         =>  $stock,
         ]);
     }
@@ -101,7 +81,7 @@ class Store_Controller extends Controller
             'fragrance'         =>  'required',
         ]);
       
-        // Fetch ids if they exist
+        // Fetch brand and fragrnace ids if they exist
         $brand_id = NULL; $fragrance_id = NULL;
         $brand_id = Fragrance_Brand::where('name', $request->input('brand'))
             ->orWhere('normal_name', $request->input('brand'))
@@ -124,57 +104,10 @@ class Store_Controller extends Controller
         
         $store_id = Store::find(request()->user()->id)->id;
         
-        // If the fragrance existed previously in stock, then available = TRUE
-        if($brand_id){
-            // If its existence includes brand_id, so only the fragrance is changed.
-
-            if($fragrance_id){
-                // If its existence also includes fragrance_id
-                $stock = Store_Stock::where('store_id', $store_id)
-                ->where('fragrance_brand_id', $brand_id)
-                ->where('fragrance_id', $fragrance_id)
-                ->first();
-            }
-            else{
-                // If only brand exists
-                $stock = Store_Stock::where('store_id', $store_id)
-                ->where('fragrance_brand_id', $brand_id)
-                ->where('fragrance_name', $request->input('fragrance'))
-                ->first();
-            }
-        }
-        else{
-            // If its existence doesn't includes brand_id, so only the fragrance is changed.
-
-            if($fragrance_id){
-                // If its existence also includes fragrance_id
-                $stock = Store_Stock::where('store_id', $store_id)
-                ->where('fragrance_brand_name', $request->input('brand'))
-                ->where('fragrance_id', $fragrance_id)
-                ->first();
-            }
-            else{
-                // If only brand exists
-                $stock = Store_Stock::where('store_id', $store_id)
-                ->where('fragrance_brand_name', $request->input('brand'))
-                ->where('fragrance_name', $request->input('fragrance'))
-                ->first();
-            }
-        }
-
-        // These are attempts at a cleaner version of code but it doesn't work when, if variables are null
-            // If the fragrance existed previously in stock, then available = TRUE
-            // $stock = Store_Stock::where('store_id', $store_id)
-            // ->where(function ($query) {
-            //     $query->where('fragrance_brand_id', $brand_id)
-            //         ->orWhere('fragrance_brand_name', $request->input('brand'));
-            // })
-            // ->where(function ($query) {
-            //     $query->where('fragrance_id', $fragrance_id)
-            //         ->orWhere('fragrance_name', $request->input('fragrance'));
-            // })
-            // ->get();
-        // collapse
+        $stock = Store_Stock::where('store_id', $store_id)
+            ->where('fragrance_brand_name', $request->input('brand'))
+            ->where('fragrance_name', $request->input('fragrance'))
+            ->first();
 
         // If it existed, make it available and return. Otherwise, save it.
         if($stock){
@@ -190,57 +123,47 @@ class Store_Controller extends Controller
         else{
             // If it didn't exist in stock before, then save it.
             // Storing
-            DB::transaction(function () use ($request, $brand_id, $fragrance_id, $store_id) {
 
-                    $new                =   new Store_Stock();
-                    
-                    // Column doesn't exist. Will be added when more than one store owners is implemented.
-                    // $new->users_id          = request()->user()->id;
+            $normal_b_name = Helper::remove_accents($request->input('brand'));
+            $normal_f_name = Helper::remove_accents($request->input('fragrance'));
 
-                    $new->store_id      =   $store_id;
-                    $new->available     =   TRUE;
 
-                    if($brand_id){
-                        $new->fragrance_brand_id        =   $brand_id;   
-                    }
-                    else{
-                        $new->fragrance_brand_name      =   $request->input('brand');
-                    }
-                    
-                    if($fragrance_id){
-                        $new->fragrance_id              =   $fragrance_id;   
-                    }
-                    else{
-                        $new->fragrance_name            =   $request->input('fragrance');
-                    }
-                    $new->save();
+            DB::transaction(function () use ($request, $brand_id, $fragrance_id, 
+            $store_id, $normal_b_name, $normal_f_name) {
+
+                $new                            =   new Store_Stock();
+                
+                $new->store_id                  =   $store_id;
+                $new->fragrance_brand_name      =   $normal_b_name;
+                $new->fragrance_name            =   $normal_f_name;
+
+                if($brand_id){
+                    $new->fragrance_brand_id    =   $brand_id;   
+                }
+                if($fragrance_id){
+                    $new->fragrance_id          =   $fragrance_id;   
+                }
+
+                $new->available                 =   TRUE;
+                $new->save();
             });
         }
-        return redirect()->back()->with('success', "{$request->input('fragrance')} has been added to your stock.");
+        return redirect()->back()->with('success', "{$request->input('fragrance')} by {$request->input('brand')} is added to your stock.");
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request) {
+    public function remove_from_stock($stock_id)
+    {
+        $store_id = Store::find(request()->user()->id)->id;
+        $stock = Store_Stock::find($stock_id);
+        
+        // If stock_id doesn't exist or this is not the owner of the stock 
+        if(!$stock or $stock->store_id != $store_id){
+            return redirect()->back()->with('error', "Request is invalid.");
+        }
+        
+        $stock->available = FALSE;
+        $stock->save();
 
-        $validatedData = $request->validate([ 
-            'accord_familiy_id' => 'required',
-            'name'              => 'required|unique:accord',
-        ]);
-
-        // DB::transaction(function () use ($request) {
-
-        //         $new                = new Accord();
-        //         $new->name          = $request->input('accord_familiy_id');
-        //         $new->name          = $request->input('name');
-        //         $new->created_by    = request()->user()->id;
-        //         $new->save();
-        // });
-
-        // return redirect('/accord_entry')->with('success', 'Accord added successfully.');
+        return redirect()->back()->with('success', "{$stock->fragrance_name} is removed from your stock.");
     }
 }

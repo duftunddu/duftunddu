@@ -108,7 +108,7 @@ class Fragrance_Controller extends Controller
         'ingredient_id'        => 'required',
       ]);
 
-      $normal_name = Helper::normalize_name($request->input('name'));
+      $normal_name = Helper::remove_accents($request->input('name'));
 
       DB::transaction(function () use ($request, $normal_name) {
 
@@ -193,7 +193,7 @@ class Fragrance_Controller extends Controller
 
       $ambassador = Brand_Ambassador_Profile::where('users_id', request()->user()->id)->first();
 
-      $normal_name = Helper::normalize_name($request->input('name'));
+      $normal_name = Helper::remove_accents($request->input('name'));
       
       // Average Humidity near Brand Ambassador
       $avg_hum= Helper::avg_hum(Fragrance_Profile::where('users_id', $ambassador->users_id)->first()->location_id);

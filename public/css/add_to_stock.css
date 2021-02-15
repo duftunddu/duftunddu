@@ -1,43 +1,7 @@
-/* Range Slider Function */
-/* @import url("range_slider.css");
-@import url("range_slider_spray.css");
-@import url("range_slider_sillage.css");
-@import url("range_slider_projection.css");
-@import url("range_slider_like.css"); */
-
-
 /* Button: Submit */
 @import url("custom_button.css");
 
-
-/* prepare wrapper element */
-.suffix {
-    display: inline-block;
-    position: relative;
-}
-
-/* position the unit to the right of the wrapper */
-.suffix::after {
-    position: absolute;
-    top: 6px;
-    right: 2rem;
-    transition: all .1s ease-in-out;
-}
-
-/* move unit more to the left on hover or focus within
-    for arrow buttons will appear to the right of number inputs */
-.suffix:hover::after,
-.suffix:focus-within::after {
-    right: 3rem;
-}
-
-/* handle Firefox (arrows always shown) */
-@supports (-moz-appearance:none) {
-    .suffix::after {
-        right: 3rem;
-    }
-}
-
-.percentage::after {
-    content: '%';
+.center {
+    display: block;
+    margin: 0 auto;
 }

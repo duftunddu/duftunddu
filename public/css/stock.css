@@ -10,25 +10,26 @@ th {
     padding: 5px 10px !important;
 }
 
-.searchbars {
-    font-size: large !important;
-    margin-bottom: 20px !important;
-    margin-left: 0px !important;
+.tab-head {
+    letter-spacing: 2px;
+    font-variant: small-caps;
+    font-size: large;
 }
 
+
 .search {
+    margin-bottom: 20px !important;
     height: 35px !important;
     width: 250px !important;
     font-size: medium !important;
 }
 
-.fit-small {
-    height: 34px !important;
-    font-size: medium !important;
-    line-height: 1rem !important;
-}
 
 .center {
     display: block;
     margin: 0 auto;
+}
+
+.middle {
+    text-align: center;
 }

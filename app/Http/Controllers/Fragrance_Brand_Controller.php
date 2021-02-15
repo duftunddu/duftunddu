@@ -96,7 +96,71 @@ class Fragrance_Brand_Controller extends Controller
        ]);
 
       // To use in search engine
-      $normal_name = Helper::normalize_name($request->input('name'));
+      $normal_name = Helper::remove_accents($request->input('name'));
+
+      // Extracting ids of country names
+      $location_id = Location::where('country_name', $request->input('location_id'))->first()->id;
+      $availability_id = Location::where('country_name', $request->input('availability'))->first()->id;
+      $availabilities_id = [];
+      if ($request->availabilities) {
+         for ($i = 0; $i < count($request->availabilities); $i++) {
+            $availabilities_id[$i] = Location::where('country_name', $request->input('availabilities')[$i])->first()->id;
+         }
+      }
+      DB::transaction(function () use ($request, $normal_name, $location_id, $availability_id, $availabilities_id) {
+         
+         $new                    = new fragrance_brand();
+         $new->name              = $request->input('name');
+         $new->normal_name       = $normal_name;
+         $new->tier_id           = $request->input('tier_id');
+         $new->origin_id         = $location_id;
+         $new->created_by        = request()->user()->id;
+         $new->updated_by        = request()->user()->id;
+
+         $new->discontinued      = '0';
+         
+         $new->save();
+
+         // Availability
+         $brand_id = $new->id;
+
+         $new                 = new Fragrance_Brand_Availability();
+         $new->brand_id       = $brand_id;
+         $new->location_id    = $availability_id;
+
+         $new->save();
+
+         if ($request->availabilities) {
+            
+            for ($i = 0; $i < count($request->availabilities); $i++) {
+
+               $new                 = new Fragrance_Brand_Availability();
+               $new->brand_id       = $brand_id;
+               $new->location_id    = $availabilities_id[$i];
+
+               $new->save();
+            }
+         }
+  
+      });
+
+      $request->session()->reflash();
+      
+      // Return
+      return redirect()->back()->with('success','Brand Added Successfully.');
+   }
+
+   public function store_mod(Request $request)
+   {
+      $validatedData = $request->validate([
+         'name'            => 'required|unique:fragrance_brand',
+         'tier_id'         => 'required',
+         'location_id'     => 'required',
+         'availability'    => 'required',
+       ]);
+
+      // To use in search engine
+      $normal_name = Helper::remove_accents($request->input('name'));
 
       // Extracting ids of country names
       $location_id = Location::where('country_name', $request->input('location_id'))->first()->id;
@@ -159,7 +223,7 @@ class Fragrance_Brand_Controller extends Controller
       ]);
 
       // To use in search engine
-      $normal_name = Helper::normalize_name($brand_name);
+      $normal_name = Helper::remove_accents($brand_name);
 
       // Extracting ids of country names
       $location_id = Location::where('country_name', $request->input('location_id'))->first()->id;

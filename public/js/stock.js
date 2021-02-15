@@ -9,7 +9,7 @@ table_ang.controller('table-controller', function ($scope) {
     $scope.unavailables = $arr_of_unavail,
         $scope.array = [],
         $scope.currentPage = 1,
-        $scope.numPerPage = 6,
+        $scope.numPerPage = 10,
         $scope.maxSize = 5;
 
     $scope.numPages = function () {

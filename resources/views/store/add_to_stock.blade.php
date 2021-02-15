@@ -75,11 +75,20 @@
 
                         {{-- Button: Submit --}}
                         <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-7">
+                            <div class="center">
                                 <button type="submit" class="custom">
                                     <span class="before">{{_('Submit')}}</span>
                                     <span class="after">{{_('Submit')}}</span>
                                 </button>
+                            </div>
+                        </div><br>
+
+                        {{--  Button: Add Fragrance --}}
+                        <div class="form-group row mb-0">
+                            <div class="center">
+                                <button type="button" class="btn btn-outline-dark" onclick="window.location='{{ url('/stock') }}'">
+                                    Back To Stock
+                                </button>                        
                             </div>
                         </div>
 

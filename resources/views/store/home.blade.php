@@ -18,7 +18,7 @@
         <div class="col-md-8">
 
             <div class="card">
-                <div class="card-header">{{_('Dashboard')}}</div>
+                <div class="card-header">{{_('Store Dashboard')}}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -27,11 +27,11 @@
                         </div>
                     @endif
 
-                    {{-- Get User Review --}}
+                    {{-- User Review --}}
                     <div class="form-group row mb-0">
                         <div class="center">
-                            <button type="button" class="btn btn-lux-lipstick-red" onclick="window.location='{{ url('fragrance_entry/') }}'">
-                                Get User Review
+                            <button type="button" class="btn btn-lux-lipstick-red" onclick="window.location='{{ url('/store_call') }}'">
+                                User Review
                             </button>
                         </div>
                     </div><br>
@@ -43,29 +43,20 @@
                         </div>
                     </div><br>
 
-                    {{-- Get Fragrance Suitability --}}
+                    {{-- Stock Suitability --}}
                     <div class="form-group row mb-0">
                         <div class="center">
-                            <button type="button" class="btn btn-lux-pastel-purple" onclick="window.location='{{ url('fragrance_suitability/') }}'">
-                                Get Fragrance Suitability
+                            <button type="button" class="btn btn-lux-pastel-purple" onclick="window.location='{{ url('/stock_suitability') }}'">
+                                Stock Suitability
                             </button>
                         </div>
                     </div><br>
 
-                    {{--  Button: Add Fragrance --}}
+                    {{-- Stock --}}
                     <div class="form-group row mb-0">
                         <div class="center">
-                            <button type="button" class="btn btn-outline-dark" onclick="window.location='{{ url('/fragrance_entry') }}'">
-                                Add Fragrance
-                            </button>
-                        </div>
-                    </div><br>
-
-                    {{-- All Fragrances --}}
-                    <div class="form-group row mb-0">
-                        <div class="center">
-                            <button type="button" class="btn btn-dark" onclick="window.location='{{ url('fragrances/') }}'">
-                                All Fragrances
+                            <button type="button" class="btn btn-dark" onclick="window.location='{{ url('/stock') }}'">
+                                Stock
                             </button>
                         </div>
                     </div><br>
