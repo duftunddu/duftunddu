@@ -36,7 +36,7 @@
 
                         {{-- Store Name --}}
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-from-label text-md-right">{{ __('Store Name:')}}</label>
+                            <label for="name" class="col-md-4 col-from-label text-md-right required">{{ __('Store Name:')}}</label>
 
                             <div class="col-md-6">
                                 <input type="text" maxlength="50" id="name"  placeholder="Store Name" class="form-control @error('name') 
@@ -52,7 +52,7 @@
 
                         {{-- Website --}}
                         <div class="form-group row">
-                            <label for="website" class="col-md-4 col-from-label text-md-right">{{ __('Website Link:')}}</label>
+                            <label for="website" class="col-md-4 col-from-label text-md-right required">{{ __('Website Link:')}}</label>
                             <div class="col-md-6">
                                 <input id="website" type="url" placeholder="https://www.xyz.com" pattern="https?://*.*.*"
                                     class="form-control @error('website') is-invalid @enderror" name="website" value="{{ old('website')}}" required>
@@ -67,7 +67,7 @@
 
                         {{-- Contact Number --}}
                         <div class="form-group row">
-                            <label for="contact_number" class="col-md-4 col-from-label text-md-right">{{ __('Contact Number:')}}</label>
+                            <label for="contact_number" class="col-md-4 col-from-label text-md-right required">{{ __('Contact Number:')}}</label>
 
                             <div class="col-md-6">
                                 <input type="tel" maxlength="20" id="contact_number"  placeholder="+xx xxx xxxxxxx" class="form-control @error('contact_number') 

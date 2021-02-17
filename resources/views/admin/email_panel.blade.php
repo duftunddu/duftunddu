@@ -26,7 +26,7 @@
                         {{-- Email Template Name --}}
                         <div class="form-group row">
                             <label for="email_template_name"
-                                class="col-md-4 col-from-label text-md-right">{{ __('Email Template Name:')}}</label>
+                                class="col-md-4 col-from-label text-md-right required">{{ __('Email Template Name:')}}</label>
 
                             <div class="col-md-6">
 
@@ -83,7 +83,7 @@
                         {{-- Address From --}}
                         <div class="form-group row">
                             <label for="address_from"
-                                class="col-md-4 col-from-label text-md-right">{{ __('Send From:')}}</label>
+                                class="col-md-4 col-from-label text-md-right required">{{ __('Send From:')}}</label>
 
                             <div class="col-md-6">
 

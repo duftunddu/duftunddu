@@ -24,7 +24,7 @@
 
                             {{-- Accord --}}
                             {{-- <div class="form-group row">
-                                <label for="accord" class="col-md-4 col-from-label text-md-right">{{ __('Accord:')}}</label>
+                                <label for="accord" class="col-md-4 col-from-label text-md-right required">{{ __('Accord:')}}</label>
 
                                 <div class="col-md-6">
 
@@ -44,7 +44,7 @@
                             </div> --}}
 
                             <div class="form-group row">
-                              <label for="accord" class="col-md-4 col-from-label text-md-right">{{ __('Accord:')}}</label>
+                              <label for="accord" class="col-md-4 col-from-label text-md-right required">{{ __('Accord:')}}</label>
 
                               <form name="add_name" id="add_name">
                                 <div class="table-responsive">

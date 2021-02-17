@@ -36,7 +36,7 @@
 
                         {{-- Store Name --}}
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-from-label text-md-right">{{ __('Store Name:')}}</label>
+                            <label for="name" class="col-md-4 col-from-label text-md-right required">{{ __('Store Name:')}}</label>
 
                             <div class="col-md-6">
                                 <input type="text" maxlength="50" id="name"  placeholder="Store Name" class="form-control @error('name') 
@@ -52,7 +52,7 @@
 
                         {{-- Address --}}
                         <div class="form-group row">
-                            <label for="address" class="col-md-4 col-from-label text-md-right">{{ __('Address:')}}</label>
+                            <label for="address" class="col-md-4 col-from-label text-md-right required">{{ __('Address:')}}</label>
 
                             <div class="col-md-6">
                                 <input type="text" maxlength="250" id="address" placeholder="Address" class="form-control @error('address') 
@@ -68,7 +68,7 @@
 
                         {{-- Latitude --}}
                         {{-- <div class="form-group row">
-                            <label for="latitude" class="col-md-4 col-from-label text-md-right">{{ __('Latitude:')}}</label>
+                            <label for="latitude" class="col-md-4 col-from-label text-md-right required">{{ __('Latitude:')}}</label>
 
                             <div class="col-md-6">
                                 <input type="number" step="1" min="1" max="5" id="latitude"  placeholder="Latitude" class="form-control @error('latitude') 
@@ -84,7 +84,7 @@
 
                         {{-- Longitude --}}
                         {{-- <div class="form-group row">
-                            <label for="longitude" class="col-md-4 col-from-label text-md-right">{{ __('Longitude:')}}</label>
+                            <label for="longitude" class="col-md-4 col-from-label text-md-right required">{{ __('Longitude:')}}</label>
 
                             <div class="col-md-6">
                                 <input type="number" step="1" min="1" max="9" id="longitude"  placeholder="Longitude" class="form-control @error('longitude') 
@@ -100,7 +100,7 @@
 
                         {{-- Contact Number --}}
                         <div class="form-group row">
-                            <label for="contact_number" class="col-md-4 col-from-label text-md-right">{{ __('Contact Number:')}}</label>
+                            <label for="contact_number" class="col-md-4 col-from-label text-md-right required">{{ __('Contact Number:')}}</label>
 
                             <div class="col-md-6">
                                 <input type="tel" maxlength="20" id="contact_number"  placeholder="+xx xxx xxxxxxx" class="form-control @error('contact_number') 

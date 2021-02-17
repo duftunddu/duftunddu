@@ -19,7 +19,7 @@
 
                         {{-- Accord --}}
                         <div class="form-group row">
-                            <label for="accord_id" class="col-md-4 col-from-label text-md-right">{{ __('Accord:')}}</label>
+                            <label for="accord_id" class="col-md-4 col-from-label text-md-right required">{{ __('Accord:')}}</label>
                             <div class="col-md-6">
                             
                                 <select id="accord_id" type="number" class="form-control @error('accord_id') is-invalid @enderror" name="accord_id" required>
@@ -41,7 +41,7 @@
 
                         {{-- Name --}}
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-from-label text-md-right">{{ __('Ingredient:')}}</label>
+                            <label for="name" class="col-md-4 col-from-label text-md-right required">{{ __('Ingredient:')}}</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autofocus>

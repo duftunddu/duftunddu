@@ -151,6 +151,21 @@ Route::middleware(['role:new_brand_ambassador|admin'])->group(function () {
 
 });
 
+// Moderator
+Route::middleware(['role:moderator|admin'])->group(function () {
+
+    // Unavailable Brands & Fragrances
+    Route::get('/unavailable_brands_fragrances_panel', "Unavailable_Brands_Fragrances_Controller@index");
+
+    // Add Brand
+    Route::get('/add_brand_mod/{brand_name}', 'Unavailable_Brands_Fragrances_Controller@add_brand_view');
+    Route::post('/add_brand_mod', 'Unavailable_Brands_Fragrances_Controller@store_brand');
+
+    // Add Fragrance
+    Route::get('/add_fragrance_mod/{fragrance_name}', 'Unavailable_Brands_Fragrances_Controller@add_fragrance_view');
+    Route::post('/add_fragrance_mod', 'Unavailable_Brands_Fragrances_Controller@store_fragrance');
+
+});
 
 // Services
 Route::middleware(['role:service_user|admin'])->group(function () {
@@ -173,7 +188,8 @@ Route::middleware(['role:store_owner|admin'])->group(function () {
     Route::get('/store_home', "Store_Controller@home");
     
     // Show Fragrance
-    Route::get('/store_profile', "Store_Controller@profile_entry");
+    // Route::get('/store_profile', "Store_Controller@profile_entry");
+    Route::get('/store_profile', "Fragrance_Profile_Controller@index");
     Route::get('/store_fragrance/{fragrance_id}', "Controller@store_fragrance_show");
 
     // Stock
@@ -195,8 +211,9 @@ Route::middleware(['role:webstore_owner|admin'])->group(function () {
     Route::get('/webstore_home', "Webstore_Controller@home");
     
     // Store Fragrance
-    Route::get('/store_profile', "Store_Controller@profile_entry");
+    // Route::get('/store_profile', "Store_Controller@profile_entry");
     // Route::get('/store_fragrance/{fragrance_id}', "Controller@store_fragrance_show");
+    Route::get('/webstore_client_css.css', "Webstore_Controller@webstore_client_css");
 
 });
 
@@ -226,16 +243,12 @@ Route::middleware(['role:admin'])->group(function () {
 
     // Add Moderator and Move to Moderator
     // Unavailable Brands & Fragrances
-    Route::get('/unavailable_brands_fragrances_panel', "Unavailable_Brands_Fragrances_Controller@index");
-    Route::post('/add_brand/{brand_name}/', 'Fragrance_Brand_Controller@store_mod');
-    Route::post('/add_fragrance/{fragrance_name}/', 'Fragrance_Controller@store_mod');
     // End of Unavailable Brands & Fragrances
 
 
     // Webstore
-    Route::get('/webstore_client', function () {
-        return view('webstore.client');
-    });
+    Route::get('/webstore_call', "Webstore_Controller@webstore_call");
+    Route::get('/webstore_client', "Webstore_Controller@webstore_client");
     
     // Webstore API
     Route::get('/api_call', "Controller@api_call");

@@ -1,30 +1,35 @@
 @extends('layouts.app')
 
-<title>{{('Fragrance Entry | Duft Und Du')}}</title>
+<title>{{('Fragrance Entry | Moderator | Duft Und Du')}}</title>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {{-- Scripts --}}
+    <link href="{{ asset('css/fragrance_entry_moderator.css') }}" rel="stylesheet" defer>
+
+    {{-- Button: Info --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/fontawesome.min.css" defer>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/solid.min.css" defer>
+</head>
 
 @section('content')
 
 {{-- Range Slider Function --}}
-<link href="{{ asset('css/range_slider_sillage.css') }}" rel="stylesheet">
+<script src="{{ asset('js/range_slider_projection.js') }}" defer></script>
 <script src="{{ asset('js/range_slider_sillage.js') }}" defer></script>
-
-{{-- Button: Submit --}}
-<link href="{{ asset('css/custom_button.css') }}" rel="stylesheet">
-
-{{-- Button: Info --}}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/fontawesome.min.css" defer>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/solid.min.css" defer>
 
 <div class="container">
 
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <form method="POST" action="{{ url('fragrance_entry')}}">
+            <form method="POST" action="{{ url('/add_fragrance_mod')}}">
                 @csrf
 
                 {{-- Fragrance Table --}}
                 <div class="card">
-                    <div class="card-header">{{ __('Fragrance Entry')}} &thinsp;
+                    <div class="card-header">{{ __('Fragrance Entry | Moderator')}} &thinsp;
                         <i class="fas fa-info" data-toggle="tooltip"
                         data-placement="right" data-html="true"
                         title="Tap the fields below to reveal best practices and insights.  
@@ -33,6 +38,14 @@
                     </div>
 
                     <div class="card-body">
+
+                        {{-- Instructions --}}
+                        <div class="form-group row">
+                            <div class="col-md-6 offset-md-4 de-gray">
+                                If Brand doesn't exist, add <a href="{{ url('/add_brand_mod/brand_name') }}">brand</a> first.
+                            </div>
+                        </div>
+                        <br>
 
                         {{-- Brand Name --}}
                         <div class="form-group row">
@@ -65,7 +78,7 @@
                             <div class="col-md-6">
                                 <input id="name" type="text" placeholder="Mon Paris"
                                     class="form-control @error('name') is-invalid @enderror" name="name"
-                                    value="{{ old('')}}" required>
+                                    value="{{ $fragrance_name }}" required>
 
                                 @error('name')
                                 <span class="invalid-feeback" role="alert">
@@ -135,6 +148,30 @@
                             </div>
                         </div>
 
+                        {{-- Projection --}}
+                        <div class="form-group row">
+                            <label for="projection" class="col-md-4 col-from-label text-md-right required" data-toggle="tooltip"
+                                data-placement="top" data-html="true"
+                                title="How far-off can you smell the scent?<br>In Inches.">{{ __('Projection (inches):')}}</label>
+
+                            <div class="col-md-6">
+
+                                <div class="slideContainer-projection">
+                                    <input type="range" min="0" max="100" step="0.5" class="slider projection"
+                                        class="form-control @error('projection') is-invalid @enderror" id="projection"
+                                        name="projection" value="0" value="{{ old('projection')}}" required>
+                                    <label>{{_('Value: ')}}<span class="value"></span></label>
+                                </div>
+
+                                @error('projection')
+                                <span class="invalid-feeback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+
+                            </div>
+                        </div>
+
                         {{-- Sillage --}}
                         <div class="form-group row">
                             <label for="sillage" class="col-md-4 col-from-label text-md-right required" data-toggle="tooltip"
@@ -160,14 +197,14 @@
                         {{-- Cost --}}
                         <div class="form-group row">
                             <label for="cost" 
-                            class="col-md-4 col-from-label text-md-right required" data-toggle="tooltip"
+                            class="col-md-4 col-from-label text-md-right" data-toggle="tooltip"
                             data-placement="top" data-html="true"
                             title="Cost of Fragrance.">{{ __('Cost:')}}</label>
 
                             <div class="col-md-6">
                                 <input id="cost" type="number" placeholder="1000" min="1" max="4294967295"
                                     class="form-control @error('cost') is-invalid @enderror" name="cost"
-                                    value="{{ ('')}}" required>
+                                    value="{{ ('cost')}}">
 
                                 @error('cost')
                                 <span class="invalid-feeback" role="alert">
@@ -180,7 +217,7 @@
                         {{-- Currency --}}
                         <div class="form-group row">
                             <label for="currency"
-                                class="col-md-4 col-from-label text-md-right required" data-toggle="tooltip"
+                                class="col-md-4 col-from-label text-md-right"data-toggle="tooltip"
                                 data-placement="top" data-html="true"
                                 title="Select your preferred currency.
                                 <br>Don't worry, we'll show the audience the cost in
@@ -190,7 +227,7 @@
 
                                 <select id="currency" type="currency"
                                     class="form-control @error('currency') is-invalid @enderror" name="currency"
-                                    value="{{ old('currency')}}" required>
+                                    value="{{ old('currency')}}">
                                     <option selected="selected" disabled="disabled" value="" selected>-- Select Currency
                                         --</option>
                                     @foreach($currencies as $currency)

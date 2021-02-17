@@ -107,7 +107,7 @@
                         {{-- LinkedIn --}}
                         <div class="form-group row">
                             <label for="linkedin"
-                                class="col-md-4 col-from-label text-md-right">{{ __('LinkedIn Account:')}}</label>
+                                class="col-md-4 col-from-label text-md-right required">{{ __('LinkedIn Account:')}}</label>
                             <div class="col-md-6">
                                 <input id="linkedin" type="url" pattern="https?://www.linkedin.com.*"
                                     placeholder="https://www.linkedin.com/in/xyz"
@@ -124,7 +124,7 @@
 
                         {{-- Brand Website --}}
                         <div class="form-group row">
-                            <label for="website" class="col-md-4 col-from-label text-md-right">{{ __('Brand Website:')}}
+                            <label for="website" class="col-md-4 col-from-label text-md-right required">{{ __('Brand Website:')}}
                             </label>
 
                             <div class="col-md-6">

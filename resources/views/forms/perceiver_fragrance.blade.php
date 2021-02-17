@@ -32,7 +32,7 @@
 
                             {{-- Brand --}}
                             {{-- <div class="form-group row">
-                                <label for="brand" class="col-md-4 col-from-label text-md-right">{{ __('Brand Name:')}}</label>
+                                <label for="brand" class="col-md-4 col-from-label text-md-right required">{{ __('Brand Name:')}}</label>
 
                                 <div class="col-md-6">
 
@@ -53,7 +53,7 @@
 
                             {{-- Fragrance --}}
                             <div class="form-group row">
-                                <label for="fragrance_id" class="col-md-4 col-from-label text-md-right">{{ __('Fragrance Name:')}}</label>
+                                <label for="fragrance_id" class="col-md-4 col-from-label text-md-right required">{{ __('Fragrance Name:')}}</label>
 
                                 <div class="col-md-6">
 
@@ -74,7 +74,7 @@
 
                             {{-- Like --}}
                             <div class="form-group row">
-                                <label for="like" class="col-md-4 col-from-label text-md-right">{{ __('How much do you like it:')}}</label>
+                                <label for="like" class="col-md-4 col-from-label text-md-right required">{{ __('How much do you like it:')}}</label>
 
                                 <div class="col-md-6">
 
@@ -94,7 +94,7 @@
 
                             {{-- Comment --}}
                             <div class="form-group row">
-                                <label for="comment" class="col-md-4 col-from-label text-md-right">{{ __('Comment:')}}</label>
+                                <label for="comment" class="col-md-4 col-from-label text-md-right required">{{ __('Comment:')}}</label>
 
                                 <div class="col-md-6">
                                     <input id="comment" type="textarea" class="form-control @error('comment') is-invalid @enderror" name="comment" value="{{ ('')}}" required>
@@ -125,7 +125,7 @@
         
                             {{-- Name --}}
                             <div class="form-group row">
-                                <label for="accord_id" class="col-md-4 col-from-label text-md-right">{{ __('Accord:')}}</label>
+                                <label for="accord_id" class="col-md-4 col-from-label text-md-right required">{{ __('Accord:')}}</label>
                                 
                                 <div class="col-md-6">
                                 
@@ -177,7 +177,7 @@
         
                             {{-- Name --}}
                             <div class="form-group row">  
-                                <label for="ingredient_id" class="col-md-4 col-from-label text-md-right">{{ __('Ingredient:')}}</label>
+                                <label for="ingredient_id" class="col-md-4 col-from-label text-md-right required">{{ __('Ingredient:')}}</label>
                                 
                                 <div class="col-md-6">
                                             
@@ -227,7 +227,7 @@
             
                             {{-- Intensity --}}
                             <div class="form-group row">
-                                <label for="intensity" class="col-md-4 col-from-label text-md-right">{{ __('Intensity:')}}</label>
+                                <label for="intensity" class="col-md-4 col-from-label text-md-right required">{{ __('Intensity:')}}</label>
                                 
                                 <div class="col-md-6">
                                     

@@ -36,19 +36,9 @@ class Controller extends BaseController {
     
     public function landing_page(){
         return view('forms.welcome');
-        // $agent = new Agent();
-        
-        // if($agent->isDesktop()){
-        //     return view('forms.welcome');
-        // }
-        // else{
-        //     return view('forms.welcome_m');
-        // }
     }
 
     // Store
-    // index
-
     // show fragrance
     public function store_fragrance_show($id)
     {

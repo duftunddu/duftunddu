@@ -25,7 +25,7 @@
 
                         {{-- Gender --}}
                         <div class="form-group row">
-                            <label for="gender" class="col-md-4 col-from-label text-md-right">{{ __('Gender:')}}</label>
+                            <label for="gender" class="col-md-4 col-from-label text-md-right required">{{ __('Gender:')}}</label>
 
                             <div class="col-md-6">
 
@@ -56,7 +56,7 @@
                         {{-- DOB --}}
                         <div class="form-group row">
                             <label for="dob"
-                                class="col-md-4 col-from-label text-md-right">{{ __('Date of Birth:')}}</label>
+                                class="col-md-4 col-from-label text-md-right required">{{ __('Date of Birth:')}}</label>
 
                             <div class="col-md-6">
                                 <input id="dob" type="date" min="1900-01-01"
@@ -74,7 +74,7 @@
                         {{-- Profession --}}
                         <div class="form-group row">
                             <label for="profession_id"
-                                class="col-md-4 col-from-label text-md-right">{{ __('Profession:')}}</label>
+                                class="col-md-4 col-from-label text-md-right required">{{ __('Profession:')}}</label>
 
                             <div class="col-md-6">
 
@@ -100,7 +100,7 @@
                         {{-- Skin Type --}}
                         <div class="form-group row">
                             <label for="skin_type_id"
-                                class="col-md-4 col-from-label text-md-right">{{ __('Skin Type:')}}</label>
+                                class="col-md-4 col-from-label text-md-right required">{{ __('Skin Type:')}}</label>
 
                             <div class="col-md-6">
 
@@ -126,7 +126,7 @@
                         {{-- Sweat --}}
                         <div class="form-group row">
                             <label for="sweat"
-                                class="col-md-4 col-from-label text-md-right">{{ __('How much do you sweat:')}}</label>
+                                class="col-md-4 col-from-label text-md-right required">{{ __('How much do you sweat:')}}</label>
 
                             <div class="col-md-6">
 
@@ -148,7 +148,7 @@
                         {{-- Height --}}
                         <div class="form-group row">
                             <label for="height"
-                                class="col-md-4 col-from-label text-md-right">{{ __('Height (in inches):')}}</label>
+                                class="col-md-4 col-from-label text-md-right required">{{ __('Height (in inches):')}}</label>
 
                             <div class="col-md-6">
                                 <input id="height" type="number" step="0.01" min="12" max="110" placeholder="65 inch"
@@ -166,7 +166,7 @@
                         {{-- Weight --}}
                         <div class="form-group row">
                             <label for="weight"
-                                class="col-md-4 col-from-label text-md-right">{{ __('Weight (in kg.):')}}</label>
+                                class="col-md-4 col-from-label text-md-right required">{{ __('Weight (in kg.):')}}</label>
 
                             <div class="col-md-6">
                                 <input id="weight" type="number" step="0.01" min="15" max="500" placeholder="55 kg"
@@ -184,7 +184,7 @@
                         {{-- Country --}}
                         {{-- <div class="form-group row">
                             <label for="country_id"
-                                class="col-md-4 col-from-label text-md-right">{{ __('Country:')}}</label>
+                                class="col-md-4 col-from-label text-md-right required">{{ __('Country:')}}</label>
 
                             <div class="col-md-6">
 
@@ -207,7 +207,7 @@
 
                         {{-- City --}}
                         {{-- <div class="form-group row">
-                            <label for="city_id" class="col-md-4 col-from-label text-md-right">{{ __('City:')}}</label>
+                            <label for="city_id" class="col-md-4 col-from-label text-md-right required">{{ __('City:')}}</label>
 
                             <div class="col-md-6">
 
@@ -230,7 +230,7 @@
                         {{-- Climate --}}
                         <div class="form-group row">
                             <label for="climate_id"
-                                class="col-md-4 col-from-label text-md-right">{{ __('Climate:')}}</label>
+                                class="col-md-4 col-from-label text-md-right required">{{ __('Climate:')}}</label>
 
                             <div class="col-md-6">
 
@@ -255,7 +255,7 @@
                         {{-- Season --}}
                         <div class="form-group row">
                             <label for="season_id"
-                                class="col-md-4 col-from-label text-md-right">{{ __('Season:')}}</label>
+                                class="col-md-4 col-from-label text-md-right required">{{ __('Season:')}}</label>
 
                             <div class="col-md-6">
 
@@ -281,7 +281,7 @@
                         {{-- Currency --}}
                         <div class="form-group row">
                             <label for="currency"
-                                class="col-md-4 col-from-label text-md-right">{{ __('Preferred Currency:')}}</label>
+                                class="col-md-4 col-from-label text-md-right required">{{ __('Preferred Currency:')}}</label>
 
                             <div class="col-md-6">
 
@@ -306,7 +306,7 @@
                         {{-- Details --}}
                         <div class="form-group row">
                             <label for="details"
-                                class="col-md-4 col-from-label text-md-right">{{ __('Details:')}}</label>
+                                class="col-md-4 col-from-label text-md-right required">{{ __('Details:')}}</label>
 
                             <div class="col-md-6">
                                 <input id="details" type="textarea" placeholder="Unique identifier for the person"

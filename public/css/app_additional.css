@@ -1,5 +1,13 @@
 @import "colour-palette.css";
 
+/* Red Asterisk For Required Fields */
+.required::after {
+    position: absolute;
+    content: '*';
+    color: red;
+    margin-left: 4px;
+}
+
 
 /* Buttons */
 

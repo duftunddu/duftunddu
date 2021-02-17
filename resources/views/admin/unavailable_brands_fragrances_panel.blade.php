@@ -24,7 +24,7 @@
                         <h4>Brands</h4>
                         @foreach($brands as $brand)
                             <h5>
-                                <a href="{{ url("/add_brand/" . $brand) }}">{{ $brand }}</a><br>
+                                <a href="{{ url("/add_brand_mod/" . $brand) }}">{{ $brand }}</a><br>
                             </h5>
                         @endforeach
 
@@ -34,8 +34,8 @@
                         <h4>Fragrances</h4>
                         @foreach($fragrances as $fragrance)
                             <h5>
-                                <a href="{{ url("/add_fragrance/" . $fragrance) }}">{{ $fragrance }}</a>
-                            </h5><br>
+                                <a href="{{ url("/add_fragrance_mod/" . $fragrance) }}">{{ $fragrance }}</a><br>
+                            </h5>
                         @endforeach
 
                     </div>

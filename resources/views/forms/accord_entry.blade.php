@@ -20,7 +20,7 @@
 
                         {{-- Name --}}
                         <div class="form-group row">
-                                <label for="name" class="col-md-4 col-from-label text-md-right">{{ __('Accord:')}}</label>
+                                <label for="name" class="col-md-4 col-from-label text-md-right required">{{ __('Accord:')}}</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name')}}" required autofocus>

@@ -26,6 +26,19 @@ class Webstore_Controller extends Controller
         return view('forms.webstore_register');
     }
 
+    public function webstore_client(){
+        return view('webstore.client');
+    }
+
+    public function webstore_call(){
+        // return view('store.profile_entry');
+        return redirect('/store_profile');
+    }
+
+    public function webstore_client_css(){
+        return view('webstore.webstore_client_css');
+    }
+
     public function home(){
         if(!request()->user()->hasRole('webstore_owner')) {
             return redirect('/services_register');
@@ -51,7 +64,7 @@ class Webstore_Controller extends Controller
      */
     public function store(Request $request) {
 
-        $validatedData = $request->validate([ 
+        // $validatedData = $request->validate([ 
         //     'accord_familiy_id' => 'required',
         //     'name'              => 'required|unique:accord',
         // ]);

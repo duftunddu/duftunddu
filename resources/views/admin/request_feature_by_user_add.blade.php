@@ -57,7 +57,7 @@
                         {{-- Feature Name --}}
                         <div class="form-group row">
                             <label for="name"
-                                class="col-md-4 col-from-label text-md-right">{{ __('Feature Name:')}}</label>
+                                class="col-md-4 col-from-label text-md-right required">{{ __('Feature Name:')}}</label>
                             <div class="col-md-6">
 
                                 <input id="name" type="text" maxlength="40"
@@ -75,7 +75,7 @@
                         {{-- Description --}}
                         <div class="form-group row">
                             <label for="description"
-                                class="col-md-4 col-from-label text-md-right">{{ __('Description:')}}</label>
+                                class="col-md-4 col-from-label text-md-right required">{{ __('Description:')}}</label>
                             <div class="col-md-6">
 
                                 <input id="description" type="text" maxlength="256"
@@ -109,7 +109,7 @@
                         {{-- Acknowledgement of BA Checkbox --}}
                         <div class="form-group row">
                             <label for="ack_ba_check"
-                                class="col-md-4 col-from-label text-md-right">{{ __('Acknowledge that the value in the above checkbox is correct:')}}</label>
+                                class="col-md-4 col-from-label text-md-right required">{{ __('Acknowledge that the value in the above checkbox is correct:')}}</label>
                             <div class="col-md-6">
 
                                 <input type="checkbox" name="ack_ba_check" id="ack_ba_check" class="form-control @error('ack_ba_check') is-invalid @enderror" required />

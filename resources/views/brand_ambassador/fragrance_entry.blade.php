@@ -5,6 +5,7 @@
 @section('content')
 
 {{-- Range Slider Function --}}
+<link href="{{ asset('css/range_slider.css') }}" rel="stylesheet">
 <link href="{{ asset('css/range_slider_sillage.css') }}" rel="stylesheet">
 <script src="{{ asset('js/range_slider_sillage.js') }}" defer></script>
 
@@ -37,7 +38,7 @@
                         {{-- Fragrance Name --}}
                         <div class="form-group row">
                             <label for="name"
-                                class="col-md-4 col-from-label text-md-right" data-toggle="tooltip"
+                                class="col-md-4 col-from-label text-md-right required" data-toggle="tooltip"
                                 data-placement="top" data-html="true"
                                 title="Name of your fragrance."> {{ __('Fragrance Name:')}}</label>
 
@@ -58,7 +59,7 @@
                         <div class="form-group row">
                             {{-- Tooltip & Label --}}
                             <label for="type_id"
-                            class="col-md-4 col-from-label text-md-right" data-toggle="tooltip"
+                            class="col-md-4 col-from-label text-md-right required" data-toggle="tooltip"
                             data-placement="top" data-html="true"
                             title="Contributes to Longevity."> {{ __('Type:')}} </label>
 
@@ -85,7 +86,7 @@
                         {{-- Gender --}}
                         <div class="form-group row">
                             <label for="gender"
-                                class="col-md-4 col-from-label text-md-right" data-toggle="tooltip"
+                                class="col-md-4 col-from-label text-md-right required" data-toggle="tooltip"
                                 data-placement="top" data-html="true"
                                 title="Gender suitability.">{{ __('This Fragrance Suits:')}}</label>
 
@@ -116,7 +117,7 @@
 
                         {{-- Sillage --}}
                         <div class="form-group row">
-                            <label for="sillage" class="col-md-4 col-from-label text-md-right" data-toggle="tooltip"
+                            <label for="sillage" class="col-md-4 col-from-label text-md-right required" data-toggle="tooltip"
                             data-placement="top" data-html="true"
                             title="Contributes to Indoor/Outdoor.">{{ __('Sillage:')}}</label>
 
@@ -139,7 +140,7 @@
                         {{-- Cost --}}
                         <div class="form-group row">
                             <label for="cost" 
-                            class="col-md-4 col-from-label text-md-right" data-toggle="tooltip"
+                            class="col-md-4 col-from-label text-md-right required" data-toggle="tooltip"
                             data-placement="top" data-html="true"
                             title="Cost of Fragrance.">{{ __('Cost:')}}</label>
 
@@ -159,7 +160,7 @@
                         {{-- Currency --}}
                         <div class="form-group row">
                             <label for="currency"
-                                class="col-md-4 col-from-label text-md-right"data-toggle="tooltip"
+                                class="col-md-4 col-from-label text-md-right required" data-toggle="tooltip"
                                 data-placement="top" data-html="true"
                                 title="Select your preferred currency.
                                 <br>Don't worry, we'll show the audience the cost in
@@ -201,7 +202,7 @@
                             {{-- Name --}}
                             <div class="form-group row">
                                 <label for="accord_id"
-                                    class="col-md-4 col-from-label text-md-right" data-toggle="tooltip"
+                                    class="col-md-4 col-from-label text-md-right required" data-toggle="tooltip"
                                     data-placement="top" data-html="true"
                                     title="Contributes to Suitability.">{{ __('Accord:')}}</label>
 
@@ -255,7 +256,7 @@
                             {{-- Name --}}
                             <div class="form-group row">
                                 <label for="ingredient_id"
-                                    class="col-md-4 col-from-label text-md-right" data-toggle="tooltip"
+                                    class="col-md-4 col-from-label text-md-right required" data-toggle="tooltip"
                                     data-placement="top" data-html="true"
                                     title="Contributes to Suitability.">{{ __('Ingredient:')}}</label>
 
@@ -283,7 +284,7 @@
                             {{-- Note --}}
                             <div class="form-group row">
                                 <label for="note" 
-                                class="col-md-4 col-from-label text-md-right" data-toggle="tooltip"
+                                class="col-md-4 col-from-label text-md-right required" data-toggle="tooltip"
                                 data-placement="top" data-html="true"
                                 title="Contributes to Genie.
                                 <br>Function under development.">{{ __('Note:')}}</label>
@@ -318,7 +319,7 @@
                             {{-- Intensity --}}
                             <div class="form-group row">
                                 <label for="intensity"
-                                    class="col-md-4 col-from-label text-md-right" data-toggle="tooltip"
+                                    class="col-md-4 col-from-label text-md-right required" data-toggle="tooltip"
                                     data-placement="top" data-html="true"
                                     title="Contributes to Sillage.">{{ __('Intensity:')}}</label>
 

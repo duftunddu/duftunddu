@@ -22,7 +22,7 @@
 
                             {{-- Name --}}
                             <div class="form-group row">
-                                <label for="name" class="col-md-4 col-from-label text-md-right">{{ __('Brand Name:')}}</label>
+                                <label for="name" class="col-md-4 col-from-label text-md-right required">{{ __('Brand Name:')}}</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text" placeholder="Chanel" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name')}}" required autocomplete="name" autofocus>
@@ -37,7 +37,7 @@
 
                             {{-- Tier --}}
                             <div class="form-group row">
-                                <label for="tier_id" class="col-md-4 col-from-label text-md-right">{{ __('Tier:')}}</label>
+                                <label for="tier_id" class="col-md-4 col-from-label text-md-right required">{{ __('Tier:')}}</label>
 
                                 <div class="col-md-6">
                                     <select id="tier_id" type="number" class="form-control @error('tier_id') is-invalid @enderror" name="tier_id" value="{{ old('tier_id')}}" required>
@@ -60,7 +60,7 @@
 
                             {{-- Origin --}}
                             <div class="form-group row">
-                                <label for="location_id" class="col-md-4 col-from-label text-md-right">{{ __('Origin:')}}</label>
+                                <label for="location_id" class="col-md-4 col-from-label text-md-right required">{{ __('Origin:')}}</label>
 
                                 <div class="col-md-6">
                                     
@@ -84,7 +84,7 @@
                             <div id="dynamic_field">
 
                                 <div class="form-group row">
-                                  <label for="availability" class="col-md-4 col-from-label text-md-right">{{ __('Outlet Availability:')}}</label>
+                                  <label for="availability" class="col-md-4 col-from-label text-md-right required">{{ __('Outlet Availability:')}}</label>
                 
                                   <div class="col-md-6">
                                       

@@ -33,7 +33,7 @@
 
                         {{-- Name --}}
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-from-label text-md-right">{{ __('Name:')}}</label>
+                            <label for="name" class="col-md-4 col-from-label text-md-right required">{{ __('Name:')}}</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" maxlength="40" placeholder="John"
@@ -50,7 +50,7 @@
 
                         {{-- Gender --}}
                         <div class="form-group row">
-                            <label for="gender" class="col-md-4 col-from-label text-md-right">{{ __('Gender:')}}</label>
+                            <label for="gender" class="col-md-4 col-from-label text-md-right required">{{ __('Gender:')}}</label>
 
                             <div class="col-md-6">
 
@@ -75,7 +75,7 @@
                         {{-- DOB --}}
                         <div class="form-group row">
                             <label for="dob"
-                                class="col-md-4 col-from-label text-md-right">{{ __('Date of Birth:')}}</label>
+                                class="col-md-4 col-from-label text-md-right required">{{ __('Date of Birth:')}}</label>
 
                             <div class="col-md-6">
                                 <input id="dob" type="date" min="1900-01-01"
@@ -93,7 +93,7 @@
                         {{-- Profession --}}
                         <div class="form-group row">
                             <label for="profession_id"
-                                class="col-md-4 col-from-label text-md-right">{{ __('Profession:')}}</label>
+                                class="col-md-4 col-from-label text-md-right required">{{ __('Profession:')}}</label>
 
                             <div class="col-md-6">
                                 <input list="professions" id="profession" type="text"
@@ -117,7 +117,7 @@
                         {{-- Skin Type --}}
                         <div class="form-group row">
                             <label for="skin_type_id"
-                                class="col-md-4 col-from-label text-md-right">{{ __('Skin Type:')}}</label>
+                                class="col-md-4 col-from-label text-md-right required">{{ __('Skin Type:')}}</label>
 
                             <div class="col-md-6">
                                 <input list="skin_types" id="skin_type" type="text" placeholder="-- Select Skin Type --"
@@ -141,7 +141,7 @@
                         {{-- Sweat --}}
                         <div class="form-group row">
                             <label for="sweat"
-                                class="col-md-4 col-from-label text-md-right">{{ __('How much do you sweat:')}}</label>
+                                class="col-md-4 col-from-label text-md-right required">{{ __('How much do you sweat:')}}</label>
 
                             <div class="col-md-6">
 
@@ -257,7 +257,7 @@
                         {{-- Climate --}}
                         <div class="form-group row">
                             <label for="climate_id"
-                                class="col-md-4 col-from-label text-md-right">{{ __('Climate:')}}</label>
+                                class="col-md-4 col-from-label text-md-right required">{{ __('Climate:')}}</label>
 
                             <div class="col-md-6">
 
@@ -282,7 +282,7 @@
                         {{-- Season --}}
                         <div class="form-group row">
                             <label for="season_id"
-                                class="col-md-4 col-from-label text-md-right">{{ __('Season:')}}</label>
+                                class="col-md-4 col-from-label text-md-right required">{{ __('Season:')}}</label>
 
                             <div class="col-md-6">
 

@@ -27,7 +27,7 @@
 
                         {{-- Brand --}}
                         <div class="form-group row">
-                            <label for="brand" class="col-md-4 col-from-label text-md-right">{{ __('Brand:')}}</label>
+                            <label for="brand" class="col-md-4 col-from-label text-md-right required">{{ __('Brand:')}}</label>
 
                             <div class="col-md-6">
                                 <input list="brands" id="brand" type="text" placeholder="-- Enter Brand --"
@@ -50,7 +50,7 @@
                         {{-- Fragrance --}}
                         <div class="form-group row">
                             <label for="fragrance"
-                                class="col-md-4 col-from-label text-md-right">{{ __('Fragrance:')}}</label>
+                                class="col-md-4 col-from-label text-md-right required">{{ __('Fragrance:')}}</label>
 
                             <div class="col-md-6">
                                 <input list="fragrances" id="fragrance" type="text" placeholder="-- Enter Fragrance --"

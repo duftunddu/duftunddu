@@ -39,7 +39,7 @@
 
                         {{-- Name --}}
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-from-label text-md-right">{{ __('Feature Name:')}}</label>
+                            <label for="name" class="col-md-4 col-from-label text-md-right required">{{ __('Feature Name:')}}</label>
                             <div class="col-md-6">
 
                                 <input id="name" type="text" maxlength="40" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name')}}" required autofocus>
@@ -54,7 +54,7 @@
                         
                         {{-- Description --}}
                         <div class="form-group row">
-                            <label for="description" class="col-md-4 col-from-label text-md-right">{{ __('Description:')}}</label>
+                            <label for="description" class="col-md-4 col-from-label text-md-right required">{{ __('Description:')}}</label>
                             <div class="col-md-6">
 
                                 <input id="description" type="text" maxlength="256" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description')}}" required>

@@ -19,7 +19,7 @@
 
                         {{-- Report Type --}}
                         <div class="form-group row">
-                            <label for="type_id" class="col-md-4 col-from-label text-md-right">{{ __('Report Regarding:')}}</label>
+                            <label for="type_id" class="col-md-4 col-from-label text-md-right required">{{ __('Report Regarding:')}}</label>
 
                             <div class="col-md-6">
                                 <select id="type_id" type="type_id"
@@ -45,7 +45,7 @@
 
                         {{-- Comment --}}
                         <div class="form-group row">
-                            <label for="comment" class="col-md-4 col-from-label text-md-right">{{ __('Report:')}}</label>
+                            <label for="comment" class="col-md-4 col-from-label text-md-right required">{{ __('Report:')}}</label>
 
                             <div class="col-md-6">
                                 <input id="comment" type="text" maxlength="300" class="form-control @error('comment') is-invalid @enderror" name="comment" value="{{ old('comment') }}" required>

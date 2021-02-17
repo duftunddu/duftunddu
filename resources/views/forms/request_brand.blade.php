@@ -28,7 +28,7 @@
 
                         {{-- Brand Name --}}
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-from-label text-md-right">{{ __('Brand Name:')}}</label>
+                            <label for="name" class="col-md-4 col-from-label text-md-right required">{{ __('Brand Name:')}}</label>
                             
                             <div class="col-md-6">
                                 <input id="name" type="text" placeholder="Brand Name" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name')}}" required>
@@ -43,7 +43,7 @@
                         
                         {{-- Brand Website --}}
                         <div class="form-group row" >
-                            <label for="website" class="col-md-4 col-from-label text-md-right">{{ __('Brand Website:')}} </label>
+                            <label for="website" class="col-md-4 col-from-label text-md-right required">{{ __('Brand Website:')}} </label>
                             
                             <div class="col-md-6">
                                 <input id="website" type="url" pattern="https?://.*" placeholder="https://www.chanel.com" class="form-control @error('website') is-invalid @enderror" name="website" value="{{ old('website')}}" required>

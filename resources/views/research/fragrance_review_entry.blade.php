@@ -47,11 +47,11 @@
                                     account.</small> --}}
                             </div>
                         </div>
-                        
+
 
                         {{-- Brand --}}
                         <div class="form-group row">
-                            <label for="brand" class="col-md-4 col-from-label text-md-right">{{ __('Brand:')}}</label>
+                            <label for="brand" class="col-md-4 col-from-label text-md-right required">{{ __('Brand:')}}</label>
 
                             <div class="col-md-6">
                                 <input list="brands" id="brand" type="text" placeholder="-- Enter Brand --"
@@ -74,7 +74,7 @@
                         {{-- Fragrance --}}
                         <div class="form-group row">
                             <label for="fragrance"
-                                class="col-md-4 col-from-label text-md-right">{{ __('Fragrance:')}}</label>
+                                class="col-md-4 col-from-label text-md-right required">{{ __('Fragrance:')}}</label>
 
                             <div class="col-md-6">
                                 <input list="fragrances" id="fragrance" type="text" placeholder="-- Enter Fragrance --"
@@ -98,7 +98,7 @@
                         {{-- Applying Time --}}
                         <div class="form-group row">
                             <label for="apply_time"
-                                class="col-md-4 col-from-label text-md-right">{{ __('When did you apply it:')}}</label>
+                                class="col-md-4 col-from-label text-md-right required">{{ __('When did you apply it:')}}</label>
 
                             <div class="col-md-6">
 
@@ -118,7 +118,7 @@
                         {{-- Wear Off Time --}}
                         <div class="form-group row">
                             <label for="wear_off_time"
-                                class="col-md-4 col-from-label text-md-right">{{ __('When did if wear off:')}}</label>
+                                class="col-md-4 col-from-label text-md-right required">{{ __('When did if wear off:')}}</label>
 
                             <div class="col-md-6">
 
@@ -137,7 +137,7 @@
 
                         {{-- Indoor / Outdoor --}}
                         <div class="form-group row">
-                            <label for="in_out" class="col-md-4 col-from-label text-md-right" data-toggle="tooltip"
+                            <label for="in_out" class="col-md-4 col-from-label text-md-right required" data-toggle="tooltip"
                                 data-placement="top" data-html="true"
                                 title="What percentage of the time did you spend indoors?">{{ __('Indoor Time Percentage:')}}</label>
 
@@ -157,7 +157,7 @@
 
                         {{-- Sprays --}}
                         <div class="form-group row">
-                            <label for="spray" class="col-md-4 col-from-label text-md-right" data-toggle="tooltip"
+                            <label for="spray" class="col-md-4 col-from-label text-md-right required" data-toggle="tooltip"
                                 data-placement="top" data-html="true"
                                 title="How many sprays did you apply?.">{{ __('No. of Sprays:')}}</label>
 
@@ -181,7 +181,7 @@
 
                         {{-- Projection --}}
                         <div class="form-group row">
-                            <label for="projection" class="col-md-4 col-from-label text-md-right" data-toggle="tooltip"
+                            <label for="projection" class="col-md-4 col-from-label text-md-right required" data-toggle="tooltip"
                                 data-placement="top" data-html="true"
                                 title="How far-off can you smell the scent?<br>In Inches.">{{ __('Projection (inches):')}}</label>
 
@@ -205,7 +205,7 @@
 
                         {{-- Sillage --}}
                         <div class="form-group row">
-                            <label for="sillage" class="col-md-4 col-from-label text-md-right" data-toggle="tooltip"
+                            <label for="sillage" class="col-md-4 col-from-label text-md-right required" data-toggle="tooltip"
                                 data-placement="top" data-html="true"
                                 title="How long does the trail last?<br>In Seconds.">Sillage (seconds):</label>
 
@@ -230,7 +230,7 @@
                         {{-- Like --}}
                         <div class="form-group row">
                             <label for="like"
-                                class="col-md-4 col-from-label text-md-right">{{ __('How much do you like it:')}}</label>
+                                class="col-md-4 col-from-label text-md-right required">{{ __('How much do you like it:')}}</label>
 
                             <div class="col-md-6">
 

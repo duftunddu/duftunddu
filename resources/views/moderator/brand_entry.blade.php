@@ -1,33 +1,45 @@
 @extends('layouts.app')
 
-<title>{{('Brand Entry | The AI Powered Fragrance Genie')}}</title>
+<title>{{('Brand Entry | Moderator | Duft Und Du')}}</title>
 
 {{-- Button --}}
 <link href="{{ asset('css/custom_button.css') }}" rel="stylesheet">
 
 @section('content')
 
-{{-- Button: Add Another --}}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Brand Entry')}}</div>
+                <div class="card-header">{{ __('Brand Entry Moderator')}}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ url('brand_entry/'.$brand_name)}}">
+                    <form method="POST" action="{{ url('/add_brand_mod/')}}">
                         @csrf
 
                         {{-- Name --}}
                         <div class="form-group row">
+                            <label for="name" class="col-md-4 col-from-label text-md-right required">{{ __('Brand Name:')}}</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" maxlength="40" placeholder="type here"
+                                    class="form-control @error('name') is-invalid @enderror" name="name"
+                                    value="{{ $brand_name }}" required>
+
+                                @error('name')
+                                <span class="invalid-feeback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+                        {{-- <div class="form-group row">
                             <label for="name" class="col-md-4 col-from-label text-md-right">{{ __('Brand Name:')}}</label>
 
                             <div class="col-md-6">
                                 {{$brand_name}}
                             </div>
-                        </div>
+                        </div> --}}
 
                         {{-- Tier --}}
                         <div class="form-group row">
