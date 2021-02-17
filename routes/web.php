@@ -190,8 +190,8 @@ Route::middleware(['role:store_owner|admin'])->group(function () {
     // Show Fragrance
     // Route::get('/store_profile', "Store_Controller@profile_entry");
     Route::get('/store_profile', "Fragrance_Profile_Controller@index");
-    Route::get('/store_fragrance/{fragrance_id}', "Controller@store_fragrance_show");
-
+    Route::get('/store_fragrance/{fragrance_id}', "Store_Controller@show_fragrance");
+    
     // Stock
     Route::get('/stock', "Store_Controller@show_stock");
     
@@ -200,6 +200,7 @@ Route::middleware(['role:store_owner|admin'])->group(function () {
     Route::post('/add_to_stock', "Store_Controller@add_to_stock");
     Route::get('/remove_from_stock/{stock_id}', "Store_Controller@remove_from_stock");
 
+    // Get Suitability of Stock
     Route::get('/stock_suitability', "Store_Controller@stock_suitability");
 });
 
@@ -210,10 +211,12 @@ Route::middleware(['role:webstore_owner|admin'])->group(function () {
     // Home
     Route::get('/webstore_home', "Webstore_Controller@home");
     
-    // Store Fragrance
-    // Route::get('/store_profile', "Store_Controller@profile_entry");
-    // Route::get('/store_fragrance/{fragrance_id}', "Controller@store_fragrance_show");
+    // Serve CSS Script
     Route::get('/webstore_client_css.css', "Webstore_Controller@webstore_client_css");
+
+    // Show Fragrance
+    Route::get('/store_profile', "Fragrance_Profile_Controller@index");
+    Route::get('/webstore_fragrance/{fragrance_id}', "Webstore_Controller@show_fragrance");
 
 });
 

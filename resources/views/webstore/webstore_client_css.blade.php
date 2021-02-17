@@ -29,7 +29,7 @@
     display: block;
     margin: 0 auto;
     width: 700px;
-    height: 400px;
+    height: 500px;
 }
 
 @media (max-width: 900px) {
