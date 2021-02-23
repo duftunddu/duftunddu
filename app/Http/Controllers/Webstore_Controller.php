@@ -41,18 +41,24 @@ class Webstore_Controller extends Controller
         return view('webstore.client');
     }
 
-    public function webstore_call(){
+    public function webstore_call($key, $brand_name, $fragrance_name){
+        
         // return view('store.profile_entry');
-        return redirect('/webstore_fragrance/6');
+        return Webstore_Controller::show_fragrance($brand_name, $fragrance_name);
+        // return redirect('/webstore_fragrance/5');
     }
 
     // Show Fragrance Review
-    public function show_fragrance($id)
+    public function show_fragrance($brand_name, $fragrance_name)
     {
-        $fragrance = Fragrance::find($id);
+        // $fragrance = Fragrance::find($id);
+        $fragrance = Fragrance::where('name', $fragrance_name)
+        ->first();
+
+        $id = $fragrance->id;
 
         if(is_null($fragrance)){
-        return redirect()->route('search');
+            return NULL;
         }
 
         $type = Fragrance_Type::find($fragrance->type_id)->first();
@@ -356,6 +362,9 @@ class Webstore_Controller extends Controller
         ]);
     }
 
+    public function new_model(){
+        return view('webstore.client2');
+    }
 
     public function webstore_client_css(){
         return view('webstore.webstore_client_css');

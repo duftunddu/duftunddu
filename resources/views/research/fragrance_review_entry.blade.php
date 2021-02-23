@@ -40,14 +40,8 @@
                         <div class="form-group row">
                             <div class="col-md-9 offset-md-4">
                                 <h5 class="lux-red">We appreciate your participation.</h5>
-                                {{-- <h5>Guidelines</h5>
-                                The shop name and its address will be public.<br>
-                                Providing full information supports your applicaton for approval.<br>
-                                <small>Any suspicious behaviour may result in suspension or terminaton of
-                                    account.</small> --}}
                             </div>
                         </div>
-
 
                         {{-- Brand --}}
                         <div class="form-group row">
@@ -164,7 +158,7 @@
                             <div class="col-md-6">
 
                                 <div class="slideContainer-spray">
-                                    <input type="range" min="1" max="25" step="1" class="slider spray"
+                                    <input type="range" min="1" max="50" step="1" class="slider spray"
                                         class="form-control @error('spray') is-invalid @enderror" id="spray"
                                         name="spray" value="1" value="{{ old('spray')}}" required>
                                     <label>{{_('Value: ')}}<span class="value"></span></label>

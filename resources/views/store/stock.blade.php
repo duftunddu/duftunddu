@@ -36,8 +36,9 @@
                     
                     <div data-ng-app="table" data-ng-controller="table-controller">
 
-                        {{-- If Stock is Not Empty --}}
                         @if($stock->isNotEmpty())
+                        {{-- If Stock is Not Empty --}}
+
                         {{-- Search --}}
                         <div class="form-group row offset-md-0 searchbars">
                             <div class="col-md-4">
@@ -78,11 +79,13 @@
                     @else
                     {{-- If Stock is Empty --}}
                     <br>
+                    
                     <div class="form-group row mb-0">
                         <div class="center de-gray">
                             No Fragrance Available in Stock.
                         </div>
                     </div>
+                    
                     @endif
                     
                     <br>
@@ -92,6 +95,15 @@
                         <div class="center">
                             <button type="button" class="btn btn-outline-dark" onclick="window.location='{{ url('/add_to_stock') }}'">
                                 Add Fragrance
+                            </button>
+                        </div>
+                    </div><br>
+
+                    {{-- Stock --}}
+                    <div class="form-group row mb-0">
+                        <div class="center">
+                            <button type="button" class="btn btn-outline-dark" onclick="window.location='{{ url('/store_home') }}'">
+                                Store Dashboard
                             </button>
                         </div>
                     </div><br>

@@ -45,7 +45,7 @@
                                         
                                         {{-- Dashboards --}}
                                         @hasrole('brand_ambassador')
-                                        <a class="dropdown-item" href="{{ url('/ambassador_home') }}">Ambassador Dashboard</a>
+                                        <a class="dropdown-item" href="{{ url('/ambassador_home') }}">Brand Dashboard</a>
                                         @endhasrole
                                         @hasrole('store_owner')
                                         <a class="dropdown-item" href="{{ url('/store_home') }}">Shop Dashboard</a>
@@ -57,7 +57,7 @@
                                         {{-- Application Status --}}
                                         @hasrole('new_brand_ambassador')
                                         <a class="dropdown-item" href="{{ url('/brand_entry') }}">Add Brand</a>
-                                        <a class="dropdown-item" href="{{ url('/brand_ambassador_application_status') }}">Application Status</a>
+                                        <a class="dropdown-item" href="{{ url('/brand_ambassador_application_status') }}">Brand Application Status</a>
                                         @endhasrole
                                         @hasrole('new_store_owner')
                                         <a class="dropdown-item" href="{{ url('/store_application_status') }}">Shop Application Status</a>

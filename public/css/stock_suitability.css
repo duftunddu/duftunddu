@@ -1,0 +1,55 @@
+h5 {
+    display: inline;
+}
+
+@media (max-width: 500px) {
+    h4 {
+        font-size: 1.35rem !important;
+    }
+
+    h5 {
+        font-size: 1.1rem !important;
+    }
+
+    .review-bar-cont {
+        width: 12rem !important;
+        border-radius: 25px;
+    }
+
+    .review-bar {
+        padding: 0.65rem;
+        border-radius: 25px;
+    }
+}
+
+@media (max-width: 400px) {
+    h4 {
+        font-size: 1.1rem !important;
+    }
+
+    h5 {
+        font-size: 1.0rem !important;
+    }
+
+    .review-bar-cont {
+        width: 9rem !important;
+    }
+
+    .review-bar {
+        padding: 0.55rem !important;
+    }
+}
+
+
+/* Review bar */
+.review-bar-cont {
+    width: 13rem;
+    border: 1px solid #f0587b;
+    border-radius: 25px;
+}
+
+.review-bar {
+    background-color: #f0587b;
+    padding: 0.65rem;
+    border-radius: 25px;
+}

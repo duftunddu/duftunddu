@@ -1,0 +1,261 @@
+.card-body {
+    background-color: rgba(247, 247, 247, 0.3);
+}
+
+.row-pad {
+    display: flex;
+    margin-top: -2.25rem;
+}
+
+.column {
+    flex: 50%;
+}
+
+.left {
+    text-align: right;
+    color: var(--lux-red);
+}
+
+.left,
+.right {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.left-border {
+    border-right: 1px solid rgba(247, 82, 124, 0.5);
+}
+
+.left-border,
+.right-border {
+    margin-right: 5px;
+}
+
+.left-top-border,
+.right-top-border {
+    margin-top: -15px;
+    margin-bottom: 25px;
+}
+
+.left-top-border {
+    border-top: 1px solid rgba(247, 82, 124, 0.5);
+}
+
+.right {
+    text-align: left;
+    color: var(--lux-purple);
+}
+
+.right-border {
+    border-left: 1px solid rgba(129, 103, 169, 0.5);
+}
+
+.right-top-border {
+    border-top: 1px solid rgba(129, 103, 169, 0.5);
+}
+
+h4 {
+    /* font-size: 1.5rem; */
+    font-size: 1.3rem !important;
+}
+
+h5 {
+    display: inline;
+    /* font-size: 1.25rem; */
+    font-size: 1.05rem !important;
+}
+
+.color-light-gray {
+    color: var(--de-emphasize-gray);
+}
+
+.right-align {
+    text-align: right;
+}
+
+.left-align {
+    text-align: left;
+}
+
+.right h4 {
+    color: var(--lux-red);
+}
+
+.left h4 {
+    color: var(--lux-purple);
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+.wide {
+    margin-bottom: -18rem;
+}
+
+.img-margin {
+    margin-bottom: 13rem !important;
+}
+
+.center-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+/* Gender Pics */
+.gender-png {
+    display: inline;
+    margin-top: -0.25rem;
+    max-width: 2rem;
+    max-height: 2rem;
+}
+
+.doors {
+    color: white;
+    font-size: 1.5rem;
+}
+
+
+/* Review bar */
+.review-bar-cont {
+    width: 13rem;
+    border: 1px solid #f0587b;
+    border-radius: 100px;
+    float: right;
+}
+
+.review-bar {
+    background-color: #f0587b;
+    padding: 0.7rem;
+    border-radius: 100px;
+}
+
+
+/* Image Reflection */
+.img-ref-div {
+    width: 8rem;
+    height: 12rem;
+}
+
+.reflect {
+    /* background-image: url('https://images.unsplash.com/photo-1578402382615-8c856f41452e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1490&q=80'); */
+    /* box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2); */
+    /* position: relative; */
+    /* background-image: url('https://static.toiimg.com/thumb/msid-63080082,imgsize-293543,width-800,height-600,resizemode-75/63080082.jpg'); */
+    background-repeat: no-repeat;
+    background-size: 8rem 8rem;
+    width: 8rem;
+    height: 8rem;
+    -webkit-box-reflect: below 0 -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.6, transparent), to(white));
+}
+
+
+/* Separator Line */
+hr {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.hr-red-line {
+    border-top: 1px solid rgba(247, 82, 124, 0.5) !important;
+}
+
+.hr-purple-line {
+    margin-bottom: 25px;
+    margin-top: 25px;
+    border-top: 1px solid rgba(129, 103, 169, 0.5) !important;
+}
+
+@media (max-width: 650px) {
+    .doors {
+        font-size: 1.27rem !important;
+    }
+
+    .review-bar-cont {
+        width: 11rem !important;
+    }
+}
+
+@media (max-width: 500px) {
+    h4 {
+        /* font-size: 1.25rem; */
+        font-size: 1.35rem !important;
+    }
+
+    h5 {
+        /* font-size: 1.1rem; */
+        font-size: 1.1rem !important;
+    }
+
+    p {
+        font-size: 0.9rem;
+    }
+
+    .left {
+        margin-right: 10px;
+        margin-left: 0;
+    }
+
+    .left p {
+        text-align: justify;
+    }
+
+    .left-border {
+        margin-right: 2px;
+    }
+
+    .right {
+        text-align: left;
+        margin-left: 10px;
+        margin-right: 0;
+    }
+
+    .right-border {
+        margin-left: 2px;
+    }
+
+    .right-align {
+        text-align: right !important;
+    }
+
+    .left-align {
+        text-align: left !important;
+    }
+
+    .doors {
+        font-size: 1.15rem !important;
+    }
+
+    .review-bar-cont {
+        width: 10rem !important;
+    }
+
+    .review-bar {
+        padding: 0.65rem;
+    }
+}
+
+@media (max-width: 400px) {
+    h4 {
+        font-size: 1.1rem !important;
+    }
+
+    h5 {
+        font-size: 1.0rem !important;
+    }
+
+    .doors {
+        font-size: 0.85rem !important;
+    }
+
+    .review-bar-cont {
+        width: 7.5rem !important;
+    }
+
+    .review-bar {
+        padding: 0.55rem !important;
+    }
+}

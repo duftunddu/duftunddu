@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Store;
+use Helper\Helper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -53,9 +54,13 @@ class Webstore_Request_Controller extends Controller
             return redirect('/home');
         }
 
-        DB::transaction(function () use ($request) {
+        $location = Helper::current_location();
+
+        DB::transaction(function () use ($request, $location) {
             $new                    = new store();
             $new->users_id          = request()->user()->id;
+            $new->location_id       = $location->id;
+
             $new->name              = $request->input('name');
             $new->address           = $request->input('address');
             $new->website           = $request->input('website');

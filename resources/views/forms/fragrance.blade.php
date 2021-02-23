@@ -133,7 +133,7 @@
                                     {{-- <hr class="hr-purple-line"> --}}
 
                                     {{-- Suitability --}}
-                                    <h4 class="hsl-color" data-toggle="tooltip" data-placement="top" data-html="true"
+                                    <h4 data-toggle="tooltip" data-placement="top" data-html="true"
                                         title="Depends on season.<br>100 is average.<br>Above 100 is better.">
                                         Suitability: <span class="lux-red">{{$suitability}}</span></h4>
                                     {{-- Bar --}}

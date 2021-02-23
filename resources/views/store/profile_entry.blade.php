@@ -1,8 +1,15 @@
-@extends('layouts.app_store')
+@extends('layouts.app')
+
+<title>{{('Add Details | The AI Powered Fragrance Genie')}}</title>
 
 <head>
-    <title>{{('Customer Details | Duft Und Du')}}</title>
-    <!-- Styles -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    {{-- Range Slider Function --}}
+    <link href="{{ asset('css/range_slider.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/range_slider_sweat.css') }}" rel="stylesheet">
+
     {{-- Button: Submit --}}
     <link href="{{ asset('css/custom_button.css') }}" rel="stylesheet">
 
@@ -13,40 +20,20 @@
 
 @section('content')
 
-{{-- Range Slider Function --}}
-<link href="{{ asset('css/range_slider_sweat.css') }}" rel="stylesheet">
 <script src="{{ asset('js/range_slider_sweat.js') }}" defer></script>
 
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
 
-            <form method="POST" action="{{ url('store_profile')}}">
+            <form method="POST" action="{{ url('/store_profile')}}">
                 @csrf
 
                 <div class="card">
-                    <div class="card-header">{{ __('Customer Details')}}&nbsp;&nbsp; <i class="fas fa-info"
-                            data-toggle="tooltip" data-placement="top" data-html="true" title="This information is used in your personal insights.
-                            <br>For more information, read Privacy Policy."></i></div>
+                    <div class="card-header">{{ __('Profile Details')}}&nbsp;&nbsp; <i class="fas fa-info"
+                            data-toggle="tooltip" data-placement="top" data-html="true" title="This information is used for personal review."></i></div>
 
                     <div class="card-body">
-
-                        {{-- Name --}}
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-from-label text-md-right required">{{ __('Name:')}}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" maxlength="40" placeholder="John"
-                                    class="form-control @error('name') is-invalid @enderror" name="name"
-                                    value="{{ old('name')}}" required>
-
-                                @error('name')
-                                <span class="invalid-feeback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
 
                         {{-- Gender --}}
                         <div class="form-group row">
@@ -146,7 +133,9 @@
                             <div class="col-md-6">
 
                                 <div class="slideContainer-sweat">
-                                    <input type="range" min="0" max="100" class="slider sweat" class="form-control @error('sweat') is-invalid @enderror" id="sweat" name="sweat" value="0" value="{{ old('sweat')}}" required>
+                                    <input type="range" min="0" max="100" class="slider sweat"
+                                        class="form-control @error('sweat') is-invalid @enderror" id="sweat"
+                                        name="sweat" value="0" value="{{ old('sweat')}}" required>
                                     <label>{{_('Value: ')}}<span class="value"></span></label>
                                 </div>
 
@@ -321,20 +310,4 @@
         </div>
     </div>
 </div>
-
-{{-- TODO: #1 Hide the fields, Let the user select their input method, and show the selected one. --}}
-{{-- <script>
-        $(function () {
-            $('div[name="showthis"]').hide();
-    
-            //show it when the checkbox is clicked
-            $('input[name="checkbox"]').on('click', function () {
-                if ($(this).prop('checked')) {
-                    $('div[name="showthis"]').fadeIn();
-                } else {
-                    $('div[name="showthis"]').fadeOut();
-                }
-            });
-        });
-    </script> --}}
 @endsection

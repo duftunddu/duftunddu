@@ -11,7 +11,7 @@ for (let i = 0; i < containers.length; i++) {
 
     slider.addEventListener("input", function (e) {
         console.log("hallo");
-        var x = e.target.value * 4;
+        var x = e.target.value * 2;
         var color = 'linear-gradient(90deg, rgb(16, 24, 32)' + x + '% , rgb(247, 244, 251)' + x + '%)';
         e.target.style.background = color;
     });

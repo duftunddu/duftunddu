@@ -86,8 +86,7 @@ class Fragrance_Profile_Controller extends Controller
                 'skin_type.exists'      => 'The :attribute is invalid. Please select one from the list.',
                 'climate.exists'        => 'The :attribute is invalid. Please select one from the list.',
                 'season.exists'         => 'The :attribute is invalid. Please select one from the list.',
-            ],
-        );
+            ]);
         
         $valid = false;
         $height_unit = '';

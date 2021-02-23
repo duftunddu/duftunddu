@@ -187,12 +187,18 @@ Route::middleware(['role:store_owner|admin'])->group(function () {
     // Home
     Route::get('/store_home', "Store_Controller@home");
     
+    // Call 
+    Route::get('/store_call', "Store_Controller@call");
+
+    // Profile
+    Route::get('/store_profile', "Store_Controller@add_profile");
+    Route::post('/store_profile', "Store_Controller@store_profile");
+
     // Show Fragrance
-    // Route::get('/store_profile', "Store_Controller@profile_entry");
-    Route::get('/store_profile', "Fragrance_Profile_Controller@index");
+    Route::get('/store_fragrance/', "Store_Controller@empty_stock");
     Route::get('/store_fragrance/{fragrance_id}', "Store_Controller@show_fragrance");
     
-    // Stock
+    // Show Stock
     Route::get('/stock', "Store_Controller@show_stock");
     
     // Add / Remove Stock
@@ -215,7 +221,7 @@ Route::middleware(['role:webstore_owner|admin'])->group(function () {
     Route::get('/webstore_client_css.css', "Webstore_Controller@webstore_client_css");
 
     // Show Fragrance
-    Route::get('/store_profile', "Fragrance_Profile_Controller@index");
+    Route::get('/webstore_profile', "Webstore_Controller@index");
     Route::get('/webstore_fragrance/{fragrance_id}', "Webstore_Controller@show_fragrance");
 
 });
@@ -241,6 +247,11 @@ Route::middleware(['role:brand_ambassador|admin', 'verified'])->group(function (
 });
 
 
+// Webstore Call
+Route::get('/webstore_call/{key}/{brand_name}/{fragrance_name}', "Webstore_Controller@webstore_call");
+
+
+
 // admin
 Route::middleware(['role:admin'])->group(function () {
 
@@ -248,9 +259,9 @@ Route::middleware(['role:admin'])->group(function () {
     // Unavailable Brands & Fragrances
     // End of Unavailable Brands & Fragrances
 
+    Route::get('/new_model', "Webstore_Controller@new_model");
 
     // Webstore
-    Route::get('/webstore_call', "Webstore_Controller@webstore_call");
     Route::get('/webstore_client', "Webstore_Controller@webstore_client");
     
     // Webstore API

@@ -9,10 +9,20 @@ use App\Brand_Ambassador_Profile;
 use App\Fragrance;
 use App\Fragrance_Brand;
 
+use App\Profession;
+use App\Skin_Type;
+use App\Climate;
+use App\Season;
+
 use App\Store;
 use App\Store_Stock;
+use App\Store_Customer_Feature_Log;
 
+use Validator;
+use Illuminate\Validation\Rule;
 use App\Helper\Helper;
+use App\Helper\Store_Helper;
+use App\Helper\Fragrance_Review_Helper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -26,31 +36,226 @@ class Store_Controller extends Controller
 
 
     // Register
-    public function index(){
+    public function index() {
         return view('forms.store_register');
     }
 
 
     // Home
-    public function home(){
+    public function home() {
         if(!request()->user()->hasRole('store_owner')) {
             return redirect('/services_register');
         }
         
-        // $no_of_f = Store::write the rest
-        $no_of_f = 5;
+        $store_helper = new Store_Helper();
 
-        // $store_id = Store::where('users_id',request()->user()->id)->first()->id;
-        $store_id = 2;
+        $fragrances_count = $store_helper->get_store_stock_names()->count();
 
         return view('store.home',[
-            'no_of_f'   =>  $no_of_f,
+            'fragrances_count'   =>  $fragrances_count,
         ]);
     }
+
+
+    // Call
+    public function call() {
+        return redirect('/store_profile');
+    }
+
+
+    // Profile
+    public function add_profile()
+    {
+        if(Store_Controller::is_empty_stock()){
+            return redirect('/store_home')->with('error', 'Stock is empty. Add Fragrances to Stock first.');
+        }
+
+        $professions    =   Profession::select('name')->get();
+        $skin_types     =   Skin_Type::select('name')->get();
+        $climates       =   Climate::select('name')->get();
+        $seasons        =   Season::select('name')->get();
+        
+        $profile        =   session('store_profile'); 
+
+        return view('store.profile_entry',[
+            'professions'       =>    $professions,
+            'skin_types'        =>    $skin_types,
+            'climates'          =>    $climates,
+            'seasons'           =>    $seasons,
+            'profile'           =>    $profile,
+        ]);
+    }
+
+    public function store_profile(Request $request)
+    {
+        // Validation
+        $this->validate(
+            $request, [
+            'gender'            =>  ['required', Rule::in(['Male', 'Female','Other'])],
+            'dob'               => 'required',
+            'profession'        => 'required|exists:profession,name',
+            'skin_type'         => 'required|exists:skin_type,name',
+            'sweat'             => 'required',
+            'climate'           => 'required|exists:climate,name',
+            'season'            => 'required|exists:season,name',
+            ],
+            
+            $messages = [
+                'gender.in'             => 'The :attribute is invalid. Please select one from the list.',
+                'profession.exists'     => 'The :attribute is invalid. Please select one from the list.',
+                'skin_type.exists'      => 'The :attribute is invalid. Please select one from the list.',
+                'climate.exists'        => 'The :attribute is invalid. Please select one from the list.',
+                'season.exists'         => 'The :attribute is invalid. Please select one from the list.',
+        ]);
+        
+        $valid = false;
+        $height_unit = '';
+        $validator = Validator::make([], []);
+        if( is_null($request->height_cent) && is_null($request->height_feet) && is_null($request->height_inches) ){
+            $valid = false;
+            $validator->getMessageBag()->add('height_cent',     'Enter height either in feet & inches or centimeters.');
+            $validator->getMessageBag()->add('height_inches',   'Enter height either in feet & inches or centimeters.');
+            $validator->getMessageBag()->add('height_feet',   "");
+        }
+        else 
+        if( !is_null($request->height_cent) ){
+            if( (is_null($request->height_feet) && is_null($request->height_inches)) ){
+                $height_unit = 'cent';
+                $valid = true;
+            }
+            else{
+                $valid = false;
+                $validator->getMessageBag()->add('height_cent',     'Enter height either in feet & inches or centimeters. Not in both.');
+                $validator->getMessageBag()->add('height_inches',   'Enter height either in feet & inches or centimeters. Not in both.');
+                $validator->getMessageBag()->add('height_feet',   "");
+            }
+        }
+        else{
+            if( (!is_null($request->height_feet) && !is_null($request->height_inches)) ){
+                $height_unit = 'feet';
+                $valid = true;
+            }
+            else if( is_null($request->height_feet) ){
+                $valid = false;
+                $validator->getMessageBag()->add('height_feet', 'Inches are required with Feet.');
+            }
+            else if( is_null($request->height_inches) ){
+                $valid = false;
+                $validator->getMessageBag()->add('height_inches', 'Feet is required with inches. Put zero if zero inches.');
+            }
+        }
+        
+        if (!$valid ) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $valid = false;
+        $weight_unit = '';
+        $validator = Validator::make([], []);
+        if( is_null($request->kgs) && is_null($request->lbs) ){
+            $valid = false;
+            $validator->getMessageBag()->add('kgs',  'Enter weight either in kgs or pounds.');
+            $validator->getMessageBag()->add('lbs',  'Enter weight either in kgs or pounds.');
+        }
+        else if( (!is_null($request->kgs) && !is_null($request->lbs)) ){
+            $valid = false;
+            $validator->getMessageBag()->add('kgs',   'Enter weight either in kgs or pounds. Not in both.');
+            $validator->getMessageBag()->add('lbs',   'Enter weight either in kgs or pounds. Not in both.');
+        }
+        else if( is_null($request->kgs) ){
+            $valid = true;
+            $weight_unit = 'lbs';
+        }
+        else{
+            $valid = true;
+            $weight_unit = 'kgs';
+        }
+
+        if (!$valid ) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+        // Validation ends
+        
+        $height = 0;
+        if($height_unit == 'cent'){
+            $height = $request->input('height_cent');
+        }
+        else{
+            $height = $request->input('height_feet') * 12 + $request->input('height_inches');
+        }
+
+        $weight = 0;
+        if($weight_unit == 'kgs'){
+            $weight = $request->input('kgs');
+        }
+        else{
+            $weight = $request->input('lbs') * 2.205;
+        }
+
+        $profession_id = Profession::where('name', $request->input('profession'))->pluck('id')->first();
+        $skin_type_id  = Skin_type::where('name', $request->input('skin_type'))->pluck('id')->first();
+        $climate_id    = Climate::where('name', $request->input('climate'))->pluck('id')->first();
+        $season_id     = Season::where('name', $request->input('season'))->pluck('id')->first();
+
+        $location = Helper::current_location();
+
+        $store_profile = (object) [
+            'gender'            =>      $request->input('gender'),
+            'dob'               =>      $request->input('dob'),
+            'profession'        =>      $request->input('profession'),
+            'skin_type'         =>      $request->input('skin_type'),
+            'sweat'             =>      $request->input('sweat'),
+            'height'            =>      $height,
+            'weight'            =>      $weight,
+            'climate'           =>      $request->input('climate'),
+            'season'            =>      $request->input('season'),
+            'location_id'       =>      $location->id,
+        ];
+
+        session(['store_profile'=> $store_profile]);
+
+        DB::transaction(function () use (
+            $request, $height, $weight,
+            $profession_id, $skin_type_id, $climate_id, $season_id) {
+            
+            $new                        =       new Store_Customer_Feature_Log();
+            
+            $new->gender                =       $request->input('gender');
+            $new->dob                   =       $request->input('dob');
+            $new->profession_id         =       $profession_id;
+            $new->skin_type_id          =       $skin_type_id;
+            $new->sweat                 =       $request->input('sweat');
+            $new->height                =       $height;
+            $new->weight                =       $weight;
+            $new->climate_id            =       $climate_id;
+            $new->season_id             =       $season_id;
+
+            $new->save();
+        });
+        
+        // Get first from stock
+        $frag_id = Store_Stock::where('store_id', Store::where('users_id', request()->user()->id)->first()->id)
+        ->where('available', TRUE)
+        ->first()->id;
+
+        // Return
+        return redirect('/store_fragrance/'.$frag_id);
+    }
+
 
     // Show Fragrance Review
     public function show_fragrance($id)
     {
+        if(Store_Controller::is_empty_stock()){
+            return redirect('/store_home')->with('error', 'Stock is empty. Add Fragrances to Stock first.');
+        }
+
         $fragrance = Fragrance::find($id);
 
         if(is_null($fragrance)){
@@ -78,18 +283,7 @@ class Store_Controller extends Controller
         ->orderBy('intensity', 'desc')
         ->get();
 
-        // For Brand Ambassadors
-        $allow_edit = FALSE;
-
-        if (Auth::check()) {
-        $logged_in = TRUE;
         // If the user is Brand Ambassdor. And if the BA is of this brand.
-        if(request()->user()->hasRole(['brand_ambassador', 'premium_brand_ambassador'])){
-            $ambassador = Brand_Ambassador_Profile::where('users_id', request()->user()->id)->first();
-            if($ambassador->brand_id == $fragrance->brand_id){
-            $allow_edit = TRUE;
-            }
-        }
 
             // If user with complete details, then calculate fragrance suitability, sustainability and longevity
             if(request()->user()->hasRole(['user', 'genie_user', 'premium_user'])){
@@ -109,6 +303,10 @@ class Store_Controller extends Controller
                 $fragrance->currency = $frag_profile->currency;
             }
 
+            $frag_profile = session('store_profile');
+            // var_dump($store_profile); return;
+            // var_dump($frag_profile); return;
+            
             $weather_data_json = Helper::get_weather_data($frag_profile->location_id);
 
             // var_dump($weather_data_json->successful());return;
@@ -296,17 +494,17 @@ class Store_Controller extends Controller
                 'condition' => NULL,
                 'weight'    => NULL
                 ];
-                if(strcmp($frag_profile->skin, "Very Oily") == 0){
+                if(strcmp($frag_profile->skin_type, "Very Oily") == 0){
                 $longevity *= 1.2;
                 $skin_weight->condition = "Very Oily";
                 $skin_weight->weight = 1.2;
                 }
-                else if(strcmp($frag_profile->skin, "Oily") == 0){
+                else if(strcmp($frag_profile->skin_type, "Oily") == 0){
                 $longevity *= 1.1;
                 $skin_weight->condition = "Oily";
                 $skin_weight->weight = 1.1;
                 }
-                else if(strcmp($frag_profile->skin, "Dry & Moisturized") == 0){
+                else if(strcmp($frag_profile->skin_type, "Dry & Moisturized") == 0){
                 $longevity *= 0.9;
                 $skin_weight->condition = "Dry & Moisturized";
                 $skin_weight->weight = 0.9;
@@ -337,11 +535,6 @@ class Store_Controller extends Controller
 
             // $weights =  json_encode($weights);
             }
-        }
-        else{
-        // $logged_in = FALSE;
-        $user_gender = $weights = $longevity = $suitability = $sustainability = NULL;
-        }
 
         return view('store.fragrance',[
             'user_gender'       => $user_gender,
@@ -350,7 +543,6 @@ class Store_Controller extends Controller
             'sillage'           => $sillage,
             'accords'           => $accords,
             'notes'             => $notes,
-            'allow_edit'        => $allow_edit,
             'longevity'         => $longevity,
             'suitability'       => $suitability,
             'sustainability'    => $sustainability,
@@ -359,27 +551,64 @@ class Store_Controller extends Controller
     }
 
 
+    // Empty Stock
+    public function is_empty_stock()
+    {
+        // If the stock is empty, don't let them go to profile.
+        
+        $frag_id = Store_Stock::where('store_id', Store::where('users_id', request()->user()->id)->first()->id)
+        ->where('available', TRUE)
+        ->first()->id;
+
+        if($frag_id) {
+            // Empty
+            return FALSE;
+        }
+        else {
+            return TRUE;
+        }
+    }
+
+    public function empty_stock()
+    {
+        return redirect('/store_home');
+    }
+
+
     // Stock Suitability
-    public function stock_suitability(){
-        // 
+    public function stock_suitability()
+    {
+        $store_helper = new Store_Helper();
+        $fragrances = $store_helper->get_store_stock_fragrances();
+
+        $fragrance_review_helper = new Fragrance_Review_Helper();
+        
+        for($i = 0 ; $i < $fragrances->count() ; $i++) {
+            $fragrances[$i]->suitability = $fragrance_review_helper->get_suitability($fragrances[$i]->id);
+            
+            // For debugging
+            // Helper::var_dump_readable($fragrances[$i]->suitability); return;
+        }
+
+        return view('store.stock_suitability',[
+            'fragrances'   =>  $fragrances,
+        ]);
     }
 
 
     // Stock
-    public function show_stock() {
-
-        $stock = Store_Stock::where('store_id', Store::find(request()->user()->id)->id)
-        ->where('available', TRUE)
-        ->select('id', 'fragrance_brand_name', 'fragrance_name')
-        ->orderBy('fragrance_brand_name')
-        ->get();
-
+    public function show_stock()
+    {
+        $stock = new Store_Helper();
+        $stock = $stock->get_store_stock_names();
+        
         return view('store.stock',[
             'stock'         =>  $stock,
         ]);
     }
 
-    public function add_to_stock_view() {
+    public function add_to_stock_view()
+    {
         $brands      = Fragrance_Brand::pluck('name');
         $fragrances  = Fragrance::pluck('name');
       

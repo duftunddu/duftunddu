@@ -39,7 +39,7 @@
                     {{-- Total Fragrances --}}
                     <div class="form-group row mb-0">
                         <div class="center">
-                            <h5>Total Fragrances: {{__($no_of_f)}}</h5>
+                            <h5>Total Fragrances: {{__($fragrances_count)}}</h5>
                         </div>
                     </div><br>
 

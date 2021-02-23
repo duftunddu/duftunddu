@@ -112,8 +112,8 @@ class Helper {
         // get weather data
         // https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
         // $weather_data_json  = Http::get("https://api.openweathermap.org/data/2.5/onecall?lat={$location->latitude}&lon={$location->longitude}&units=imperial&exclude=current,minutely,hourly,alerts&appid=7120811d6e66b35f6be4b030be29c4d3");   
-        $weather_data_json=Http::get("https://api.openweathermap.org/data/2.5/onecall?lat={$location->latitude}&lon={$location->longitude}&units=imperial&exclude=current,minutely,alerts&appid=7120811d6e66b35f6be4b030be29c4d3");
-        $weather_data=json_decode($weather_data_json);
+        $weather_data_json=  Http::get("https://api.openweathermap.org/data/2.5/onecall?lat={$location->latitude}&lon={$location->longitude}&units=imperial&exclude=current,minutely,alerts&appid=7120811d6e66b35f6be4b030be29c4d3");
+        $weather_data = json_decode($weather_data_json);
 
         // store in session
         session(['weather'=> $weather_data]);
@@ -232,7 +232,8 @@ class Helper {
         return $weather_average;
     }
 
-
+    
+    
     public function fragrance_json() {
 
         $obj=(object) [ 'avg_temp'=>$weights->avg_temp,
