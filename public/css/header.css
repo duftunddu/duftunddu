@@ -55,6 +55,26 @@ body {
     background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 650, from(#101820FF), to(#fff));
 }
 
+/* Header Icons */
+.header-icon {
+    min-width: 23px;
+    width: 23px;
+    max-width: 23px;
+    display: inline-block;
+}
+
+.fa-mobile-alt {
+    padding-left: 3px;
+}
+
+.fa-ad {
+    padding-left: 2px;
+}
+
+.fa-copyright {
+    padding-left: 1px;
+}
+
 /* body{
     font-family: 'Poppins', sans-serif;
 	font-size: 16px;

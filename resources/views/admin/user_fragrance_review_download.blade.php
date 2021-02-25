@@ -4,20 +4,19 @@
 <table class="table table-striped">
   <thead>
     <th>ID</th>
-    <th>review Name</th>
+    <th>Name</th>
     <th>Series</th>
     <th>Lead Actor</th>
     <th>Weather Description</th>
   </thead>
   <tbody>
-    @foreach($reviews as $review)
+    @foreach($all as $one)
     <tr>
-        <td>{{$review->id}}</td>
-        <td>{{$review->longevity}}</td>
-        <td>{{$review->suitability}}</td>
-        <td>{{$review->sustainability}}</td>
-        <td>{{$review->weather_description}}</td>
-        {{-- <td><a href="{{action('DisneyplusController@export')}}">Export</a></td> --}}
+        <td>{{$one->id}}</td>
+        <td>{{$one->longevity}}</td>
+        <td>{{$one->suitability}}</td>
+        <td>{{$one->sustainability}}</td>
+        <td>{{$one->weather_description}}</td>
     </tr>
     @endforeach
   </tbody>

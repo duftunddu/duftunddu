@@ -287,16 +287,16 @@ Route::middleware(['role:admin'])->group(function () {
 
 
     // Research
-    Route::get('/research_proposal', function () {
-        return view('research.proposal');
-    });
+    // Route::get('/research_proposal', function () {
+    //     return view('research.proposal');
+    // });
     // Route::get('/fragrance_review_home', 'Research_Controller@index');
     
     Route::get('user_fragrance_review_download', 'Admin_Controller@user_fragrance_review_show');
     Route::get('user_fragrance_review/download', 'Admin_Controller@user_fragrance_review_export');
     // End of Research
   
-
+    
     // Stores  Panel
     Route::get('/store_panel', 'Admin_Controller@store_panel');
     Route::get('/store/{store_type}/{id}/{action}', 'Admin_Controller@store_panel_response');

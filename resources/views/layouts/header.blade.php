@@ -6,6 +6,12 @@
 
 <link href="{{ asset('css/header.css') }}" rel="stylesheet">
 
+{{-- For Search Icon In Header --}}
+{{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet"/> --}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/fontawesome.min.css" defer>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/solid.min.css" defer>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/regular.min.css" defer>
+
 <body class="hero-anime">
 
     <div class="navigation-wrap bg-light start-header start-style">
@@ -32,8 +38,8 @@
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" 
                                         aria-expanded="false">Home</a>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="{{ url('/search_engine') }}">Search Engine</a>
-                                        <a class="dropdown-item" href="{{ url('/about_us') }}">About Us</a>
+                                        <a class="dropdown-item" href="{{ url('/search_engine') }}"><span class="header-icon"><i class="fas fa-search"></i></span>Search Engine</a>
+                                        <a class="dropdown-item" href="{{ url('/about_us') }}"><span class="header-icon"></i></span>About Us</a>
                                     </div>
                                 </li>
 
@@ -45,25 +51,25 @@
                                         
                                         {{-- Dashboards --}}
                                         @hasrole('brand_ambassador')
-                                        <a class="dropdown-item" href="{{ url('/ambassador_home') }}">Brand Dashboard</a>
+                                        <a class="dropdown-item" href="{{ url('/ambassador_home') }}"><span class="header-icon"><i class="far fa-copyright"></i></span>Brand Dashboard</a>
                                         @endhasrole
                                         @hasrole('store_owner')
-                                        <a class="dropdown-item" href="{{ url('/store_home') }}">Shop Dashboard</a>
+                                        <a class="dropdown-item" href="{{ url('/store_home') }}"><span class="header-icon"><i class="fas fa-store"></i></span>Shop Dashboard</a>
                                         @endhasrole
                                         @hasrole('webstore_owner')
-                                        <a class="dropdown-item" href="{{ url('/webstore_home') }}">Online Store Dashboard</a>
+                                        <a class="dropdown-item" href="{{ url('/webstore_home') }}"><span class="header-icon"><i class="fas fa-mobile-alt"></i></span>Online Store Dashboard</a>
                                         @endhasrole
 
                                         {{-- Application Status --}}
                                         @hasrole('new_brand_ambassador')
-                                        <a class="dropdown-item" href="{{ url('/brand_entry') }}">Add Brand</a>
-                                        <a class="dropdown-item" href="{{ url('/brand_ambassador_application_status') }}">Brand Application Status</a>
+                                        <a class="dropdown-item" href="{{ url('/brand_entry') }}"><span class="header-icon"><i class="far fa-copyright"></i></span>Add Brand</a>
+                                        <a class="dropdown-item" href="{{ url('/brand_ambassador_application_status') }}"><span class="header-icon"><i class="far fa-copyright"></i></span>Brand Application Status</a>
                                         @endhasrole
                                         @hasrole('new_store_owner')
-                                        <a class="dropdown-item" href="{{ url('/store_application_status') }}">Shop Application Status</a>
+                                        <a class="dropdown-item" href="{{ url('/store_application_status') }}"><span class="header-icon"><i class="fas fa-store"></i></span>Shop Application Status</a>
                                         @endhasrole
                                         @hasrole('new_webstore_owner')
-                                        <a class="dropdown-item" href="{{ url('/webstore_application_status') }}">Online Store Application Status</a>
+                                        <a class="dropdown-item" href="{{ url('/webstore_application_status') }}"><span class="header-icon"><i class="fas fa-mobile-alt"></i></span>Online Store Application Status</a>
                                         @endhasrole
 
                                         {{-- Services Home --}}
@@ -73,27 +79,27 @@
                                         
                                         {{-- Services list if not subscribed to any  --}}
                                         @unlessrole('service_user')
-                                        <a class="dropdown-item" href="{{ url('/brand_ambassador_proposal') }}">For Brands</a>
-                                        <a class="dropdown-item" href="{{ url('/store_proposal') }}">For Shops</a>
-                                        <a class="dropdown-item" href="{{ url('/webstore_proposal') }}">For Online Stores</a>
-                                        <a class="dropdown-item" href="{{ url('/services_register') }}">Register Service</a>
+                                        <a class="dropdown-item" href="{{ url('/brand_ambassador_proposal') }}"><span class="header-icon"><i class="far fa-copyright"></i></span>For Brands</a>
+                                        <a class="dropdown-item" href="{{ url('/store_proposal') }}"><span class="header-icon"><i class="fas fa-store"></i></span>For Shops</a>
+                                        <a class="dropdown-item" href="{{ url('/webstore_proposal') }}"><span class="header-icon"><i class="fas fa-mobile-alt"></i></span>For Online Stores</a>
+                                        <a class="dropdown-item" href="{{ url('/services_register') }}"><span class="header-icon"><i class="far fa-handshake"></i></span>Register Your Service</a>
                                         @endunlessrole
                                         
-                                        <a class="dropdown-item" href="{{ url('/advertise_proposal') }}">Advertise</a>
+                                        <a class="dropdown-item" href="{{ url('/advertise_proposal') }}"><span class="header-icon"><i class="fas fa-ad"></i></span>Advertise</a>
                                         {{-- <a class="dropdown-item" href="#">Premium Features</a> --}}
 
                                     </div>
                                 </li>
 
                                 {{-- Participate --}}
-                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                {{-- <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
                                         role="button" aria-haspopup="true" aria-expanded="false">Participate</a>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="#">Join Us</a>
                                         <a class="dropdown-item" href="#">Research</a>
                                     </div>
-                                </li>
+                                </li> --}}
 
                                 {{-- Insights --}}
                                 {{-- <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
@@ -142,7 +148,7 @@
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        {{ Auth::user()->name }} <span class="caret"></span>
+                                        <i class="far fa-user-circle"></i> {{ Auth::user()->name }} <span class="caret"></span>
                                     </a>
 
                                     {{-- <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown"> --}}

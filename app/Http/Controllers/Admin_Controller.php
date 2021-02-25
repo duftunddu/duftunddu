@@ -18,9 +18,9 @@ use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-// use Excel;
 use Carbon\Carbon;
 use App\Helper\Helper;
+use App\Helper\Fragrance_Review_Helper;
 
 class Admin_Controller extends Controller
 {
@@ -46,28 +46,27 @@ class Admin_Controller extends Controller
     }
 
 
-    // Research
+    // Exports
     public function user_fragrance_review_show()
     {
+        $fragrance_review_helper = new Fragrance_Review_Helper();
+        $all = $fragrance_review_helper->get_fragrance_review_data_preview();
+        
+        $all = $all->take(1);
+
+        // For debugging
+        // Helper::var_dump_readable($all); return;
+        
         return view('admin.user_fragrance_review_download',[
-            'reviews' => User_Fragrance_Review::all()
+            'all'       =>      $all,
         ]);
     }
-    // End of Research
 
-
-    // Exports
+    
     public function user_fragrance_review_export()
     {
         return Excel::download(new User_Fragrance_Reviews_Data, 'user_fragrance_review.csv');
-        // return Excel::download(new DisneyplusExport, 'disney.xlsx');
-        // return Excel::create('Filename', function($excel) {
-
-        // })->download('csv');
-        
-        // return view('admin.user_fragrance_review_export',[
-        //     'reviews' => User_Fragrance_Review::all()
-        // ]);
+        return redirect()->back();
     }
     // End of Exports
 

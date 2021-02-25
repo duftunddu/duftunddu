@@ -2,6 +2,11 @@ h5 {
     display: inline;
 }
 
+.center {
+    display: block;
+    margin: auto;
+}
+
 @media (max-width: 500px) {
     h4 {
         font-size: 1.35rem !important;

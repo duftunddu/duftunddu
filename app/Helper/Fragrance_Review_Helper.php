@@ -1,37 +1,15 @@
 <?php namespace App\Helper;
 
 use App\Fragrance_Accord;
+use App\User_Fragrance_Review;
 
 class Fragrance_Review_Helper {
 
     public function __construct() {
-
-        // $this->weather_data = $weather_data;
-
-        // // Sum of Weekly Variables
-        // $sum_temp = 0;
-        // $sum_hum  = 0;
-
-        // for ($i = 0; $i < 8; $i++){
-        //     $sum_temp += $this->weather_data['daily'][$i]['temp']['day'];
-        //     $sum_hum  += $this->weather_data['daily'][$i]['humidity'];
-        // }
-
-        // // Average Temperature
-        // $this->avg_temp = $sum_temp/8;
-
-        // // Average Humidity
-        // $this->avg_hum = $sum_hum/8;
-
-        // return get_suitability();
-
-
-        // Initializing Weights
-        // Strength of Fragrance (Experimental)
-        // $this->strength_of_fragrance = $notes->pluck('intensity')->take(5)->sum()/5;
-        // $this->suitability = 100;
+        // 
     }
     
+    // Get Accords of Fragrance
     public function get_accords_of_fragrance_array ($fragrance_id)
     {
         $accords = Fragrance_Accord::where('fragrance_id', $fragrance_id)
@@ -41,7 +19,11 @@ class Fragrance_Review_Helper {
 
         return $accords;
     }
-    public function get_longevity(){
+    
+
+    // Get Review
+    public function get_longevity()
+    {
       // 
     }
 
@@ -74,6 +56,18 @@ class Fragrance_Review_Helper {
         return $suitability;
     }
 
+    public function get_sustainability()
+    {
+        // 
+    }
+
+    public function get_indoor_outdoor()
+    {
+        // 
+    }
+    
+    
+    // Get Review Array
     public function get_suitability_array($store_id){
         
         // Weather: Cold weather/region holds stronger, lusher floral notes in check, which is why your tropical perfumes will smell all wrong during winter or autumn. Conversely, lighter scents work better in summer and spring.
@@ -101,208 +95,161 @@ class Fragrance_Review_Helper {
         return $suitability;
     }
 
-    public function get_sustainability(){
-        // 
+
+
+    public function get_fragrance_review_data_fields()
+    {
+        $arr = [
+            // Table: User Fragrance Review
+            'user_fragrance_review.id as ufr_id',
+            'fba_location.country_name as fba_country_name',
+            'fba_location.time_zone as fba_time_zone',
+            'user_fragrance_review.longevity as longevity',
+            'user_fragrance_review.suitability as suitability',
+            'user_fragrance_review.sustainability as sustainability',
+            'user_fragrance_review.apply_time as apply_time',
+            'user_fragrance_review.wear_off_time as wear_off_time',
+            'user_fragrance_review.indoor_time_percentage as indoor_time_percentage',
+            'user_fragrance_review.number_of_sprays as number_of_sprays',
+            'user_fragrance_review.projection as projection',
+            'user_fragrance_review.sillage as sillage',
+            'user_fragrance_review.like as like',
+            'user_fragrance_review.temp_avg as temp_avg',
+            'user_fragrance_review.hum_avg as hum_avg',
+            'user_fragrance_review.dew_point_avg as dew_point_avg',
+            'user_fragrance_review.uv_index_avg as uv_index_avg',
+            'user_fragrance_review.temp_feels_like_avg as temp_feels_like_avg',
+            'user_fragrance_review.atm_pressure_avg as atm_pressure_avg',
+            'user_fragrance_review.clouds_avg as clouds_avg',
+            'user_fragrance_review.visibility_avg as visibility_avg',
+            'user_fragrance_review.wind_speed_avg as wind_speed_avg',
+            'user_fragrance_review.rain_avg as rain_avg',
+            'user_fragrance_review.snow_avg as snow_avg',
+            'user_fragrance_review.weather_main as weather_main',
+            'user_fragrance_review.weather_description as weather_description',
+
+
+            // Table: Users
+            'users.id as users_id',
+
+
+            // Table: Fragrance Profile
+            'fragrance_profile.id as fp_id',
+            'fragrance_profile.user_check as user_check',
+            'fragrance_profile.gender as gender',
+            'fragrance_profile.dob as dob',
+            'fragrance_profile.sweat as sweat',
+            'fragrance_profile.height as height',
+            'fragrance_profile.weight as weight',
+
+
+            // Fragrance Profile Dependencies
+            'profession.name as profession',
+            'skin_type.name as skin_type',
+            'climate.name as climate',
+            'season.name as season',
+
+            'fp_location.country_name as fp_country',
+            'fp_location.time_zone as fp_time_zone',
+
+
+            // Table: Fragrance
+            'fragrance.id as fragrance_id',
+            'fragrance.name as fragrance',
+            'fragrance.gender as fragrance_gender',
+            'fragrance.discontinued as fragrance_discontinued',
+            // 'fragrance.sillage as sillage',
+            // 'fragrance.avg_hum as avg_hum',
+            
+            // Fragrance Types
+            'fragrance_type.name as fragrance_type',
+
+            // Table: Accords & Ingredients
+            'accord.name as accord',
+            'ingredient.name as ingredient',
+
+            
+            // Table: Brand
+            'fragrance_brand.id as brand_id',
+            'fragrance_brand.name as brand',
+            'fragrance_brand.discontinued as brand_discontinued',
+
+            // Brand Tier
+            'brand_tier.name as brand_tier',
+            
+            // Bran Origin
+            'bo_location.country_name as bo_location_country',
+            'bo_location.time_zone as bo_location_zone',
+
+            // Brand Outlets
+            'fba_location.country_name as fba_location_country',
+            'fba_location.time_zone as fba_location_zone',
+        ];
+
+        return $arr;
     }
 
-    public function get_indoor_outdoor(){
-        // Perfume Oil Concentration in %
-        // Pure Perfume/Parfum: 15-30 | 100
-        // Eau de Parfum (EDP): 15-20 | 90
-        // Eau de Toilette (EDT): 5-15 | 80
-        // Eau de Cologne: 2-4 | 70
-        // Eau Fraiche: 1-3 | 60
+    public function get_fragrance_review_data_fields_export()
+    {
+        $fragrance_review_helper = new Fragrance_Review_Helper();
+        $fields = $fragrance_review_helper->get_fragrance_review_data_fields();
 
-        $fragrance_type_weight = (object) [
-            'condition' => NULL,
-            'weight'    => NULL
-        ];
-        if(strcmp($type->name, "Parfum (Perfume)") == 0){
-          $longevity = 100;
-          $fragrance_type_weight->condition = "Parfum (Perfume)";
-        }
-        else if(strcmp($type->name, "Eau de Parfum") == 0){
-          $longevity = 90;
-          $fragrance_type_weight->condition = "Eau de Parfum";
-        }
-        else if(strcmp($type->name, "Eau de Toilette") == 0){
-          $longevity = 80;
-          $fragrance_type_weight->condition = "Eau de Toilette";
-        }
-        else if(strcmp($type->name, "Eau de Cologne") == 0){
-          $longevity = 70;
-          $fragrance_type_weight->condition = "Eau de Cologne";
-        }
-        else if(strcmp($type->name, "Eau Fraiche") == 0){
-          $longevity = 60;
-          $fragrance_type_weight->condition = "Eau Fraiche";
-        }
-        else{
-          $longevity = 80;
-          $fragrance_type_weight->condition = "Attar";
-        }
-        $fragrance_type_weight->weight = $longevity;
-        
-        // Humidity: Makes you sweat more.
-        $humidity_weight = (object) [
-          'condition' => NULL,
-          'weight'    => NULL
-        ];
-        if($avg_hum > 70){
-          $frag_profile->sweat *= 1.3;
-          $humidity_weight->condition = 70;
-          $humidity_weight->weight = 1.3;
-        }
-        else if($avg_hum > 55){
-          $frag_profile->sweat *= 1.2;
-          $humidity_weight->condition = 55;
-          $humidity_weight->weight = 1.2;
+        for($i = 0; $i < count($fields); $i++){
+            if(str_contains($fields[$i], ' ')) {
+                $fields[$i] = strrchr($fields[$i], ' ');
+                $fields[$i] = trim($fields[$i]);
+            }
         }
 
-        // Heat: Volatilizes essences faster.
-        $sustainability_heat_weight = (object) [
-          'condition' => NULL,
-          'weight'    => NULL
-        ];
-        if($avg_temp > 82){  
-          $sustainability *= 0.8;
-          $sustainability_heat_weight->condition = 82;
-          $sustainability_heat_weight->weight = 0.8;
-        }
-        else if($avg_temp > 71.9){
-          $sustainability *= 0.9;
-          $sustainability_heat_weight->condition = 71.9;
-          $sustainability_heat_weight->weight = 0.9;
-        }
-
-        // Weather: Cold weather/region holds stronger, lusher floral notes in check, which is why your tropical perfumes will smell all wrong during winter or autumn. Conversely, lighter scents work better in summer and spring.
-        $warm_cold_weight = (object) [
-          'condition_1' => NULL,
-          'condition_2' => NULL,
-          'weight'      => NULL
-        ];
-        if($avg_temp > 65){
-          if( in_array("Floral", $accords) ){              
-            $suitability *= 1.1;
-            $warm_cold_weight->condition_1 = 65;
-            $warm_cold_weight->condition_2 = "Floral";
-            $warm_cold_weight->weight      = 1.1;
-          }
-        }
-        else{
-          if( in_array("Tropical", $accords) ){
-            $suitability *= 1.1;
-            $warm_cold_weight->condition_1 = NULL;
-            $warm_cold_weight->condition_2 = "Tropical";
-            $warm_cold_weight->weight      = 1.1;
-          }
-        }
-
-        // Sweat: Increases the strength of warm fragrances.
-        $sweat_weight = (object) [
-          'condition_1' => NULL,
-          'condition_2' => NULL,
-          'weight'      => NULL
-        ];
-        if($frag_profile->sweat > 50){
-          $sustainability *= 0.95;
-          $sweat_weight->condition_1 = 0.95;
-          
-          if(in_array("Warm", $accords)){
-            $strength_of_fragrance *= 1.15;
-
-            $sweat_weight->condition_2 = "Warm";
-            $sweat_weight->weight = 1.15;
-          }
-        }
-        
-        // BMI:
-        // Multiply your weight in pounds by 703, Divide this number by your height in inches, Divide again by your height in inches.
-        // $bmi = ($frag_profile->weight*2.205)/pow($frag_profile->height,2);
-        // Google:
-        // Body Mass Index is a simple calculation using a person's height and weight. The formula is BMI = kg/m2
-        // where kg is a person's weight in kilograms and m2 is their height in metres squared. A BMI of 25.0 or more is overweight, while the healthy range is 18.5 to 24.9.
-        $bmi = ($frag_profile->weight)/pow($frag_profile->height/39.37,2);
-
-        // A BMI (Body Mass Index) under 18 is slim, 20 to 25 is normal, 25 to 30 is overweight, and greater than 30 is obese.
-        // Higher bmi requires more scent.
-        $bmi_weight = (object) [
-          'condition' => NULL,
-          'weight'    => NULL
-        ];
-        if($bmi > 30){
-          $strength_of_fragrance *= 0.8;
-          $bmi_weight->condition = 30;
-          $bmi_weight->weight = 0.8;
-        }
-        else if($bmi > 25){
-          $strength_of_fragrance *= 0.9;
-          $bmi_weight->condition = 25;
-          $bmi_weight->weight = 0.9;
-        }
-        else if($bmi < 19){
-          $strength_of_fragrance *= 1.1;
-          $bmi_weight->condition = 19;
-          $bmi_weight->weight = 1.1;
-        }
-
-        // Sillage
-        if($fragrance->avg_hum == 0){
-          $sillage->value =  10;
-        }
-        else{
-          $sillage->value = ( (($strength_of_fragrance*10) / $fragrance->avg_hum) + ($fragrance->sillage / $fragrance->avg_hum) ) / 2;
-          $sillage->value = $sillage->value * $avg_hum;
-        }
-        if($sillage->value>100){
-          $sillage->value = 100;
-        }
-        // var_dump($strength_of_fragrance, $fragrance->avg_hum, $fragrance->sillage, $avg_hum);return;
-       
-        // Dryness of Skin: If you have dry skin, your fragrance will never be able to last as long as you want it to.
-        // The reason? There’s nothing for the fragrance to hang on to, thus making it evaporate even faster.
-        $skin_weight = (object) [
-          'condition' => NULL,
-          'weight'    => NULL
-        ];
-        if(strcmp($frag_profile->skin, "Very Oily") == 0){
-          $longevity *= 1.2;
-          $skin_weight->condition = "Very Oily";
-          $skin_weight->weight = 1.2;
-        }
-        else if(strcmp($frag_profile->skin, "Oily") == 0){
-          $longevity *= 1.1;
-          $skin_weight->condition = "Oily";
-          $skin_weight->weight = 1.1;
-        }
-        else if(strcmp($frag_profile->skin, "Dry & Moisturized") == 0){
-          $longevity *= 0.9;
-          $skin_weight->condition = "Dry & Moisturized";
-          $skin_weight->weight = 0.9;
-        }
-        else{
-          $longevity *= 0.8;
-          $skin_weight->condition = NULL;
-          $skin_weight->weight = 0.8;
-        }
-      
-        // To save the weights to improve the model.
-        $weights = (object) [
-            'avg_temp'                    => $avg_temp,
-            'avg_hum'                     => $avg_hum,
-            'bmi'                         => $bmi,
-            'fragrance_type_weight'       => $fragrance_type_weight,
-            'humidity_weight'             => $humidity_weight,
-            'sustainability_heat_weight'  => $sustainability_heat_weight,
-            'warm_cold_weight'            => $warm_cold_weight,
-            'sweat_weight'                => $sweat_weight,
-            'bmi_weight'                  => $bmi_weight,
-            'skin_weight'                 => $skin_weight
-        ];
-
-        // $weights =  json_encode($weights);
-
+        return $fields;
     }
+
+
+    public function get_fragrance_review_data()
+    {
+        // Field names
+        $fragrance_review_helper = new Fragrance_Review_Helper();
+        $fields = $fragrance_review_helper->get_fragrance_review_data_fields();
+
+        // Calling data
+        $all = User_Fragrance_Review::join('location as ufr_location', 'ufr_location.id', 'user_fragrance_review.location_id')
+        ->join('users', 'users.id', 'user_fragrance_review.users_id')
+        ->join('fragrance_profile', 'fragrance_profile.users_id', 'users.id')
+        
+        ->join('profession', 'profession.id', 'fragrance_profile.profession_id')
+        ->join('skin_type', 'skin_type.id', 'fragrance_profile.skin_type_id')
+        ->join('location as fp_location', 'fp_location.id', 'fragrance_profile.location_id')
+        ->join('climate', 'climate.id', 'fragrance_profile.climate_id')
+        ->join('season', 'season.id', 'fragrance_profile.season_id')
+        
+        ->join('fragrance', 'fragrance.id', 'user_fragrance_review.fragrance_id')
+        ->join('fragrance_type', 'fragrance_type.id', 'fragrance.type_id')
+        
+        ->join('fragrance_ingredient', 'fragrance_ingredient.fragrance_id', 'fragrance.id')
+        ->join('fragrance_accord', 'fragrance_accord.fragrance_id', 'fragrance.id')
+        ->join('ingredient', 'ingredient.id', 'fragrance_ingredient.id')
+        ->join('accord', 'accord.id', 'fragrance_accord.id')
+
+        ->join('fragrance_brand', 'fragrance_brand.id', 'fragrance.brand_id')
+        ->join('brand_tier', 'brand_tier.id', 'fragrance_brand.tier_id')
+        ->join('location as bo_location', 'bo_location.id', 'fragrance_brand.origin_id')
+        
+        ->join('fragrance_brand_availability', 'fragrance_brand_availability.brand_id', 'fragrance_brand.id')
+        ->join('location as fba_location', 'fba_location.id', 'fragrance_brand_availability.location_id')
+        
+        ->select($fields)
+        ->get();
+
+        // Return
+        return $all;
+    }
+
+    public function get_fragrance_review_data_preview()
+    {
+        $fragrance_review_helper = new Fragrance_Review_Helper();
+        return $fragrance_review_helper->get_fragrance_review_data()->take(5);
+    }
+
 
     public function get_weights()
     {

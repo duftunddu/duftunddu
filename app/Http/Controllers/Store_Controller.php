@@ -590,6 +590,8 @@ class Store_Controller extends Controller
             // Helper::var_dump_readable($fragrances[$i]->suitability); return;
         }
 
+        $fragrances->sortByDesc('suitability');
+
         return view('store.stock_suitability',[
             'fragrances'   =>  $fragrances,
         ]);
