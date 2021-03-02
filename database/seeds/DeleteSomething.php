@@ -25,7 +25,7 @@ class DeleteSomething extends Seeder
         
         $user = User::where('email', 'umair.ali205@gmail.com')->first();
         $user->assignRole('moderator');
-        $user = User::where('email', 'sam_here@oultook.com')->first();
+        $user = User::where('email', 'sam_here@outlook.com')->first();
         $user->assignRole('moderator');
 
 
