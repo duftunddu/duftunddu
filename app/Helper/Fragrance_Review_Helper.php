@@ -1,5 +1,6 @@
 <?php namespace App\Helper;
 
+use App\Fragrance;
 use App\Fragrance_Accord;
 use App\User_Fragrance_Review;
 
@@ -20,6 +21,11 @@ class Fragrance_Review_Helper {
         return $accords;
     }
     
+    // Get Suitability of a Fragrance
+    public function get_suitability_from_fragrance ($fragrance_id)
+    {
+        return Fragrance::find($fragrance_id)->first()->suitability;
+    }
 
     // Get Review
     public function get_longevity()
@@ -29,6 +35,8 @@ class Fragrance_Review_Helper {
 
     public function get_suitability($fragrance_id)
     {
+        // Use the model here
+
         // Weather Data
         // Weather: Cold weather/region holds stronger, lusher floral notes in check, which is why your tropical perfumes will smell all wrong during winter or autumn. Conversely, lighter scents work better in summer and spring.
         $weather_data = new Helper();

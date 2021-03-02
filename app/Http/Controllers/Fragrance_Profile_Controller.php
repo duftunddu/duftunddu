@@ -73,7 +73,7 @@ class Fragrance_Profile_Controller extends Controller
             $request, [
             'gender'            =>  ['required', Rule::in(['Male', 'Female','Other'])],
             'dob'               => 'required',
-            'profession'        => 'required|exists:profession,name',
+            'profession'        => 'required',
             'skin_type'         => 'required|exists:skin_type,name',
             'sweat'             => 'required',
             'climate'           => 'required|exists:climate,name',
@@ -154,11 +154,11 @@ class Fragrance_Profile_Controller extends Controller
             $weight_unit = 'kgs';
         }
 
-        if (!$valid ) {
+        if ( !$valid ) {
             return redirect()
-                ->back()
-                ->withErrors($validator)
-                ->withInput();
+            ->back()
+            ->withErrors($validator)
+            ->withInput();
         }
 
         $user_check = 0;

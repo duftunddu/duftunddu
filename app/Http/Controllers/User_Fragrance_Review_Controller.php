@@ -1,13 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\User_Fragrance_Review;
 
 use App\Fragrance;
 use App\Fragrance_Brand;
+
 use Carbon\Carbon;
 use App\Helper\Helper;
-
-use App\User_Fragrance_Review;
+use App\Helper\Fragrance_Review_Helper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -88,11 +89,16 @@ class User_Fragrance_Review_Controller extends Controller
         $wear_off_time  = Carbon::parse($request->input('wear_off_time'));
 
         // Longevity
-        // TRUE for absolute value
+        // TRUE for absolute value, so no neagtives.
         $longevity = $wear_off_time->diffInMinutes($apply_time, TRUE);
 
         // Suitability
-        // Add Suitability 
+        // Add Suitability
+        $suitability = NULL; 
+        if($fragrance_id){
+            $fragrance_review_helper = new Fragrance_Review_Helper();
+            $suitability = $fragrance_review_helper->get_suitability_from_fragrance($fragrance_id);    
+        }
         
         // var_dump($suitability);return;
 
@@ -106,7 +112,7 @@ class User_Fragrance_Review_Controller extends Controller
 
         // Storing
         DB::transaction(function () use ($request, $location_id, $brand_id, $fragrance_id, 
-        $apply_time, $wear_off_time, $longevity, $sustainability, $weather_avg) {
+        $apply_time, $wear_off_time, $longevity, $suitability, $sustainability, $weather_avg) {
 
                 $new                    = new User_Fragrance_Review();
                 $new->users_id          = request()->user()->id;
@@ -127,7 +133,7 @@ class User_Fragrance_Review_Controller extends Controller
                 }
 
                 $new->longevity                 =   $longevity;
-                // $new->suitability               =   $suitability;
+                $new->suitability               =   $suitability;
                 $new->sustainability            =   $sustainability;
                 
                 $new->apply_time                =   $apply_time;
