@@ -27,7 +27,8 @@ class Helper {
         else {
             // if (App::environment('production')) {
             // The environment is not local ...
-            $process=new Process([ 'python3', 'python_scripts\unidecode_string.py',
+            // $process=new Process([ 'python3', 'python_scripts\unidecode_string.py',
+            $process=new Process([ 'python3', 'unidecode_string.py',
                 $name], null, [ 'PYTHONHASHSEED'=> 1, ]);
         }
 
