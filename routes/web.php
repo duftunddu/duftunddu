@@ -151,26 +151,12 @@ Route::middleware(['role:new_brand_ambassador|admin'])->group(function () {
 
 });
 
-// Moderator
-Route::middleware(['role:moderator|admin'])->group(function () {
-
-    // Unavailable Brands & Fragrances
-    Route::get('/unavailable_brands_fragrances_panel', "Unavailable_Brands_Fragrances_Controller@index");
-
-    // Add Brand
-    Route::get('/add_brand_mod/{brand_name}', 'Unavailable_Brands_Fragrances_Controller@add_brand_view');
-    Route::post('/add_brand_mod', 'Unavailable_Brands_Fragrances_Controller@store_brand');
-
-    // Add Fragrance
-    Route::get('/add_fragrance_mod/{fragrance_name}', 'Unavailable_Brands_Fragrances_Controller@add_fragrance_view');
-    Route::post('/add_fragrance_mod', 'Unavailable_Brands_Fragrances_Controller@store_fragrance');
-
-});
 
 // Services
 Route::middleware(['role:service_user|admin'])->group(function () {
     Route::get('/services_home', "Services_Controller@home");
 });
+
 
 // Application Status
 Route::middleware(['role:new_store_owner|new_webstore_owner|admin'])->group(function () {
@@ -179,6 +165,7 @@ Route::middleware(['role:new_store_owner|new_webstore_owner|admin'])->group(func
     Route::get('/webstore_application_status', "Webstore_Request_Controller@show");
 
 });
+
 
 
 // Store
@@ -209,6 +196,7 @@ Route::middleware(['role:store_owner|admin'])->group(function () {
     // Get Suitability of Stock
     Route::get('/stock_suitability', "Store_Controller@stock_suitability");
 });
+
 
 
 // Webstore
@@ -251,8 +239,33 @@ Route::middleware(['role:brand_ambassador|admin', 'verified'])->group(function (
 Route::get('/webstore_call/{key}/{brand_name}/{fragrance_name}', "Webstore_Controller@webstore_call");
 
 
+// Moderator
+Route::middleware(['role:moderator|admin'])->group(function () {
 
-// admin
+    // Moderator Links
+    Route::get('moderator_links', function () {
+        return view('moderator.links');
+    });
+
+
+    // Unavailable Brands & Fragrances
+    Route::get('/unavailable_brands_fragrances_panel', "Unavailable_Brands_Fragrances_Controller@index");
+
+    // Add Brand
+    Route::get('/add_brand_mod/{brand_name}', 'Unavailable_Brands_Fragrances_Controller@add_brand_view');
+    Route::post('/add_brand_mod', 'Unavailable_Brands_Fragrances_Controller@store_brand');
+
+    // Add Fragrance
+    Route::get('/add_fragrance_mod/{fragrance_name}', 'Unavailable_Brands_Fragrances_Controller@add_fragrance_view');
+    Route::post('/add_fragrance_mod', 'Unavailable_Brands_Fragrances_Controller@store_fragrance');
+
+    // Webstore Client
+    Route::get('/webstore_client', "Webstore_Controller@webstore_client");
+
+});
+
+
+// Admin
 Route::middleware(['role:admin'])->group(function () {
 
     // Add Moderator and Move to Moderator
@@ -261,21 +274,10 @@ Route::middleware(['role:admin'])->group(function () {
 
     Route::get('/new_model', "Webstore_Controller@new_model");
 
-    // Webstore
-    Route::get('/webstore_client', "Webstore_Controller@webstore_client");
-    
+    // Webstore    
     // Webstore API
     Route::get('/api_call', "Controller@api_call");
     // End of Webstore
-
-    
-    // Show all unavailable Brands & Fragrances from Resarch
-    Route::get('/api_call', "Controller@api_call");
-
-    // Add Fragrance
-    
-    // Add Brand
-
 
     
     // Ad
@@ -357,7 +359,7 @@ Route::middleware(['role:admin'])->group(function () {
     });
     
     Route::get('admin_links', function () {
-        return view('admin.all_links');
+        return view('admin.links');
     });
     
     Route::get('scroll', function () {

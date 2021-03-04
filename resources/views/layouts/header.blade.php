@@ -156,6 +156,10 @@
                                         @hasrole('admin')
                                             <a class="dropdown-item" href="{{ url('/admin_links') }}">Admin Links</a>
                                         @endhasrole
+                                        @hasrole('moderator')
+                                            <a class="dropdown-item" href="{{ url('/moderator_links') }}">Moderator Links</a>
+                                        @endhasrole
+                                        
                                         <a class="dropdown-item" href="{{ url('/home') }}">Dashboard</a>
                                         {{-- <a class="dropdown-item" href="#">Premium Features</a> --}}
 
