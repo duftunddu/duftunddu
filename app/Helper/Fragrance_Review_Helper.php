@@ -35,6 +35,11 @@ class Fragrance_Review_Helper {
 
     public function get_suitability($fragrance_id)
     {
+
+        // $fragrance = Fragrance::find($fragrance_id)
+        // ->join(); 
+        // return $fragrance;
+
         // Use the model here
 
         // Weather Data
@@ -64,9 +69,13 @@ class Fragrance_Review_Helper {
         return $suitability;
     }
 
-    public function get_sustainability()
+    public function get_sustainability($fragrance_id)
     {
-        // 
+        $fragrance_review_helper = new Fragrance_Review_Helper(); 
+
+        $sustainability = $fragrance_review_helper->get_fragrance_review_data($fragrance_id);
+
+        return $sustainability;
     }
 
     public function get_indoor_outdoor()
@@ -101,6 +110,96 @@ class Fragrance_Review_Helper {
         }
 
         return $suitability;
+    }
+
+
+    public function get_data_fields_for_sustainability()
+    {
+        $arr = [
+            // Table: User Fragrance Review
+            'user_fragrance_review.id as ufr_id',
+            'fba_location.country_name as fba_country_name',
+            'fba_location.time_zone as fba_time_zone',
+            'user_fragrance_review.longevity as longevity',
+            // 'user_fragrance_review.suitability as suitability',
+            // 'user_fragrance_review.sustainability as sustainability',
+            'user_fragrance_review.apply_time as apply_time',
+            'user_fragrance_review.wear_off_time as wear_off_time',
+            'user_fragrance_review.indoor_time_percentage as indoor_time_percentage',
+            'user_fragrance_review.number_of_sprays as number_of_sprays',
+            'user_fragrance_review.projection as projection',
+            'user_fragrance_review.sillage as sillage',
+            'user_fragrance_review.like as like',
+            'user_fragrance_review.temp_avg as temp_avg',
+            'user_fragrance_review.hum_avg as hum_avg',
+            'user_fragrance_review.dew_point_avg as dew_point_avg',
+            'user_fragrance_review.uv_index_avg as uv_index_avg',
+            'user_fragrance_review.temp_feels_like_avg as temp_feels_like_avg',
+            'user_fragrance_review.atm_pressure_avg as atm_pressure_avg',
+            'user_fragrance_review.clouds_avg as clouds_avg',
+            'user_fragrance_review.visibility_avg as visibility_avg',
+            'user_fragrance_review.wind_speed_avg as wind_speed_avg',
+            'user_fragrance_review.rain_avg as rain_avg',
+            'user_fragrance_review.snow_avg as snow_avg',
+            'user_fragrance_review.weather_main as weather_main',
+            'user_fragrance_review.weather_description as weather_description',
+
+
+            // Table: Users
+            // 'users.id as users_id',
+
+
+            // Table: Fragrance Profile
+            // 'fragrance_profile.id as fp_id',
+
+            
+            // 'fp_location.country_name as fp_country',
+            // 'fp_location.time_zone as fp_time_zone',
+
+
+            // Table: Fragrance
+            'fragrance.id as fragrance_id',
+            // 'fragrance.name as fragrance',
+            // 'fragrance.gender as fragrance_gender',
+            // 'fragrance.discontinued as fragrance_discontinued',
+
+            // Fragrance Types
+            // 'fragrance_type.name as fragrance_type',
+
+            // Table: Accords & Ingredients
+            // 'accord.name as accord',
+            // 'ingredient.name as ingredient',
+        ];
+
+        return $arr;
+    }
+
+    public function get_data_for_sustainability($fragrance_id)
+    {
+        // Field names
+        $fragrance_review_helper = new Fragrance_Review_Helper();
+        $fields = $fragrance_review_helper->get_fragrance_review_data_fields();
+
+        // Calling data
+        $all = User_Fragrance_Review::join('location as ufr_location', 'ufr_location.id', 'user_fragrance_review.location_id')
+        // $all = db('user_fragrance_review')::join('location as ufr_location', 'ufr_location.id', 'user_fragrance_review.location_id')
+        ->join('users', 'users.id', 'user_fragrance_review.users_id')
+        // ->join('fragrance_profile', 'fragrance_profile.users_id', 'users.id')
+        
+        // ->join('profession', 'profession.id', 'fragrance_profile.profession_id')
+        // ->join('skin_type', 'skin_type.id', 'fragrance_profile.skin_type_id')
+        // ->join('location as fp_location', 'fp_location.id', 'fragrance_profile.location_id')
+        // ->join('climate', 'climate.id', 'fragrance_profile.climate_id')
+        // ->join('season', 'season.id', 'fragrance_profile.season_id')
+        
+        ->join('fragrance', 'fragrance.id', 'user_fragrance_review.fragrance_id')
+        // ->join('fragrance_type', 'fragrance_type.id', 'fragrance.type_id')
+        ->where('fragrance.id', $fragrance_id)
+        ->select($fields)
+        ->get();
+
+        // Return
+        return $all;
     }
 
 

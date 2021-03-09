@@ -59,15 +59,16 @@ class Ingredient_Controller extends Controller
   public function store(Request $request)
   {
     $validatedData = $request->validate([
-      'accord_id' => 'required',
+    //   'accord_id' => 'required',
       'name'      => 'required|unique:ingredient',
     ]);
 
     DB::transaction(function () use ($request) {
     
       $new                = new Ingredient();
-      $new->name          = $request->input('accord_id');
+    //   $new->accord_id     = $request->input('accord_id');
       $new->name          = $request->input('name');
+    //   $new->link          = NULL;
       $new->created_by    = request()->user()->id;
       $new->save();
 

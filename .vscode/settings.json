@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "C:\\Anaconda3\\envs\\duft_und_du\\python.exe"
+    "python.pythonPath": "C:\\Anaconda3\\envs\\duft_und_du\\python.exe",
+    "python.formatting.provider": "black"
 }

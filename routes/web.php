@@ -242,7 +242,7 @@ Route::get('/webstore_call/{key}/{brand_name}/{fragrance_name}', "Webstore_Contr
 // Moderator
 Route::middleware(['role:moderator|admin'])->group(function () {
 
-    // Moderator Links
+    // All Moderator Links
     Route::get('moderator_links', function () {
         return view('moderator.links');
     });
@@ -262,6 +262,13 @@ Route::middleware(['role:moderator|admin'])->group(function () {
     // Webstore Client
     Route::get('/webstore_client', "Webstore_Controller@webstore_client");
 
+
+    // Accords & Notes
+    Route::get('/accord_entry', 'Accord_Controller@index');
+    Route::post('/accord_entry', 'Accord_Controller@store');
+
+    Route::get('/note_entry', 'Ingredient_Controller@index');
+    Route::post('/note_entry', 'Ingredient_Controller@store');
 });
 
 
@@ -333,11 +340,11 @@ Route::middleware(['role:admin'])->group(function () {
 
 
     // Accords & Notes
-    Route::get('accord_entry', 'Accord_Controller@index');
-    Route::post('accord_entry', 'Accord_Controller@store');
+    // Route::get('accord_entry', 'Accord_Controller@index');
+    // Route::post('accord_entry', 'Accord_Controller@store');
 
-    Route::get('note_entry', 'Ingredient_Controller@index');
-    Route::post('note_entry', 'Ingredient_Controller@store');
+    // Route::get('note_entry', 'Ingredient_Controller@index');
+    // Route::post('note_entry', 'Ingredient_Controller@store');
     // End of Accords & Notes
 
     Route::get('/brand_entry_admin', 'Fragrance_Brand_Controller@index');

@@ -21,7 +21,8 @@ class Helper {
 
         if (App::environment('local')) {
             // The environment is local
-            $process=new Process([ 'C:\Anaconda3\envs\duft_und_du\python.exe', 'python_scripts\unidecode_string.py',
+            // $process=new Process([ 'C:\Anaconda3\envs\duft_und_du\python.exe', 'python_scripts\unidecode_string.py',
+            $process=new Process([ 'C:\Anaconda3\envs\duft_und_du\python.exe', 'unidecode_string.py',
                 $name], null, [ 'PYTHONHASHSEED'=> 1, ]);
         }
         else {

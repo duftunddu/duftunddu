@@ -52,14 +52,14 @@ class Accord_Controller extends Controller {
     public function store(Request $request) {
 
         $validatedData = $request->validate([ 
-            'accord_familiy_id' => 'required',
+            // 'accord_familiy_id' => 'required',
             'name'              => 'required|unique:accord',
         ]);
 
         DB::transaction(function () use ($request) {
 
                 $new                = new Accord();
-                $new->name          = $request->input('accord_familiy_id');
+                // $new->name          = $request->input('accord_familiy_id');
                 $new->name          = $request->input('name');
                 $new->created_by    = request()->user()->id;
                 $new->save();

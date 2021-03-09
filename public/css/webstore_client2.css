@@ -9,15 +9,48 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    transition: 0.3s ease-in all;
+}
+
+.model {
+    width: 70%;
+    height: 70%;
+    top: 15%;
+    transition: 0.3s ease-in all;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
 }
 
 .model-content {
-    width: 70%;
-    height: 70%;
-    background-color: white;
+    flex: 2;
+}
+
+.model-hidden {
+    top: -100%;
+}
+
+.model-absolute {
+    position: absolute;
+}
+
+.model-overlay-hidden {
+    opacity: 0;
+}
+
+.model-overlay-none {
+    display: none;
+}
+
+.model-close {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    color: gray;
 }
 
 .model-content iframe {
     width: 100%;
     height: 100%;
+    background-color: white;
 }

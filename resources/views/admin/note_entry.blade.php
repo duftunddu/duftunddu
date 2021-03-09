@@ -18,11 +18,11 @@
                         @csrf
 
                         {{-- Accord --}}
-                        <div class="form-group row">
-                            <label for="accord_id" class="col-md-4 col-from-label text-md-right required">{{ __('Accord:')}}</label>
+                        {{-- <div class="form-group row">
+                            <label for="accord_id" class="col-md-4 col-from-label text-md-right">{{ __('Accord:')}}</label>
                             <div class="col-md-6">
                             
-                                <select id="accord_id" type="number" class="form-control @error('accord_id') is-invalid @enderror" name="accord_id" required>
+                                <select id="accord_id" type="number" class="form-control @error('accord_id') is-invalid @enderror" name="accord_id">
                                     <option value="" selected="selected" disabled="disabled">-- Select Accord --</option>
                                     
                                     @foreach($accords as $accord)
@@ -37,7 +37,7 @@
                                     </span>
                                 @enderror
                             </div>
-                        </div>
+                        </div> --}}
 
                         {{-- Name --}}
                         <div class="form-group row">

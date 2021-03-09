@@ -546,6 +546,7 @@ body.hero-anime #switch {
 
 .nav-item .dropdown-menu {
     transform: translate3d(0, 10px, 0);
+    background-color: #fcfaff !important;
     visibility: hidden;
     opacity: 0;
     max-height: 0;
@@ -568,7 +569,7 @@ body.hero-anime #switch {
     font-size: 13px;
     letter-spacing: 1px;
     color: #212121;
-    background-color: #fcfaff;
+    background-color: #fcfaff !important;
     border: none;
     border-radius: 3px;
     box-shadow: 0 5px 10px 0 rgba(138, 155, 165, 0.15);

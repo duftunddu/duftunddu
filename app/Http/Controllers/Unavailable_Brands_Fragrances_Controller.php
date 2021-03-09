@@ -17,6 +17,7 @@ use App\Location;
 
 use App\Fragrance_Type;
 use App\Brand_Tier;
+use App\Fragrance;
 use App\Fragrance_Brand;
 use App\Fragrance_Brand_Availability;
 
@@ -211,9 +212,9 @@ class Unavailable_Brands_Fragrances_Controller extends Controller
         ]);
             
         // If currency exists without cost or vice versa
-        if($request->cost xor $request->currency) {
-            return redirect()->back()->with('error','Currency & Cost should both be present.');
-        }
+        // if($request->cost xor $request->currency) {
+        //     return redirect()->back()->with('error','Currency & Cost should both be present.');
+        // }
         
         $normal_name = Helper::remove_accents($request->input('name'));
         
@@ -225,8 +226,8 @@ class Unavailable_Brands_Fragrances_Controller extends Controller
             $new->normal_name               = $normal_name;
             $new->type_id                   = $request->input('type_id');
             $new->gender                    = $request->input('gender');
-            $new->cost                      = $request->input('cost');
-            $new->currency                  = $request->input('currency');
+            // $new->cost                      = $request->input('cost');
+            // $new->currency                  = $request->input('currency');
             $new->created_by                = request()->user()->id;
         
             $new->save();
