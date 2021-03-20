@@ -218,9 +218,9 @@ class Unavailable_Brands_Fragrances_Controller extends Controller
         
         $normal_name = Helper::remove_accents($request->input('name'));
         
-        DB::transaction(function () use ($request, $normal_name) {
+        DB::transaction(function () use ($request, &$fragrance_id, $normal_name) {
         
-            $new                            = new fragrance();
+            $new                            = new Fragrance();
             $new->brand_id                  = $request->input('brand_id');
             $new->name                      = $request->input('name');
             $new->normal_name               = $normal_name;
@@ -278,8 +278,30 @@ class Unavailable_Brands_Fragrances_Controller extends Controller
                 }
             }
         });
+
+
+        // Adding ids to stock and fragrance reviews
+        Store_Stock::whereNull('fragrance_id')
+        ->where('fragrance_name', $request->input('name'))
+        ->orWhere('fragrance_name', $normal_name)
+        ->update(['fragrance_id' => $fragrance_id]);
+       
+        User_Fragrance_Review::whereNull('fragrance_id')
+        ->where('fragrance_name', $request->input('name'))
+        ->orWhere('fragrance_name', $normal_name)
+        ->update(['fragrance_id' => $fragrance_id]);
+       
+
+    
+        // $flight = Flight::find(1);
+        // $review = User_Fragrance_Review::where('')
+        //             ->first();
+
+        // $flight->name = 'New Flight Name';
+
+        // $flight->save();
     
         // Return
-        return redirect()->back()->with('success','Fragrance added successfully.');
+        return redirect('/unavailable_brands_fragrances_panel')->with('success','Fragrance added successfully.');
     }
 }
