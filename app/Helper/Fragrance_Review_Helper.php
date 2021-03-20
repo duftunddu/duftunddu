@@ -1,8 +1,15 @@
 <?php namespace App\Helper;
 
+// For Review
+use App;
+
 use App\Fragrance;
 use App\Fragrance_Accord;
 use App\User_Fragrance_Review;
+
+use Symfony\Component\Process\Process;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+use Illuminate\Support\Facades\Http;
 
 class Fragrance_Review_Helper {
 
@@ -10,17 +17,10 @@ class Fragrance_Review_Helper {
         // 
     }
     
-    // Get Accords of Fragrance
-    public function get_accords_of_fragrance_array ($fragrance_id)
-    {
-        $accords = Fragrance_Accord::where('fragrance_id', $fragrance_id)
-        ->join('accord', 'accord.id', 'accord_id')
-        ->pluck('accord.name')
-        ->toArray();
 
-        return $accords;
-    }
-    
+
+    // Review Calculators
+
     // Get Suitability of a Fragrance
     public function get_suitability_from_fragrance ($fragrance_id)
     {
@@ -32,6 +32,7 @@ class Fragrance_Review_Helper {
     {
       // 
     }
+
 
     public function get_suitability($fragrance_id)
     {
@@ -69,23 +70,70 @@ class Fragrance_Review_Helper {
         return $suitability;
     }
 
+
     public function get_sustainability($fragrance_id)
     {
+        // Fetching Data
         $fragrance_review_helper = new Fragrance_Review_Helper(); 
+        $data = $fragrance_review_helper->get_sustainability_data($fragrance_id);
 
-        $sustainability = $fragrance_review_helper->get_fragrance_review_data($fragrance_id);
 
-        return $sustainability;
+        // For debugging
+        $fragrance_review_helper->save_sustainability_template($data);
+
+
+        // Calculating
+        if (App::environment('local')) {
+            // The environment is local
+
+
+            
+            $process = new Process([ 'C:\Anaconda3\Scripts\activate_duft_und_du python sustainability.py', 
+            // $process = new Process([ 'C:\Anaconda3\Scripts\activate_duft_und_du', 'sustainability.py', 
+            // $process = new Process([ 'C:\Anaconda3\Scripts\activate_duft_und_du', 'python', 'sustainability.py', 
+            // $process =/ new Process([ 'C:\Anaconda3\Scripts\activate_duft_und_du',  'execfile("sustainability.py")', 
+            // $process = new Process([ 'C:\Anaconda3\envs\duft_und_du\Lib\venv\scripts\nt\activate.bat && C:\Anaconda3\envs\duft_und_du\python.exe ', 'sustainability.py', 
+                $data], null, [ 'PYTHONHASHSEED' => 1, 'APP_ENV' => false, 'SYMFONY_DOTENV_VARS' => false, 'ENV_VAR_NAME' => 'duft_und_du',]);
+                // $data], null, [ 'PYTHONHASHSEED' => 1, 'APP_ENV' => false, 'ENV_VAR_NAME' => 'duft_und_du',]);
+
+            // $process = new Process([ 'C:\Anaconda3\envs\duft_und_du\python.exe', 'sustainability.py', 
+                // $data], null, [ 'PYTHONHASHSEED' => 1, 'APP_ENV' => false, 'SYMFONY_DOTENV_VARS' => false, 'ENV_VAR_NAME' => 'duft_und_du',]);
+                // $data], null, [ 'PYTHONHASHSEED' => 1,]);
+        }
+        else {
+            // if (App::environment('production')) {
+            // The environment is not local ...
+
+            $process = new Process([ 'python3', 'sustainability.py',
+                $data], null, [ 'PYTHONHASHSEED'=> 1, ]);
+        }
+
+        $process->run();
+
+        var_dump($process->getErrorOutput());
+        return;
+
+        // executes after the command finishes
+        if ( !$process->isSuccessful()) {
+            throw new ProcessFailedException($process);
+        }
+
+        return $process->getOutput();
     }
+
 
     public function get_indoor_outdoor()
     {
         // 
     }
     
+
     
-    // Get Review Array
-    public function get_suitability_array($store_id){
+
+    // Review Calculation Helpers
+
+    // Suitability
+    public function get_suitability_array ($store_id){
         
         // Weather: Cold weather/region holds stronger, lusher floral notes in check, which is why your tropical perfumes will smell all wrong during winter or autumn. Conversely, lighter scents work better in summer and spring.
         
@@ -113,40 +161,53 @@ class Fragrance_Review_Helper {
     }
 
 
-    public function get_data_fields_for_sustainability()
+    // Get Accords of Fragrance
+    public function get_accords_of_fragrance_array ($fragrance_id)
+    {
+        $accords = Fragrance_Accord::where('fragrance_id', $fragrance_id)
+        ->join('accord', 'accord.id', 'accord_id')
+        ->pluck('accord.name')
+        ->toArray();
+
+        return $accords;
+    }
+    
+
+    // Sustainability
+    public function get_sustainability_data_fields ()
     {
         $arr = [
             // Table: User Fragrance Review
-            'user_fragrance_review.id as ufr_id',
-            'fba_location.country_name as fba_country_name',
-            'fba_location.time_zone as fba_time_zone',
+            // 'user_fragrance_review.id as ufr_id',
+            // 'fba_location.country_name as fba_country_name',
+            // 'fba_location.time_zone as fba_time_zone',
             'user_fragrance_review.longevity as longevity',
             // 'user_fragrance_review.suitability as suitability',
             // 'user_fragrance_review.sustainability as sustainability',
-            'user_fragrance_review.apply_time as apply_time',
-            'user_fragrance_review.wear_off_time as wear_off_time',
+            // 'user_fragrance_review.apply_time as apply_time',
+            // 'user_fragrance_review.wear_off_time as wear_off_time',
             'user_fragrance_review.indoor_time_percentage as indoor_time_percentage',
             'user_fragrance_review.number_of_sprays as number_of_sprays',
-            'user_fragrance_review.projection as projection',
-            'user_fragrance_review.sillage as sillage',
-            'user_fragrance_review.like as like',
+            // 'user_fragrance_review.projection as projection',
+            // 'user_fragrance_review.sillage as sillage',
+            // 'user_fragrance_review.like as like',
             'user_fragrance_review.temp_avg as temp_avg',
             'user_fragrance_review.hum_avg as hum_avg',
             'user_fragrance_review.dew_point_avg as dew_point_avg',
-            'user_fragrance_review.uv_index_avg as uv_index_avg',
+            // 'user_fragrance_review.uv_index_avg as uv_index_avg',
             'user_fragrance_review.temp_feels_like_avg as temp_feels_like_avg',
             'user_fragrance_review.atm_pressure_avg as atm_pressure_avg',
-            'user_fragrance_review.clouds_avg as clouds_avg',
-            'user_fragrance_review.visibility_avg as visibility_avg',
-            'user_fragrance_review.wind_speed_avg as wind_speed_avg',
-            'user_fragrance_review.rain_avg as rain_avg',
-            'user_fragrance_review.snow_avg as snow_avg',
-            'user_fragrance_review.weather_main as weather_main',
-            'user_fragrance_review.weather_description as weather_description',
+            // 'user_fragrance_review.clouds_avg as clouds_avg',
+            // 'user_fragrance_review.visibility_avg as visibility_avg',
+            // 'user_fragrance_review.wind_speed_avg as wind_speed_avg',
+            // 'user_fragrance_review.rain_avg as rain_avg',
+            // 'user_fragrance_review.snow_avg as snow_avg',
+            // 'user_fragrance_review.weather_main as weather_main',
+            // 'user_fragrance_review.weather_description as weather_description',
 
 
             // Table: Users
-            // 'users.id as users_id',
+            'users.id as users_id',
 
 
             // Table: Fragrance Profile
@@ -158,7 +219,7 @@ class Fragrance_Review_Helper {
 
 
             // Table: Fragrance
-            'fragrance.id as fragrance_id',
+            // 'fragrance.id as fragrance_id',
             // 'fragrance.name as fragrance',
             // 'fragrance.gender as fragrance_gender',
             // 'fragrance.discontinued as fragrance_discontinued',
@@ -174,11 +235,11 @@ class Fragrance_Review_Helper {
         return $arr;
     }
 
-    public function get_data_for_sustainability($fragrance_id)
+    public function get_sustainability_data ($fragrance_id)
     {
         // Field names
         $fragrance_review_helper = new Fragrance_Review_Helper();
-        $fields = $fragrance_review_helper->get_fragrance_review_data_fields();
+        $fields = $fragrance_review_helper->get_sustainability_data_fields();
 
         // Calling data
         $all = User_Fragrance_Review::join('location as ufr_location', 'ufr_location.id', 'user_fragrance_review.location_id')
@@ -202,8 +263,34 @@ class Fragrance_Review_Helper {
         return $all;
     }
 
+    public function save_sustainability_template ($data)
+    {
+        if (App::environment('local')) {
+            // The environment is local
+
+            $process = new Process([ 'C:\Anaconda3\envs\duft_und_du\python.exe', 'sustainability_template_save.py', 
+                $data], null, [ 'PYTHONHASHSEED'=> 1, ]);
+        }
+        else {
+            // if (App::environment('production')) {
+            // The environment is not local ...
+
+            $process = new Process([ 'python3', 'sustainability_template_save.py',
+                $data], null, [ 'PYTHONHASHSEED'=> 1, ]);
+        }
+
+        $process->run();
+
+        // executes after the command finishes
+        if ( !$process->isSuccessful()) {
+            throw new ProcessFailedException($process);
+        }
+    }
 
 
+
+
+    // For Review Download
     public function get_fragrance_review_data_fields()
     {
         $arr = [
@@ -311,7 +398,7 @@ class Fragrance_Review_Helper {
         return $fields;
     }
 
-
+    // Preview
     public function get_fragrance_review_data()
     {
         // Field names
@@ -358,8 +445,10 @@ class Fragrance_Review_Helper {
     }
 
 
-    public function get_weights()
-    {
-        return json_encode($this->weights_json);
-    }
+
+
+    // public function get_weights()
+    // {
+    //     return json_encode($this->weights_json);
+    // }
 }

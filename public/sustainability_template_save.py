@@ -1,10 +1,8 @@
 import sys
-from unidecode import unidecode
-
-print(unidecode(sys.argv[1]))
+import pickle
 
 # Pickling
-file = open("sustainability", "wb")
+file = open("sustainability_template", "wb")
 
 # dump information to that file
 list_pickle = pickle.dump(sys.argv[1], file)

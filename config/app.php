@@ -226,6 +226,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Helper' => App\Helper\Helper::class,
+        'Fragrance_Review_Helper' => App\Helper\Fragrance_Review_Helper::class,
 
     ],
 

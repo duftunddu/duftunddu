@@ -1,34 +1,68 @@
+<link href="http://127.0.0.1:8000/webstore_client_css.css" rel="stylesheet" />
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="{{ asset('js/webstore_client.js') }}"></script>
-<link rel="stylesheet" href="http://127.0.0.1:8000/webstore_client_css.css" defer>
+{{-- <script src="{{ asset('js/webstore_client.js') }}"></script> --}}
+{{-- <script src="http://127.0.0.1:8000/webstore_client_js.js" defer></script> --}}
 
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" defer>
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" defer></script>
+<body>
+    
+    {{-- <a href="#" class="btn btn-lux-lipstick-red model-open" data-toggle="modal" onclick="modelOpen()" data-target="#duftunddu">Personalized Review</a> --}}
+    
+    <button class="btn fifth model-open" data-toggle="modal" onclick="modelOpen()" data-target="#duftunddu">Get Fragrance Reivew</button>
 
-<a href="" class="btn btn-lux-lipstick-red" data-toggle="modal" data-target="#duftunddu">Personalized Review</a>
 
-<!-- Modal -->
-<div class="modal fade bd-example-modal-lg" id="duftunddu" tabindex="-1" role="dialog" aria-labelledby="Personalized Review | Duft Und Du" aria-hidden="true"
-data-backdrop="static" width="800px" height="500px">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            </div>
-            <div class="modal-body">
-                {{-- <h4 class="modal-title" id="myModalLabel">Modal title</h4> --}}
-                <iframe src="http://127.0.0.1:8000/webstore_call/key/brand_name/swag20" class="dnd-frame" frameborder="0"
-                    sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-top-navigation"
-                    allowtransparency="true"></iframe>
-            </div>
-            <div class="modal-footer">
-                Powered by <span class="dnd-name"> Duft Und Du</span>
-            </div>
+    <div class="section three">
+        <div id="button">
+           Genie
+           <div class="ring one"></div>
+           <div class="ring two"></div>
+           <div class="ring three"></div>
+           <div class="ring four"></div>
         </div>
-        <!-- /.modal-content -->
+     </div>
+     
+
+    <div class="model-overlay">
+    <div class="model">
+        <a href="#" class="model-close" onclick="modelClose()">✕</a>
+        <div class="model-content">
+            <iframe src="http://127.0.0.1:8000/webstore_call/key/brand_name/swag20" class="dnd-frame" frameborder="0"
+            sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-top-navigation"
+            allowtransparency="true"></iframe>
+        </div>
+        <div class="model-footer">
+            Powered by <span class="dnd-name"> Duft Und Du</span>
+        </div>
     </div>
-    <!-- /.modal-dialog -->
-</div>
-<!-- /.modal -->
+  </div>
+</body>
+
+<script>
+    function modelClose() {
+        $('.model').addClass("model-absolute");
+        $('.model').addClass("model-hidden");
+        $('.model-overlay').addClass("model-overlay-hidden");
+        setTimeout(() => {
+            $('.model-overlay').addClass("model-overlay-none");
+        }, 300);
+    }
+    
+    function modelOpen() {
+        $('.model-overlay').removeClass("model-overlay-none");
+        setTimeout(() => {
+            $('.model-overlay').removeClass("model-overlay-hidden");
+            $('.model').removeClass("model-hidden");
+            setTimeout(() => {
+                $('.model').removeClass("model-absolute");
+            }, 300)
+        }, 300)
+    }
+    modelClose()
+
+$(document).keydown(function(event) { 
+  if (event.keyCode == 27) { 
+    // $('#modal_id').hide();
+    modelClose()
+  }
+});
+</script>

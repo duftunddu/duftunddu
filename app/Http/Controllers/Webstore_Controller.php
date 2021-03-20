@@ -370,6 +370,10 @@ class Webstore_Controller extends Controller
         return view('webstore.webstore_client_css');
     }
 
+    public function webstore_client_js(){
+        return view('webstore.webstore_client_js');
+    }
+
     public function home(){
         if(!request()->user()->hasRole('webstore_owner')) {
             return redirect('/services_register');

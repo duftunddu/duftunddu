@@ -6,8 +6,8 @@ use App;
 use App\Location;
 
 use Carbon\Carbon;
-use Symfony\Component\Process\Process;
 use AshAllenDesign\LaravelExchangeRates\Classes\ExchangeRate;
+use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Illuminate\Support\Facades\Http;
 

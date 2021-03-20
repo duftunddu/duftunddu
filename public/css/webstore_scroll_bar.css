@@ -12,8 +12,9 @@ body {
     /* right: 20px; */
     right: 10px;
     padding: 10px;
-    overflow-y: scroll;
-    overflow-x: hidden;
+    /* overflow-y: scroll; */
+    overflow-y: auto;
+    overflow-x: auto;
 }
 
 /* width */
@@ -46,9 +47,6 @@ body {
     background-image: -webkit-gradient(linear, left bottom, left top,
             color-stop(1, rgb(129, 103, 169)),
             color-stop(0, rgb(137, 22, 63)));
-    /* color-stop(0.44, rgb(122, 153, 217)),
-            color-stop(0.72, rgb(73, 125, 189)),
-            color-stop(0.86, rgb(28, 58, 148))); */
 }
 
 /* Button */

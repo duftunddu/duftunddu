@@ -309,14 +309,14 @@ class Fragrance_Controller extends Controller
         $fragrance = Fragrance::find($id);
 
         if(is_null($fragrance)){
-        return redirect()->route('search');
+            return redirect()->route('search');
         }
 
         $type = Fragrance_Type::find($fragrance->type_id)->first();
 
         $sillage = (object) [
-        'value'       => $fragrance->sillage,
-        'percent'     => $fragrance->sillage
+            'value'       => $fragrance->sillage,
+            'percent'     => $fragrance->sillage
         ];
         
         $accords = DB::table('fragrance_accord')
@@ -361,7 +361,7 @@ class Fragrance_Controller extends Controller
 
             $helper = new Helper();
 
-            if($fragrance->currency != $frag_profile->currency){
+            if(isset($fragrance->cost) && isset($fragrance->currency) && $fragrance->currency != $frag_profile->currency){
                 $fragrance->cost = $helper->convert_currency($fragrance->cost, $fragrance->currency, $frag_profile->currency);
                 $fragrance->currency = $frag_profile->currency;
             }
@@ -372,11 +372,11 @@ class Fragrance_Controller extends Controller
             if($helper->get_weather_success()){
 
                 // Create this
-                // $fragrance_review_helper = new Fragrance_Review_Helper(); 
+                $fragrance_review_helper = new Fragrance_Review_Helper(); 
 
-                // $suitability = $fragrance_review_helper->get_sustainability($id);
+                $sustainability = $fragrance_review_helper->get_sustainability($id);
                 
-                // $helper->var_dump_readable($suitability); return;
+                $helper->var_dump_readable($sustainability); return;
 
 
 

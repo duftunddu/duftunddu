@@ -207,6 +207,7 @@ Route::middleware(['role:webstore_owner|admin'])->group(function () {
     
     // Serve CSS Script
     Route::get('/webstore_client_css.css', "Webstore_Controller@webstore_client_css");
+    Route::get('/webstore_client_js.js', "Webstore_Controller@webstore_client_js");
 
     // Show Fragrance
     Route::get('/webstore_profile', "Webstore_Controller@index");

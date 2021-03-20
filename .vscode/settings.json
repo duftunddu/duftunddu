@@ -1,4 +1,5 @@
 {
     "python.pythonPath": "C:\\Anaconda3\\envs\\duft_und_du\\python.exe",
-    "python.formatting.provider": "black"
+    "python.formatting.provider": "black",
+    "python.terminal.activateEnvInCurrentTerminal": true
 }
