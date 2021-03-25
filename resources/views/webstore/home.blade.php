@@ -80,7 +80,7 @@
                     {{-- API Key --}}
                     <div class="form-group row mb-0">
                         <div class="center">
-                            <h5>API Key: {{__($api_key)}}</h5>
+                            <h5 class="api_key">API Key:<br>{{__($api_key)}}</h5>
                         </div>
                     </div><br>
 

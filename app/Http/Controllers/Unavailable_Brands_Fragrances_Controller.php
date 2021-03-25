@@ -183,12 +183,12 @@ class Unavailable_Brands_Fragrances_Controller extends Controller
     // Add Fragrance
     public function add_fragrance_view($fragrance_name)
     {
-        $brands         =   Fragrance_Brand::all();
+        $brands         =   Fragrance_Brand::all()->sortBy('name');
         $types          =   Fragrance_Type::all();
-        $accords        =   Accord::all();
-        $ingredients    =   Ingredient::all();
+        $accords        =   Accord::all()->sortBy('name');
+        $ingredients    =   Ingredient::all()->sortBy('name');
         
-        $currencies     =   Helper::currencies();
+        // $currencies     =   Helper::currencies();
         
         return view('moderator.fragrance_entry',[
           'fragrance_name'      =>      $fragrance_name,
@@ -196,7 +196,7 @@ class Unavailable_Brands_Fragrances_Controller extends Controller
           'types'               =>      $types,
           'accords'             =>      $accords,
           'ingredients'         =>      $ingredients,
-          'currencies'          =>      $currencies
+        //   'currencies'          =>      $currencies
         ]);
     }
  

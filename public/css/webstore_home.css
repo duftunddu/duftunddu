@@ -10,6 +10,11 @@ h5 {
     transition-delay: 700ms;
 }
 
+.api_key {
+    text-align: center;
+    word-break: break-word;
+}
+
 body.hero-anime h5 {
     opacity: 0;
     transform: translateY(8px);
