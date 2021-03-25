@@ -337,14 +337,15 @@ class Fragrance_Controller extends Controller
         $allow_edit = FALSE;
 
         if (Auth::check()) {
-        $logged_in = TRUE;
-        // If the user is Brand Ambassdor. And if the BA is of this brand.
-        if(request()->user()->hasRole(['brand_ambassador', 'premium_brand_ambassador'])){
-            $ambassador = Brand_Ambassador_Profile::where('users_id', request()->user()->id)->first();
-            if($ambassador->brand_id == $fragrance->brand_id){
-            $allow_edit = TRUE;
+            $logged_in = TRUE;
+            
+            // If the user is Brand Ambassdor. And if the BA is of this brand.
+            if(request()->user()->hasRole(['brand_ambassador', 'premium_brand_ambassador'])){
+                $ambassador = Brand_Ambassador_Profile::where('users_id', request()->user()->id)->first();
+                if($ambassador->brand_id == $fragrance->brand_id){
+                $allow_edit = TRUE;
+                }
             }
-        }
 
             // If user with complete details, then calculate fragrance suitability, sustainability and longevity
             if(request()->user()->hasRole(['user', 'genie_user', 'premium_user'])){

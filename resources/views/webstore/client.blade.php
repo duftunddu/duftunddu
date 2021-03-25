@@ -26,7 +26,7 @@
     <div class="model">
         <a href="#" class="model-close" onclick="modelClose()">✕</a>
         <div class="model-content">
-            <iframe src="http://127.0.0.1:8000/webstore_call/key/brand_name/swag20" class="dnd-frame" frameborder="0"
+            <iframe src="http://127.0.0.1:8000/webstore_call/k3dhk9843ykzw45tjhfon3kq69kqmrlltp8qgrb5/Venom/swag20/Eau de Toilette/default/" class="dnd-frame" frameborder="0"
             sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-top-navigation"
             allowtransparency="true"></iframe>
         </div>

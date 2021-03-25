@@ -90,7 +90,8 @@ class Unavailable_Brands_Fragrances_Controller extends Controller
        $countries = DB::table('country_and_city')
        ->select('country_name')
        ->distinct()
-       ->get();
+       ->get()
+       ->sort();
  
        return view('moderator.brand_entry',[
            'brand_name'      =>    $brand_name,

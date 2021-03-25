@@ -16,11 +16,11 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
 
-            <form method="POST" action="{{ url('store_register')}}">
+            <form method="POST" action="{{ url('/webstore_register')}}">
                 @csrf
 
                 <div class="card">
-                    <div class="card-header">{{ __('Shop Details')}}</div>
+                    <div class="card-header">{{ __('Online Store Details')}}</div>
                     <div class="card-body">
 
                         {{-- Explanation --}}
@@ -34,12 +34,12 @@
                             </div>
                         </div><br>
 
-                        {{-- Store Name --}}
+                        {{-- Webstore Name --}}
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-from-label text-md-right required">{{ __('Store Name:')}}</label>
+                            <label for="name" class="col-md-4 col-from-label text-md-right required">{{ __('Online Store Name:')}}</label>
 
                             <div class="col-md-6">
-                                <input type="text" maxlength="50" id="name"  placeholder="Store Name" class="form-control @error('name') 
+                                <input type="text" minlength="3" maxlength="50" id="name"  placeholder="Online Store Name" class="form-control @error('name') 
                                 is-invalid @enderror" name="name" value="{{ old('name')}}" required>
 
                                 @error('name')

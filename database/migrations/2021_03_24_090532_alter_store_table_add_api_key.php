@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterFeatureRequestAddForBrandAmbassador extends Migration
+class AlterStoreTableAddApiKey extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AlterFeatureRequestAddForBrandAmbassador extends Migration
      */
     public function up()
     {
-        Schema::table('feature_request', function (Blueprint $table) {
-            $table->boolean('for_brand_ambassador')->nullable();
+        Schema::table('store', function (Blueprint $table) {
+            $table->string('api_key', 40)->nullable();
         });
     }
 
@@ -25,6 +25,8 @@ class AlterFeatureRequestAddForBrandAmbassador extends Migration
      */
     public function down()
     {
-        // 
+        Schema::table('store', function (Blueprint $table) {
+            $table->dropColumn('api_key');
+        });
     }
 }

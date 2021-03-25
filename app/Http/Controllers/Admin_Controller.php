@@ -91,9 +91,14 @@ class Admin_Controller extends Controller
             return redirect()->back()->with('error', 'ID does not exist.');
         }
 
+        $helper = new Helper();
+
         // Find and Update
-        $store = Store::find($id);
-        $store->request_status =  $action;
+        $store                  =   Store::find($id);
+        $store->request_status  =   $action;
+        if($store->webstore && strcmp($store->request_status, "approved") == 0 ){
+            $store->api_key     =   $helper->api_key();
+        }
         $store->save();
         
         // Assign Appropriate Roles

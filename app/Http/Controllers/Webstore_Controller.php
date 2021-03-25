@@ -34,6 +34,12 @@ class Webstore_Controller extends Controller
      * @return \Illuminate\Http\Response
     */
     public function index(){
+
+        // Only one webstore is allowed per person
+        if(request()->user()->hasRole(['webstore_owner'])){
+            return redirect('/services_register');
+        }
+
         return view('forms.webstore_register');
     }
 
@@ -41,16 +47,49 @@ class Webstore_Controller extends Controller
         return view('webstore.client');
     }
 
-    public function webstore_call($key, $brand_name, $fragrance_name){
+    public function webstore_call($api_key, $brand_name, $fragrance_name, $fragrance_type, $theme){
         
+        $api_key_check = Store::where('users_id', request()->user()->id)
+        ->where('webstore', TRUE)
+        ->where('request_status', 'approved')
+        ->where('api_key', $api_key)
+        ->exists();
+
+        $api_host = Store::where('api_key', $api_key)
+        ->first();
+
+        $api_host_check = FALSE;
+        if( !is_null($api_host_check) ){
+
+            $domain = parse_url($api_host->website);
+
+            if( strcmp($domain['host'], request()->getHost()) == 0 ){
+                $api_host_check = TRUE;
+            }
+        }
+        
+        // var_dump(request()->getHost());
+        // return;
+
         // return view('store.profile_entry');
-        return Webstore_Controller::show_fragrance($brand_name, $fragrance_name);
-        // return redirect('/webstore_fragrance/5');
+
+        if($api_key_check){
+            return Webstore_Controller::show_fragrance($brand_name, $fragrance_name);
+        }
+        else{
+            // return view('webstore.api_error');
+            return "API_KEY_ERROR";
+        }
     }
 
     // Show Fragrance Review
     public function show_fragrance($brand_name, $fragrance_name)
     {
+        // $dom = parse_url('https://google.com/berere/ererber?erefer');
+        // $dom=  $dom['host'];
+        // return $dom; //give  google.com
+
+
         // $fragrance = Fragrance::find($id);
         $fragrance = Fragrance::where('name', $fragrance_name)
         ->first();
@@ -324,27 +363,10 @@ class Webstore_Controller extends Controller
             else{
                 // Create two more accounts on the weather website and adjust this controller with more apis.
             }
-
-            // To save the weights to improve the model.
-            // $weights = (object) [
-            //     'avg_temp'                    => $avg_temp,
-            //     'avg_hum'                     => $avg_hum,
-            //     'bmi'                         => $bmi,
-            //     'fragrance_type_weight'       => $fragrance_type_weight,
-            //     'humidity_weight'             => $humidity_weight,
-            //     'sustainability_heat_weight'  => $sustainability_heat_weight,
-            //     'warm_cold_weight'            => $warm_cold_weight,
-            //     'sweat_weight'                => $sweat_weight,
-            //     'bmi_weight'                  => $bmi_weight,
-            //     'skin_weight'                 => $skin_weight
-            // ];
-
-            // $weights =  json_encode($weights);
             }
         }
         else{
-        // $logged_in = FALSE;
-        $user_gender = $weights = $longevity = $suitability = $sustainability = NULL;
+            $user_gender = $weights = $longevity = $suitability = $sustainability = NULL;
         }
 
         return view('webstore.fragrance',[
@@ -358,7 +380,6 @@ class Webstore_Controller extends Controller
             'longevity'         => $longevity,
             'suitability'       => $suitability,
             'sustainability'    => $sustainability,
-            // 'weights'           => $weights,
         ]);
     }
 
@@ -384,6 +405,11 @@ class Webstore_Controller extends Controller
 
         // $store_id = Webstore::where('users_id',request()->user()->id)->first()->id;
         $store_id = 2;
+
+        $api_key = Store::where('users_id', request()->user()->id)
+        ->where('webstore', TRUE)
+        ->where('request_status', 'approved')
+        ->first()->api_key;
 
         return view('webstore.home',[
             'no_of_f'   =>  $no_of_f,

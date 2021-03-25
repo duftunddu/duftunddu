@@ -77,16 +77,22 @@
                         </div>
                     </div><br>
 
-                    {{-- Total Fragrances --}}
+                    {{-- API Key --}}
                     <div class="form-group row mb-0">
                         <div class="center">
-                            <h5>API Key: {{__($no_of_f)}}</h5>
+                            <h5>API Key: {{__($api_key)}}</h5>
+                        </div>
+                    </div><br>
+
+                    {{-- Button: Edit API Key --}}
+                    {{-- <div class="form-group row mb-0">
+                        <div class="center">
                             <button type="button" class="btn btn-dark" onclick="window.location='{{ url('fragrances/') }}'">
                                 Edit API
                             </button>
-                        </di
                         </div>
-                    </div><br>
+                    </div><br> --}}
+
 
                 </div>
             </div>

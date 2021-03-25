@@ -88,6 +88,7 @@ class Fragrance_Profile_Controller extends Controller
                 'season.exists'         => 'The :attribute is invalid. Please select one from the list.',
             ]);
         
+        var_dump($request->gender); return;
         $valid = false;
         $height_unit = '';
         $validator = Validator::make([], []);
@@ -187,7 +188,8 @@ class Fragrance_Profile_Controller extends Controller
         $climate_id    = Climate::where('name', $request->input('climate'))->pluck('id')->first();
         $season_id     = Season::where('name', $request->input('season'))->pluck('id')->first();
 
-        $location = Helper::current_location();
+        $location = new Helper();
+        $location = $location->get_current_location();
 
         DB::transaction(function () use (
             $request, $user_check, $location, $height, $weight,

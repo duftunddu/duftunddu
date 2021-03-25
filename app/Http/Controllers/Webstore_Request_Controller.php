@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Store;
-use Helper\Helper;
+
+use App\Helper\Helper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -44,7 +45,7 @@ class Webstore_Request_Controller extends Controller
     {
         $validatedData = $request->validate([
             'name'              => 'required',
-            'address'           => 'required',
+            // 'address'           => 'required',
             'website'           => 'required',
             'contact_number'    => 'required',
             'social'            => 'nullable',
@@ -54,10 +55,11 @@ class Webstore_Request_Controller extends Controller
             return redirect('/home');
         }
 
-        $location = Helper::current_location();
+        $location = new Helper();
+        $location = $location->get_current_location();
 
         DB::transaction(function () use ($request, $location) {
-            $new                    = new store();
+            $new                    = new Store();
             $new->users_id          = request()->user()->id;
             $new->location_id       = $location->id;
 
@@ -71,7 +73,7 @@ class Webstore_Request_Controller extends Controller
             $new->store             = FALSE;
 
             $new->save();
-        }); 
+        });
 
         request()->user()->assignRole('new_webstore_owner');
 
@@ -84,14 +86,16 @@ class Webstore_Request_Controller extends Controller
      * @param  \App\Webstore_Request  $webstore_Request
      * @return \Illuminate\Http\Response
     */
-    public function show(Webstore_Request $webstore_Request)
+    public function show()
     {
         // Application Status
         if(!request()->user()->hasRole('new_webstore_owner')){
             return redirect('/webstore_home');
         }
 
-        $store = Webstore::firstWhere('users_id', request()->user()->id);
+        $store = Store::where('users_id', request()->user()->id)
+        ->where('webstore', TRUE)
+        ->first();
         
         return view('webstore.application_status',[
             'store' => $store

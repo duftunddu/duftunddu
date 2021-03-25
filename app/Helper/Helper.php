@@ -3,6 +3,7 @@
 // To Remove Accents
 use App;
 
+use App\Store;
 use App\Location;
 
 use Carbon\Carbon;
@@ -54,11 +55,7 @@ class Helper {
 
 
     // Location Helpers
-    public static function current_location() {
-        return Location::firstWhere('ip_to', '>', ip2long(request()->ip()));
-    }
-
-    public static function get_location() {
+    public function get_current_location() {
         return Location::firstWhere('ip_to', '>', ip2long(request()->ip()));
     }
 
@@ -76,6 +73,10 @@ class Helper {
         // If both 'from' and 'to' are PKR then this function won't even be called.
         $exchangeRates=new ExchangeRate();
         $usd_to_pkr=163.2;
+
+        if($cost == NULL || $from == NULL || $to == NULL){
+            return NULL;
+        }
 
         if($from=='PKR') {
             return round($exchangeRates->convert($cost * $usd_to_pkr, 'USD', $to));
@@ -107,7 +108,8 @@ class Helper {
 
     private static function set_weather_data($location_id=NULL) {
         // if location_id is null, find the location.
-        $location=($location_id) ? Location::find($location_id): Helper::current_location();
+        $helper = new Helper();
+        $location=($location_id) ? Location::find($location_id): $helper->get_current_location();
         // For debugging, comment the upper one and use the below one:
         // $location = Location::find(2);
 
@@ -273,5 +275,27 @@ class Helper {
             }
 
             , $array_with_stdClass);
+    }
+
+    // Webstore Helper    
+    public function api_key() {
+        
+        do {
+            $api_key = Helper::secure_random_string();
+        } while(Store::where('api_key', $api_key)->exists());
+
+        return $api_key;
+    }
+
+    private static function secure_random_string() {
+        $length = 40;
+        $random_string = '';
+        for($i = 0; $i < $length; $i++) {
+            $number = random_int(0, 36);
+            $character = base_convert($number, 10, 36);
+            $random_string .= $character;
+        }
+     
+        return $random_string;
     }
 }

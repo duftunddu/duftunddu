@@ -237,7 +237,8 @@ Route::middleware(['role:brand_ambassador|admin', 'verified'])->group(function (
 
 
 // Webstore Call
-Route::get('/webstore_call/{key}/{brand_name}/{fragrance_name}', "Webstore_Controller@webstore_call");
+// Route::get('/webstore_call/{key}/{brand_name}/{fragrance_name}', "Webstore_Controller@webstore_call");
+Route::get('/webstore_call/{api_key}/{brand}/{fragrance}/{fragrance_type}/{theme}', "Webstore_Controller@webstore_call");
 
 
 // Moderator

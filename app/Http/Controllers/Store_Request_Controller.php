@@ -56,7 +56,8 @@ class Store_Request_Controller extends Controller
             return redirect('/home');
         }
         
-        $location = Helper::current_location();
+        $location = new Helper();
+        $location = $location->get_current_location();
 
         DB::transaction(function () use ($request, $location) {
         
@@ -96,7 +97,11 @@ class Store_Request_Controller extends Controller
             return redirect('/store_home');
         }
 
-        $store = Store::firstWhere('users_id', request()->user()->id);
+        // $store = Store::firstWhere('users_id', request()->user()->id);
+        $store = Store::where('users_id', request()->user()->id)
+        ->where('store', TRUE)
+        ->first();
+        
         
         return view('store.application_status',[
             'store' => $store

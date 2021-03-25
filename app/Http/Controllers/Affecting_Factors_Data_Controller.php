@@ -37,7 +37,9 @@ class Affecting_Factors_Data_Controller extends Controller {
         // TODO: Change this to whatever the new thing is:
         $model_version = Model_Version::where('type', 'affecting_factors')->latest()->first();
 
-        $location=Helper::current_location();
+        $location = new Helper();
+        $location = $location->get_current_location();
+
         $weights=json_decode($request->weights);
 
         $matchThese=[ 'users_id'=>request()->user()->id,

@@ -88,7 +88,7 @@ class Fragrance_Review_Helper {
 
 
             
-            $process = new Process([ 'C:\Anaconda3\Scripts\activate_duft_und_du python sustainability.py', 
+            $process = new Process([ 'C:\Anaconda3\Scripts\activate_duft_und_du', 'test_python.py',
             // $process = new Process([ 'C:\Anaconda3\Scripts\activate_duft_und_du', 'sustainability.py', 
             // $process = new Process([ 'C:\Anaconda3\Scripts\activate_duft_und_du', 'python', 'sustainability.py', 
             // $process =/ new Process([ 'C:\Anaconda3\Scripts\activate_duft_und_du',  'execfile("sustainability.py")', 

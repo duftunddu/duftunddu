@@ -21,7 +21,7 @@
                     <div class="center">
                         
                         {{-- Brands --}}
-                        <h4>Brands</h4>
+                        <a href="{{ url("/add_brand_mod/Brand Name") }}"><h4 class="lux-black-font">Brands</h4></a>
                         @foreach($brands as $brand)
                             <h5>
                                 <a href="{{ url("/add_brand_mod/" . $brand) }}">{{ $brand }}</a><br>
@@ -31,7 +31,7 @@
                         <br><br>
 
                         {{-- Fragrances --}}
-                        <h4>Fragrances</h4>
+                        <a href="{{ url("/add_fragrance_mod/Fragrance Name") }}"><h4 class="lux-black-font">Fragrances</h4></a>
                         @foreach($fragrances as $fragrance)
                             <h5>
                                 <a href="{{ url("/add_fragrance_mod/" . $fragrance) }}">{{ $fragrance }}</a><br>

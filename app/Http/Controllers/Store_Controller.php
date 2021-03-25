@@ -203,7 +203,8 @@ class Store_Controller extends Controller
         $climate_id    = Climate::where('name', $request->input('climate'))->pluck('id')->first();
         $season_id     = Season::where('name', $request->input('season'))->pluck('id')->first();
 
-        $location = Helper::current_location();
+        $location = new Helper();
+        $location = $location->get_current_location();
 
         $store_profile = (object) [
             'gender'            =>      $request->input('gender'),
