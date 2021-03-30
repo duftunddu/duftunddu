@@ -14,7 +14,8 @@
         
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="The Fragrance Hub. Get Personalized Fragrance Insights.">
+        <meta name="description" content="Duft Und Du gives you personalized fragrance reviews for free. Business integrations for shops and online stores are also available.">
+
         <meta name="google-site-verification" content="3hy_S24sOYc7IE86bIF_EkZkPdv2ONhpExuetFeuoeA" />
         <link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico" />
         

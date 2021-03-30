@@ -45,7 +45,7 @@
                     @if($insufficient_data)
                     <p>Data unavailable for some fragrances.</p>
                     @endif
-                    
+
                     @if(count($fragrances) == 0)
                         @unless($insufficient_data)
                         <p>No fragrances Found</p>
@@ -86,8 +86,8 @@
                     {{-- Stock --}}
                     <div class="form-group row mb-0">
                         <div class="center">
-                            <button type="button" class="btn btn-outline-dark" onclick="window.location='{{ url('/store_home') }}'">
-                                Store Dashboard
+                            <button type="button" class="btn btn-outline-dark" onclick="window.location='{{ url('/webstore_home') }}'">
+                                Webstore Dashboard
                             </button>
                         </div>
                     </div><br>

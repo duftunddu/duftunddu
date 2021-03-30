@@ -27,55 +27,80 @@
                         </div>
                     @endif
                     
-                    {{-- Get User Review --}}
+                    {{-- User Review --}}
+                    {{-- <div class="form-group row mb-0">
+                        <div class="center">
+                            <button type="button" class="btn btn-lux-lipstick-red" onclick="window.location='{{ url('/store_call') }}'">
+                                User Review
+                            </button>
+                        </div>
+                    </div><br> --}}
+
+                    {{-- Total Fragrances --}}
                     <div class="form-group row mb-0">
                         <div class="center">
-                            <button type="button" class="btn btn-lux-lipstick-red" onclick="window.location='{{ url('fragrance_entry/') }}'">
-                                Get User Review
+                            <h5>Total Fragrances: {{__($fragrance_count)}}</h5>
+                        </div>
+                    </div><br>
+
+                    {{-- Stock Suitability --}}
+                    <div class="form-group row mb-0">
+                        <div class="center">
+                            <button type="button" class="btn btn-lux-pastel-purple" onclick="window.location='{{ url('/webstore_stock_suitability') }}'">
+                                Stock Suitability
+                            </button>
+                        </div>
+                    </div><br>
+
+                    {{-- Stock --}}
+                    <div class="form-group row mb-0">
+                        <div class="center">
+                            <button type="button" class="btn btn-dark" onclick="window.location='{{ url('/webstore_stock') }}'">
+                                Stock
                             </button>
                         </div>
                     </div><br>
 
                     {{-- Calls Made --}}
-                    <div class="form-group row mb-0">
+                    {{-- <div class="form-group row mb-0">
                         <div class="center">
                             <h5>Calls Made This Month: {{__($no_of_f)}}</h5>
                         </div>
-                    </div><br>
+                    </div><br> --}}
 
                     {{-- Total Fragrances --}}
-                    <div class="form-group row mb-0">
+                    {{-- <div class="form-group row mb-0">
                         <div class="center">
                             <h5>Total Fragrances: {{__($no_of_f)}}</h5>
                         </div>
-                    </div><br>
+                    </div><br> --}}
 
                     {{-- Get Fragrance Suitability --}}
-                    <div class="form-group row mb-0">
+                    {{-- <div class="form-group row mb-0">
                         <div class="center">
                             <button type="button" class="btn btn-lux-pastel-purple" onclick="window.location='{{ url('fragrance_suitability/') }}'">
                                 Get Fragrance Suitability
                             </button>
                         </div>
-                    </div><br>
+                    </div><br> --}}
 
                     {{--  Button: Add Fragrance --}}
-                    <div class="form-group row mb-0">
+                    {{-- <div class="form-group row mb-0">
                         <div class="center">
                             <button type="button" class="btn btn-outline-dark" onclick="window.location='{{ url('fragrance_entry/') }}'">
                                 Add Fragrance
                             </button>
                         </div>
-                    </div><br>
+                    </div><br> --}}
 
                     {{-- All Fragrances --}}
-                    <div class="form-group row mb-0">
+                    {{-- <div class="form-group row mb-0">
                         <div class="center">
                             <button type="button" class="btn btn-dark" onclick="window.location='{{ url('fragrances/') }}'">
                                 All Fragrances
                             </button>
                         </div>
-                    </div><br>
+                    </div><br> --}}
 
                     {{-- API Key --}}
                     <div class="form-group row mb-0">

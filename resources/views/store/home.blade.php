@@ -39,14 +39,14 @@
                     {{-- Total Fragrances --}}
                     <div class="form-group row mb-0">
                         <div class="center">
-                            <h5>Total Fragrances: {{__($fragrances_count)}}</h5>
+                            <h5>Total Fragrances: {{__($fragrance_count)}}</h5>
                         </div>
                     </div><br>
 
                     {{-- Stock Suitability --}}
                     <div class="form-group row mb-0">
                         <div class="center">
-                            <button type="button" class="btn btn-lux-pastel-purple" onclick="window.location='{{ url('/stock_suitability') }}'">
+                            <button type="button" class="btn btn-lux-pastel-purple" onclick="window.location='{{ url('/store_stock_suitability') }}'">
                                 Stock Suitability
                             </button>
                         </div>
@@ -55,7 +55,7 @@
                     {{-- Stock --}}
                     <div class="form-group row mb-0">
                         <div class="center">
-                            <button type="button" class="btn btn-dark" onclick="window.location='{{ url('/stock') }}'">
+                            <button type="button" class="btn btn-dark" onclick="window.location='{{ url('/store_stock') }}'">
                                 Stock
                             </button>
                         </div>

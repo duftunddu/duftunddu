@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-<title>{{('Stock | The Fragrance Hub | Duft Und Du')}}</title>
+<title>{{('Webstore | The Fragrance Hub | Duft Und Du')}}</title>
 
 <head>
     <meta charset="utf-8">
@@ -27,7 +27,7 @@
         <div class="col-md-8">
 
             <div class="card">
-                <div class="card-header">Stock Details &nbsp;&nbsp; <i class="fas fa-info"
+                <div class="card-header">Webstore Details &nbsp;&nbsp; <i class="fas fa-info"
                     data-toggle="tooltip" data-placement="top" data-html="true" title="This is your private inventory.
                     You can only get reviews for fragrances that you add here."></i> 
 
@@ -59,7 +59,7 @@
                             <tr data-ng-repeat="unavailable in array | filter: table">
                                 <td class="middle"><% unavailable.fragrance_brand_name %></td>
                                 <td class="middle"><% unavailable.fragrance_name %></td>
-                                <td class="middle"><a href="/store_remove_from_stock/<% unavailable.id %>">Remove</a></td>
+                                <td class="middle"><a href="/webstore_remove_from_stock/<% unavailable.id %>">Remove</a></td>
                             </tr>
 
                             {{-- Move Add To Stock Here, using AJAX --}}
@@ -93,7 +93,7 @@
                     {{--  Button: Add Fragrance --}}
                     <div class="form-group row mb-0">
                         <div class="center">
-                            <button type="button" class="btn btn-outline-dark" onclick="window.location='{{ url('/store_add_to_stock') }}'">
+                            <button type="button" class="btn btn-outline-dark" onclick="window.location='{{ url('/webstore_add_to_stock') }}'">
                                 Add Fragrance
                             </button>
                         </div>
@@ -102,8 +102,8 @@
                     {{-- Stock --}}
                     <div class="form-group row mb-0">
                         <div class="center">
-                            <button type="button" class="btn btn-outline-dark" onclick="window.location='{{ url('/store_home') }}'">
-                                Store Dashboard
+                            <button type="button" class="btn btn-outline-dark" onclick="window.location='{{ url('/webstore_home') }}'">
+                                Webstore Dashboard
                             </button>
                         </div>
                     </div><br>

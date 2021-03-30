@@ -16,7 +16,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
 
-            <form method="POST" action="{{ url('/store_add_to_stock')}}">
+            <form method="POST" action="{{ url('/webstore_add_to_stock')}}">
                 @csrf
 
                 <div class="card">
@@ -86,7 +86,7 @@
                         {{--  Button: Add Fragrance --}}
                         <div class="form-group row mb-0">
                             <div class="center">
-                                <button type="button" class="btn btn-outline-dark" onclick="window.location='{{ url('/store_stock') }}'">
+                                <button type="button" class="btn btn-outline-dark" onclick="window.location='{{ url('/webstore_stock') }}'">
                                     Back To Stock
                                 </button>                        
                             </div>

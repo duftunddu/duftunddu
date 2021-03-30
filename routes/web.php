@@ -186,15 +186,15 @@ Route::middleware(['role:store_owner|admin'])->group(function () {
     Route::get('/store_fragrance/{fragrance_id}', "Store_Controller@show_fragrance");
     
     // Show Stock
-    Route::get('/stock', "Store_Controller@show_stock");
+    Route::get('/store_stock', "Store_Controller@show_stock");
     
     // Add / Remove Stock
-    Route::get('/add_to_stock', "Store_Controller@add_to_stock_view");
-    Route::post('/add_to_stock', "Store_Controller@add_to_stock");
-    Route::get('/remove_from_stock/{stock_id}', "Store_Controller@remove_from_stock");
+    Route::get('/store_add_to_stock', "Store_Controller@add_to_stock_view");
+    Route::post('/store_add_to_stock', "Store_Controller@add_to_stock");
+    Route::get('/store_remove_from_stock/{stock_id}', "Store_Controller@remove_from_stock");
 
     // Get Suitability of Stock
-    Route::get('/stock_suitability', "Store_Controller@stock_suitability");
+    Route::get('/store_stock_suitability', "Store_Controller@stock_suitability");
 });
 
 
@@ -213,6 +213,18 @@ Route::middleware(['role:webstore_owner|admin'])->group(function () {
     Route::get('/webstore_profile', "Webstore_Controller@index");
     Route::get('/webstore_fragrance/{fragrance_id}', "Webstore_Controller@show_fragrance");
 
+
+    // Stock Related
+    // Show Stock
+    Route::get('/webstore_stock', "Webstore_Controller@show_stock");
+    
+    // Add / Remove Stock
+    Route::get('/webstore_add_to_stock', "Webstore_Controller@add_to_stock_view");
+    Route::post('/webstore_add_to_stock', "Webstore_Controller@add_to_stock");
+    Route::get('/webstore_remove_from_stock/{stock_id}', "Webstore_Controller@remove_from_stock");
+
+    // Get Suitability of Stock
+    Route::get('/webstore_stock_suitability', "Webstore_Controller@stock_suitability");
 });
 
 
@@ -238,7 +250,7 @@ Route::middleware(['role:brand_ambassador|admin', 'verified'])->group(function (
 
 // Webstore Call
 // Route::get('/webstore_call/{key}/{brand_name}/{fragrance_name}', "Webstore_Controller@webstore_call");
-Route::get('/webstore_call/{api_key}/{brand}/{fragrance}/{fragrance_type}/{theme}', "Webstore_Controller@webstore_call");
+Route::get('/webstore_call/{api_key}/{user_ip_address}/{brand}/{fragrance}/{fragrance_type}/{theme}', "Webstore_Controller@webstore_call");
 
 
 // Moderator

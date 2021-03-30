@@ -22,7 +22,11 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', "Duft Und Du") }}</title>
+    <title>@yield('title')</title>
+    <meta name="description" content="@yield('description')">
+    <meta name="keywords" content="@yield('keywords')">
+    
+    <link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico" />
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>

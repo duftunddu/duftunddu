@@ -22,7 +22,7 @@
         
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="The Fragrance Hub. Get Personalized Fragrance Insights.">
+        <meta name="description" content="Search for any perfume on Duft Und Du by using our 'Search Engine' and get personalized reviews of the perfume you are looking for.">
         <link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico" />
 
         <title>{{('Search Engine - Duft Und Du')}}</title>

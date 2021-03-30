@@ -5,6 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    @section('description', "Want to be a part of the Duft Und Du community and get personalized reviews for your fragrance? Register on our website to use our services.")
     
     {{-- Styles --}}
     <link href="{{ asset('css/services_register.css') }}" rel="stylesheet">

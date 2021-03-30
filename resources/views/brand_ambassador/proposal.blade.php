@@ -1,10 +1,11 @@
 @extends('layouts.app')
 
-<title>{{_('Research Proposal | The Fragrance Hub | Duft Und Du')}}</title>
+<title>{{_('Brand Ambassador Proposal | The Fragrance Hub | Duft Und Du')}}</title>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">    
+    @section('description', 'Become a Brand Ambassador by joining the Duft Und Du community. Add your fragrance to Duft Und Du and get personalized reviews for your products.')
 
     <!-- Styles -->
     <link href="{{ asset('css/button_brand_ambassador.css') }}" rel="stylesheet">

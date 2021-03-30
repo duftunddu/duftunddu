@@ -4,6 +4,8 @@
 use App;
 
 use App\Store;
+use App\Store_Stock;
+
 use App\Location;
 
 use Carbon\Carbon;
@@ -16,6 +18,8 @@ class Helper {
     public function __construct() {
         //
     }
+
+
 
     // Normalizers
     public static function remove_accents($name) {
@@ -54,10 +58,12 @@ class Helper {
     }
 
 
+
     // Location Helpers
     public function get_current_location() {
         return Location::firstWhere('ip_to', '>', ip2long(request()->ip()));
     }
+
 
 
     // Currency Helpers
@@ -88,6 +94,7 @@ class Helper {
             return round($exchangeRates->convert($cost, $from, $to));
         }
     }
+
 
 
     // Weather Helpers
@@ -126,6 +133,7 @@ class Helper {
 
         return $weather_data;
     }
+
 
     public static function get_weather_success($location_id=NULL) {
 
@@ -236,8 +244,45 @@ class Helper {
         return $weather_average;
     }
 
+
+    //Stores Helper
+
+    public function is_stock_empty($store_type)
+    {
+        // If the stock is empty, don't let them go to profile.
+        
+        $frag_id = Store_Stock::where('store_id', Store::where('users_id', request()->user()->id)->where($store_type, TRUE)->first()->id)
+        ->where('available', TRUE)
+        ->exists();
+
+        return !$frag_id;
+    }
+
+    // Webstore Helper    
+    public function api_key() {
+        
+        do {
+            $api_key = Helper::secure_random_string();
+        } while(Store::where('api_key', $api_key)->exists());
+
+        return $api_key;
+    }
+
+    private static function secure_random_string() {
+        $length = 40;
+        $random_string = '';
+        for($i = 0; $i < $length; $i++) {
+            $number = random_int(0, 36);
+            $character = base_convert($number, 10, 36);
+            $random_string .= $character;
+        }
+     
+        return $random_string;
+    }
+
     
     
+    // Probably unused, check first, then delete
     public function fragrance_json() {
 
         $obj=(object) [ 'avg_temp'=>$weights->avg_temp,
@@ -275,27 +320,5 @@ class Helper {
             }
 
             , $array_with_stdClass);
-    }
-
-    // Webstore Helper    
-    public function api_key() {
-        
-        do {
-            $api_key = Helper::secure_random_string();
-        } while(Store::where('api_key', $api_key)->exists());
-
-        return $api_key;
-    }
-
-    private static function secure_random_string() {
-        $length = 40;
-        $random_string = '';
-        for($i = 0; $i < $length; $i++) {
-            $number = random_int(0, 36);
-            $character = base_convert($number, 10, 36);
-            $random_string .= $character;
-        }
-     
-        return $random_string;
     }
 }

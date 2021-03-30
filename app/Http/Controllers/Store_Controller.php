@@ -20,8 +20,10 @@ use App\Store_Customer_Feature_Log;
 
 use Validator;
 use Illuminate\Validation\Rule;
+
 use App\Helper\Helper;
 use App\Helper\Store_Helper;
+
 use App\Helper\Fragrance_Review_Helper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -47,12 +49,11 @@ class Store_Controller extends Controller
             return redirect('/services_register');
         }
         
-        $store_helper = new Store_Helper();
-
-        $fragrances_count = $store_helper->get_store_stock_names()->count();
+        $store_helper       = new Store_Helper();
+        $fragrance_count    = $store_helper->get_store_stock_names('store')->count();
 
         return view('store.home',[
-            'fragrances_count'   =>  $fragrances_count,
+            'fragrance_count'   =>  $fragrance_count,
         ]);
     }
 
@@ -66,7 +67,9 @@ class Store_Controller extends Controller
     // Profile
     public function add_profile()
     {
-        if(Store_Controller::is_empty_stock()){
+        $helper = new Helper();
+
+        if($helper->is_stock_empty('store')){
             return redirect('/store_home')->with('error', 'Stock is empty. Add Fragrances to Stock first.');
         }
 
@@ -75,14 +78,14 @@ class Store_Controller extends Controller
         $climates       =   Climate::select('name')->get();
         $seasons        =   Season::select('name')->get();
         
-        $profile        =   session('store_profile'); 
+        // $profile        =   session('store_profile'); 
 
         return view('store.profile_entry',[
             'professions'       =>    $professions,
             'skin_types'        =>    $skin_types,
             'climates'          =>    $climates,
             'seasons'           =>    $seasons,
-            'profile'           =>    $profile,
+            // 'profile'           =>    $profile,
         ]);
     }
 
@@ -253,7 +256,7 @@ class Store_Controller extends Controller
     // Show Fragrance Review
     public function show_fragrance($id)
     {
-        if(Store_Controller::is_empty_stock()){
+        if(Store_Controller::is_stock_empty()){
             return redirect('/store_home')->with('error', 'Stock is empty. Add Fragrances to Stock first.');
         }
 
@@ -553,21 +556,23 @@ class Store_Controller extends Controller
 
 
     // Empty Stock
-    public function is_empty_stock()
+    public function is_stock_empty()
     {
         // If the stock is empty, don't let them go to profile.
         
-        $frag_id = Store_Stock::where('store_id', Store::where('users_id', request()->user()->id)->first()->id)
+        $frag_id = Store_Stock::where('store_id', Store::where('users_id', request()->user()->id)->where('store', TRUE)->first()->id)
         ->where('available', TRUE)
-        ->first()->id;
+        ->exists();
 
-        if($frag_id) {
-            // Empty
-            return FALSE;
-        }
-        else {
-            return TRUE;
-        }
+        return !$frag_id;
+        
+        // if($frag_id) {
+        //     // Empty
+        //     return FALSE;
+        // }
+        // else {
+        //     return TRUE;
+        // }
     }
 
     public function empty_stock()
@@ -580,7 +585,9 @@ class Store_Controller extends Controller
     public function stock_suitability()
     {
         $store_helper = new Store_Helper();
-        $fragrances = $store_helper->get_store_stock_fragrances();
+        $fragrances = $store_helper->get_store_stock_fragrances('store');
+
+        $insufficient_data      =   $store_helper->data_is_insufficient('store');
 
         $fragrance_review_helper = new Fragrance_Review_Helper();
         
@@ -595,6 +602,7 @@ class Store_Controller extends Controller
 
         return view('store.stock_suitability',[
             'fragrances'   =>  $fragrances,
+            'insufficient_data'     =>  $insufficient_data,
         ]);
     }
 
@@ -603,7 +611,7 @@ class Store_Controller extends Controller
     public function show_stock()
     {
         $stock = new Store_Helper();
-        $stock = $stock->get_store_stock_names();
+        $stock = $stock->get_store_stock_names('store');
         
         return view('store.stock',[
             'stock'         =>  $stock,
@@ -649,7 +657,14 @@ class Store_Controller extends Controller
             ->first();
         }
         
-        $store_id = Store::find(request()->user()->id)->id;
+        // $store_id = Store::find(request()->user()->id)->id;
+        $store_helper = new Store_Helper();
+        $store_id = $store_helper->get_store_id('store');
+
+        // $store_id = Store::where('users_id', request()->user()->id)
+        // ->where('request_status', 'approved')
+        // ->where('store', '1')
+        // ->first()->id;
         
         $stock = Store_Stock::where('store_id', $store_id)
             ->where('fragrance_brand_name', $request->input('brand'))
@@ -700,7 +715,9 @@ class Store_Controller extends Controller
 
     public function remove_from_stock($stock_id)
     {
-        $store_id = Store::find(request()->user()->id)->id;
+        $store_helper = new Store_Helper();
+        $store_id = $store_helper->get_store_id('store');
+
         $stock = Store_Stock::find($stock_id);
         
         // If stock_id doesn't exist or this is not the owner of the stock 

@@ -79,8 +79,8 @@ class User_Fragrance_Review_Controller extends Controller
             ->first();
         }
 
-        $location = new Helper();
-        $location = $location->get_current_location()->id;
+        $location       = new Helper();
+        $location_id    = $location->get_current_location()->id;
 
         $weather_avg = Helper::get_weather_average_data();
         

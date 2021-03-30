@@ -17,19 +17,22 @@ class Store_Helper {
         //
     }
 
-    public function get_store_id()
+    public function get_store_id($store_type)
     {
-        return Store::where('users_id', request()->user()->id)->first()->id;
+        return Store::where('users_id', request()->user()->id)
+        ->where('request_status', 'approved')
+        ->where($store_type, '1')
+        ->first()->id;
     }
 
     // Just to show the names
-    public function get_store_stock_names()
+    public function get_store_stock_names($store_type)
     {
         $store_id = new Store_Helper();
-        $store_id = $store_id->get_store_id();
-
+        $store_id = $store_id->get_store_id($store_type);
+        
         $stock = Store_Stock::where('store_id', $store_id)
-        ->where('available', TRUE)
+        ->where('available', 1)
         ->select('id', 'fragrance_brand_name', 'fragrance_name')
         ->orderBy('fragrance_brand_name')
         ->orderBy('fragrance_name')
@@ -38,15 +41,27 @@ class Store_Helper {
         return $stock;
     }
 
+    public function get_store_stock_count($store_type)
+    {   
+        $store_helper = new Store_Helper();
+        return $store_helper->get_store_stock_names($store_type)->count();
+    }
+
+    public function data_is_insufficient($store_type)
+    {
+        $store_helper = new Store_Helper();
+        return $store_helper->get_store_stock_count($store_type) > $store_helper->get_store_stock_fragrances($store_type)->count();
+    }
+
     // For fragrance ids and stuff
-    public function get_store_stock_fragrances()
+    public function get_store_stock_fragrances($store_type)
     {
         $store_id = new Store_Helper();
-        $store_id = $store_id->get_store_id();
+        $store_id = $store_id->get_store_id($store_type);
 
         $stock = Store_Stock::where('store_id', $store_id)
         ->join('fragrance', 'fragrance.id', 'store_stock.fragrance_id')
-        ->where('available', TRUE)
+        ->where('available', 1)
         ->select('fragrance.id as id', 'fragrance_brand_name as brand', 'fragrance_name as fragrance')
         ->get();
 
@@ -98,7 +113,7 @@ class Store_Helper {
     
         // $stock = Store_Stock::where('store_id', $store_id)
         $stock = Store_Stock::where('store_id', $store_id)
-        ->where('available', TRUE)
+        ->where('available', 1)
         // ->select('id', 'fragrance_brand_name', 'fragrance_name')
         ->orderBy('fragrance_brand_name')
         ->get();

@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 <title>{{_('FAQ | The AI Powered Fragrance Genie | Duft Und Du')}}</title>
+@section('description', "Need help in registration or logging in? If you're having trouble signing up or have any other related queries, please refer to the FAQs provided.")
 
 <link href="{{ asset('css/faq.css') }}" rel="stylesheet">
 

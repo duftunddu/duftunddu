@@ -1,10 +1,11 @@
 @extends('layouts.app')
 
-<title>{{('Fragrance Review Entry | The AI Powered Fragrance Genie')}}</title>
+<title>{{('Fragrance Review Entry | The AI Powered Fragrance Genie | Duft Und Du')}}</title>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    @section('description', "Participate in the research by adding your favourite fragrance review. We appreciate your participation.")
 
     {{-- Scripts --}}
     <link href="{{ asset('css/fragrance_review_entry.css') }}" rel="stylesheet" defer>
@@ -40,6 +41,7 @@
                         <div class="form-group row">
                             <div class="col-md-9 offset-md-4">
                                 <h5 class="lux-red">We appreciate your participation.</h5>
+                                <small class="de-gray">If you don't understand some word, just tap on it.</small>
                             </div>
                         </div>
 
@@ -153,7 +155,7 @@
                         <div class="form-group row">
                             <label for="spray" class="col-md-4 col-from-label text-md-right required" data-toggle="tooltip"
                                 data-placement="top" data-html="true"
-                                title="How many sprays did you apply?.">{{ __('No. of Sprays:')}}</label>
+                                title="How many sprays did you apply?">{{ __('No. of Sprays:')}}</label>
 
                             <div class="col-md-6">
 
