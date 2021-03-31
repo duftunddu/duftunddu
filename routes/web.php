@@ -205,9 +205,6 @@ Route::middleware(['role:webstore_owner|admin'])->group(function () {
     // Home
     Route::get('/webstore_home', "Webstore_Controller@home");
     
-    // Serve CSS Script
-    Route::get('/webstore_client_css.css', "Webstore_Controller@webstore_client_css");
-    Route::get('/webstore_client_js.js', "Webstore_Controller@webstore_client_js");
 
     // Show Fragrance
     Route::get('/webstore_profile', "Webstore_Controller@index");
@@ -247,10 +244,17 @@ Route::middleware(['role:brand_ambassador|admin', 'verified'])->group(function (
     
 });
 
+// Webstore Client Demo: Codepen 
+// Route::get('/webstore_call/{from}}/{api_key}/{user_ip_address}/{brand}/{fragrance}/{fragrance_type}/{theme}',  "Webstore_Controller@webstore_call_test");
 
 // Webstore Call
 // Route::get('/webstore_call/{key}/{brand_name}/{fragrance_name}', "Webstore_Controller@webstore_call");
 Route::get('/webstore_call/{api_key}/{user_ip_address}/{brand}/{fragrance}/{fragrance_type}/{theme}', "Webstore_Controller@webstore_call");
+
+// Serve CSS Script
+Route::get('/webstore_client_css.css', "Webstore_Controller@webstore_client_css");
+Route::get('/webstore_client_js.js', "Webstore_Controller@webstore_client_js");
+
 
 
 // Moderator
@@ -265,6 +269,7 @@ Route::middleware(['role:moderator|admin'])->group(function () {
     // Unavailable Brands & Fragrances
     Route::get('/unavailable_brands_fragrances_panel', "Unavailable_Brands_Fragrances_Controller@index");
 
+    
     // Add Brand
     Route::get('/add_brand_mod/{brand_name}', 'Unavailable_Brands_Fragrances_Controller@add_brand_view');
     Route::post('/add_brand_mod', 'Unavailable_Brands_Fragrances_Controller@store_brand');
@@ -272,10 +277,7 @@ Route::middleware(['role:moderator|admin'])->group(function () {
     // Add Fragrance
     Route::get('/add_fragrance_mod/{fragrance_name}', 'Unavailable_Brands_Fragrances_Controller@add_fragrance_view');
     Route::post('/add_fragrance_mod', 'Unavailable_Brands_Fragrances_Controller@store_fragrance');
-
-    // Webstore Client
-    Route::get('/webstore_client', "Webstore_Controller@webstore_client");
-
+    
 
     // Accords & Notes
     Route::get('/accord_entry', 'Accord_Controller@index');
@@ -289,15 +291,16 @@ Route::middleware(['role:moderator|admin'])->group(function () {
 // Admin
 Route::middleware(['role:admin'])->group(function () {
 
-    // Add Moderator and Move to Moderator
-    // Unavailable Brands & Fragrances
-    // End of Unavailable Brands & Fragrances
-
-    Route::get('/new_model', "Webstore_Controller@new_model");
-
-    // Webstore    
+    // Webstore
     // Webstore API
-    Route::get('/api_call', "Controller@api_call");
+    Route::get('/webstore_call_dev/{api_key}/{user_ip_address}/{brand}/{fragrance}/{fragrance_type}/{theme}',  "Webstore_Controller@webstore_call_test");
+    
+    // Webstore Client
+    Route::get('/webstore_client', "Webstore_Controller@webstore_client");
+    Route::get('/webstore_client_dev', "Webstore_Controller@webstore_client_dev");
+
+    // Route::get('/new_model', "Webstore_Controller@new_model");
+    // Route::get('/api_call', "Controller@api_call");
     // End of Webstore
 
     

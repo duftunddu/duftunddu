@@ -37,7 +37,6 @@ class Webstore_Controller extends Controller
      * @return \Illuminate\Http\Response
     */
     public function index(){
-
         // Only one webstore is allowed per person
         if(request()->user()->hasRole(['webstore_owner'])){
             return redirect('/services_register');
@@ -67,13 +66,58 @@ class Webstore_Controller extends Controller
     }
 
 
+
     // Client
     public function webstore_client(){
         return view('webstore.client');
     }
 
-    public function webstore_call($api_key, $brand_name, $fragrance_name, $fragrance_type, $theme){
+    public function webstore_client_dev(){
+        return view('webstore.client_dev');
+    }
+
+
+    // Call
+    public function webstore_call($api_key, $ip_address, $brand_name, $fragrance_name, $fragrance_type, $theme){
         
+        var_dump(request()->getHost());
+        return;
+
+        $api_key_check = Store::where('users_id', request()->user()->id)
+        ->where('webstore', TRUE)
+        ->where('request_status', 'approved')
+        ->where('api_key', $api_key)
+        ->exists();
+
+        $api_host = Store::where('api_key', $api_key)
+        ->first();
+
+        $api_host_check = FALSE;
+        if( !is_null($api_host_check) ){
+            
+            $domain = parse_url($api_host->website);
+
+            if( strcmp($domain['host'], request()->getHost()) == 0 ){
+                $api_host_check = TRUE;
+            }
+        }
+        
+        var_dump(request()->getHost());
+        return;
+
+        // return view('store.profile_entry');
+
+        if($api_key_check){
+            return Webstore_Controller::show_fragrance($brand_name, $fragrance_name);
+        }
+        else{
+            // return view('webstore.api_error');
+            return "API_KEY_ERROR";
+        }
+    }
+
+    public function webstore_call_dev($api_key, $ip_address, $brand_name, $fragrance_name, $fragrance_type, $theme)
+    {
         $api_key_check = Store::where('users_id', request()->user()->id)
         ->where('webstore', TRUE)
         ->where('request_status', 'approved')
@@ -409,7 +453,8 @@ class Webstore_Controller extends Controller
     }
 
     // Model
-    public function new_model(){
+
+    public function test_model(){
         return view('webstore.client2');
     }
 
