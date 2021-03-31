@@ -80,7 +80,11 @@ class Webstore_Controller extends Controller
     // Call
     public function webstore_call($api_key, $ip_address, $brand_name, $fragrance_name, $fragrance_type, $theme){
         
-        var_dump(request()->getHost());
+        // Gives host name
+        // request()->getHost()
+
+        $hostname = gethostbyaddr(request()->ip());
+        var_dump($hostname);
         return;
 
         $api_key_check = Store::where('users_id', request()->user()->id)
