@@ -1,15 +1,4 @@
-/* @import url('https://fonts.googleapis.com/css?family=Open Sans:400,700|Montserrat'); */
-
-body {
-    /* margin: 0;
-padding: 0;
-font-family: 'Montserrat';
-font-size: 13px; */
-    letter-spacing: 1px;
-}
-
 #tabs {
-    /* width: 700px; */
     width: 95%;
     display: flex;
     position: relative;
@@ -17,26 +6,16 @@ font-size: 13px; */
     margin-top: 50px;
     height: 90%;
     min-height: 200px;
-    /* max-height: 600px; */
     max-height: 90%;
     overflow: hidden;
+    letter-spacing: 1px;
 }
-
-/* @media (max-width: 475px){
-#tabs{
-  width: 700px;
-  max-height: 600px;
-  height: 50%;
-}
-} */
 
 /* 850px */
 @media screen and (max-width: 480px) {
 
     #tabs {
         flex-direction: column;
-        /* height: 50%; */
-        /* max-height: 50%; */
     }
 
     #tabs-1,
@@ -46,7 +25,6 @@ font-size: 13px; */
         top: 0;
         right: 0;
         width: 100%;
-        /* height: 50% !important; */
     }
 }
 
@@ -63,7 +41,6 @@ font-size: 13px; */
 
 #tabs ul li a {
     position: relative;
-    /* display: block; */
     display: inline-block;
     width: 100%;
     text-decoration: none;
@@ -71,7 +48,6 @@ font-size: 13px; */
     border-top: solid 2px #e9e9e9;
     padding: 20px 5px;
     z-index: 1;
-    /* opacity: .5; */
     -webkit-transition: 0.4s ease;
     -moz-transition: 0.4s ease;
     -o-transition: 0.4s ease;
@@ -98,8 +74,6 @@ ul li a.active {
     text-transform: uppercase;
     letter-spacing: 1px;
     border: none;
-    /* font-size: 11px; */
-    /* font-family: 'Montserrat'; */
     color: #2b2b2b;
 }
 
@@ -132,11 +106,24 @@ ul li a.active {
 .icon {
     position: relative;
     display: inline-block;
-    width: 50px;
-    height: 50px;
-    background: #c7c7c7;
+    width: 60px;
+    height: 60px;
+    background-size: cover;
     border-radius: 100%;
     vertical-align: middle;
+}
+
+
+#icon-1 {
+    background-image: url('../images/fragrance_bottle/self_made/5.jpg');
+}
+
+#icon-2 {
+    background-image: url('../images/fragrance_bottle/self_made/2.jpg');
+}
+
+#icon-3 {
+    background-image: url('../images/fragrance_bottle/self_made/3.jpg');
 }
 
 .block {
@@ -169,15 +156,14 @@ ul li a.active {
     transform: translate(-50%, -50%);
 }
 
-.headings {
+/* .headings {
     display: inline-block;
     text-transform: uppercase;
     font-weight: bold;
     padding: 0 10px;
     vertical-align: middle;
     color: #2b2b2b;
-    /* color: #7b7b7b; */
-}
+} */
 
 .addon {
     position: relative;
@@ -186,8 +172,6 @@ ul li a.active {
     margin-left: 70px;
     letter-spacing: 0;
     color: #2b2b2b;
-    /* color: #9b9b9b; */
-    /* font-family: 'Open Sans'; */
 }
 
 .addon.fadein {
@@ -272,6 +256,13 @@ ul li a.active {
     /* background-size: 100% 100%; */
 }
 
+@media (max-width: 993px) {
+    .icon {
+        width: 60px;
+        height: 60px;
+    }
+}
+
 @media (max-width: 768px) {
 
     #tabs ul#accordion,
@@ -284,6 +275,11 @@ ul li a.active {
     .browser {
         position: relative;
         height: 50vh;
+    }
+
+    .icon {
+        width: 50px;
+        height: 50px;
     }
 
     #tabs {

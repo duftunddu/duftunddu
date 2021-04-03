@@ -52,13 +52,26 @@ Route::get('/privacy_policy', function () {
     return view('forms.privacy_policy');
 });
 
+
+// Proposals
 Route::get('/brand_ambassador_proposal', function () {
     return view('brand_ambassador.proposal');
 });
 
+Route::get('/store_proposal', function () {
+    return view('store.proposal');
+});
+
+Route::get('/webstore_proposal', function () {
+    return view('webstore.proposal');
+});
+
+
+// Brands
 Route::get('/brands', 'Fragrance_Brand_Controller@all_brands');
 Route::get('/brand/{id}', 'Fragrance_Brand_Controller@show');
 
+// Fragrances
 Route::get('/fragrances_array/{id}', 'Fragrance_Controller@all_fragrances_array');
 Route::get('/fragrances/{brand_id}', 'Fragrance_Controller@all_fragrances');
 Route::get('/fragrance/{fragrance_id}', 'Fragrance_Controller@show');
@@ -376,15 +389,24 @@ Route::middleware(['role:admin'])->group(function () {
     Route::get('/brand_ambassador_requests', 'Admin_Controller@brand_ambassador_request');
     Route::get('/brand_ambassador_requests/{status}/{ambassador_id}', 'Admin_Controller@brand_ambassador_request_response');
 
+    Route::get('/admin_links', function () {
+        return view('admin.links');
+    });
+    
 
     // Individual Tests
-    Route::get('footer', function () {
+    Route::get('/footer', function () {
         return view('layouts.footer');
     });
     
-    Route::get('admin_links', function () {
-        return view('admin.links');
+    Route::get('/header', function () {
+        return view('layouts.header');
     });
+
+    Route::get('/services_accordion', function () {
+        return view('features.services_accordion');
+    });
+
     
     Route::get('scroll', function () {
         return view('layouts.scroll');
@@ -410,9 +432,6 @@ Route::middleware(['role:admin'])->group(function () {
         return view('forms.button_hold_to_confirm');
     });
 
-    Route::get('header', function () {
-        return view('layouts.header');
-    });
     
     Route::get('button_get_wishes', function () {
         return view('forms.button_get_wishes');

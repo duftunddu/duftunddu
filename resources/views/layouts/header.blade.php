@@ -33,20 +33,20 @@
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav ml-auto py-4 py-md-0">
 
-                                {{-- Home --}}
+                                {{-- AI Genie --}}
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">{{-- active --}}
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" 
-                                        aria-expanded="false">Home</a>
+                                        aria-expanded="false">AI Genie</a>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="{{ url('/search_engine') }}"><span class="header-icon"><i class="fas fa-search"></i></span>Search Engine</a>
-                                        <a class="dropdown-item" href="{{ url('/about_us') }}"><span class="header-icon"></i></span>About Us</a>
+                                        <a class="dropdown-item" href="{{ url('/search_engine') }}"><span class="header-icon"><i class="fas fa-search"></i></span>Personalized Fragrance Review</a>
                                     </div>
                                 </li>
 
-                                {{-- Services --}}
+                                @hasrole('service_user')
+                                {{-- Connected Genie Services --}}
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
-                                        role="button" aria-haspopup="true" aria-expanded="false">Services</a>
+                                        role="button" aria-haspopup="true" aria-expanded="false">Genie Services</a>
                                     <div class="dropdown-menu">
                                         
                                         {{-- Dashboards --}}
@@ -72,24 +72,29 @@
                                         <a class="dropdown-item" href="{{ url('/webstore_application_status') }}"><span class="header-icon"><i class="fas fa-mobile-alt"></i></span>Online Store Application Status</a>
                                         @endhasrole
 
-                                        {{-- Services Home --}}
-                                        {{-- @hasrole('service_user')
-                                        <a class="dropdown-item" href="{{ url('/services_home') }}">Services Dashboard</a>
-                                        @endhasrole --}}
-                                        
-                                        {{-- Services list if not subscribed to any  --}}
-                                        @unlessrole('service_user')
-                                        <a class="dropdown-item" href="{{ url('/brand_ambassador_proposal') }}"><span class="header-icon"><i class="far fa-copyright"></i></span>For Brands</a>
-                                        <a class="dropdown-item" href="{{ url('/store_proposal') }}"><span class="header-icon"><i class="fas fa-store"></i></span>For Shops</a>
-                                        <a class="dropdown-item" href="{{ url('/webstore_proposal') }}"><span class="header-icon"><i class="fas fa-mobile-alt"></i></span>For Online Stores</a>
-                                        <a class="dropdown-item" href="{{ url('/services_register') }}"><span class="header-icon"><i class="far fa-handshake"></i></span>Register Your Service</a>
-                                        @endunlessrole
-                                        
                                         <a class="dropdown-item" href="{{ url('/advertise_proposal') }}"><span class="header-icon"><i class="fas fa-ad"></i></span>Advertise</a>
                                         {{-- <a class="dropdown-item" href="#">Premium Features</a> --}}
 
                                     </div>
                                 </li>
+
+                                @else
+                                {{-- Connect Genie Services --}}
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
+                                        role="button" aria-haspopup="true" aria-expanded="false">Connect Genie</a>
+                                    <div class="dropdown-menu">
+                       
+                                        <a class="dropdown-item" href="{{ url('/brand_ambassador_proposal') }}"><span class="header-icon"><i class="far fa-copyright"></i></span>With Brand</a>
+                                        <a class="dropdown-item" href="{{ url('/store_proposal') }}"><span class="header-icon"><i class="fas fa-store"></i></span>With Shop</a>
+                                        <a class="dropdown-item" href="{{ url('/webstore_proposal') }}"><span class="header-icon"><i class="fas fa-mobile-alt"></i></span>With Online Store</a>
+                                        <a class="dropdown-item" href="{{ url('/services_register') }}"><span class="header-icon"><i class="far fa-handshake"></i></span>Register Your Service</a>                                        
+                                        <a class="dropdown-item" href="{{ url('/advertise_proposal') }}"><span class="header-icon"><i class="fas fa-ad"></i></span>Advertise</a>
+                                        {{-- <a class="dropdown-item" href="#">Premium Features</a> --}}
+
+                                    </div>
+                                </li>
+                                @endhasrole
 
                                 {{-- Participate --}}
                                 {{-- <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
@@ -121,10 +126,11 @@
                                         aria-haspopup="true" aria-expanded="false">Contact Us</a>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="{{ url('/faq') }}">FAQ</a>
-                                        <a class="dropdown-item" href="{{ url('/request_brand_view') }}">Request a Brand</a>
-                                        <a class="dropdown-item" href="{{ url('/request_feature_view') }}">Request a Feature</a>
-                                        <a class="dropdown-item" href="{{ url('/feedback') }}">Feedback</a>
-                                        <a class="dropdown-item" href="{{ url('/report') }}">Report</a>
+                                        <a class="dropdown-item" href="{{ url('/about_us') }}">About Us</a>
+                                        {{-- <a class="dropdown-item" href="{{ url('/request_brand_view') }}">Request a Brand</a> --}}
+                                        {{-- <a class="dropdown-item" href="{{ url('/request_feature_view') }}">Request a Feature</a> --}}
+                                        {{-- <a class="dropdown-item" href="{{ url('/feedback') }}">Feedback</a> --}}
+                                        {{-- <a class="dropdown-item" href="{{ url('/report') }}">Report</a> --}}
                                         {{-- Add FB, Insta, Linkedin, email address to contact details  --}}
                                         <a class="dropdown-item" href="{{ url('/contact_details') }}">Contact Details</a>
                                         {{-- <a class="dropdown-item" href="#">Contact</a> --}}

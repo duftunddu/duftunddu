@@ -1,58 +1,44 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@extends('layouts.app')
 
-    <head>
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-G1D0YSC2FS"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
+<title>Duft Und Du | Home to AI Fragrance Genie | The Fragrance Hub</title>
 
-            gtag('config', 'G-G1D0YSC2FS');
-        </script>
-        
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Duft Und Du gives you personalized fragrance reviews for free. Business integrations for shops and online stores are also available.">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
+    @section('description', 'Duft Und Du gives you personalized fragrance reviews for free. Business integrations for shops and online stores are also available.')
 
-        <meta name="google-site-verification" content="3hy_S24sOYc7IE86bIF_EkZkPdv2ONhpExuetFeuoeA" />
-        <link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico" />
-        
-        <title>Duft Und Du | The Fragrance Hub</title>
+    <!-- Styles -->
+    <link href="{{ asset('css/welcome.css') }}" rel="stylesheet">
 
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/welcome.css') }}" rel="stylesheet">
+    {{-- Typing Effect --}}
+    <link href="{{ asset('css/typing_effect.css') }}" rel="stylesheet">
+    
+    {{-- <link href="{{ asset('css/scroll_down_button.css') }}" rel="stylesheet" defer>
+    <script src="{{ asset('js/scroll_down_button.js') }}" defer></script> --}}
 
-        {{-- Typing Effect --}}
-        <link href="{{ asset('css/typing_effect.css') }}" rel="stylesheet">
-        <script src="{{ asset('js/typing_effect.js') }}" defer></script>
-        
-        {{-- <link href="{{ asset('css/scroll_down_button.css') }}" rel="stylesheet" defer>
-        <script src="{{ asset('js/scroll_down_button.js') }}" defer></script> --}}
+    <!-- Fonts -->
+    {{-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> --}}
+    {{-- <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" defer> --}}
+    {{-- <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet" defer> --}}
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" defer>
-        <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet" defer>
-    </head>
+</head>
 
-    <body>
+@section('content')
 
-        @include('layouts.preloader')
-        
-        @include('layouts.header')
+{{-- <div class="container"> --}}
 
-        <div class="flex-1-center position-ref">
-
-            <div class="content">
+    <div class="flex-1-center position-ref">
+            <div class="flex-1-content">
                 <br>
                 
+                {{-- Title --}}
                 <div class="title m-b-md">
                     <div data-toggle="tooltip" data-placement="top" title="German For Fragrance And You">Duft Und Du</div>
+                    {{-- <small class="title-mean de-gray">German for Fragrance & You</small> --}}
                 </div>
 
-                <div class="heading m-b-md">
+                {{-- Typing Effect --}}
+                <div class="heading m-b-md lux-black-font">
                     <span class="item">&nbsp;</span>
                     <div class="wrapper">
 
@@ -66,25 +52,25 @@
 
                 <br>
 
-                <div class="links">
+                {{-- Links --}}
+                <div class="para lux-black-font">
 
-                    <h2 class="like-links">{{_('Lets grant your wish to smell good ')}}</h2><br><br>
+                    <h2 class="">{{_('Lets grant your wish to smell good')}}</h2><br><br>
 
-                    <a href="search_engine"><h2>{{_('Fragrance Search')}}</h2></a><br><br>
+                    <a class="link gold-color" href="/search_engine"><h2>{{_('Fragrance Search')}}</h2></a><br><br>
                     
-                    <h2 class="like-links">Fragrance Genie<br>Coming Soon</h2>
+                    <h2 class="">Fragrance Recommendations<br>Coming Soon</h2>
 
                     <br><br>
                     
-                    <h2 class="like-links grey-color">{{_('PREMIUM FEATURES COMING SOON')}}</h2>
+                    <h2 class="gold-color">{{_('PREMIUM FEATURES COMING SOON')}}</h2>
                     
                 </div>
 
             </div>
-
-        </div>
-        
-        <div class="flex-2-left position-ref full-height">
+    </div>
+    
+    <div class="flex-2-left position-ref full-height">
             <div class="flex-2-placement">
                 
                 <div class="flex-2-heading">
@@ -125,21 +111,17 @@
                 </div>
 
             </div>
-        </div>
+    </div>
 
-        <div class="flex-3-center position-ref full-height">
-            @include('features.feature_slider')
-        </div>
+    <div class="flex-3-center position-ref full-height">
+        @include('features.feature_slider')
+    </div>
 
-        <div class="flex-4-right position-ref full-height">
-            @include('forms.about_us_content')
-        </div>
+    <div class="flex-4-right position-ref full-height">
+        @include('forms.about_us_content')
+    </div>
 
-        <div class="footer-pad">
-            @include('layouts.footer')
-        </div>
+    <script src="{{ asset('js/typing_effect.js') }}" defer></script>
+{{-- </div> --}}
 
-
-    </body>
-
-</html>
+@endsection

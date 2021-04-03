@@ -7,6 +7,8 @@
     --lux-red: #f7527c;
     --lux-light-red: #f0587b;
     --lux-lipstick-red: #ca3849;
+    --lux-gold: rgb(182, 132, 64);
+    --lux-light-gold: rgb(198, 178, 150);
     --de-emphasize-gray: #999;
 }
 
@@ -30,6 +32,21 @@
     color: var(--lux-light-red);
 }
 
+.lux-gold {
+    color: var(--lux-gold)
+}
+
+.lux-light-gold {
+    color: var(--lux-light-gold)
+}
+
 .de-gray {
     color: var(--de-emphasize-gray);
 }
+
+
+/* Gold variations */
+/* #f8e5b7 */
+/* color: #f8e4c8 !important; */
+/* color: rgb(248, 228, 200) !important; */
+/* color: rgb(198, 178, 150) !important; */

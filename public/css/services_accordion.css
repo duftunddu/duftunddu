@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700');
+
+body {
+    font-family: "Open Sans", sans-serif;
+    background: #222;
+    margin: 0;
+    padding: 0;
+}
+
+.services_accordion {
+    /* width: 50%; */
+    width: 70%;
+    /* padding: 50px; */
+    padding: 30px;
+    margin: 0 auto;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: #FFF;
+}
+
+#services_accordion {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.acc-item {
+    width: 100%;
+    /* height: 100px; */
+    height: 21%;
+    position: relative;
+    transition: height 400ms;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+}
+
+.acc-item:after {
+    position: absolute;
+    top: 0;
+    right: 20px;
+    font-size: 48px;
+    content: "-";
+    color: white;
+    font-weight: bolder;
+    transition: transform 400ms;
+}
+
+.acc-item:hover {
+    height: 400px;
+}
+
+.acc-item:hover:after {
+    transform: rotate(-90deg);
+}
+
+.acc-item:hover .acc-item_content {
+    visibility: visible;
+    opacity: 1;
+}
+
+.acc-item_content {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.40);
+    bottom: 10px;
+    left: 10px;
+    width: 66%;
+    color: #FFF;
+
+    transition: all 300ms ease-in-out;
+}
+
+.acc-item_content h3 {
+    font-weight: 700;
+    margin: 0 0 10px 0;
+}
+
+.acc-item_content p {
+    margin: 0;
+    font-weight: 100;
+}
+
+
+.acc-item:nth-child(1) {
+    background-image: url("https://unsplash.it/1500/1000?random");
+}
+
+.acc-item:nth-child(2) {
+    background-image: url("https://unsplash.it/1501/1001?random");
+}
+
+.acc-item:nth-child(3) {
+    background-image: url("https://unsplash.it/1502/1002?random");
+}
+
+.acc-item:nth-child(4) {
+    background-image: url("https://unsplash.it/1503/1003?random");
+}
+
+
+@media (max-width: 600px) {
+    .services_accordion {
+        width: 100%;
+        padding: 0 0 50px 0;
+    }
+
+    .services_accordion>h3 {
+        margin: 50px 15px 0 15px;
+    }
+
+    .services_accordion>p {
+        margin: 10px 15px 0 15px;
+    }
+}

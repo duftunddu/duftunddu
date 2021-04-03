@@ -83,8 +83,11 @@ class Webstore_Controller extends Controller
         // Gives host name
         // request()->getHost()
 
-        $hostname = gethostbyaddr(request()->ip());
-        var_dump($hostname);
+        // $hostname = gethostbyaddr("66.35.250.150");
+        $hostname = gethostbynamel("www.slashdot.org");
+        // $hostname = gethostbynamel(request()->ip());
+        // $hostname = gethostbyaddr("216.105.38.15");
+        var_dump($hostname, );
         return;
 
         $api_key_check = Store::where('users_id', request()->user()->id)

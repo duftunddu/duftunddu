@@ -9,19 +9,21 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/button_brand_ambassador.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/research_proposal.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/brand_ambassador_proposal.css') }}" rel="stylesheet">
 </head>
 
 @section('content')
 
 <div class="container">
     {{-- Accordion --}}
-    <div class="flex-center1 position-ref full-height top-pad-fix">
+    <div class="flex-1 position-ref full-height top-pad-fix">
         @include('features.feature_slider_brand_ambassador')
     </div>
 
+    <div><span id="sb-pos" class="sleek-border"></span></div>
+
     {{-- Steps --}}
-    <div class="flex2 position-ref ">
+    <div class="flex2 position-ref">
         <div class="content">
 
             <div class="heading m-b-md">
@@ -52,8 +54,6 @@
             </div>
             <br><br>
 
-            @unlessrole('brand_ambassador|premium_brand_ambassador')
-            @hasrole('user|premium_user|super-admin')
             <div class="center">
                 <a href="/brand_ambassador_register" class="animated-button15" style="position: relative; center">
                     <span></span>
@@ -63,8 +63,6 @@
                     Brand Ambassador
                 </a>
             </div>
-            @endhasrole
-            @endunlessrole
 
             <br><br><br><br>
             <div class="links">

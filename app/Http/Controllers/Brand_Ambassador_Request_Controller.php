@@ -38,12 +38,12 @@ class Brand_Ambassador_Request_Controller extends Controller
     {
         // These checks were made when I was paranoid. Evaluate whether they are necessary.
         if (request()->user()->hasAnyRole('candidate_brand_ambassador', 'new_brand_ambassador')){
-            return redirect('/brand_ambassador_application_status');
+            return redirect('/brand_ambassador_application_status')->with('info', '');
         }
-        else if(request()->user()->hasRole('brand_ambassador')){
+        else if(request()->user()->hasAnyRole('brand_ambassador', 'premium_brand_ambassador')){
             return redirect('/ambassador_home');
         }
-        else if(request()->user()->hasRole('user')){
+        else if(request()->user()->hasAnyRole('user', 'premium_user')){
             return redirect('/brand_ambassador_proposal');
         }
 
