@@ -407,8 +407,11 @@ Route::middleware(['role:admin'])->group(function () {
         return view('features.services_accordion');
     });
 
+    Route::get('/scroll_down_button', function () {
+        return view('features.scroll_down_button');
+    }); 
     
-    Route::get('scroll', function () {
+    Route::get('/scroll', function () {
         return view('layouts.scroll');
     }); 
     

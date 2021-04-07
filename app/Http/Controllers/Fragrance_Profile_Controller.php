@@ -40,7 +40,7 @@ class Fragrance_Profile_Controller extends Controller
         $climates       =   Climate::select('name')->get();
         $seasons        =   Season::select('name')->get();
         
-        $currencies     =   Helper::currencies();
+        $currencies     =   Helper::get_currencies();
 
         return view('forms.profile_entry',[
             'professions'       =>    $professions,

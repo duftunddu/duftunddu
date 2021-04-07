@@ -1,51 +1,59 @@
 <link href="{{ asset('css/services_accordion.css') }}" rel="stylesheet">
 
-<h1>Genie Services</h1>
+{{-- <h1>Genie Services</h1> --}}
 <section class="services_accordion">
     <ul id="services_accordion">
+
         <li class="acc-item">
-            <h3>You</h3>
+            <h3 class="flex-2-heading">For You</h3>
             <div class="acc-item_content">
                 {{-- <h3>You</h3> --}}
-                <p>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches
-                    to corporate strategy foster collaborative thinking to further the overall value proposition.
-                    Organically grow the holistic world view of disruptive innovation via workplace diversity and
-                    empowerment.
+                <p class="flex-2-body">
+                    Welcome to Duft Und Du. Duft Und Du provides personalized fragrance reviews with help of our ‘AI
+                    Fragrance Genie’. Use the ‘Search Engine’ to search for the desired fragrance and get detailed
+                    analysis of the desired fragrance. You can also request for fragrances if they are not already on
+                    the list.
                 </p>
             </div>
         </li>
+
         <li class="acc-item">
-            <h3>Shops</h3>
+            <h3 class="flex-2-heading">For Shops</h3>
             <div class="acc-item_content">
                 {{-- <h3>Shops</h3> --}}
-                <p>Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day,
-                    going forward, a new normal that has evolved from generation X is on the runway heading towards a
-                    streamlined cloud solution. User generated content in real-time will have multiple touchpoints for
-                    offshoring.
+                <p class="flex-2-body">
+                    Product reviews are a great way to attract more customers. Isn’t it? And Duft Und Du is here to
+                    provide you personalized fragrance reviews. To use our services, Register your shop on Duft Und Du
+                    and provide your customers with personalized reviews for your fragrances.
                 </p>
             </div>
         </li>
+
         <li class="acc-item">
-            <h3>Webstores</h3>
+            <h3 class="flex-2-heading">For Webstores</h3>
             <div class="acc-item_content">
                 {{-- <h3>Webstores</h3> --}}
-                <p>Capitalise on low hanging fruit to identify a ballpark value added activity to beta test. Override
-                    the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the
-                    information highway will close the loop on focusing solely on the bottom line.
+                <p class="flex-2-body">
+                    Use our services to get personalized fragrance reviews for your products by integrating the API on
+                    your site. Your customers can preview them directly from your website. Register your online store to
+                    get the API and connect with Duft Und Du.
                 </p>
             </div>
         </li>
+
         <li class="acc-item">
-            <h3>Brands</h3>
+            <h3 class="flex-2-heading">For Brands</h3>
             <div class="acc-item_content">
                 {{-- <h3>Brands</h3> --}}
-                <p>Podcasting operational change management inside of workflows to establish a framework. Taking
-                    seamless key performance indicators offline to maximise the long tail. Keeping your eye on the ball
-                    while performing a deep dive on the start-up mentality to derive convergence on cross-platform
-                    integration.
+                <p class="flex-2-body">
+                    Want your brand to reach out to more people, Become a part of our ‘Brand Ambassador Program’ and add
+                    your brand to Duft Und Du. Track your brand’s performance with ‘Ambassador Dashboard’ and advertise
+                    your product to increase your sales. Register your brand and become a part of the Duft Und Du
+                    community.
                 </p>
             </div>
         </li>
+
     </ul>
 
 </section>

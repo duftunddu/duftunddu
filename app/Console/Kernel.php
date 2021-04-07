@@ -5,6 +5,8 @@ namespace App\Console;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
+use App\Helper\Helper;
+
 class Kernel extends ConsoleKernel
 {
     /**
@@ -14,6 +16,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         //
+        // 'App\Console\Commands\YourFirstCommand',
+        // 'App\Console\Commands\YourSecondCommand'
     ];
 
     /**
@@ -24,8 +28,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        // $schedule->command('inspire')->hourly();
+        $schedule->call(function() { Helper::set_currency_exchange_rates(); })->daily();
         $schedule->command('disposable:update')->weekly();
     }
 

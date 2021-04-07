@@ -188,7 +188,7 @@ class Unavailable_Brands_Fragrances_Controller extends Controller
         $accords        =   Accord::all()->sortBy('name');
         $ingredients    =   Ingredient::all()->sortBy('name');
         
-        // $currencies     =   Helper::currencies();
+        // $currencies     =   Helper::get_currencies();
         
         return view('moderator.fragrance_entry',[
           'fragrance_name'      =>      $fragrance_name,

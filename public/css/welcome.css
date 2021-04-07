@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap');
+
 /* html,
 body {
     background-color: #fff;
@@ -34,7 +36,8 @@ body {
     text-align: center;
     font-variant: small-caps;
     /* background-image: linear-gradient(80deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 45%, rgba(255, 255, 255, 1) 50%); */
-    background-image: linear-gradient(80deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 43%, rgba(240, 240, 240, 0.85) 48%);
+    /* background-image: linear-gradient(80deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 43%, rgba(240, 240, 240, 0.85) 48%); */
+    background-image: linear-gradient(80deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 43%, rgba(240, 240, 240, 0.70) 48%);
     /* background-image: linear-gradient(80deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 43%, rgba(246, 237, 228, 0.8) 50%); */
 }
 
@@ -82,29 +85,57 @@ body {
 }
 
 .flex-2-left {
-    background-image: url('../images/fragrance_model/laura-chouette-o7BEFNmuDkU-unsplash_desktop_usable_use.jpg');
-    background-image: url('../images/fragrance_model/laura-chouette-o7BEFNmuDkU-unsplash_desktop_usable_use.webp');
+    /* height: 100%; */
+    width: 100%;
+    /* background-image: url('../images/fragrance_model/laura-chouette-o7BEFNmuDkU-unsplash_desktop_usable_use.jpg'); */
+    /* background-image: url('../images/fragrance_model/laura-chouette-o7BEFNmuDkU-unsplash_desktop_usable_use.webp'); */
+    /* background-image: url('../images/others/tobias-van-schneider-lHGeqh3XhRY-unsplash.jpg'); */
+    /* background-image: url('../images/others/nick-nice-gPm8h3DS1s4-unsplash.jpg'); */
+    background-image: url('../images/others/brian-patrick-tagalog-_8hGFBxWD0A-unsplash.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     /* background-position: center center; */
-    background-attachment: fixed;
+    /* background-attachment: fixed; */
+    z-index: 2;
+}
+
+.flex-2-left::before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    /* background-color: rgba(0, 0, 0, 0.25) !important; */
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .flex-2-placement {
-    text-align: left;
-    align-items: left;
-    justify-content: left;
-    margin-right: 55%;
-    padding-left: 4%;
-    padding-top: 2.6%;
-    padding-bottom: 4%;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--lux-white);
+}
+
+.flex-2-item {
+    width: 90%;
 }
 
 .flex-2-heading {
     font-size: 1.85rem;
     font-weight: 100;
     font-variant: small-caps;
-    color: #89163f;
+    color: var(--lux-gold);
+    /* color: #89163f; */
+    letter-spacing: 2px;
 }
 
 .flex-2-body {
@@ -113,9 +144,39 @@ body {
     color: rgb(255, 250, 255);
 }
 
-.flex-2-body a {
-    color: #f7527c;
+.flex-2-title {
+    position: absolute;
+    top: 15px;
+    font-family: 'Cinzel Decorative', cursive;
+    font-variant: small-caps;
+    text-align: center;
+    margin-bottom: 5px;
+    /* color: var(--lux-gold); */
+    color: rgba(222, 172, 104, 0.7);
+    /* opacity: 0.7; */
+
+    animation: draw-line 3s;
+    animation-fill-mode: forwards;
 }
+
+@keyframes draw-line {
+    0% {
+        border-bottom: none;
+    }
+
+    50% {
+        transform: translateY(10px);
+        border-bottom: 1px solid var(--lux-white);
+    }
+
+    100% {
+        border-bottom: 2px solid var(--lux-white);
+    }
+}
+
+/* .flex-2-body a {
+    color: #f7527c;
+} */
 
 
 .flex-3-center {
@@ -129,7 +190,10 @@ body {
 
 .flex-4-right {
     background-repeat: no-repeat;
+    margin-bottom: -1.4rem;
 }
+
+/* .flex-4-right {} */
 
 h4 {
     color: #f7527c !important;

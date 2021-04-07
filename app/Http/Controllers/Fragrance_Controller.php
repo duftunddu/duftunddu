@@ -47,7 +47,7 @@ class Fragrance_Controller extends Controller
         $ingredients = Ingredient::all();
         $brands      = Fragrance_Brand::all();
         
-        $currencies     =   Helper::currencies();
+        $currencies     =   Helper::get_currencies();
         
         return view('admin.fragrance_entry',[
             'types'         => $types,
@@ -67,7 +67,7 @@ class Fragrance_Controller extends Controller
         $types          = Fragrance_Type::all();
         $accords        = Accord::all();
         $ingredients    = Ingredient::all();
-        $currencies     = Helper::currencies();
+        $currencies     = Helper::get_currencies();
         
         return view('brand_ambassador.fragrance_entry',[
         'brand'         => $brand,
@@ -362,9 +362,23 @@ class Fragrance_Controller extends Controller
 
             $helper = new Helper();
 
-            if(isset($fragrance->cost) && isset($fragrance->currency) && $fragrance->currency != $frag_profile->currency){
-                $fragrance->cost = $helper->convert_currency($fragrance->cost, $fragrance->currency, $frag_profile->currency);
+            if(isset($fragrance->cost) && isset($fragrance->currency)){
+                
+                // $rates = $helper->get_currency_exchange_rates();
+                // $rates = $helper->get_currencies();
+                // dd($rates);
+                // Helper::var_dump_readable($rates); return;
+
+                // $converted = $helper->convert_currency($fragrance->cost, $fragrance->currency, $frag_profile->currency);
+                // $converted = $helper->convert_currency(1000, 'EUR', 'PKR');
+                // var_dump(10, 'EUR', $converted, 'PKR'); return;
+                // dd($converted);
+
+                
+                $fragrance->cost = $helper->convert_currency(/*value*/ $fragrance->cost, /*from*/ $fragrance->currency, /*to*/ $frag_profile->currency);
                 $fragrance->currency = $frag_profile->currency;
+                
+                
             }
 
             $weather_data_json = $helper->get_weather_data($frag_profile->location_id);

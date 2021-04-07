@@ -3,13 +3,15 @@
 // To Remove Accents
 use App;
 
+// For exchange rates
+use Cache;
+
 use App\Store;
 use App\Store_Stock;
 
 use App\Location;
 
 use Carbon\Carbon;
-use AshAllenDesign\LaravelExchangeRates\Classes\ExchangeRate;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Illuminate\Support\Facades\Http;
@@ -67,32 +69,91 @@ class Helper {
 
 
     // Currency Helpers
-    public static function currencies() {
-        $currencies=new ExchangeRate();
-        $currencies=$currencies->currencies();
-        array_push($currencies, "PKR");
-        sort($currencies);
+    // The set function is public cause the scheduler uses it
+    public static function set_currency_exchange_rates() {    
+        // Making the call
+        // nbu = National Bank of Ukraine
+        // $req_url = 'https://api.exchangerate.host/latest?base=USD&places=2&source=nbu';
+        // Forex. Currently using forex cause it supports more currencies
+        $req_url = 'https://api.exchangerate.host/latest?base=USD&places=2';
+
+        $response = json_decode(file_get_contents($req_url));
+
+        // Saving the response
+        Cache::put('currency_data_success', $response->success);
+        
+        if($response->success) {
+            Cache::put('currency_data', $response);
+            return $response;
+        }
+        else{
+            return FALSE;
+        }
+    }
+
+    public static function get_currency_exchange_rates() {
+        // Checking success
+        if(Cache::get('currency_data_success')) {
+            return Cache::get('currency_data');
+        }
+        else{
+            return Helper::set_currency_exchange_rates();
+        }
+    }
+
+
+    public static function get_currencies() {
+        $currencies = Helper::get_currency_exchange_rates();
+        $currencies = (array) $currencies->rates;
+
+        $currencies = array_keys($currencies);
+
         return $currencies;
     }
 
     public static function convert_currency($cost, $from, $to) {
         // If both 'from' and 'to' are PKR then this function won't even be called.
-        $exchangeRates=new ExchangeRate();
-        $usd_to_pkr=163.2;
+        // $exchangeRates = new ExchangeRate();
+        // $usd_to_pkr = 155;
 
+        // Easy solvers
         if($cost == NULL || $from == NULL || $to == NULL){
             return NULL;
         }
-
-        if($from=='PKR') {
-            return round($exchangeRates->convert($cost * $usd_to_pkr, 'USD', $to));
+        else if($from == $to){
+            return $cost;
         }
-        else if($to=='PKR') {
-            return round($exchangeRates->convert($cost, $from, 'USD') * $usd_to_pkr);
+
+        // Actul solvers
+        $rates = Cache::get('currency_data')->rates;
+
+        if($from == 'USD'){
+            $converted = $rates->$to * $cost;
+        }
+        else if($to == 'USD'){
+            $converted = 1/$rates->$from * $cost;
         }
         else {
-            return round($exchangeRates->convert($cost, $from, $to));
+            // Algo
+            // Convert 57 EUR to PKR
+            // 1 USD = 0.9 EUR (from)
+            // 1 USD = 153.18 PKR (to)
+            
+            // 1 EUR = (1/ 0.9 EUR) USD
+            // 1 EUR = 1.11 USD
+            // 57 EUR = 63.33 USD
+
+            // 63.33 USD = 63.33 * 153.18 PKR
+            // 63.33 USD = 9700.88 PKR
+            // return 9700.88
+
+
+            // Implementation
+            // Converted = (In USD) * ($to)
+            $converted =  (1/$rates->$from * $cost) * ($rates->$to);
         }
+        // return $converted;
+        return round($converted, 1);
     }
 
 

@@ -8,10 +8,10 @@
   <ul id="accordion">
     <li>
       <a class="active" href="#tabs-1">   <div class="tag">
-          <div class="icon">
-            <div class="block">
+          <div class="icon" id="icon-1">
+            {{-- <div class="block">
               <div class="circle"></div>
-            </div>
+            </div> --}}
           </div>
           <h4>Our Team</h4>
         </div>
@@ -25,10 +25,10 @@
     </li>
     <li>
       <a href="#tabs-2">   <div class="tag">
-          <div class="icon">
-            <div class="block">
+          <div class="icon" id="icon-2">
+            {{-- <div class="block">
               <div class="circle"></div>
-            </div>
+            </div> --}}
           </div>
           <h4>Innovating</h4>
         </div>
@@ -42,10 +42,10 @@
     </li>
     <li>
       <a href="#tabs-3">   <div class="tag">
-          <div class="icon">
-            <div class="block">
+          <div class="icon" id="icon-3">
+            {{-- <div class="block">
               <div class="circle"></div>
-            </div>
+            </div> --}}
           </div>
           <h4>Maximizing Accuracy</h4>
         </div>
