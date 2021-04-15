@@ -146,19 +146,22 @@
 
                                     {{-- Sustainability --}}
                                     <h4 class="hsl-color" data-toggle="tooltip" data-placement="top" data-html="true"
-                                        title="How much heat affects the longevity of fragrance.<br>100 means unaffected. Below 100 means it will wear off sooner.">
-                                        Sustainability: <span class="lux-red">{{$sustainability}}</span></h4>
+                                        {{-- title="How much heat affects the longevity of fragrance.<br>100 means unaffected. Below 100 means it will wear off sooner."> --}}
+                                        title="How much heat affects the longevity of fragrance.<br>0 means unaffected. 100 means affected.">
+                                        Heat Impact: <span class="lux-red">{{$sustainability}}</span></h4>
                                     {{-- Bar --}}
                                     <div class="review-bar-cont"> 
                                         <div class="review-bar sustainability"></div> 
                                     </div>    
-                                    <br>
-                                    
+                                    <br><br>
+                                    {{-- @if() --}}
+                                    <small class="data-indicator">Not much</small>
+                                    {{-- @endif --}}
                                     {{-- <br><br> --}}
 
                                     <hr class="hr-purple-line">
 
-                                    <p class="de-gray right-align">v 1.1</p>
+                                    <p class="de-gray right-align">v 2.0</p>
                                     {{-- <p>These are your personalized numbers.<br>
                                         Please leave feedback on fragrances you have used previously.<br>
                                         Your input will help us predict better!

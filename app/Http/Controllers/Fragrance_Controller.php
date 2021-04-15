@@ -390,10 +390,11 @@ class Fragrance_Controller extends Controller
                 $fragrance_review_helper = new Fragrance_Review_Helper(); 
 
                 $sustainability = trim($fragrance_review_helper->get_sustainability($id));
+                if($sustainability != -1){
+                    $sustainability *= 100;
+                }
                 
-                $helper->var_dump_readable($sustainability); return;
-
-
+                // $helper->var_dump_readable($sustainability); return;
 
                 //TODO: Create separate functions for each of the following, fetch weights in those functions from database.   
 
@@ -415,7 +416,7 @@ class Fragrance_Controller extends Controller
                 // Initializing Weights
                 // Strength of Fragrance (Experimental)
                 $strength_of_fragrance = $notes->pluck('intensity')->take(5)->sum()/5;
-                $sustainability = 75;
+                // $sustainability = 75;
                 $suitability = 75;
                 $longevity = 0;
                 // Perfume Oil Concentration in %
@@ -477,20 +478,6 @@ class Fragrance_Controller extends Controller
                 }
 
                 // Heat: Volatilizes essences faster.
-                $sustainability_heat_weight = (object) [
-                'condition' => NULL,
-                'weight'    => NULL
-                ];
-                if($avg_temp > 82){  
-                $sustainability *= 0.7;
-                $sustainability_heat_weight->condition = 82;
-                $sustainability_heat_weight->weight = 0.7;
-                }
-                else if($avg_temp > 71.9){
-                $sustainability *= 0.8;
-                $sustainability_heat_weight->condition = 71.9;
-                $sustainability_heat_weight->weight = 0.8;
-                }
 
                 // Weather: Cold weather/region holds stronger, lusher floral notes in check, which is why your tropical perfumes will smell all wrong during winter or autumn. Conversely, lighter scents work better in summer and spring.
                 $warm_cold_weight = (object) [
@@ -521,17 +508,6 @@ class Fragrance_Controller extends Controller
                 'condition_2' => NULL,
                 'weight'      => NULL
                 ];
-                if($frag_profile->sweat > 50){
-                $sustainability *= 0.80;
-                $sweat_weight->condition_1 = 0.80;
-                
-                if(in_array("Warm", $accords)){
-                    $strength_of_fragrance *= 1.2;
-
-                    $sweat_weight->condition_2 = "Warm";
-                    $sweat_weight->weight = 1.2;
-                }
-                }
 
                 // BMI:
                 // Multiply your weight in pounds by 703, Divide this number by your height in inches, Divide again by your height in inches.
@@ -572,9 +548,7 @@ class Fragrance_Controller extends Controller
                 $sillage->value = $sillage->value * $avg_hum;
                 }
                 $sillage->value = $sillage->value>100 ? 100 : $sillage->value;
-                
-                // var_dump($strength_of_fragrance, $fragrance->avg_hum, $fragrance->sillage, $avg_hum);return;
-            
+                            
                 // Dryness of Skin: If you have dry skin, your fragrance will never be able to last as long as you want it to.
                 // The reason? There’s nothing for the fragrance to hang on to, thus making it evaporate even faster.
                 $skin_weight = (object) [
@@ -613,7 +587,7 @@ class Fragrance_Controller extends Controller
                 'bmi'                         => $bmi,
                 'fragrance_type_weight'       => $fragrance_type_weight,
                 'humidity_weight'             => $humidity_weight,
-                'sustainability_heat_weight'  => $sustainability_heat_weight,
+                // 'sustainability_heat_weight'  => $sustainability_heat_weight,
                 'warm_cold_weight'            => $warm_cold_weight,
                 'sweat_weight'                => $sweat_weight,
                 'bmi_weight'                  => $bmi_weight,
@@ -625,7 +599,8 @@ class Fragrance_Controller extends Controller
         }
         else{
         // $logged_in = FALSE;
-        $user_gender = $weights = $longevity = $suitability = $sustainability = NULL;
+        // $user_gender = $weights = $longevity = $suitability = $sustainability = NULL;
+        $user_gender = $weights = $longevity = $suitability = NULL;
         }
 
         // var_dump($longevity, $suitability, $sustainability);return;

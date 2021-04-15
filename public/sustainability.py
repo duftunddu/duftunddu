@@ -4,7 +4,7 @@
 # from IPython import get_ipython
 
 # %% [markdown]
-# ## Extraction
+## Extraction
 
 #%%
 
@@ -51,6 +51,8 @@ df = pd.DataFrame(data=json.loads(sys.argv[1]))
 
 # %%
 df = df.convert_dtypes()
+
+
 # %%
 def get_correlation(df):
     return df.corrwith(df["longevity"], method="kendall")[1:]
@@ -59,6 +61,8 @@ def get_correlation(df):
 # %%
 corr = get_correlation(df)
 corr.dropna(inplace=True)
+
+
 # %%
 def get_weighted_average(array, weights):
     return round(np.average(array, weights=weights), 2)
