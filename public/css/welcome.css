@@ -96,6 +96,7 @@ body {
     background-repeat: no-repeat;
     /* background-position: center center; */
     /* background-attachment: fixed; */
+    background-attachment: scroll;
     z-index: 2;
 }
 
@@ -106,8 +107,8 @@ body {
     right: 0px;
     bottom: 0px;
     left: 0px;
-    /* background-color: rgba(0, 0, 0, 0.25) !important; */
-    background-color: rgba(255, 255, 255, 0.1);
+    /* background-color: rgba(255, 255, 255, 0.1); */
+    background-color: rgba(236, 236, 235, 0.1);
 }
 
 .flex-2-placement {
@@ -153,7 +154,6 @@ body {
     margin-bottom: 5px;
     /* color: var(--lux-gold); */
     color: rgba(222, 172, 104, 0.7);
-    /* opacity: 0.7; */
 
     animation: draw-line 3s;
     animation-fill-mode: forwards;

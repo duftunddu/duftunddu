@@ -2,7 +2,7 @@ import sys
 import pickle
 
 # Pickling
-file = open("sustainability_template", "wb")
+file = open("sustainability_template.pickle", "wb")
 
 # dump information to that file
 list_pickle = pickle.dump(sys.argv[1], file)

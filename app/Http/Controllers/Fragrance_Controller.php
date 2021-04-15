@@ -343,7 +343,7 @@ class Fragrance_Controller extends Controller
             if(request()->user()->hasRole(['brand_ambassador', 'premium_brand_ambassador'])){
                 $ambassador = Brand_Ambassador_Profile::where('users_id', request()->user()->id)->first();
                 if($ambassador->brand_id == $fragrance->brand_id){
-                $allow_edit = TRUE;
+                    $allow_edit = TRUE;
                 }
             }
 
@@ -389,7 +389,7 @@ class Fragrance_Controller extends Controller
                 // Create this
                 $fragrance_review_helper = new Fragrance_Review_Helper(); 
 
-                $sustainability = $fragrance_review_helper->get_sustainability($id);
+                $sustainability = trim($fragrance_review_helper->get_sustainability($id));
                 
                 $helper->var_dump_readable($sustainability); return;
 

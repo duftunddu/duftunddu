@@ -86,14 +86,30 @@ class Fragrance_Review_Helper {
         if (App::environment('local')) {
             // The environment is local
             
-            $process = new Process([ 'C:\Anaconda3\Scripts\activate_duft_und_du', 'test_python.py',
+            // Anas's Version
+            // $process = new Process([ 'C:\Anaconda3\Scripts\activate_duft_und_du', 'test_python.py',
+                // $data], null, [ 'PYTHONHASHSEED' => 1,]);
+            
+            // Working
+            // $process = new Process([ 'C:\Anaconda3\Scripts\activate_duft_und_du.bat', 'test_python.py',
+            //     $data], null, [ 'PYTHONHASHSEED' => "1", 'SystemRoot' => "C:\\WINDOWS"]);
+
+
+            $process = new Process([ 'C:\Anaconda3\Scripts\activate_duft_und_du.bat', 'sustainability.py',
+                $data], null, [ 'PYTHONHASHSEED' => "1", 'SystemRoot' => "C:\\WINDOWS"]);
+
+                
+            // $process = new Process([ 'C:\Anaconda3\Scripts\activate_duft_und_du', 'test_python.py',
             // $process = new Process([ 'C:\Anaconda3\Scripts\activate_duft_und_du', 'sustainability.py', 
             // $process = new Process([ 'C:\Anaconda3\Scripts\activate_duft_und_du', 'python', 'sustainability.py', 
             // $process =/ new Process([ 'C:\Anaconda3\Scripts\activate_duft_und_du',  'execfile("sustainability.py")', 
             // $process = new Process([ 'C:\Anaconda3\envs\duft_und_du\Lib\venv\scripts\nt\activate.bat && C:\Anaconda3\envs\duft_und_du\python.exe ', 'sustainability.py', 
                 // $data], null, [ 'PYTHONHASHSEED' => 1, 'APP_ENV' => false, 'SYMFONY_DOTENV_VARS' => false, 'ENV_VAR_NAME' => 'duft_und_du',]);
                 // $data], null, [ 'PYTHONHASHSEED' => 1, 'APP_ENV' => false, 'ENV_VAR_NAME' => 'duft_und_du',]);
-                $data], null, [ 'PYTHONHASHSEED' => 1,]);
+                // $data], null, [ 'PYTHONHASHSEED' => 1,]);
+
+            // $process = new Process([ 'C:\Anaconda3\envs\duft_und_du\python.exe', 'test_python.py', 
+            //     $data], null, [ 'PYTHONHASHSEED' => "1",]);
 
             // $process = new Process([ 'C:\Anaconda3\envs\duft_und_du\python.exe', 'sustainability.py', 
                 // $data], null, [ 'PYTHONHASHSEED' => 1, 'APP_ENV' => false, 'SYMFONY_DOTENV_VARS' => false, 'ENV_VAR_NAME' => 'duft_und_du',]);

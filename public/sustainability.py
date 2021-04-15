@@ -6,13 +6,17 @@
 # %% [markdown]
 # ## Extraction
 
+#%%
+
+import sys
+
 # %%
 
 import numpy as np
 import pandas as pd
 
 # import pandas
-# from scipy import stats
+from scipy import stats
 
 # For import export of model
 import pickle
@@ -21,7 +25,7 @@ import json
 
 # %%
 # Open file to
-# file = open("sustainability_template", "rb")
+# file = open("sustainability_template.pickle", "rb")
 
 # Load model from the file
 # loaded_pickle = pickle.load(file)

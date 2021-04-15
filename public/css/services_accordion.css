@@ -112,29 +112,51 @@
 .acc-item:nth-child(1) {
     /* background-image: url("https://unsplash.it/1500/1000?random"); */
     /* background-image: url('../images/unsorted/nine-koepfer-zosE9lAYQlo-unsplash.jpg'); */
-    background-image: url('../images/unsorted/you/havilah-galaxy-WLZTOmqo3LM-unsplash.jpg');
+    /* background-image: url('../images/unsorted/you/havilah-galaxy-WLZTOmqo3LM-unsplash.jpg'); */
+
+    background-image: url('../images/unsorted/you/havilah-galaxy-WLZTOmqo3LM-unsplash-edited.jpg');
+
     /* background-position: 0 -200px; */
     background-repeat: no-repeat;
     background-position: center;
     /* background-image: url('../images/others/.jpg'); */
 }
 
+#acc-item-grad-1 {
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(80deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 43%, rgba(240, 240, 240, 0.70) 48%);
+}
+
+
 .acc-item:nth-child(2) {
+    /* background-image: url('../images/unsorted/store/mike-petrucci-c9FQyqIECds-unsplash_edited.jpg'); */
     background-image: url('../images/unsorted/store/mike-petrucci-c9FQyqIECds-unsplash_edited.jpg');
     /* background-position: 0 -250px; */
     background-repeat: no-repeat;
     background-position: bottom;
 }
 
+#acc-item-grad-2 {
+    height: 100%;
+    width: 100%;
+    /* background-image: linear-gradient(40deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 43%, rgba(240, 240, 240, 0.70) 48%); */
+    /* background-image: none; */
+}
+
+
+
 .acc-item:nth-child(3) {
     /* background-image: url('../images/unsorted/store/xianjuan-hu-uPYpcsbICI4-unsplash_edited.jpg'); */
-    background-image: url('../images/unsorted/webstore/brooke-lark-W1B2LpQOBxA-unsplash.jpg');
+    /* background-image: url('../images/unsorted/webstore/brooke-lark-W1B2LpQOBxA-unsplash.jpg'); */
+    background-image: url('../images/unsorted/webstore/brooke-lark-W1B2LpQOBxA-unsplash-edited.jpg');
     background-repeat: no-repeat;
     background-position: center;
 }
 
 .acc-item:nth-child(4) {
-    background-image: url('../images/unsorted/brands.png');
+    /* background-image: url('../images/unsorted/brands.png'); */
+    background-image: url('../images/unsorted/brands-transparent-background.png');
     background-position: top;
     background-repeat: no-repeat;
     /* filter: invert(100%); */
