@@ -91,6 +91,11 @@ h5 {
 }
 
 .data-indicator {
+    margin: 5px 0;
+    clear: both;
+    display: block;
+    justify-content: right;
+    text-align: right;
     float: right;
     color: var(--de-emphasize-gray);
 }

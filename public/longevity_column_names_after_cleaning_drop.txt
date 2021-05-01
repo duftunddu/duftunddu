@@ -1,0 +1,47 @@
+longevity
+number_of_sprays
+temp_avg
+hum_avg
+dew_point_avg
+uv_index_avg
+temp_feels_like_avg
+atm_pressure_avg
+clouds_avg
+visibility_avg
+wind_speed_avg
+rain_avg
+snow_avg
+sweat
+height
+weight
+age
+apply_time_year
+apply_time_month
+apply_time_day
+apply_time_hour
+apply_time_minute
+weather_main_Clear
+weather_main_Rain
+gender_Female
+gender_Male
+profession_Doctor
+profession_Footballer
+skin_type_Normal
+skin_type_Very Oily
+season_Summer
+season_Winter
+fp_country_Pakistan
+fragrance_Bright Crystal
+fragrance_Parfums Prestige Paris 1965
+fragrance_gender_Female
+fragrance_gender_Male
+fragrance_type_Eau de Toilette
+brand_Brut
+brand_Versace
+brand_tier_High-End
+brand_tier_Low-End
+bo_location_country_France
+bo_location_country_Italy
+apply_time_weekday_name_Thursday
+fp_id_12
+fp_id_13

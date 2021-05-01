@@ -20,38 +20,19 @@ from scipy import stats
 
 # For import export of model
 import pickle
-
 import json
 
 # %%
-# Open file to
-# file = open("sustainability_template.pickle", "rb")
-
-# Load model from the file
-# loaded_pickle = pickle.load(file)
-
-# close the file
-# file.close()
-
-# print(loaded_pickle)
-
-
-# %%
-
 # Local
 # datastore = json.loads(loaded_pickle)
-# Production
-# datastore = json.loads(sys.argv[1])
 
 
 # %%
 # df = pd.DataFrame(data=json.loads(loaded_pickle))
 df = pd.DataFrame(data=json.loads(sys.argv[1]))
-# df = pandas.DataFrame(data=json.loads(sys.argv[1]))
 
 # %%
 df = df.convert_dtypes()
-
 
 # %%
 def get_correlation(df):
@@ -76,4 +57,3 @@ if corr.isnull().all():
 elif (corr != 0).all():
     # If all values are not zero
     print(get_weighted_average(corr, abs(corr)))
-# %%

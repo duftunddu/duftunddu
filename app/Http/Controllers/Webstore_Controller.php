@@ -84,10 +84,28 @@ class Webstore_Controller extends Controller
         // request()->getHost()
 
         // $hostname = gethostbyaddr("66.35.250.150");
-        $hostname = gethostbynamel("www.slashdot.org");
+
+        
         // $hostname = gethostbynamel(request()->ip());
         // $hostname = gethostbyaddr("216.105.38.15");
-        var_dump($hostname, );
+
+        // $name = "www.slashdot.org";
+        // $hostname = gethostbynamel($name);
+        // var_dump($name, $hostname);
+
+        $address = gethostbynamel('chanel.com');
+
+        // $address = "142.44.170.247";
+        // $address = $_SERVER['REMOTE_ADDR'];
+        // $hostname = 0;
+        // $hostname = gethostbyaddr($address);
+        $hostname = gethostbyaddr($address[0]);
+        var_dump($address, $hostname);
+
+
+        // $name = "google.com";
+        // $addresses = $_SERVER['REMOTE_ADDR'];
+
         return;
 
         $api_key_check = Store::where('users_id', request()->user()->id)

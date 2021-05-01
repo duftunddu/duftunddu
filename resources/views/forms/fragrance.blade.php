@@ -27,15 +27,16 @@
     
         /* Reviews */
         .longevity {
-            width: {{$longevity<100 ? $longevity : 100 }}%;
+            /* For 8 hours: *100/480 = *5/24  = *0.2 */
+            width: {{ (( $longevity->value * 0.2 ) < 100) ? ( $longevity->value * 0.2 ) : 100 }}%;
         }
     
         .suitability {
-            width: {{$suitability<100 ? $suitability : 100 }}%;
+            width: {{$suitability->value < 100 ? $suitability->value : 100 }}%;
         }
     
         .sustainability {
-            width: {{$sustainability<100 ? $sustainability : 100 }}%;
+            width: {{$sustainability < 100 ? $sustainability : 100 }}%;
         }
     
     </style>
@@ -44,13 +45,9 @@
 
 @section('content')
 
-{{-- JQuery for Ajax --}}
-{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
-
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            {{-- <div class="card"> --}}
 
                 {{-- <div class="card-header">{{'Fragrance: '}} {{ __($fragrance->name)}}</div> --}}
                 {{-- <div class="card-body"> --}}
@@ -115,70 +112,79 @@
                                         <span class="doors indoor">&nbsp;Indoor / Outdoor&nbsp;</span></h4>
                                     
                                     @endif
-                                    {{-- <br> --}}
 
                                     <hr class="hr-purple-line">
-                                    {{-- <br> --}}
 
                                     {{-- Longevity --}}
                                     <h4 class="hsl-color" data-toggle="tooltip" data-placement="top" data-html="true"
-                                        title="How long the fragrance lasts.<br>100 is max.">Longevity: <span class="lux-red">{{$longevity}}</span>
+                                        title="How long the fragrance lasts.<br>The bar shows 8 hours as max.">
+                                        Longevity: <span class="lux-red">{{ number_format($longevity->value / 60, 1) }} hr</span>
                                     </h4>
+                                    
                                     {{-- Bar --}}
                                     <div class="review-bar-cont"> 
                                         <div class="review-bar longevity"></div> 
                                     </div>
+                                    
+                                    {{-- Insufficient Data --}}
+                                    @if( !$longevity->sufficient )
+                                    <div class="data-indicator" data-toggle="tooltip" data-placement="top" data-html="true"
+                                    title="The prediction may not be accurate due to a lack of data.">
+                                        <i class="far fa-file"></i>
+                                    </div>
+                                    @endif
                                     <br><br><br>
 
-                                    {{-- <hr class="hr-purple-line"> --}}
 
                                     {{-- Suitability --}}
                                     <h4 data-toggle="tooltip" data-placement="top" data-html="true"
                                         title="Depends on season.<br>100 is average.<br>Above 100 is better.">
-                                        Suitability: <span class="lux-red">{{$suitability}}</span></h4>
+                                        Suitability: <span class="lux-red">{{$suitability->value}}</span>
+                                    </h4>
+                                    
                                     {{-- Bar --}}
                                     <div class="review-bar-cont"> 
                                         <div class="review-bar suitability"></div> 
                                     </div>
+                                    
+                                    {{-- Insufficient Data --}}
+                                    @if( !$suitability->sufficient )
+                                    <div class="data-indicator" data-toggle="tooltip" data-placement="top" data-html="true"
+                                    title="Functionality Under Development">
+                                        <i class="fas fa-code"></i>
+                                    </div>
+                                    @endif
                                     <br><br><br>
 
-                                    {{-- <hr class="hr-purple-line"> --}}
 
                                     {{-- Sustainability --}}
+                                    @if($sustainability == -1)
+                                    {{-- Not Enough Data --}}
                                     <h4 class="hsl-color" data-toggle="tooltip" data-placement="top" data-html="true"
-                                        {{-- title="How much heat affects the longevity of fragrance.<br>100 means unaffected. Below 100 means it will wear off sooner."> --}}
-                                        title="How much heat affects the longevity of fragrance.<br>0 means unaffected. 100 means affected.">
-                                        Heat Impact: <span class="lux-red">{{$sustainability}}</span></h4>
+                                        title="How much heat affects the longevity of fragrance.<br>0 = Min Effect.<br>100 = Max Effect.">
+                                        Heat Impact: <span class="lux-red">🙁</span>
+                                    </h4>
+                                    <small>Not Enough Information Available</small>
+                                    
+                                    @else
+                                    {{-- Value --}}
+                                    <h4 class="hsl-color" data-toggle="tooltip" data-placement="top" data-html="true"
+                                        title="How much heat affects the longevity of fragrance.<br>0 = Min Effect.<br>100 = Max Effect.">
+                                        {{-- Heat Impact: <span class="lux-red">{{ $longevity * ($sustainability/100) }} min/hr</span></h4> --}}
+                                        Heat Impact: <span class="lux-red">{{$sustainability}} %</span>
+                                    </h4>
+                                    
                                     {{-- Bar --}}
                                     <div class="review-bar-cont"> 
                                         <div class="review-bar sustainability"></div> 
-                                    </div>    
+                                    </div>
+                                    @endif
                                     <br><br>
-                                    {{-- @if() --}}
-                                    <small class="data-indicator">Not much</small>
-                                    {{-- @endif --}}
-                                    {{-- <br><br> --}}
 
                                     <hr class="hr-purple-line">
 
                                     <p class="de-gray right-align">v 2.0</p>
-                                    {{-- <p>These are your personalized numbers.<br>
-                                        Please leave feedback on fragrances you have used previously.<br>
-                                        Your input will help us predict better!
-                                    </p> --}}
                                     <br>
-
-                                    {{-- Toggler --}}
-                                    {{-- <div class="toggler">
-                                        <div id="effect-open-close" class="ui-widget-content ui-corner-all">
-                                            <h5 class="ui-widget-header ui-corner-all">Feedback</h5>
-                                            <p>
-                                                These are personalized numbers. These factors were researched and calculated using your region's weather data and the additional details you provided.<br>
-                                                Your input will help us predict better!
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <a href="#" id="toggle-button" role="button">Toggle</a> --}}
 
                                     @endauth
                                     @guest
@@ -278,9 +284,7 @@
                         </button>
                     </div><br>
                     @endif
-
-                {{-- </div> --}}
-            {{-- </div> --}}
+                    
         </div>
     </div>
 </div>
@@ -288,102 +292,4 @@
 <div id="csrf">
     @csrf
 </div>
-
-
-{{-- HSL Color --}}
-{{-- <script>
-    document.querySelectorAll(".hsl-color").forEach(function (e) {
-        let s = e.innerText;
-        let n =  parseInt(s.substring(s.indexOf(":") + 1).trim()) + 350;
-        console.log(n);
-        // e.style.color = "hsl(" + n + ",100%,39%)";
-        e.style.color = "hsl(" + n + ",70%,50%)";
-        // e.style.backgroundColor= "hsl("+n+",50%,50%)";
-    })
-</script> --}}
-
-{{-- Longevity --}}
-{{-- <script>
-    function handleLongevity(Longevity) {
-        var weights = {
-            !!json_encode($weights) !!
-        };
-        $.ajax({
-            type: 'POST',
-            url: '/affecting_factors_data',
-            //    data:{"_token": "{{ csrf_token() }}", value: Longevity.value, type: "Longevity"},
-            data: {
-                "_token": "{{ csrf_token() }}",
-                value: Longevity.value,
-                type: "Longevity",
-                weights: weights
-            },
-            success: function (data) {
-                alert(data);
-            }
-        });
-    }
-</script> --}}
-
-{{-- Suitability --}}
-{{-- <script>
-    function handleSuitability(Suitability) {
-        var weights = {
-            !!json_encode($weights) !!
-        };
-        $.ajax({
-            type: 'POST',
-            url: '/affecting_factors_data',
-            //    data:{"_token": "{{ csrf_token() }}", value: Suitability.value, type: "Suitability"},
-            data: {
-                "_token": "{{ csrf_token() }}",
-                value: Suitability.value,
-                type: "Suitability",
-                weights: weights
-            },
-            success: function (data) {
-                alert(data);
-            }
-        });
-    }
-</script> --}}
-
-{{-- Sustainability --}}
-{{-- <script>
-    function handleSustainability(Sustainability) {
-        var weights = {
-            !!json_encode($weights) !!
-        };
-        $.ajax({
-            type: 'POST',
-            url: '/affecting_factors_data',
-            //    data:{"_token": "{{ csrf_token() }}", value: Sustainability.value, type: "Sustainability"},
-            data: {
-                "_token": "{{ csrf_token() }}",
-                value: Sustainability.value,
-                type: "Sustainability",
-                weights: weights
-            },
-            success: function (data) {
-                alert(data);
-            }
-        });
-    }
-</script> --}}
-
-{{-- Toggle Effect --}}
-{{-- <script>
-    $( function() {
-      function runEffect() {
-        // Run the effect
-        $( "#effect-open-close" ).toggle( 'fold', {options:"swing"}, 1000 );
-      };
-   
-      // Set effect from select menu value
-      $( "#toggle-button" ).on( "click", function() {
-        runEffect();
-      });
-    } );
-</script> --}}
-
 @endsection

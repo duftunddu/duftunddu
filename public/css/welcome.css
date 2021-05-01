@@ -35,10 +35,7 @@ body {
 
     text-align: center;
     font-variant: small-caps;
-    /* background-image: linear-gradient(80deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 45%, rgba(255, 255, 255, 1) 50%); */
-    /* background-image: linear-gradient(80deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 43%, rgba(240, 240, 240, 0.85) 48%); */
     background-image: linear-gradient(80deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 43%, rgba(240, 240, 240, 0.70) 48%);
-    /* background-image: linear-gradient(80deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 43%, rgba(246, 237, 228, 0.8) 50%); */
 }
 
 .title-mean {
@@ -84,18 +81,13 @@ body {
     text-decoration-style: double !important;
 }
 
+
 .flex-2-left {
     /* height: 100%; */
     width: 100%;
-    /* background-image: url('../images/fragrance_model/laura-chouette-o7BEFNmuDkU-unsplash_desktop_usable_use.jpg'); */
-    /* background-image: url('../images/fragrance_model/laura-chouette-o7BEFNmuDkU-unsplash_desktop_usable_use.webp'); */
-    /* background-image: url('../images/others/tobias-van-schneider-lHGeqh3XhRY-unsplash.jpg'); */
-    /* background-image: url('../images/others/nick-nice-gPm8h3DS1s4-unsplash.jpg'); */
-    background-image: url('../images/others/brian-patrick-tagalog-_8hGFBxWD0A-unsplash.jpg');
+    background-image: url('../images/others/brian-patrick-tagalog-_8hGFBxWD0A-unsplash-edited.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    /* background-position: center center; */
-    /* background-attachment: fixed; */
     background-attachment: scroll;
     z-index: 2;
 }
@@ -107,7 +99,6 @@ body {
     right: 0px;
     bottom: 0px;
     left: 0px;
-    /* background-color: rgba(255, 255, 255, 0.1); */
     background-color: rgba(236, 236, 235, 0.1);
 }
 
@@ -174,6 +165,12 @@ body {
     }
 }
 
+.flex-2-white {
+    background-color: rgba(236, 236, 235, 0.1);
+    width: auto;
+    height: auto;
+}
+
 /* .flex-2-body a {
     color: #f7527c;
 } */
@@ -226,6 +223,24 @@ p {
     margin-bottom: 1.3rem;
 }
 
+
+@media (max-width: 1063px) {
+
+    .flex-1-center {
+        background-position: top center;
+    }
+
+    .flex-1-content {
+        padding-left: 0;
+        background-image: none;
+        background-color: rgba(240, 240, 240, 0.70);
+    }
+}
+
+/* @media (max-width: px) {
+
+} */
+
 @media (max-width: 767px) {
     .flex-1-center {
         height: 93.2%;
@@ -245,7 +260,6 @@ p {
     }
 }
 
-@media (max-width: 1077px) {}
 
 @media (max-width: 535px) {
     .full-height {
@@ -255,16 +269,11 @@ p {
 
     .flex-1-center {
         height: 93.2%;
-        /* background-image: url("../images/fragrance_bottle/laura-chouette-SAfHJlAfWNs-unsplash.jpg"); */
-
-        /* background-image: url("../images/fragrance_model/welcome_page_phone_3.jpg"); */
-        /* background-image: url("../images/fragrance_model/welcome_page_phone_3.webp"); */
-        background-size: cover;
-        background-position: bottom;
+        background-position: -350px 0;
         margin-top: -2.5rem;
 
         padding-left: 0;
-        padding: 10px;
+        /* padding: 10px; */
         padding-bottom: 0;
     }
 
@@ -278,21 +287,9 @@ p {
     }
 
 
-    .flex-2-left {
-        /* background-image: url('../images/fragrance_model/laura-chouette-o7BEFNmuDkU-unsplash_desktop_usable_use.jpg');
-        background-image: url('../images/fragrance_model/laura-chouette-o7BEFNmuDkU-unsplash_desktop_usable_use.webp'); */
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-attachment: scroll;
-        background-position: bottom center;
-    }
-
     .flex-2-placement {
-        text-align: left;
-        align-items: left;
-        justify-content: left;
-        margin-right: 20%;
         padding-left: 4%;
+        padding-right: 4%;
         padding-top: 12%;
         padding-bottom: 4%;
     }
@@ -317,7 +314,8 @@ p {
 
     .title {
         padding-top: 1.5rem;
-        font-size: 3.4rem;
+        /* font-size: 3.4rem; */
+        font-size: 3.6rem;
     }
 
     .heading {

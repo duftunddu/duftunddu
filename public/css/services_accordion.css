@@ -1,12 +1,5 @@
-/* @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700'); */
-
 .services_accordion {
-    /* width: 50%; */
-    /* width: 70%; */
-    /* padding: 50px; */
     padding: 30px;
-    /* background-color: rgba(0, 0, 0, 0.2); */
-    /* background-color: rgba(255, 255, 255, 0.3); */
     background-color: rgba(236, 236, 235, 0.2);
 
     /* Font color */
@@ -14,8 +7,6 @@
     /* color: var(--lux-gold); */
     /* color: #FFF; */
 }
-
-
 
 #services_accordion {
     list-style-type: none;
@@ -25,7 +16,6 @@
 
 .acc-item {
     width: 100%;
-    /* height: 100px; */
     height: 18.75%;
     position: relative;
     transition: height 400ms;
@@ -57,7 +47,7 @@
 }
 
 .acc-item:hover {
-    /* Chile */
+    /* Child */
     /* Not the hovered one */
     opacity: 1 !important;
     height: 60% !important;
@@ -67,12 +57,7 @@
 .flex-2-heading {
     padding: 2px 8px;
     width: fit-content;
-    /* background-color: rgba(0, 0, 0, 0.2); */
-    /* background-color: rgba(255, 255, 255, 0.5); */
-    /* background-color: rgba(255, 255, 255, 0.3); */
-    /* background-color: rgba(255, 255, 255, 0.7); */
     background-color: rgba(236, 236, 235, 0.7);
-    /* background-color: rgba(0, 0, 0, 0.2); */
 }
 
 .acc-item:hover:after {
@@ -110,7 +95,6 @@
 
 
 .acc-item:nth-child(1) {
-    /* background-image: url("https://unsplash.it/1500/1000?random"); */
     /* background-image: url('../images/unsorted/nine-koepfer-zosE9lAYQlo-unsplash.jpg'); */
     /* background-image: url('../images/unsorted/you/havilah-galaxy-WLZTOmqo3LM-unsplash.jpg'); */
 
@@ -137,31 +121,34 @@
     background-position: bottom;
 }
 
-#acc-item-grad-2 {
-    height: 100%;
-    width: 100%;
-    /* background-image: linear-gradient(40deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 43%, rgba(240, 240, 240, 0.70) 48%); */
-    /* background-image: none; */
-}
-
-
 
 .acc-item:nth-child(3) {
     /* background-image: url('../images/unsorted/store/xianjuan-hu-uPYpcsbICI4-unsplash_edited.jpg'); */
-    /* background-image: url('../images/unsorted/webstore/brooke-lark-W1B2LpQOBxA-unsplash.jpg'); */
-    background-image: url('../images/unsorted/webstore/brooke-lark-W1B2LpQOBxA-unsplash-edited.jpg');
+    background-image: url('../images/unsorted/webstore/brooke-lark-W1B2LpQOBxA-unsplash-compressed-edited.jpg');
     background-repeat: no-repeat;
-    background-position: center;
+    /* background-position: center; */
+    /* background-position: 0 -100px; */
+    background-position: 0 -320px;
 }
 
 .acc-item:nth-child(4) {
     /* background-image: url('../images/unsorted/brands.png'); */
-    background-image: url('../images/unsorted/brands-transparent-background.png');
-    background-position: top;
+    /* background-image: url('../images/unsorted/brands-transparent-background-cropped-edited.png'); */
+    background: rgba(236, 236, 236, 0.6) url('../images/unsorted/brands-transparent-background-cropped-edited.png');
+    /* background-position: center; */
+    background-position: 0 -290px;
     background-repeat: no-repeat;
+    position: relative;
     /* filter: invert(100%); */
 }
 
+
+@media (max-width: 1063px) {
+    .acc-item:nth-child(3) {
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+}
 
 @media (max-width: 600px) {
     .services_accordion {

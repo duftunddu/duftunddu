@@ -1,10 +1,31 @@
 import sys
-import os
-import unidecode
+import json
+import numpy
+import pandas as pd
+
+# import os
+# import unidecode
+print(len(sys.argv))
+print("\n\n")
+print(sys.argv[1])
+print(sys.argv[2])
+print(sys.argv[3])
+
+with open("objs.pickle", "wb") as f:  # Python 3: open(..., 'wb')
+    pickle.dump([obj0, obj1, obj2], f)
+
+# print(sys.argv[1])
+# df = pd.DataFrame(data=json.loads(sys.argv[1]))
+# df = pd.read_json(sys.argv[1])
+# df
+# print(len(sys.argv[1]))
+# print(json.loads(sys.argv[1]))
+# print(json.loads(sys.argv[2]))
+# print(json.loads(sys.argv[3]))
 
 # from numpy import numpy
-import numpy
-import pandas
+# import numpy
+# import pandas
 
 # import random
 

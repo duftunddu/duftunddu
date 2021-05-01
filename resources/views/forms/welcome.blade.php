@@ -16,8 +16,7 @@
     <link href="{{ asset('css/typing_effect.css') }}" rel="stylesheet">
 
     <link href="{{ asset('css/scroll_down_button.css') }}" rel="stylesheet">
-    {{-- <link href="{{ asset('css/scroll_down_button.css') }}" rel="stylesheet"> --}}
-
+    
     <!-- Fonts -->
     {{-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> --}}
     {{-- <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" defer> --}}
@@ -79,56 +78,15 @@
 
 <div class="flex-2-left position-ref" id="scroll-section-2">
     <div class="flex-2-placement">
-        {{-- <div class="flex-container"> --}}
         <h1 class="flex-2-title">Genie Services</h1>
         <div class="flex-2-item">
-        @include('features.services_accordion')
-
-        {{-- <div class="flex-2-heading">
-            Discover
-        </div>
-        <div class="flex-2-body">
-            Find the fragrance you want on our <a href="search_engine">Search Engine</a> and check similar fragrances. --}}
-            {{-- [add picture on hover] --}}
-            {{-- Find the fragrance you want on our Search Engine and check similar fragrances. --}}
-        {{-- </div>
-
-        <div class="flex-2-heading">
-            Smell Your Best
-        </div>
-        <div class="flex-2-body">
-            ● Check if a fragrance suits you on the <a href="search_engine">Search Engine</a><br>
-            ● Get fragrance suggestions based on your preferences with our Genie | Coming Soon.<br> --}}
-            {{-- [add picture on hover] --}}
-            {{-- ● Find your perfect scent for every occasion | Coming Soon.<br>
-            Always smell your best.
-        </div>
-
-        <div class="flex-2-heading">
-            Get Your Loved Ones The Perfect Gift
-        </div>
-        <div class="flex-2-body">
-            Use Genie Gift Cards to get fragrance recommendations for your loved ones | Coming Soon. --}}
-            {{-- [add picture on hover] --}}
-        {{-- </div>
-
-        <div class="flex-2-heading">
-            Get Insights
-        </div>
-        <div class="flex-2-body">
-            Become a Brand Ambassador to see the details of your brand and add your latest fragrances.<br>
-            Registered Brand Ambassadors can also get access to valuable customer insight. <a
-                href="brand_ambassador_proposal">Learn More</a>. --}}
-            {{-- [add picture on hover] --}}
-        {{-- </div> --}}
-
-
+            @include('features.services_accordion')
         </div>
     </div>
     
     {{-- Button: Scroll Down --}}
     <div class="scroll-down">
-        <a id="scroll-link" href="#scroll-section-3"><span></span>Scroll</a>
+            <a class="flex-2-white" id="scroll-link" href="#scroll-section-3"><span></span>Scroll</a>
     </div>
 
 </div>
@@ -139,7 +97,7 @@
 
     {{-- Button: Scroll Down --}}
     <div class="scroll-down">
-        <a id="scroll-link" href="#scroll-section-4"><span></span>Scroll</a>
+        <a class="flex-2-white" id="scroll-link" href="#scroll-section-4"><span></span>Scroll</a>
     </div>
 
 </div>
