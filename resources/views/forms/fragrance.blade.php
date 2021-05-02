@@ -10,12 +10,14 @@
     <link href="{{ asset('css/fragrance.css') }}" rel="stylesheet">
     {{-- <link href="{{ asset('css/store_scroll_bar.css') }}" rel="stylesheet"> --}}
 
+    @auth
     <style>
         /* Fragracnce Picture */
-        .reflect{
+        /* .reflect{
             background-image: url('https://static.toiimg.com/thumb/msid-63080082,imgsize-293543,width-800,height-600,resizemode-75/63080082.jpg');
-        }
+        } */
     
+
         .outdoor {
             background: linear-gradient(90deg, rgb(247,82,124, 1) {{100 - ($sillage->value)}}%, rgb(255, 255, 255, 1) 100%);
         }
@@ -38,8 +40,9 @@
         .sustainability {
             width: {{$sustainability < 100 ? $sustainability : 100 }}%;
         }
-    
+
     </style>
+    @endauth
 </head>
 
 
