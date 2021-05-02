@@ -55,7 +55,7 @@ class Fragrance_Review_Helper {
             // if (App::environment('production')) {
             // The environment is not local ...
 
-            $process = new Process([ 'python3', 'longevity_prediction.py',
+            $process = new Process([ 'python3.8', 'longevity_prediction.py',
                 $fragrance_data, $profile_data, $weather_data], null, [ 'PYTHONHASHSEED'=> 1, ]);
         }
 
@@ -143,7 +143,7 @@ class Fragrance_Review_Helper {
             // if (App::environment('production')) {
             // The environment is not local ...
 
-            $process = new Process([ 'python3', 'sustainability.py',
+            $process = new Process([ 'python3.8', 'sustainability.py',
                 $data], null, [ 'PYTHONHASHSEED'=> 1, ]);
         }
 
