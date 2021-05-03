@@ -99,7 +99,7 @@ class User_Fragrance_Review_Controller extends Controller
         $suitability = NULL; 
         if($fragrance_id){
             $fragrance_review_helper = new Fragrance_Review_Helper();
-            $suitability = $fragrance_review_helper->get_suitability_from_fragrance($fragrance_id);    
+            // $suitability = $fragrance_review_helper->get_suitability_from_fragrance($fragrance_id);    
         }
         
         // var_dump($suitability);return;
@@ -135,7 +135,7 @@ class User_Fragrance_Review_Controller extends Controller
                 }
 
                 $new->longevity                 =   $longevity;
-                $new->suitability               =   $suitability;
+                // $new->suitability               =   $suitability;
                 $new->sustainability            =   $sustainability;
                 
                 $new->apply_time                =   $apply_time;
