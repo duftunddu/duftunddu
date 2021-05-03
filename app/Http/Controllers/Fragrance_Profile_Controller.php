@@ -88,7 +88,7 @@ class Fragrance_Profile_Controller extends Controller
                 'season.exists'         => 'The :attribute is invalid. Please select one from the list.',
             ]);
         
-        var_dump($request->gender); return;
+        // var_dump($request->gender); return;
         $valid = false;
         $height_unit = '';
         $validator = Validator::make([], []);
