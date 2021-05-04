@@ -47,9 +47,15 @@ class Controller extends BaseController {
     }
 
     public function try () {
-        $accords=accord::pluck('name')->toArray();
+        $accords=Accord::pluck('name')->toArray();
+
+        // $accords = implode (", ", $accords);
+
+        // $accords = Accord::where('name', 'LIKE', 'war'.'%')->pluck('name')->toArray();
+
         // var_dump($accords); return;
-        return view('forms.try', [ 'countries'=> $accords]);
+
+        return view('forms.try', [ 'accords'=> $accords]);
     }
 
     public function try_output (Request $request) {
@@ -57,6 +63,14 @@ class Controller extends BaseController {
         var_dump($accords);
         return;
         return view('forms.try_output');
+    }
+
+    public function try_api (Request $request) {
+        $data = Accord::select("name")
+            ->where("name","LIKE","%{$request->to_search}%")
+            ->get();
+
+        return response()->json($data);
     }
 
     public function ad_index() {

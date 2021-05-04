@@ -12,6 +12,7 @@ use App\Fragrance_Accord;
 use App\Fragrance_Ingredient;
 use App\Fragrance_Profile;
 use App\Brand_Ambassador_Profile;
+use App\User_Fragrance_Review;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -314,11 +315,17 @@ class Fragrance_Controller extends Controller
 
         $type = Fragrance_Type::find($fragrance->type_id)->first();
 
-        $sillage = (object) [
-            'value'       => $fragrance->sillage,
-            'percent'     => $fragrance->sillage
-        ];
         
+        // Indoor Outdoor
+        $projection = User_Fragrance_Review::where('fragrance_id', $id)->get()->pluck('projection');
+        if(!$projection->isEmpty()){
+            $projection = $projection->avg();
+        }
+        else{
+            $projection = NULL;
+        }
+
+
         $accords = DB::table('fragrance_accord')
             ->where('fragrance_accord.fragrance_id', $id)
             ->join('accord', 'accord.id', '=', 'fragrance_accord.accord_id')
@@ -459,7 +466,7 @@ class Fragrance_Controller extends Controller
             'user_gender'       => $user_gender,
             'fragrance'         => $fragrance,
             'type'              => $type,
-            'sillage'           => $sillage,
+            'projection'           => $projection,
             'accords'           => $accords,
             'notes'             => $notes,
             'allow_edit'        => $allow_edit,

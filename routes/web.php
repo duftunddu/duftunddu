@@ -17,6 +17,8 @@ Route::get('/', function () {
 
 Route::get('/search_engine', 'Search_Queries_Controller@index')->name('search');
 Route::get('/search_results', 'Search_Queries_Controller@store');
+Route::get('/search_autocomplete', 'Search_Queries_Controller@autocomplete');
+
 
 Route::get('/feedback', 'Feedback_Form_Controller@index');
 Route::post('/feedback', 'Feedback_Form_Controller@store');
@@ -390,6 +392,8 @@ Route::group(['middleware' => ['auth']], function() {
         
         Route::get('/try', 'Controller@try');
         Route::post('/try', 'Controller@try_output');
+        Route::get('/try_api', 'Controller@try_api');
+
 
         Route::get('/brand_ambassador_requests', 'Admin_Controller@brand_ambassador_request');
         Route::get('/brand_ambassador_requests/{status}/{ambassador_id}', 'Admin_Controller@brand_ambassador_request_response');

@@ -18,13 +18,15 @@
         } */
     
 
+        @if(!is_null($projection))
         .outdoor {
-            background: linear-gradient(90deg, rgb(247,82,124, 1) {{100 - ($sillage->value)}}%, rgb(255, 255, 255, 1) 100%);
+            background: linear-gradient(90deg, rgb(247,82,124, 1) {{100 - ($projection)}}%, rgb(255, 255, 255, 1) 100%);
         }
     
         .indoor {
-            background: linear-gradient(90deg, rgb(247,82,124, 1) {{$sillage->value}}%, rgb(255, 255, 255, 1) 100%);
+            background: linear-gradient(90deg, rgb(247,82,124, 1) {{$projection}}%, rgb(255, 255, 255, 1) 100%);
         }
+        @endif
     
     
         /* Reviews */
@@ -102,7 +104,8 @@
                                     @auth
                                     
                                     {{-- Indoor vs Outdoor --}}
-                                    @if($sillage->value > 50)
+                                    @if(!is_null($projection))
+                                    @if($projection > 18)
                                     {{-- Outdoor--}}
                                     <h4 data-toggle="tooltip" data-placement="top" data-html="true"
                                         title="Better suited for outdoors, based on fragrance and your region.">
@@ -115,8 +118,9 @@
                                         <span class="doors indoor">&nbsp;Indoor / Outdoor&nbsp;</span></h4>
                                     
                                     @endif
-
+                                    
                                     <hr class="hr-purple-line">
+                                    @endif
 
                                     {{-- Longevity --}}
                                     <h4 class="hsl-color" data-toggle="tooltip" data-placement="top" data-html="true"

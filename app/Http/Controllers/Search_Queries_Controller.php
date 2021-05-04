@@ -25,13 +25,18 @@ class Search_Queries_Controller extends Controller
     public function index()
     {
         $agent = new Agent();
-        
+
+        // $all = DB::table('fragrance_brand')->select('name')->map(function($x){ return (array) $x; })->get();
+        // $all = Fragrance_Brand::pluck('normal_name')->toArray();       
+        // $all = array_merge($all, Fragrance::pluck('normal_name')->toArray());
+
+        // $all = implode (", ", $all);
+
+        // var_dump($all); return;
+
         if($agent->isDesktop()){
             return view('forms.search_engine');
         }
-        // else if($agent->isTablet()){
-        //     return view('forms.search_engine');
-        // }
         else{
             $random = random_int(-1, 1);
             return view('forms.search_engine_m',[
@@ -39,6 +44,24 @@ class Search_Queries_Controller extends Controller
             ]);
         }
     }
+
+    public function autocomplete (Request $request) {
+
+        // %string% = searches for substring
+        // string% = searches for substring in prefix
+        // %string = searches for substring in suffix
+
+        $frag = Fragrance::where("normal_name","LIKE","{$request->to_search}%")
+            ->pluck('name')->toArray();
+
+        $brand = Fragrance_Brand::where("normal_name","LIKE","{$request->to_search}%")
+            ->pluck('name')->toArray();
+
+        $data = array_merge($frag, $brand);
+
+        return $data;
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -68,6 +91,7 @@ class Search_Queries_Controller extends Controller
         $results = DB::table('fragrance')
             ->join('fragrance_brand', 'fragrance_brand.id', '=', 'fragrance.brand_id')
             ->where('fragrance.name', 'regexp', $regex)
+            ->orWhere('fragrance_brand.name', 'regexp', $regex)
             ->select('fragrance.id as f_id','fragrance.name as f_name', 'fragrance_brand.id as b_id','fragrance_brand.name as b_name')
             ->paginate(10);
 

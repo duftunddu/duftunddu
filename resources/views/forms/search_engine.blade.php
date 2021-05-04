@@ -20,7 +20,7 @@
         <title>{{('Search Engine | Duft Und Du')}}</title>
 
         {{-- Searchbar Scripts --}}
-        <link href="{{ asset('css/searchbar.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/searchbar.css') }}" rel="stylesheet" defer>
         <script src="{{ asset('js/searchbar.js') }}" defer></script>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -28,18 +28,22 @@
 
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" defer>
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet" defer>
         
         <!-- Styles -->
-        <link href="{{ asset('css/search_engine.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/search_engine.css') }}" rel="stylesheet" defer>
+        
     </head>
-    
+
     <body>
+
         @include('layouts.preloader')
 
         @include('layouts.header')
         
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
+
         <div class="flex-center position-ref full-height">
             
             <div class="content">
@@ -54,13 +58,12 @@
 
                 <br><br>
                 
-                <form class="search" method="GET" action="{{ url('search_results')}}">
+                <form class="search" method="GET" action="{{ url('/search_results')}}">
                     @csrf
 
-                    <input id="search-input" class="search__input" maxlength="40" name="searchbox" type="text" placeholder="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" required> 
+                    <input id="search-input" class="search__input typeahead" maxlength="40" name="searchbox" type="text" placeholder="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" required> 
                     <button class="btn btn--search">
-                        <?xml version="1.0" encoding="iso-8859-1"?>
-                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"  x="0px" y="0px"
                              viewBox="0 0 56.966 56.966" style="enable-background:new 0 0 56.966 56.966;" xml:space="preserve">
                         <path d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23
                             s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92
@@ -71,7 +74,6 @@
                             <use xlink:href="#icon-search"></use>
                         </svg>
                     </button>
-                {{-- <span class="search__feedback" style="color:rgba(202, 56, 73, 0.7); letter-spacing: .25vw;">{{_('type here')}}</span> --}}
                 <span class="search__feedback">{{_('type here')}}</span>
                 
                 </form>
@@ -87,6 +89,17 @@
             @include('layouts.footer')
         </div>
 
+        <script>
+            var path = "{{ url('/search_autocomplete') }}";
+            $('input.typeahead').typeahead({
+                source:  function (to_search, process) {
+                return $.get(path, { to_search: to_search }, function (data) {
+                        return process(data);
+                    });
+                }
+            });
+        </script>
+        
     </body>
 
 </html>

@@ -54,6 +54,7 @@
 
         <div class="background"></div>
 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
         <div class="flex-center position-ref full-height">
           
             <div class="content">
@@ -69,10 +70,8 @@
                 <form class="search" method="GET" action="{{ url('search_results')}}">
                     @csrf
 
-                    <input id="search-input" class="search__input" maxlength="40" name="searchbox" type="text" placeholder="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" required>
-                    {{-- <input id="search-input" aria-placeholder="type here" placeholder="type here" class="search__input" maxlength="40" name="searchbox" type="text" placeholder="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" required> --}}
+                    <input id="search-input" class="search__input typeahead" maxlength="40" name="searchbox" type="text" placeholder="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" required>
                     <button class="btn btn--search">
-                        <?xml version="1.0" encoding="iso-8859-1"?>
                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                              viewBox="0 0 56.966 56.966" style="enable-background:new 0 0 56.966 56.966;" xml:space="preserve">
                         <path d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23
@@ -85,13 +84,11 @@
                         </svg>
                     </button>
                     <span class="search__feedback" style="color:rgba(144, 89, 105, 0.6)">{{_('type here')}}</span>
-                    {{-- <span class="search__feedback" >{{_('')}}</span> --}}
                 </form>
 
                 <div class= "top-pad">        
                     Premium Features Coming Soon
                 </div>
-
 
             </div>
         </div>
@@ -102,15 +99,15 @@
 
     </body>
 
-    {{-- <script>
-        window.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function(){
-                $(".background").css("filter","blur(5px)");
-				setTimeout(function(){
-						$(".content").css("opacity","1");
-				},1000);
-            }, 1000);
+    <script>
+        var path = "{{ url('/search_autocomplete') }}";
+        $('input.typeahead').typeahead({
+            source:  function (to_search, process) {
+            return $.get(path, { to_search: to_search }, function (data) {
+                    return process(data);
+                });
+            }
         });
-    </script> --}}
+    </script>
 
 </html>
