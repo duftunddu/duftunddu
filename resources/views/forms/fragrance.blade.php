@@ -240,12 +240,22 @@
                                         <div class="reflect"></div>
                                     </div> --}}
                                     
+                                    {{-- Brand --}}
+
+                                    <h4>Brand: <span class="lux-purple">{{$brand}}</span></h4>
+
+                                    <hr class="hr-red-line">
+
+
                                     {{-- Text --}}
                                     <h4>Type: <span class="lux-purple">{{$type->name}}</span></h4>
+                                    
+                                    @if(!is_null($fragrance->cost))
                                     <h4>Cost: <span class="lux-purple">{{$fragrance->cost}} {{$fragrance->currency}}
                                         <span data-toggle="tooltip" data-placement="top" data-html="true"
                                             title="This is an estimated cost.">*</span></span>
                                     </h4>
+                                    @endif
 
                                     <hr class="hr-red-line">
 

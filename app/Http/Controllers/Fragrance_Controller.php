@@ -313,6 +313,8 @@ class Fragrance_Controller extends Controller
             return redirect()->route('search');
         }
 
+        $brand = Fragrance_Brand::find($fragrance->brand_id)->first()->name;
+
         $type = Fragrance_Type::find($fragrance->type_id)->first();
 
         
@@ -463,16 +465,17 @@ class Fragrance_Controller extends Controller
         }
 
         return view('forms.fragrance',[
-            'user_gender'       => $user_gender,
-            'fragrance'         => $fragrance,
-            'type'              => $type,
-            'projection'           => $projection,
-            'accords'           => $accords,
-            'notes'             => $notes,
-            'allow_edit'        => $allow_edit,
-            'longevity'         => $longevity,
-            'suitability'       => $suitability,
-            'sustainability'    => $sustainability,
+            'fragrance'         =>  $fragrance,
+            'brand'             =>  $brand,
+            'user_gender'       =>  $user_gender,
+            'type'              =>  $type,
+            'projection'        =>  $projection,
+            'accords'           =>  $accords,
+            'notes'             =>  $notes,
+            'allow_edit'        =>  $allow_edit,
+            'longevity'         =>  $longevity,
+            'suitability'       =>  $suitability,
+            'sustainability'    =>  $sustainability,
         ]);
     }
     
