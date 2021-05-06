@@ -24,24 +24,34 @@ weather_main_Clear
 weather_main_Rain
 gender_Female
 gender_Male
+profession_Beautician
 profession_Doctor
 profession_Footballer
+profession_Marketing Agent
+skin_type_Dry
 skin_type_Normal
 skin_type_Very Oily
 season_Summer
 season_Winter
 fp_country_Pakistan
 fragrance_Bright Crystal
+fragrance_Goldea
 fragrance_Parfums Prestige Paris 1965
 fragrance_gender_Female
 fragrance_gender_Male
+fragrance_type_Eau de Parfum
 fragrance_type_Eau de Toilette
 brand_Brut
+brand_Bvlgari
 brand_Versace
 brand_tier_High-End
 brand_tier_Low-End
 bo_location_country_France
 bo_location_country_Italy
+apply_time_weekday_name_Monday
 apply_time_weekday_name_Thursday
+apply_time_weekday_name_Wednesday
 fp_id_12
 fp_id_13
+fp_id_17
+fp_id_18
