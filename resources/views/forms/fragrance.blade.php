@@ -248,7 +248,7 @@
 
 
                                     {{-- Text --}}
-                                    <h4>Type: <span class="lux-purple">{{$type->name}}</span></h4>
+                                    <h4>Type: <span class="lux-purple">{{$type}}</span></h4>
                                     
                                     @if(!is_null($fragrance->cost))
                                     <h4>Cost: <span class="lux-purple">{{$fragrance->cost}} {{$fragrance->currency}}

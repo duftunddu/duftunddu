@@ -307,15 +307,16 @@ class Fragrance_Controller extends Controller
         */
     public function show($id)
     {
-        $fragrance = Fragrance::find($id);
+        // Find is broken
+        // $fragrance = Fragrance::find($id)->get()->first()->id;
+        $fragrance = Fragrance::where('id', $id)->first();
 
         if(is_null($fragrance)){
             return redirect()->route('search');
         }
 
-        $brand = Fragrance_Brand::find($fragrance->brand_id)->first()->name;
-
-        $type = Fragrance_Type::find($fragrance->type_id)->first();
+        $brand = Fragrance_Brand::where('id', $fragrance->brand_id)->first()->name;
+        $type = Fragrance_Type::where('id', $fragrance->type_id)->first()->name;
 
         
         // Indoor Outdoor
