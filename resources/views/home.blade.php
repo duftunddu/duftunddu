@@ -136,12 +136,23 @@
                     {{--  Button: Add Fragrance Review --}}
                     <div class="form-group">
                         <div class="center">
-                            <button type="button" class="btn btn-lux-lipstick-red" onclick="window.location='{{ url('/fragrance_review_entry/') }}'">
-                                {{ __('Add Fragrance Review') }}
+                            <button type="button" class="btn btn-lux-lipstick-red" onclick="window.location='{{ url('/search_engine') }}'">
+                                {{ __('Get Personalized Fragrance Review') }}
                             </button>
                         </div>
                     </div>
-                    
+
+                    <br>
+
+                    {{--  Button: Add Fragrance Review --}}
+                    <div class="form-group">
+                        <div class="center">
+                            <button type="button" class="btn btn-lux-pastel-purple" onclick="window.location='{{ url('/fragrance_review_entry/') }}'">
+                                Add Fragrance Review <br> (Give Back To The Community)
+                            </button>
+                        </div>
+                    </div>
+
 
                     {{--  Button: Add Profile --}}
                     {{-- <div class="form-group row mb-0">

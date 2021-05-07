@@ -34,7 +34,7 @@
         background-size: cover;
         background-repeat: no-repeat;
         background-position: 42.5% center;
-        background-attachment: scroll;
+        background-attachment: fixed;
     }
 
     .flex-4-placement {

@@ -258,6 +258,10 @@ p {
         /* padding: 10px; */
         /* padding-bottom: 0; */
     }
+
+    .scroll-down {
+        display: none;
+    }
 }
 
 
@@ -279,7 +283,7 @@ p {
 
     .flex-1-center .heading {
         font-size: 1.9rem;
-        color: #89163f;
+        /* color: #89163f; */
     }
 
     .flex-1-center h2 {

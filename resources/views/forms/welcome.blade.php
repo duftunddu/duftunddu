@@ -54,10 +54,10 @@
         {{-- Links --}}
         <div class="para lux-black-font">
 
-            <h2 class="">{{_('Lets grant your wish to smell good')}}</h2><br><br>
+            <h2 class="">Lets grant your wish to smell good</h2><br><br>
 
             <a class="link gold-color" href="/search_engine">
-                <h2>{{_('Fragrance Search')}}</h2>
+                <h2>Get Personalized Fragrance Review</h2>
             </a><br><br>
 
             <h2 class="">Fragrance Recommendations<br>Coming Soon</h2>

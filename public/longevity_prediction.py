@@ -32,7 +32,8 @@ from datetime import datetime
 # For import export of model
 import pickle
 
-from sklearn.tree import DecisionTreeClassifier
+# from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier
 
 
 # %%

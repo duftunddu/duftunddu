@@ -676,8 +676,8 @@ class Fragrance_Review_Helper {
             'fragrance_type.name as fragrance_type',
 
             // Table: Accords & Ingredients
-            'accord.name as accord',
-            'ingredient.name as ingredient',
+            // 'accord.name as accord',
+            // 'ingredient.name as ingredient',
 
             
             // Table: Brand
@@ -723,7 +723,7 @@ class Fragrance_Review_Helper {
         $fields = $fragrance_review_helper->get_fragrance_review_data_fields();
 
         // Calling data
-        $all = User_Fragrance_Review::join('location as ufr_location', 'ufr_location.id', 'user_fragrance_review.location_id')
+        $all = User_Fragrance_Review::rightJoin('location as ufr_location', 'ufr_location.id', 'user_fragrance_review.location_id')
         ->join('users', 'users.id', 'user_fragrance_review.users_id')
         ->join('fragrance_profile', 'fragrance_profile.users_id', 'users.id')
         
@@ -736,10 +736,10 @@ class Fragrance_Review_Helper {
         ->join('fragrance', 'fragrance.id', 'user_fragrance_review.fragrance_id')
         ->join('fragrance_type', 'fragrance_type.id', 'fragrance.type_id')
         
-        ->join('fragrance_ingredient', 'fragrance_ingredient.fragrance_id', 'fragrance.id')
-        ->join('fragrance_accord', 'fragrance_accord.fragrance_id', 'fragrance.id')
-        ->join('ingredient', 'ingredient.id', 'fragrance_ingredient.id')
-        ->join('accord', 'accord.id', 'fragrance_accord.id')
+        // ->join('fragrance_ingredient', 'fragrance_ingredient.fragrance_id', 'fragrance.id')
+        // ->join('fragrance_accord', 'fragrance_accord.fragrance_id', 'fragrance.id')
+        // ->join('ingredient', 'ingredient.id', 'fragrance_ingredient.id')
+        // ->join('accord', 'accord.id', 'fragrance_accord.id')
 
         ->join('fragrance_brand', 'fragrance_brand.id', 'fragrance.brand_id')
         ->join('brand_tier', 'brand_tier.id', 'fragrance_brand.tier_id')
