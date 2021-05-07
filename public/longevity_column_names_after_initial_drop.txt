@@ -26,6 +26,8 @@ fp_country
 fragrance
 fragrance_gender
 fragrance_type
+accord
+ingredient
 brand
 brand_tier
 bo_location_country

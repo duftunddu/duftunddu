@@ -41,6 +41,67 @@ fragrance_gender_Female
 fragrance_gender_Male
 fragrance_type_Eau de Parfum
 fragrance_type_Eau de Toilette
+accord_Amber
+accord_Animalic
+accord_Anis
+accord_Aquatic
+accord_Aromatic
+accord_Citrus
+accord_Cool
+accord_Floral
+accord_Fougere
+accord_Fresh
+accord_Fresh Spicy
+accord_Fruity
+accord_Lavender
+accord_Musky
+accord_Oriental
+accord_Patchouli
+accord_Powdery
+accord_Rose
+accord_Spicy
+accord_Sweet
+accord_Vanilla
+accord_Warm
+accord_White Floral
+accord_Woody
+accord_Yellow Floral
+ingredient_Acai berry
+ingredient_Acerola
+ingredient_Almond
+ingredient_Bergamot
+ingredient_Bitter Orange
+ingredient_Blood Orange
+ingredient_Calamansi
+ingredient_Chinotto
+ingredient_Citron
+ingredient_Citruses
+ingredient_Clementine
+ingredient_Finger Lime
+ingredient_Grapefruit
+ingredient_Hassaku
+ingredient_Hatkora lemon
+ingredient_Kaffir Lime
+ingredient_Kumquat
+ingredient_Lemon
+ingredient_Lemon Balm
+ingredient_Lemon Verbena
+ingredient_Lemon Zest
+ingredient_Lemon tree
+ingredient_Lemongrass
+ingredient_Lime
+ingredient_Limetta
+ingredient_Litsea Cubeba
+ingredient_Mandarin Orange
+ingredient_Mandora
+ingredient_Methyl Pamplemousse
+ingredient_Neroli
+ingredient_Orange
+ingredient_Petitgrain
+ingredient_Pomelo
+ingredient_Tangelo
+ingredient_Tangerine
+ingredient_Yuzu
 brand_Brut
 brand_Bvlgari
 brand_Versace
