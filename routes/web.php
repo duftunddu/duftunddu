@@ -97,12 +97,11 @@ Route::post('/webstore_register', "Webstore_Request_Controller@store");
 // Route::get('/webstore_call/{from}}/{api_key}/{user_ip_address}/{brand}/{fragrance}/{fragrance_type}/{theme}',  "Webstore_Controller@webstore_call_test");
 
 // Webstore Call
-// Route::get('/webstore_call/{key}/{brand_name}/{fragrance_name}', "Webstore_Controller@webstore_call");
 Route::get('/webstore_call/{api_key}/{user_ip_address}/{brand}/{fragrance}/{fragrance_type}/{theme}', "Webstore_Controller@webstore_call");
+
 
 // Serve CSS Script
 Route::get('/webstore_client_css.css', "Webstore_Controller@webstore_client_css");
-Route::get('/webstore_client_css_css.css', "Webstore_Controller@webstore_client_css_css");
 Route::get('/webstore_client_js.js', "Webstore_Controller@webstore_client_js");
 
 
@@ -209,12 +208,13 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('/store_call', "Store_Controller@call");
 
         // Profile
-        Route::get('/store_profile', "Store_Controller@add_profile");
+        Route::get('/store_profile/{store_type}', "Store_Controller@add_profile");
         Route::post('/store_profile', "Store_Controller@store_profile");
 
         // Show Fragrance
         Route::get('/store_fragrance/', "Store_Controller@empty_stock");
         Route::get('/store_fragrance/{fragrance_id}', "Store_Controller@show_fragrance");
+        // Route::get('/fragrance/{store_type}/{fragrance_id}', "Store_Controller@show_fragrance");
         
         // Show Stock
         Route::get('/store_stock', "Store_Controller@show_stock");
@@ -314,7 +314,7 @@ Route::group(['middleware' => ['auth']], function() {
 
         // Webstore
         // Webstore API
-        Route::get('/webstore_call_dev/{api_key}/{user_ip_address}/{brand}/{fragrance}/{fragrance_type}/{theme}',  "Webstore_Controller@webstore_call_test");
+        Route::get('/webstore_call_dev/{api_key}/{user_ip_address}/{brand}/{fragrance}/{fragrance_type}/{theme}',  "Webstore_Controller@webstore_call_dev");
         
         // Webstore Client
         Route::get('/webstore_client', "Webstore_Controller@webstore_client");

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app_'.$store_type)
 
 <title>{{('Add Details | The AI Powered Fragrance Genie')}}</title>
 
@@ -292,6 +292,9 @@
 
                             </div>
                         </div>
+
+                        {{-- Store Type --}}
+                        <input type="hidden" id="store_type" name="store_type" value={{ $store_type }}>
 
                         {{-- Button: Submit --}}
                         <div class="form-group row mb-0">

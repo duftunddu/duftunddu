@@ -18,6 +18,8 @@ use App\Store;
 use App\Store_Stock;
 use App\Store_Customer_Feature_Log;
 
+use App\User_Fragrance_Review;
+
 use Validator;
 use Illuminate\Validation\Rule;
 
@@ -60,17 +62,22 @@ class Store_Controller extends Controller
 
     // Call
     public function call() {
-        return redirect('/store_profile');
+        return redirect('/store_profile/store');
     }
 
 
     // Profile
-    public function add_profile()
+    public function add_profile($store_type)
     {
         $helper = new Helper();
 
-        if($helper->is_stock_empty('store')){
-            return redirect('/store_home')->with('error', 'Stock is empty. Add Fragrances to Stock first.');
+        if($helper->is_stock_empty($store_type)){
+            if(strcmp($store_type, "store") == 0){
+                return redirect('/store_home')->with('error', 'Stock is empty. Add Fragrances to Stock first.');
+            }
+            // else{
+            //     return 'Stock Empty. Add fragrances from Webstore Home first';
+            // }
         }
 
         $professions    =   Profession::select('name')->get();
@@ -78,14 +85,13 @@ class Store_Controller extends Controller
         $climates       =   Climate::select('name')->get();
         $seasons        =   Season::select('name')->get();
         
-        // $profile        =   session('store_profile'); 
-
+        
         return view('store.profile_entry',[
+            'store_type'        =>    $store_type,
             'professions'       =>    $professions,
             'skin_types'        =>    $skin_types,
             'climates'          =>    $climates,
             'seasons'           =>    $seasons,
-            // 'profile'           =>    $profile,
         ]);
     }
 
@@ -184,7 +190,9 @@ class Store_Controller extends Controller
                 ->withInput();
         }
         // Validation ends
+
         
+        // Units reslove
         $height = 0;
         if($height_unit == 'cent'){
             $height = $request->input('height_cent');
@@ -201,6 +209,8 @@ class Store_Controller extends Controller
             $weight = $request->input('lbs') * 2.205;
         }
 
+
+        // Fetch Data
         $profession_id = Profession::where('name', $request->input('profession'))->pluck('id')->first();
         $skin_type_id  = Skin_type::where('name', $request->input('skin_type'))->pluck('id')->first();
         $climate_id    = Climate::where('name', $request->input('climate'))->pluck('id')->first();
@@ -222,7 +232,8 @@ class Store_Controller extends Controller
             'location_id'       =>      $location->id,
         ];
 
-        session(['store_profile'=> $store_profile]);
+        // Storing the profile
+        session([$request->input('store_type').'_profile'=> $store_profile]);
 
         DB::transaction(function () use (
             $request, $height, $weight,
@@ -243,23 +254,40 @@ class Store_Controller extends Controller
             $new->save();
         });
         
-        // Get first from stock
-        $frag_id = Store_Stock::where('store_id', Store::where('users_id', request()->user()->id)->first()->id)
-        ->where('available', TRUE)
-        ->first()->id;
 
         // Return
-        return redirect('/store_fragrance/'.$frag_id);
+        if ( strcmp($request->input('store_type'), "store") == 0 ) {
+            
+            // Get first from stock
+            $frag_id = Store_Stock::where('store_id', Store::where('users_id', request()->user()->id)->first()->id)
+            ->where('available', TRUE)
+            ->first()->id;
+
+            return redirect('/'.$request->input('store_type').'_fragrance/'.$frag_id);
+        }
+        else{
+
+            $arr = session('web_call_data');
+
+            $wb_cont = new Webstore_Controller();
+            
+            // For dev
+            // return $wb_cont->webstore_call_dev($arr[0], $arr[1], $arr[2], $arr[3], $arr[4], $arr[5]);
+
+            return $wb_cont->webstore_call($arr[0], $arr[1], $arr[2], $arr[3], $arr[4], $arr[5]);
+        }
+        
     }
 
 
     // Show Fragrance Review
     public function show_fragrance($id)
     {
-        if(Store_Controller::is_stock_empty()){
+        if(Store_Controller::is_stock_empty('store')){
             return redirect('/store_home')->with('error', 'Stock is empty. Add Fragrances to Stock first.');
         }
 
+        // Fragrance
         $fragrance = Fragrance::where('id', $id)->first();
 
         if(is_null($fragrance)){
@@ -294,12 +322,12 @@ class Store_Controller extends Controller
             ->orderBy('intensity', 'desc')
             ->get();
 
-          
+        
+        // Profile
         $frag_profile = session('store_profile');
+        // dd($frag_profile);
         $user_gender = $frag_profile->gender;
         
-        $weather_data_json = Helper::get_weather_data($frag_profile->location_id);
-
         $fragrance_review_helper = new Fragrance_Review_Helper(); 
 
         $sustainability = trim($fragrance_review_helper->get_sustainability($id));
@@ -311,19 +339,17 @@ class Store_Controller extends Controller
 
         $suitability = $fragrance_review_helper->get_suitability($id);
 
-
-
-
         return view('store.fragrance',[
-            'user_gender'       => $user_gender,
-            'fragrance'         => $fragrance,
-            'type'              => $type,
-            'projection'        => $projection,
-            'accords'           => $accords,
-            'notes'             => $notes,
-            'longevity'         => $longevity,
-            'suitability'       => $suitability,
-            'sustainability'    => $sustainability,
+            'user_gender'       =>  $user_gender,
+            'fragrance'         =>  $fragrance,
+            'brand'             =>  $brand,
+            'type'              =>  $type,
+            'projection'        =>  $projection,
+            'accords'           =>  $accords,
+            'notes'             =>  $notes,
+            'longevity'         =>  $longevity,
+            'suitability'       =>  $suitability,
+            'sustainability'    =>  $sustainability,
         ]);
     }
 

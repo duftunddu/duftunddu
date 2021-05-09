@@ -8,7 +8,7 @@
     
     {{-- Stylesheet --}}
     <link href="{{ asset('css/fragrance.css') }}" rel="stylesheet">
-    {{-- <link href="{{ asset('css/store_scroll_bar.css') }}" rel="stylesheet"> --}}
+    <link href="{{ asset('css/store_scroll_bar.css') }}" rel="stylesheet">
 
     @auth
     <style>
