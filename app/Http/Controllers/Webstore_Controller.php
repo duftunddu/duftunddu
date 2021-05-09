@@ -131,6 +131,16 @@ class Webstore_Controller extends Controller
         // ->where('api_key', $api_key)
         // ->exists();
 
+        if (isset($_SERVER['HTTP_ORIGIN']) && $_SERVER['HTTP_REFERER'])
+        return $_SERVER['HTTP_ORIGIN'].'  '.$_SERVER['HTTP_REFERER'];
+        else if(isset($_SERVER['HTTP_ORIGIN']))
+            return $_SERVER['HTTP_ORIGIN'];
+        else if(isset($_SERVER['HTTP_REFERER']))
+            return $_SERVER['HTTP_REFERER'];
+    
+
+
+        return $_SERVER['HTTP_ORIGIN'].'   '.$_SERVER['HTTP_REFERER'];
         return Webstore_Controller::getUserIpAddr();
         return \Request::ip();
 
@@ -213,6 +223,15 @@ class Webstore_Controller extends Controller
         // ->where('api_key', $api_key)
         // ->exists();
 
+        if (isset($_SERVER['HTTP_ORIGIN']) && $_SERVER['HTTP_REFERER'])
+            return $_SERVER['HTTP_ORIGIN'].'  '.$_SERVER['HTTP_REFERER'];
+        else if(isset($_SERVER['HTTP_ORIGIN']))
+            return $_SERVER['HTTP_ORIGIN'];
+        else if(isset($_SERVER['HTTP_REFERER']))
+            return $_SERVER['HTTP_REFERER'];
+        
+        return $_SERVER['HTTP_ORIGIN'] ?? $_SERVER['HTTP_REFERER'];
+        return $_SERVER['HTTP_REFERER'];
         return Webstore_Controller::getUserIpAddr();
 
         $api_key_check = Store::where('webstore', TRUE)
