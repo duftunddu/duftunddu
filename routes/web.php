@@ -102,6 +102,7 @@ Route::get('/webstore_call/{api_key}/{user_ip_address}/{brand}/{fragrance}/{frag
 
 // Serve CSS Script
 Route::get('/webstore_client_css.css', "Webstore_Controller@webstore_client_css");
+Route::get('/webstore_client_css_css.css', "Webstore_Controller@webstore_client_css_css");
 Route::get('/webstore_client_js.js', "Webstore_Controller@webstore_client_js");
 
 

@@ -1,5 +1,5 @@
 <html> 
-    {{-- <head><style type="text/css"></style></head> --}}
+<head><style type="text/css"></style></head>
 
 <body data-new-gr-c-s-check-loaded="14.995.0"data-gr-ext-installed=""><pre style="word-wrap: break-word; white-space: normal;">
 /*!

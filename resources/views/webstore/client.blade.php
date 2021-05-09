@@ -1,5 +1,7 @@
 <head>
-    <link href="https://duftunddu.com/webstore_client_css.css" rel="stylesheet" />
+    {{-- <link href="https://duftunddu.com/webstore_client_css.css" rel="stylesheet" /> --}}
+    {{-- <link href="http://127.0.0.1:8000/css/webstore_client_css.css" rel="stylesheet" /> --}}
+    <link href="https://duftunddu.com/css/webstore_client_css.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://duftunddu.com/webstore_client_js.js"></script>
 </head>

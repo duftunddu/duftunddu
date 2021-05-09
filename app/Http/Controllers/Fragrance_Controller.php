@@ -378,70 +378,22 @@ class Fragrance_Controller extends Controller
             }
 
             // var_dump($weather_data_json->successful());return;
-            if($helper->get_weather_success()){
 
-                // Create this
-                $fragrance_review_helper = new Fragrance_Review_Helper(); 
+            $fragrance_review_helper = new Fragrance_Review_Helper();
 
-                $sustainability = trim($fragrance_review_helper->get_sustainability($id));
-                if($sustainability != -1){
-                    $sustainability *= 100;
-                }
-                
-                $longevity = $fragrance_review_helper->get_longevity($id);
-
-                $suitability = $fragrance_review_helper->get_suitability($id);
+            $sustainability = trim($fragrance_review_helper->get_sustainability($id));
+            if($sustainability != -1){
+                $sustainability *= 100;
+            }
+            
+            $longevity = $fragrance_review_helper->get_longevity($id);
+            $suitability = $fragrance_review_helper->get_suitability($id);
 
                 // dd($longevity->sufficient);
 
                 // $helper->var_dump_readable($longevity); return;
                 // var_dump($longevity->value); return;
 
-                //TODO: Create separate functions for each of the following, fetch weights in those functions from database.   
-                
-                // Humidity: Makes you sweat more.
-                // $humidity_weight = (object) [
-                // 'condition' => NULL,
-                // 'weight'    => NULL
-                // ];
-                // if($avg_hum > 70){
-                //     $frag_profile->sweat *= 1.3;
-                //     $humidity_weight->condition = 70;
-                //     $humidity_weight->weight = 1.3;
-                // }
-                // else if($avg_hum > 55){
-                //     $frag_profile->sweat *= 1.2;
-                //     $humidity_weight->condition = 55;
-                //     $humidity_weight->weight = 1.2;
-                // }
-                // else if($avg_hum > 40){
-                //     $frag_profile->sweat *= 1.1;
-                //     $humidity_weight->condition = 40;
-                //     $humidity_weight->weight = 1.1;
-                // }
-
-                // Weather: Cold weather/region holds stronger, lusher floral notes in check, which is why your tropical perfumes will smell all wrong during winter or autumn. Conversely, lighter scents work better in summer and spring.
-                // $warm_cold_weight = (object) [
-                //     'condition_1' => NULL,
-                //     'condition_2' => NULL,
-                //     'weight'      => NULL
-                // ];
-                // if($avg_temp > 65){
-                //     if( in_array("Floral", $accords) ){              
-                //         $suitability *= 1.2;
-                //         $warm_cold_weight->condition_1 = 65;
-                //         $warm_cold_weight->condition_2 = "Floral";
-                //         $warm_cold_weight->weight      = 1.2;
-                //     }
-                // }
-                // else{
-                //     if( in_array("Tropical", $accords) ){
-                //         $suitability *= 1.2;
-                //         $warm_cold_weight->condition_1 = 65;
-                //         $warm_cold_weight->condition_2 = "Tropical";
-                //         $warm_cold_weight->weight      = 1.2;
-                //     }
-                // }
 
                 // BMI:
                 // Multiply your weight in pounds by 703, Divide this number by your height in inches, Divide again by your height in inches.
@@ -455,10 +407,10 @@ class Fragrance_Controller extends Controller
                 
                 // $bmi = ($frag_profile->weight)/pow($frag_profile->height/39.37,2);
 
-                }
-                else{
-                    // Create two more accounts on the weather website and adjust this controller with more apis.
-                }
+
+                // else{
+                //     // Create two more accounts on the weather website and adjust this controller with more apis.
+                // }
             }
         }
         else{

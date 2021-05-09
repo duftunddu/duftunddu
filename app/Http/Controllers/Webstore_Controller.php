@@ -82,31 +82,17 @@ class Webstore_Controller extends Controller
         
         // Gives host name
         // request()->getHost()
-
-        // $hostname = gethostbyaddr("66.35.250.150");
-
         
         // $hostname = gethostbynamel(request()->ip());
-        // $hostname = gethostbyaddr("216.105.38.15");
 
-        // $name = "www.slashdot.org";
-        // $hostname = gethostbynamel($name);
-        // var_dump($name, $hostname);
+        // $hostname = shell_exec('nslookup ' . 'codepen.io');
+        // $address = shell_exec('nslookup ' . '104.17.14.48');
 
-        $address = gethostbynamel('chanel.com');
-
-        // $address = "142.44.170.247";
-        // $address = $_SERVER['REMOTE_ADDR'];
-        // $hostname = 0;
-        // $hostname = gethostbyaddr($address);
-        $hostname = gethostbyaddr($address[0]);
-        var_dump($address, $hostname);
-
-
-        // $name = "google.com";
-        // $addresses = $_SERVER['REMOTE_ADDR'];
-
-        return;
+        // Working
+        // $address = gethostbynamel('duftunddu.com');
+        // $hostname = gethostbyaddr($address[0]);
+        // var_dump($address, $hostname);
+        // return;
 
         $api_key_check = Store::where('users_id', request()->user()->id)
         ->where('webstore', TRUE)
@@ -127,8 +113,8 @@ class Webstore_Controller extends Controller
             }
         }
         
-        var_dump(request()->getHost());
-        return;
+        // var_dump(request()->getHost());
+        // return;
 
         // return view('store.profile_entry');
 
@@ -141,8 +127,33 @@ class Webstore_Controller extends Controller
         }
     }
 
-    public function webstore_call_dev($api_key, $ip_address, $brand_name, $fragrance_name, $fragrance_type, $theme)
+    //faster alternative to gethostbyaddr()
+    private function gethost( $ip )
     {
+        //Make sure the input is not going to do anything unexpected
+        //IPs must be in the form x.x.x.x with each x as a number
+
+        if( preg_match( '/^(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:[.](?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}$/', $ip ) )
+        {
+            $host = `host -s -W 1 $ip`;
+            $host = ( $host ? end( explode( ' ', trim( trim( $host ), '.' ) ) ) : $ip );
+            if( in_array( $host, Array( 'reached', 'record', '2(SERVFAIL)', '3(NXDOMAIN)' ) ) )
+            {
+                return sprintf( '(error fetching domain name for %s)', $ip );
+            }
+            else
+            {
+                return $host;
+            }
+        }
+        else
+        {
+            return '(invalid IP address)';
+        }
+    }
+
+    public function webstore_call_dev($api_key, $ip_address, $brand_name, $fragrance_name, $fragrance_type, $theme){
+
         $api_key_check = Store::where('users_id', request()->user()->id)
         ->where('webstore', TRUE)
         ->where('request_status', 'approved')
@@ -162,8 +173,8 @@ class Webstore_Controller extends Controller
             }
         }
         
-        // var_dump(request()->getHost());
-        // return;
+        var_dump(request()->getHost());
+        return;
 
         // return view('store.profile_entry');
 
@@ -486,6 +497,10 @@ class Webstore_Controller extends Controller
     public function webstore_client_css(){
         return view('webstore.webstore_client_css');
     }
+    public function webstore_client_css_css(){
+        return view('webstore.webstore_client_css.css');
+    }
+
 
     public function webstore_client_js(){
         return view('webstore.webstore_client_js');
