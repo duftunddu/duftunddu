@@ -107,8 +107,15 @@ class Webstore_Controller extends Controller
     // Call
     public function webstore_call($api_key, $ip_address, $brand_name, $fragrance_name, $fragrance_type, $theme){
         // API Key Check
-        $api_key_check = Store::where('users_id', request()->user()->id)
-        ->where('webstore', TRUE)
+        // $api_key_check = Store::where('users_id', request()->user()->id)
+        // ->where('webstore', TRUE)
+        // ->where('request_status', 'approved')
+        // ->where('api_key', $api_key)
+        // ->exists();
+
+        return request()->getHost();
+        
+        $api_key_check = Store::where('webstore', TRUE)
         ->where('request_status', 'approved')
         ->where('api_key', $api_key)
         ->exists();
@@ -181,15 +188,16 @@ class Webstore_Controller extends Controller
 
 
         // API Key Check
-        $api_key_check = Store::where('users_id', request()->user()->id)
-        ->where('webstore', TRUE)
+        // $api_key_check = Store::where('users_id', request()->user()->id)
+        // ->where('webstore', TRUE)
+        // ->where('request_status', 'approved')
+        // ->where('api_key', $api_key)
+        // ->exists();
+
+        $api_key_check = Store::where('webstore', TRUE)
         ->where('request_status', 'approved')
         ->where('api_key', $api_key)
         ->exists();
-
-        if(!$api_key_check){
-            return "API Key Mismatch";
-        }
 
 
         // Hostname Check
