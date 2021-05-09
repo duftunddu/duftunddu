@@ -113,7 +113,7 @@ class Webstore_Controller extends Controller
         // ->where('api_key', $api_key)
         // ->exists();
 
-        return request()->ip();
+        return \Request::ip();
 
         $api_key_check = Store::where('webstore', TRUE)
         ->where('request_status', 'approved')
