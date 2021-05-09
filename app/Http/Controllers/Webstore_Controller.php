@@ -103,6 +103,24 @@ class Webstore_Controller extends Controller
         }
     }
 
+    public function getUserIpAddr(){
+        $ipaddress = '';
+        if (isset($_SERVER['HTTP_CLIENT_IP']))
+            $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+        else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
+            $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        else if(isset($_SERVER['HTTP_X_FORWARDED']))
+            $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+        else if(isset($_SERVER['HTTP_FORWARDED_FOR']))
+            $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+        else if(isset($_SERVER['HTTP_FORWARDED']))
+            $ipaddress = $_SERVER['HTTP_FORWARDED'];
+        else if(isset($_SERVER['REMOTE_ADDR']))
+            $ipaddress = $_SERVER['REMOTE_ADDR'];
+        else
+            $ipaddress = 'UNKNOWN';    
+        return $ipaddress;
+     }
 
     // Call
     public function webstore_call($api_key, $ip_address, $brand_name, $fragrance_name, $fragrance_type, $theme){
@@ -113,6 +131,7 @@ class Webstore_Controller extends Controller
         // ->where('api_key', $api_key)
         // ->exists();
 
+        return Webstore_Controller::getUserIpAddr();
         return \Request::ip();
 
         $api_key_check = Store::where('webstore', TRUE)
@@ -193,6 +212,8 @@ class Webstore_Controller extends Controller
         // ->where('request_status', 'approved')
         // ->where('api_key', $api_key)
         // ->exists();
+
+        return Webstore_Controller::getUserIpAddr();
 
         $api_key_check = Store::where('webstore', TRUE)
         ->where('request_status', 'approved')
