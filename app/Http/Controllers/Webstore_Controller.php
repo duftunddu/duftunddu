@@ -103,19 +103,6 @@ class Webstore_Controller extends Controller
         }
     }
 
-    public function current_page_url(){
-        if (array_key_exists('HTTP_ORIGIN', $_SERVER)) {
-            $origin = $_SERVER['HTTP_ORIGIN'];
-        }
-        else if (array_key_exists('HTTP_REFERER', $_SERVER)) {
-            $origin = $_SERVER['HTTP_REFERER'];
-        } else {
-            $origin = $_SERVER['REMOTE_ADDR'];
-        }
-
-        return $origin;
-    }
-
     // Call
     public function webstore_call($api_key, $ip_address, $brand_name, $fragrance_name, $fragrance_type, $theme){
         // API Key Check
@@ -136,16 +123,12 @@ class Webstore_Controller extends Controller
         // }
 
         // if (isset($_SERVER['HTTP_ORIGIN']) && $_SERVER['HTTP_REFERER'])
-        // return $_SERVER['HTTP_ORIGIN'].'  '.$_SERVER['HTTP_REFERER'];
+        //  return $_SERVER['HTTP_ORIGIN'].'  '.$_SERVER['HTTP_REFERER'];
         // else if(isset($_SERVER['HTTP_ORIGIN']))
-            // return $_SERVER['HTTP_ORIGIN'];
-        
-
-
-        return Webstore_Controller::current_page_url();
+        //  return $_SERVER['HTTP_ORIGIN'];
 
         // Working
-        return $_SERVER['HTTP_REFERER'];
+        // return $_SERVER['HTTP_REFERER'];
     
 
         $api_key_check = Store::where('webstore', TRUE)
@@ -154,7 +137,7 @@ class Webstore_Controller extends Controller
         ->exists();
 
         if(!$api_key_check){
-            return "API Key Mismatch";
+            return "Error: API Key Mismatch";
         }
 
 
@@ -166,16 +149,16 @@ class Webstore_Controller extends Controller
             
             $domain = parse_url($api_host->website);
 
-            // dd($domain['host'], gethostbyaddr(request()->getHost()));
+            dd($_SERVER['HTTP_REFERER'], $domain['host']);
 
-            // Checking substring
-            if( stripos($domain['host'], gethostbyaddr(request()->getHost()) ) !== false ){
+            // Checking substring, don't simplify it, it might not work
+            if( stripos($_SERVER['HTTP_REFERER'], $domain['host']) ) !== false ){
                 $api_host_check = TRUE;
             }
         }
 
         if(!$api_host_check){
-            return "API Host Mismatch. Please ensure that the hostname is available via reverse DNS. ";
+            return "Error: API Host Mismatch. Please ensure that the hostname is available via reverse DNS. ";
         }
 
         // For debugging
