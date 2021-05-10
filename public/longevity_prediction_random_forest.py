@@ -123,7 +123,9 @@ df.drop(["apply_time"], axis=1, inplace=True)
 categorical_columns = df.select_dtypes(include=["object"]).columns.values
 df = df.convert_dtypes()
 
-
+# %%
+print("\n".join([str(elem) for elem in df.columns]))
+return
 # %%
 def resolve_categorical_variables(df, column_names_arr):
 
@@ -151,10 +153,6 @@ df = resolve_categorical_variables(df, np.append(categorical_columns, ("fp_id"))
 # %%
 with open("longevity_model.pickle", "rb") as f:
     longevity_model = pickle.load(f)
-
-
-# %%
-print("\n".join([str(elem) for elem in df.columns]))
 
 
 # %%
