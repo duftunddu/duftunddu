@@ -22,6 +22,7 @@ use App\Climate;
 use App\Season;
 
 use App\User_Fragrance_Review;
+use App\Store_Customer_Feature_Logs;
 
 use Validator;
 use Illuminate\Validation\Rule;
