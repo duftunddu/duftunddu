@@ -266,8 +266,9 @@ class Webstore_Controller extends Controller
 
             session([ 'web_call_data' => $arr ]);
 
-            $st_controller = new Store_Controller();
-            return $st_controller->add_profile('webstore', $api_host->id);
+            // $st_controller = new Store_Controller();
+            // return $st_controller->add_profile('webstore', $api_host->id);
+            return redirect('/webstore_profile/webstore/'.$api_host->id);
         }
         else{
         // Show Fragrance
