@@ -393,7 +393,7 @@ class Webstore_Controller extends Controller
 
 
     // Profile
-    public function add_profile(, $store_id = NULL)
+    public function add_profile($store_id = NULL)
     {
         $helper = new Helper();
 
