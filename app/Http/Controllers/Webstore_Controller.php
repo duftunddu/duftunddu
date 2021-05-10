@@ -21,8 +21,10 @@ use App\Skin_Type;
 use App\Climate;
 use App\Season;
 
-
 use App\User_Fragrance_Review;
+
+use Validator;
+use Illuminate\Validation\Rule;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
