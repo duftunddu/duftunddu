@@ -98,7 +98,8 @@ Route::get('/webstore_call/{api_key}/{user_ip_address}/{brand}/{fragrance}/{frag
 
 
 Route::get('/webstore_profile/{store_id?}', "Webstore_Controller@add_profile");
-Route::post('/webstore_profile', "Webstore_Controller@store_profile");
+// Route::post('/webstore_profile', "Webstore_Controller@store_profile");
+Route::post('/webstore_profile', "Controller@meow");
 
 Route::get('/webstore_fragrance/{brand}/{fragrance}', "Webstore_Controller@show_fragrance");
 

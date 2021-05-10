@@ -73,6 +73,11 @@ class Controller extends BaseController {
         return response()->json($data);
     }
 
+    public function meow (Request $request) {
+        return 'success';
+    }
+
+
     public function ad_index() {
     
         $no_of_views = collect([
