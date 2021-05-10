@@ -174,7 +174,7 @@ with open("longevity_model.pickle", "rb") as f:
 
 # %%
 y_pred = float(longevity_model.predict(df))
-print(y_pred[0])
+print(y_pred)
 
 # %% [markdown]
 # # END

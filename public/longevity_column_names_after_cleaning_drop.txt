@@ -11,25 +11,66 @@ visibility_avg
 wind_speed_avg
 rain_avg
 snow_avg
-weather_main
-fp_id
-gender
 sweat
 height
 weight
-profession
-skin_type
-season
-fp_country
-fragrance
-fragrance_gender
-fragrance_type
-brand
-brand_tier
 age
 apply_time_year
 apply_time_month
 apply_time_day
 apply_time_hour
 apply_time_minute
-apply_time_weekday_name
+weather_main_Clear
+weather_main_Clouds
+weather_main_Rain
+gender_Female
+gender_Male
+profession_Beautician
+profession_Clairvoyant
+profession_Doctor
+profession_Footballer
+profession_Marketing Agent
+profession_Student
+skin_type_Dry
+skin_type_Normal
+skin_type_Very Oily
+season_Spring
+season_Summer
+season_Winter
+fp_country_Pakistan
+fragrance_Bright Crystal
+fragrance_Goldea
+fragrance_Homme Exceptionnel
+fragrance_L’Ambre des Merveilles
+fragrance_Noir
+fragrance_Parfums Prestige Paris 1965
+fragrance_Terre d'Hermes EDT
+fragrance_Terre d'Hermes Parfum
+fragrance_gender_Female
+fragrance_gender_Male
+fragrance_gender_Unisex
+fragrance_type_Eau de Parfum
+fragrance_type_Eau de Toilette
+brand_Brut
+brand_Bvlgari
+brand_Hermes
+brand_Lacoste
+brand_Mont Blanc
+brand_Versace
+brand_tier_High-End
+brand_tier_Low-End
+brand_tier_Mid
+bo_location_country_France
+bo_location_country_Germany
+bo_location_country_Italy
+apply_time_weekday_name_Friday
+apply_time_weekday_name_Monday
+apply_time_weekday_name_Thursday
+apply_time_weekday_name_Tuesday
+apply_time_weekday_name_Wednesday
+fp_id_1
+fp_id_11
+fp_id_12
+fp_id_13
+fp_id_17
+fp_id_18
