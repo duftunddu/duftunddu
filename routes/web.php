@@ -97,10 +97,7 @@ Route::post('/webstore_register', "Webstore_Request_Controller@store");
 Route::get('/webstore_call/{api_key}/{user_ip_address}/{brand}/{fragrance}/{fragrance_type}/{theme}', "Webstore_Controller@webstore_call");
 
 
-// Route::get('/webstore_profile/{store_id?}', "Webstore_Controller@add_profile");
-// Route::post('/webstore_profile', "Webstore_Controller@store_profile");
-// Route::post('/webstore_profile', "Store_Controller@store_profile");
-Route::get('/webstore_profile/{store_type}/{store_id?}', "Store_Controller@add_profile");
+Route::get('/webstore_profile/{store_id?}', "Webstore_Controller@add_profile");
 Route::post('/webstore_profile_nnnnnnn', "Webstore_Controller@store_profile");
 
 Route::get('/webstore_fragrance/{fragrance_id}', "Webstore_Controller@show_fragrance");
@@ -242,11 +239,6 @@ Route::group(['middleware' => ['auth']], function() {
         // Home
         Route::get('/webstore_home', "Webstore_Controller@home");
         
-
-        // Show Fragrance
-        // Route::get('/webstore_profile', "Webstore_Controller@index");
-        // Route::get('/webstore_fragrance/{fragrance_id}', "Webstore_Controller@show_fragrance");
-
 
         // Stock Related
         // Show Stock

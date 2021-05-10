@@ -176,8 +176,12 @@ class Webstore_Controller extends Controller
 
             session([ 'web_call_data' => $arr ]);
 
-            $st_controller = new Store_Controller();
-            return $st_controller->add_profile('webstore', $api_host->id);
+            // $st_controller = new Store_Controller();
+            // return $st_controller->add_profile('webstore', $api_host->id);
+
+            dd($api_host->id);
+
+            return Webstore_Controller::add_profile($api_host->id);
         }
         else{
         // Show Fragrance
@@ -401,16 +405,13 @@ class Webstore_Controller extends Controller
     // Profile
     public function add_profile($store_id = NULL)
     {
-        $helper = new Helper();
-
-
         $professions    =   Profession::select('name')->get();
         $skin_types     =   Skin_Type::select('name')->get();
         $climates       =   Climate::select('name')->get();
         $seasons        =   Season::select('name')->get();
         
         
-        return view('store.profile_entry',[
+        return view('webstore.profile_entry',[
             'store_type'        =>    $store_type,
             'professions'       =>    $professions,
             'skin_types'        =>    $skin_types,
@@ -420,7 +421,7 @@ class Webstore_Controller extends Controller
     }
 
     public function store_profile(Request $request)
-    {return 'success';
+    {
         // Validation
         $this->validate(
             $request, [
@@ -557,7 +558,7 @@ class Webstore_Controller extends Controller
         ];
 
         // Storing the profile
-        session(['webstore_profile'=> $store_profile]);
+        session([$request->input('store_type').'_profile'=> $store_profile]);
 
         DB::transaction(function () use (
             $request, $height, $weight,
@@ -581,6 +582,7 @@ class Webstore_Controller extends Controller
 
         // Return
         $arr = session('web_call_data');
+        
         $wb_cont = new Webstore_Controller();
         
         // For dev
