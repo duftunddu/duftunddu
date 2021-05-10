@@ -200,7 +200,7 @@ class Webstore_Controller extends Controller
 
             // session([ 'web_call_data' => $arr ]);
 
-            // dd($_SERVER['REQUEST_URI']);
+            dd($_SERVER['REQUEST_URI']);
             session([ 'web_call_uri' => $_SERVER['REQUEST_URI'] ]);
 
 
@@ -214,7 +214,7 @@ class Webstore_Controller extends Controller
         else{
         // Show Fragrance
 
-            return Webstore_Controller::show_fragrance($brand_name, $fragrance_name);            
+            return Webstore_Controller::show_fragrance($brand_name, explode ("/", $_SERVER['REQUEST_URI'])[5]);
         }
     }
 
@@ -252,6 +252,10 @@ class Webstore_Controller extends Controller
         // return $_SERVER['HTTP_ORIGIN'] ?? $_SERVER['HTTP_REFERER'];
         // return $_SERVER['HTTP_REFERER'];
         // return Webstore_Controller::getUserIpAddr();
+
+
+        // dd(explode ("/", $_SERVER['REQUEST_URI'])[5]);
+
 
         $api_key_check = Store::where('webstore', TRUE)
         ->where('request_status', 'approved')
@@ -620,7 +624,12 @@ class Webstore_Controller extends Controller
         // return $wb_cont->webstore_call($arr[0], $arr[1], $arr[2], $arr[3], $arr[4], $arr[5]);
         // return redirect('webstore_call/'.$arr[0].'/'.$arr[1].'/'.$arr[2].'/'.$arr[3].'/'.$arr[4].'/'.$arr[5]);
         // return redirect($arr);
-        return $arr;
+
+        // return Webstore_Controller::show_fragrance($brand_name, $fragrance_name);
+        
+        $ex = explode ("/", $arr);
+        return Webstore_Controller::show_fragrance($ex[4], $ex[5]);
+        // return $arr;
     }
 
 
