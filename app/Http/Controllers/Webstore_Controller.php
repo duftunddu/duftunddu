@@ -200,7 +200,7 @@ class Webstore_Controller extends Controller
 
             // session([ 'web_call_data' => $arr ]);
 
-            dd($_SERVER['REQUEST_URI']);
+            // dd($_SERVER['REQUEST_URI']);
             session([ 'web_call_uri' => $_SERVER['REQUEST_URI'] ]);
 
 
