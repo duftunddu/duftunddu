@@ -177,7 +177,7 @@ class Webstore_Controller extends Controller
             session([ 'web_call_data' => $arr ]);
 
             $st_controller = new Store_Controller();
-            return $st_controller->add_profile('webstore');
+            return $st_controller->add_profile('webstore', $api_host->id);
         }
         else{
         // Show Fragrance
@@ -315,7 +315,7 @@ class Webstore_Controller extends Controller
             ->orderBy('intensity', 'desc')
             ->get();
         
-            
+
         // Profile
         $frag_profile = session('webstore_profile');
         
