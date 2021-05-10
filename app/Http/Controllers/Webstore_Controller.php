@@ -216,7 +216,7 @@ class Webstore_Controller extends Controller
         else{
         // Show Fragrance
 
-            return Webstore_Controller::show_fragrance($brand_name, explode ("/", $_SERVER['REQUEST_URI'])[5]);
+            return Webstore_Controller::show_fragrance($brand_name, $fragrance_name);
         }
     }
 
