@@ -123,8 +123,6 @@ df.drop(["apply_time"], axis=1, inplace=True)
 categorical_columns = df.select_dtypes(include=["object"]).columns.values
 df = df.convert_dtypes()
 
-# %%
-print("\n".join([str(elem) for elem in df.columns]))
 
 # return
 # %%
