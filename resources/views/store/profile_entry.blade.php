@@ -29,7 +29,7 @@
             @if ( strcmp($store_type, "store") == 0 )
                 <form method="POST" action="{{ url('/store_profile')}}">
             @else
-                <form method="POST" action="{{ url('/webstore_profile')}}">
+                <form method="POST" action="{{ url('/webstore_profile_nnnnnnn')}}">
             @endif
                 @csrf
 

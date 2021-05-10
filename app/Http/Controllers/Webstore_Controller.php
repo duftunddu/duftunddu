@@ -585,7 +585,6 @@ class Webstore_Controller extends Controller
         // For dev
         // return $wb_cont->webstore_call_dev($arr[0], $arr[1], $arr[2], $arr[3], $arr[4], $arr[5]);
         return $wb_cont->webstore_call($arr[0], $arr[1], $arr[2], $arr[3], $arr[4], $arr[5]);
-        
     }
 
 
