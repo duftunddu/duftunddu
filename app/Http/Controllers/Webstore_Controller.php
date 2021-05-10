@@ -203,7 +203,7 @@ class Webstore_Controller extends Controller
             // dd($_SERVER['REQUEST_URI']);
             session(['web_call_uri'=> $_SERVER['REQUEST_URI']]);
 
-            dd(explode ("/", session('web_call_uri'))[6]);
+            // dd(explode ("/", session('web_call_uri'))[5]);
 
 
             // $st_controller = new Store_Controller();
@@ -617,7 +617,7 @@ class Webstore_Controller extends Controller
         
 
         // Return
-        $arr = session('web_call_uri');
+        // $arr = session('web_call_uri');
         // var_dump($arr); return;
         
         // $wb_cont = new Webstore_Controller();
@@ -630,8 +630,9 @@ class Webstore_Controller extends Controller
 
         // return Webstore_Controller::show_fragrance($brand_name, $fragrance_name);
         
-        $ex = explode ("/", $arr);
-        return Webstore_Controller::show_fragrance($ex[4], $ex[5]);
+        // $ex = explode ("/", $arr);
+        // return Webstore_Controller::show_fragrance($ex[4], $ex[5]);
+        return Webstore_Controller::show_fragrance(explode ("/", session('web_call_uri'))[4], explode ("/", session('web_call_uri'))[5]);
         // return $arr;
     }
 
