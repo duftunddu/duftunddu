@@ -28,4 +28,3 @@ fragrance_gender
 fragrance_type
 brand
 brand_tier
-bo_location_country
