@@ -152,7 +152,7 @@ class Webstore_Controller extends Controller
             dd($_SERVER['HTTP_REFERER'], $domain['host']);
 
             // Checking substring, don't simplify it, it might not work
-            if( stripos($_SERVER['HTTP_REFERER'], $domain['host']) ) !== false ){
+            if( stripos($_SERVER['HTTP_REFERER'], $domain['host']) !== false ){
                 $api_host_check = TRUE;
             }
         }
