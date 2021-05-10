@@ -27,7 +27,7 @@
         <div class="col-md-8">
 
             <form method="POST" action="{{ url('/webstore_profile')}}">
-                {{-- @csrf --}}
+                @csrf
 
                 <div class="card">
                     <div class="card-header">{{ __('Profile Details')}}&nbsp;&nbsp; <i class="fas fa-info"
