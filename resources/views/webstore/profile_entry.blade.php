@@ -1,4 +1,4 @@
-@extends('layouts.app_'.$store_type)
+@extends('layouts.app_webstore')
 
 <title>{{('Add Details | The AI Powered Fragrance Genie')}}</title>
 
