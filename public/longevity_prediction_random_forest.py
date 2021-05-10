@@ -154,5 +154,9 @@ with open("longevity_model.pickle", "rb") as f:
 
 
 # %%
+print(df.columns)
+
+
+# %%
 y_pred = float(longevity_model.predict(df))
 print(y_pred)
