@@ -317,7 +317,7 @@ Route::group(['middleware' => ['auth']], function() {
 
         // Webstore
         // Webstore API
-        Route::get('/webstore_call_dev/{api_key}/{user_ip_address}/{brand}/{fragrance}/{fragrance_type}/{theme}',  "Webstore_Controller@webstore_call_dev");
+        // Route::get('/webstore_call_dev/{api_key}/{user_ip_address}/{brand}/{fragrance}/{fragrance_type}/{theme}',  "Webstore_Controller@webstore_call_dev");
         
         // Webstore Client
         Route::get('/webstore_client', "Webstore_Controller@webstore_client");
