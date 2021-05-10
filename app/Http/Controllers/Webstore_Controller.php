@@ -104,11 +104,16 @@ class Webstore_Controller extends Controller
     }
 
     public function current_page_url(){
-        $page_url   = 'http';
-        if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on'){
-            $page_url .= 's';
+        if (array_key_exists('HTTP_ORIGIN', $_SERVER)) {
+            $origin = $_SERVER['HTTP_ORIGIN'];
         }
-        return $page_url.'://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
+        else if (array_key_exists('HTTP_REFERER', $_SERVER)) {
+            $origin = $_SERVER['HTTP_REFERER'];
+        } else {
+            $origin = $_SERVER['REMOTE_ADDR'];
+        }
+
+        return $origin;
     }
 
     // Call
