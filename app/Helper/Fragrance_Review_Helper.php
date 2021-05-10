@@ -158,7 +158,7 @@ class Fragrance_Review_Helper {
             throw new ProcessFailedException($process);
         }
 
-        return $process->getOutput();
+        return (int) $process->getOutput();
     }
 
 
