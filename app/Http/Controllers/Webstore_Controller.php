@@ -168,11 +168,11 @@ class Webstore_Controller extends Controller
 
             // dd($_SERVER['HTTP_REFERER'], $domain['host']);
 
-            $host = Webstore_Controller::get_server_user_address();
+            // $host = Webstore_Controller::get_server_user_address();
 
             // Checking substring, don't simplify it, it might not work
-            // if( stripos($_SERVER['HTTP_REFERER'], $domain['host']) !== false ){
-            if( stripos($host, $domain['host']) !== false ){
+            if( stripos($_SERVER['HTTP_REFERER'], $domain['host']) !== false ){
+            // if( stripos($host, $domain['host']) !== false ){
                 $api_host_check = TRUE;
             }
         }
