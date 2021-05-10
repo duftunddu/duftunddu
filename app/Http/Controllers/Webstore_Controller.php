@@ -103,24 +103,13 @@ class Webstore_Controller extends Controller
         }
     }
 
-    public function getUserIpAddr(){
-        $ipaddress = '';
-        if (isset($_SERVER['HTTP_CLIENT_IP']))
-            $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
-        else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
-            $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
-        else if(isset($_SERVER['HTTP_X_FORWARDED']))
-            $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
-        else if(isset($_SERVER['HTTP_FORWARDED_FOR']))
-            $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
-        else if(isset($_SERVER['HTTP_FORWARDED']))
-            $ipaddress = $_SERVER['HTTP_FORWARDED'];
-        else if(isset($_SERVER['REMOTE_ADDR']))
-            $ipaddress = $_SERVER['REMOTE_ADDR'];
-        else
-            $ipaddress = 'UNKNOWN';    
-        return $ipaddress;
-     }
+    public function current_page_url(){
+        $page_url   = 'http';
+        if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on'){
+            $page_url .= 's';
+        }
+        return $page_url.'://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
+    }
 
     // Call
     public function webstore_call($api_key, $ip_address, $brand_name, $fragrance_name, $fragrance_type, $theme){
@@ -131,18 +120,28 @@ class Webstore_Controller extends Controller
         // ->where('api_key', $api_key)
         // ->exists();
 
+        // Test these
+        // if (array_key_exists('HTTP_ORIGIN', $_SERVER)) {
+        //     $origin = $_SERVER['HTTP_ORIGIN'];
+        // }
+        // else if (array_key_exists('HTTP_REFERER', $_SERVER)) {
+        //     $origin = $_SERVER['HTTP_REFERER'];
+        // } else {
+        //     $origin = $_SERVER['REMOTE_ADDR'];
+        // }
+
         // if (isset($_SERVER['HTTP_ORIGIN']) && $_SERVER['HTTP_REFERER'])
         // return $_SERVER['HTTP_ORIGIN'].'  '.$_SERVER['HTTP_REFERER'];
         // else if(isset($_SERVER['HTTP_ORIGIN']))
             // return $_SERVER['HTTP_ORIGIN'];
         
+
+
+        return Webstore_Controller::current_page_url();
+
+        // Working
         return $_SERVER['HTTP_REFERER'];
     
-
-
-        return $_SERVER['HTTP_ORIGIN'].'   '.$_SERVER['HTTP_REFERER'];
-        return Webstore_Controller::getUserIpAddr();
-        return \Request::ip();
 
         $api_key_check = Store::where('webstore', TRUE)
         ->where('request_status', 'approved')
