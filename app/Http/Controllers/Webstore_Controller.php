@@ -210,21 +210,25 @@ class Webstore_Controller extends Controller
         // ->where('api_key', $api_key)
         // ->exists();
 
-        if (isset($_SERVER['HTTP_ORIGIN']) && $_SERVER['HTTP_REFERER'])
-            return $_SERVER['HTTP_ORIGIN'].'  '.$_SERVER['HTTP_REFERER'];
-        else if(isset($_SERVER['HTTP_ORIGIN']))
-            return $_SERVER['HTTP_ORIGIN'];
-        else if(isset($_SERVER['HTTP_REFERER']))
-            return $_SERVER['HTTP_REFERER'];
+        // if (isset($_SERVER['HTTP_ORIGIN']) && $_SERVER['HTTP_REFERER'])
+        //     return $_SERVER['HTTP_ORIGIN'].'  '.$_SERVER['HTTP_REFERER'];
+        // else if(isset($_SERVER['HTTP_ORIGIN']))
+        //     return $_SERVER['HTTP_ORIGIN'];
+        // else if(isset($_SERVER['HTTP_REFERER']))
+        //     return $_SERVER['HTTP_REFERER'];
         
-        return $_SERVER['HTTP_ORIGIN'] ?? $_SERVER['HTTP_REFERER'];
-        return $_SERVER['HTTP_REFERER'];
-        return Webstore_Controller::getUserIpAddr();
+        // return $_SERVER['HTTP_ORIGIN'] ?? $_SERVER['HTTP_REFERER'];
+        // return $_SERVER['HTTP_REFERER'];
+        // return Webstore_Controller::getUserIpAddr();
 
         $api_key_check = Store::where('webstore', TRUE)
         ->where('request_status', 'approved')
         ->where('api_key', $api_key)
         ->exists();
+
+        if(!$api_key_check){
+            return "Error: API Key Mismatch";
+        }
 
 
         // Hostname Check
@@ -235,16 +239,16 @@ class Webstore_Controller extends Controller
             
             $domain = parse_url($api_host->website);
 
-            // dd($domain['host'], gethostbyaddr(request()->getHost()));
+            // dd($_SERVER['HTTP_REFERER'], $domain['host']);
 
-            // Checking substring
-            if( stripos($domain['host'], gethostbyaddr(request()->getHost()) ) !== false ){
+            // Checking substring, don't simplify it, it might not work
+            if( stripos($_SERVER['HTTP_REFERER'], $domain['host']) !== false ){
                 $api_host_check = TRUE;
             }
         }
 
         if(!$api_host_check){
-            return "API Host Mismatch. Please ensure that the hostname is available via reverse DNS. ";
+            return "Error: API Host Mismatch. Please ensure that the hostname is available via reverse DNS. ";
         }
 
         // For debugging
@@ -263,7 +267,7 @@ class Webstore_Controller extends Controller
             session([ 'web_call_data' => $arr ]);
 
             $st_controller = new Store_Controller();
-            return $st_controller->add_profile('webstore');
+            return $st_controller->add_profile('webstore', $api_host->id);
         }
         else{
         // Show Fragrance
@@ -322,8 +326,8 @@ class Webstore_Controller extends Controller
         
         $fragrance_review_helper = new Fragrance_Review_Helper(); 
 
-        return;
-        
+        // return;
+
         $sustainability = trim($fragrance_review_helper->get_sustainability($id));
         if($sustainability != -1){
             $sustainability *= 100;
@@ -552,7 +556,7 @@ class Webstore_Controller extends Controller
         ];
 
         // Storing the profile
-        session([$request->input('store_type').'_profile'=> $store_profile]);
+        session(['webstore_profile'=> $store_profile]);
 
         DB::transaction(function () use (
             $request, $height, $weight,
@@ -575,26 +579,12 @@ class Webstore_Controller extends Controller
         
 
         // Return
-        if ( strcmp($request->input('store_type'), "store") == 0 ) {
-            
-            // Get first from stock
-            $frag_id = Store_Stock::where('store_id', Store::where('users_id', request()->user()->id)->first()->id)
-            ->where('available', TRUE)
-            ->first()->id;
-
-            return redirect('/'.$request->input('store_type').'_fragrance/'.$frag_id);
-        }
-        else{
-
-            $arr = session('web_call_data');
-
-            $wb_cont = new Webstore_Controller();
-            
-            // For dev
-            // return $wb_cont->webstore_call_dev($arr[0], $arr[1], $arr[2], $arr[3], $arr[4], $arr[5]);
-
-            return $wb_cont->webstore_call($arr[0], $arr[1], $arr[2], $arr[3], $arr[4], $arr[5]);
-        }
+        $arr = session('web_call_data');
+        $wb_cont = new Webstore_Controller();
+        
+        // For dev
+        // return $wb_cont->webstore_call_dev($arr[0], $arr[1], $arr[2], $arr[3], $arr[4], $arr[5]);
+        return $wb_cont->webstore_call($arr[0], $arr[1], $arr[2], $arr[3], $arr[4], $arr[5]);
         
     }
 
