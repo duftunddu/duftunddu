@@ -189,15 +189,19 @@ class Webstore_Controller extends Controller
 
         if(is_null(session('webstore_profile'))){
         // Add Profile
-            $arr = [];
-            $arr[0] = $api_key;
-            $arr[1] = $ip_address;
-            $arr[2] = $brand_name;
-            $arr[3] = $fragrance_name;
-            $arr[4] = $fragrance_type;
-            $arr[5] = $theme;
+            // $arr = [];
+            // $arr[0] = $api_key;
+            // $arr[1] = $ip_address;
+            // $arr[2] = $brand_name;
+            // $arr[3] = $fragrance_name;
+            // $arr[4] = $fragrance_type;
+            // $arr[5] = $theme;
 
-            session([ 'web_call_data' => $arr ]);
+
+            // session([ 'web_call_data' => $arr ]);
+
+            session([ 'web_call_data' => $_SERVER['REQUEST_URI'] ]);
+
 
             // $st_controller = new Store_Controller();
             // return $st_controller->add_profile('webstore', $api_host->id);
