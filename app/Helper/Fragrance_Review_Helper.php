@@ -63,8 +63,8 @@ class Fragrance_Review_Helper {
 
         $process->run();
 
-        dd($process->getOutput());
-        // var_dump($process->getErrorOutput()); return;
+        // dd($process->getOutput());
+        var_dump($process->getErrorOutput()); return;
 
         // executes after the command finishes
         if ( !$process->isSuccessful()) {
