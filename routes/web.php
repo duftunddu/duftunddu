@@ -98,9 +98,9 @@ Route::get('/webstore_call/{api_key}/{user_ip_address}/{brand}/{fragrance}/{frag
 
 
 Route::get('/webstore_profile/{store_id?}', "Webstore_Controller@add_profile");
-Route::post('/webstore_profile_nnnnnnn', "Webstore_Controller@store_profile");
+Route::post('/webstore_profile', "Webstore_Controller@store_profile");
 
-Route::get('/webstore_fragrance/{fragrance_id}', "Webstore_Controller@show_fragrance");
+Route::get('/webstore_fragrance/{brand}/{fragrance}', "Webstore_Controller@show_fragrance");
 
 
 // Serve CSS Script

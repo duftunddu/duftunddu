@@ -179,7 +179,7 @@ class Webstore_Controller extends Controller
             // $st_controller = new Store_Controller();
             // return $st_controller->add_profile('webstore', $api_host->id);
 
-            dd($api_host->id);
+            // dd($api_host->id);
 
             return Webstore_Controller::add_profile($api_host->id);
         }
@@ -412,7 +412,7 @@ class Webstore_Controller extends Controller
         
         
         return view('webstore.profile_entry',[
-            'store_type'        =>    $store_type,
+            'store_id'          =>    $store_id,
             'professions'       =>    $professions,
             'skin_types'        =>    $skin_types,
             'climates'          =>    $climates,
@@ -558,7 +558,7 @@ class Webstore_Controller extends Controller
         ];
 
         // Storing the profile
-        session([$request->input('store_type').'_profile'=> $store_profile]);
+        session(['webstore_profile'=> $store_profile]);
 
         DB::transaction(function () use (
             $request, $height, $weight,
