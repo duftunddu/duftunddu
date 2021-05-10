@@ -282,7 +282,6 @@ class Webstore_Controller extends Controller
 
         $id = $fragrance->id;
 
-
         if(is_null($fragrance)){
             return 'Fragrance Not Found';
         }
@@ -323,6 +322,8 @@ class Webstore_Controller extends Controller
         
         $fragrance_review_helper = new Fragrance_Review_Helper(); 
 
+        return;
+        
         $sustainability = trim($fragrance_review_helper->get_sustainability($id));
         if($sustainability != -1){
             $sustainability *= 100;
