@@ -498,7 +498,7 @@ class Fragrance_Review_Helper {
             // The environment is not local ...
 
             $process = new Process([ 'python3', 'longevity_template_save.py',
-                $data], null, [ 'PYTHONHASHSEED'=> 1, ]);
+                $fragrance_data, $profile_data, $weather_data], null, [ 'PYTHONHASHSEED'=> 1, ]);
         }
 
         $process->run();
