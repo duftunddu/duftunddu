@@ -26,7 +26,11 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
 
-            <form method="POST" action="{{ url('/'.$store_type.'_profile')}}">
+            @if ( strcmp($store_type, "store") == 0 )
+                <form method="POST" action="{{ url('/store_profile')}}">
+            @else
+                <form method="POST" action="{{ url('/webstore_profile')}}">
+            @endif
                 @csrf
 
                 <div class="card">
