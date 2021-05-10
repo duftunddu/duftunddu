@@ -203,7 +203,7 @@ class Webstore_Controller extends Controller
             // dd($_SERVER['REQUEST_URI']);
             session(['web_call_uri'=> $_SERVER['REQUEST_URI']]);
 
-            dd(explode ("/", session('web_call_uri'))[5]);
+            dd(explode ("/", session('web_call_uri'))[6]);
 
 
             // $st_controller = new Store_Controller();
