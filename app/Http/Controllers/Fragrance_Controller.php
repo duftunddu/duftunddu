@@ -389,11 +389,6 @@ class Fragrance_Controller extends Controller
             $longevity = $fragrance_review_helper->get_longevity($id);
             $suitability = $fragrance_review_helper->get_suitability($id);
 
-                // dd($longevity->sufficient);
-
-                // $helper->var_dump_readable($longevity); return;
-                // var_dump($longevity->value); return;
-
 
                 // BMI:
                 // Multiply your weight in pounds by 703, Divide this number by your height in inches, Divide again by your height in inches.

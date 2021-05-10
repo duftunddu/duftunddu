@@ -48,8 +48,8 @@ class Fragrance_Review_Helper {
         if (App::environment('local')) {
             // The environment is local
 
-            $process = new Process([ 'C:\Anaconda3\Scripts\activate_duft_und_du.bat', 'longevity_prediction.py',
-                $fragrance_data, $profile_data, $weather_data], null, [ 'PYTHONHASHSEED' => "1", 'SystemRoot' => "C:\\WINDOWS"]);
+            $process = new Process([ 'C:\Anaconda3\Scripts\activate_duft_und_du.bat', 'longevity_prediction_random_forest.py',
+                $fragrance_data, $profile_data, $weather_data], null, [ 'PYTHONHASHSEED' => "1", 'SystemRoot' => "C:\\WINDOWS", 'Home' => 'C:\\Anaconda3\\envs\\duft_und_du']);
         }
         else {
             // if (App::environment('production')) {
@@ -70,7 +70,7 @@ class Fragrance_Review_Helper {
 
         // Change sufficient values to 5
         $arr = (object) [
-            'value'         => (int) $process->getOutput(),
+            'value'         => (float) $process->getOutput(),
             'sufficient'    => User_Fragrance_Review::where('fragrance_id', $fragrance_id)->count() > 2 ? true : false,
         ];
 

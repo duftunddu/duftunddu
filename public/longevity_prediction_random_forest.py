@@ -1,24 +1,8 @@
 # To add a new cell, type '# %%'
 # To add a new markdown cell, type '# %% [markdown]'
-# %%
-# from IPython import get_ipython
-
 # %% [markdown]
 # ## Extraction
 
-# %%
-
-# %% [markdown]
-# # Write column names
-
-# %%
-# def listToString(s):
-
-#     # initialize an empty string
-#     str1 = "\n"
-
-#     # return string
-#     return str1.join(s)
 
 # %% [markdown]
 # # Libraries Import
@@ -37,12 +21,14 @@ from sklearn.ensemble import RandomForestClassifier
 
 
 # %%
-fragrance = sys.argv[1]
-profile = sys.argv[2]
-weather = sys.argv[3]
+# sys.argv[1]
 
 # with open("longevity_template.pickle", "rb") as f:
 #     fragrance, profile, weather = pickle.load(f)
+
+fragrance = sys.argv[1]
+profile = sys.argv[2]
+weather = sys.argv[3]
 
 
 # %%
@@ -74,9 +60,12 @@ def fix_weather_keys(df):
 
 # %%
 weather_df = fix_weather_keys(weather_df)
+# weather_df
+
 
 # %%
 df = pd.concat([fragrance_df, profile_df, weather_df], axis=1)
+
 
 # %% [markdown]
 # ## Cleaning
@@ -98,6 +87,7 @@ df["apply_time"] = datetime.now().strftime("%Y-%m-%d 12:00:00")
 
 
 # %%
+
 # Datetime
 df["dob"] = df["dob"].astype("datetime64[ns]")
 df["apply_time"] = df["apply_time"].astype("datetime64[ns]")
@@ -105,6 +95,7 @@ df["apply_time"] = df["apply_time"].astype("datetime64[ns]")
 
 # %%
 # Calcualting Age
+
 now = pd.to_datetime("now")
 df["age"] = (now - df["dob"]).dt.total_seconds() / (60 * 60 * 24 * 365.25)
 df.drop(["dob"], axis=1, inplace=True)
@@ -136,27 +127,16 @@ df = df.convert_dtypes()
 # %%
 def resolve_categorical_variables(df, column_names_arr):
 
-    # Load dummies from training
-    with open("longevity_categorical_variables.pickle", "rb") as f:
+    with open("longevity_dummies.pickle", "rb") as f:
         cat_df = pickle.load(f)
-
-    for i in cat_df.columns:
-        df[i] = 0
 
     # Adding the rest
     for column_name in column_names_arr:
 
-        pred_dummies = pd.get_dummies(df[column_name], prefix=column_name)
+        new_df = pd.DataFrame(df[column_name].unique())
+        new_df.insert(1, "index", new_df.index)
 
-        unavailable = np.setdiff1d(
-            pred_dummies.keys(), cat_df.columns, assume_unique=True
-        )
-
-        if not unavailable:
-            df.drop(pred_dummies.keys()[0], errors="ignore", axis=1, inplace=True)
-            df = pd.concat([df, pred_dummies], axis=1)
-
-        df.drop([column_name], axis=1, inplace=True)
+        df[column_name] = cat_df[column_name].transform(new_df.to_numpy())
 
     return df
 
@@ -167,6 +147,7 @@ df = resolve_categorical_variables(df, np.append(categorical_columns, ("fp_id"))
 
 # %% [markdown]
 # # Model
+
 # %%
 with open("longevity_model.pickle", "rb") as f:
     longevity_model = pickle.load(f)
@@ -174,7 +155,4 @@ with open("longevity_model.pickle", "rb") as f:
 
 # %%
 y_pred = float(longevity_model.predict(df))
-print(y_pred[0])
-
-# %% [markdown]
-# # END
+print(y_pred)
