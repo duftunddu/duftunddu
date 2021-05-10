@@ -109,6 +109,17 @@ class Webstore_Controller extends Controller
         }
     }
 
+    private function get_server_user_address(){
+        if (array_key_exists('HTTP_ORIGIN', $_SERVER)) {
+            $origin = $_SERVER['HTTP_ORIGIN'];
+        }
+        else if (array_key_exists('HTTP_REFERER', $_SERVER)) {
+            $origin = $_SERVER['HTTP_REFERER'];
+        } else {
+            $origin = $_SERVER['REMOTE_ADDR'];
+        }
+    }
+
     // Call
     public function webstore_call($api_key, $ip_address, $brand_name, $fragrance_name, $fragrance_type, $theme){
         // API Key Check
@@ -157,8 +168,11 @@ class Webstore_Controller extends Controller
 
             // dd($_SERVER['HTTP_REFERER'], $domain['host']);
 
+            $host = Webstore_Controller::get_server_user_address();
+
             // Checking substring, don't simplify it, it might not work
-            if( stripos($_SERVER['HTTP_REFERER'], $domain['host']) !== false ){
+            // if( stripos($_SERVER['HTTP_REFERER'], $domain['host']) !== false ){
+            if( stripos($host, $domain['host']) !== false ){
                 $api_host_check = TRUE;
             }
         }
