@@ -420,7 +420,7 @@ class Webstore_Controller extends Controller
     }
 
     public function store_profile(Request $request)
-    {
+    {return 'success';
         // Validation
         $this->validate(
             $request, [
