@@ -200,7 +200,8 @@ class Webstore_Controller extends Controller
 
             // session([ 'web_call_data' => $arr ]);
 
-            session([ 'web_call_data' => $_SERVER['REQUEST_URI'] ]);
+            dd($_SERVER['REQUEST_URI']);
+            session([ 'web_call_uri' => $_SERVER['REQUEST_URI'] ]);
 
 
             // $st_controller = new Store_Controller();
@@ -294,6 +295,8 @@ class Webstore_Controller extends Controller
             $arr[3] = $fragrance_name;
             $arr[4] = $fragrance_type;
             $arr[5] = $theme;
+
+            dd($_SERVER['REQUEST_URI']);
 
             session([ 'web_call_data' => $arr ]);
 
@@ -615,7 +618,8 @@ class Webstore_Controller extends Controller
         // For dev
         // return $wb_cont->webstore_call_dev($arr[0], $arr[1], $arr[2], $arr[3], $arr[4], $arr[5]);
         // return $wb_cont->webstore_call($arr[0], $arr[1], $arr[2], $arr[3], $arr[4], $arr[5]);
-        return redirect('webstore_call/'.$arr[0].'/'.$arr[1].'/'.$arr[2].'/'.$arr[3].'/'.$arr[4].'/'.$arr[5]);
+        // return redirect('webstore_call/'.$arr[0].'/'.$arr[1].'/'.$arr[2].'/'.$arr[3].'/'.$arr[4].'/'.$arr[5]);
+        return redirect('webstore_call/');
     }
 
 
