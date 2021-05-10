@@ -26,7 +26,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
 
-            <form method="POST" action="{{ url('/webstore_profile/some')}}">
+            <form method="GET" action="{{ url('/webstore_profile/some')}}">
                 @csrf
 
                 <div class="card">
