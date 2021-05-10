@@ -145,15 +145,16 @@ def resolve_categorical_variables(df, column_names_arr):
 # %%
 df = resolve_categorical_variables(df, np.append(categorical_columns, ("fp_id")))
 
+print(len(df.columns))
 
 # %% [markdown]
 # # Model
 
 # %%
-with open("longevity_model.pickle", "rb") as f:
-    longevity_model = pickle.load(f)
+# with open("longevity_model.pickle", "rb") as f:
+#     longevity_model = pickle.load(f)
 
 
-# %%
-y_pred = float(longevity_model.predict(df))
-print(y_pred)
+# # %%
+# y_pred = float(longevity_model.predict(df))
+# print(y_pred)
