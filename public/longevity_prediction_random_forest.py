@@ -154,7 +154,7 @@ with open("longevity_model.pickle", "rb") as f:
 
 
 # %%
-print(df.columns)
+print("\n".join([str(elem) for elem in df.columns]))
 
 
 # %%
