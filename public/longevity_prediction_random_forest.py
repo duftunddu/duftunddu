@@ -125,36 +125,37 @@ df = df.convert_dtypes()
 
 # %%
 print("\n".join([str(elem) for elem in df.columns]))
-return
+
+# return
 # %%
-def resolve_categorical_variables(df, column_names_arr):
+# def resolve_categorical_variables(df, column_names_arr):
 
-    with open("longevity_dummies.pickle", "rb") as f:
-        cat_df = pickle.load(f)
+#     with open("longevity_dummies.pickle", "rb") as f:
+#         cat_df = pickle.load(f)
 
-    # Adding the rest
-    for column_name in column_names_arr:
+#     # Adding the rest
+#     for column_name in column_names_arr:
 
-        new_df = pd.DataFrame(df[column_name].unique())
-        new_df.insert(1, "index", new_df.index)
+#         new_df = pd.DataFrame(df[column_name].unique())
+#         new_df.insert(1, "index", new_df.index)
 
-        df[column_name] = cat_df[column_name].transform(new_df.to_numpy())
+#         df[column_name] = cat_df[column_name].transform(new_df.to_numpy())
 
-    return df
-
-
-# %%
-df = resolve_categorical_variables(df, np.append(categorical_columns, ("fp_id")))
+#     return df
 
 
-# %% [markdown]
-# # Model
-
-# %%
-with open("longevity_model.pickle", "rb") as f:
-    longevity_model = pickle.load(f)
+# # %%
+# df = resolve_categorical_variables(df, np.append(categorical_columns, ("fp_id")))
 
 
-# %%
-y_pred = float(longevity_model.predict(df))
-print(y_pred)
+# # %% [markdown]
+# # # Model
+
+# # %%
+# with open("longevity_model.pickle", "rb") as f:
+#     longevity_model = pickle.load(f)
+
+
+# # %%
+# y_pred = float(longevity_model.predict(df))
+# print(y_pred)
