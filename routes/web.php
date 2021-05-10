@@ -93,9 +93,6 @@ Route::get('/webstore_register', "Webstore_Request_Controller@index");
 Route::post('/webstore_register', "Webstore_Request_Controller@store");
 
 
-// Webstore Client Demo: Codepen 
-// Route::get('/webstore_call/{from}}/{api_key}/{user_ip_address}/{brand}/{fragrance}/{fragrance_type}/{theme}',  "Webstore_Controller@webstore_call_test");
-
 // Webstore Call
 Route::get('/webstore_call/{api_key}/{user_ip_address}/{brand}/{fragrance}/{fragrance_type}/{theme}', "Webstore_Controller@webstore_call");
 
@@ -208,7 +205,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('/store_call', "Store_Controller@call");
 
         // Profile
-        Route::get('/store_profile/{store_type}', "Store_Controller@add_profile");
+        Route::get('/store_profile/{store_type}/{store_id?}', "Store_Controller@add_profile");
         Route::post('/store_profile', "Store_Controller@store_profile");
 
         // Show Fragrance

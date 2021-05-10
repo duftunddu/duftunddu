@@ -272,6 +272,7 @@ class Webstore_Controller extends Controller
         }
     }
 
+
     // Show Fragrance Review
     public function show_fragrance($brand_name, $fragrance_name)
     {
@@ -314,6 +315,7 @@ class Webstore_Controller extends Controller
             ->orderBy('intensity', 'desc')
             ->get();
         
+            
         // Profile
         $frag_profile = session('webstore_profile');
         

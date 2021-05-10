@@ -308,13 +308,22 @@ class Helper {
 
     //Stores Helper
 
-    public function is_stock_empty($store_type)
+    public function is_stock_empty($store_type, $store_id = NULL)
     {
         // If the stock is empty, don't let them go to profile.
         
-        $frag_id = Store_Stock::where('store_id', Store::where('users_id', request()->user()->id)->where($store_type, TRUE)->first()->id)
-        ->where('available', TRUE)
-        ->exists();
+        if(is_null($store_id))
+        {
+            $frag_id = Store_Stock::where('store_id', Store::where('users_id', request()->user()->id)->where($store_type, TRUE)->first()->id)
+            ->where('available', TRUE)
+            ->exists();
+        }
+        else{
+            $frag_id = Store_Stock::where('store_id', $store_id)
+            ->where('available', TRUE)
+            ->exists();
+        }
+        
 
         return !$frag_id;
     }

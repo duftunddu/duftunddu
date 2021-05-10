@@ -67,11 +67,11 @@ class Store_Controller extends Controller
 
 
     // Profile
-    public function add_profile($store_type)
+    public function add_profile($store_type, $store_id = NULL)
     {
         $helper = new Helper();
 
-        if($helper->is_stock_empty($store_type)){
+        if($helper->is_stock_empty($store_type, $store_id)){
             if(strcmp($store_type, "store") == 0){
                 return redirect('/store_home')->with('error', 'Stock is empty. Add Fragrances to Stock first.');
             }
