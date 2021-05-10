@@ -97,6 +97,11 @@ Route::post('/webstore_register', "Webstore_Request_Controller@store");
 Route::get('/webstore_call/{api_key}/{user_ip_address}/{brand}/{fragrance}/{fragrance_type}/{theme}', "Webstore_Controller@webstore_call");
 
 
+// Route::get('/webstore_profile/{store_id?}', "Webstore_Controller@add_profile");
+// Route::post('/webstore_profile', "Webstore_Controller@store_profile");
+Route::post('/webstore_profile', "Store_Controller@store_profile");
+
+
 // Serve CSS Script
 Route::get('/webstore_client_css.css', "Webstore_Controller@webstore_client_css");
 Route::get('/webstore_client_js.js', "Webstore_Controller@webstore_client_js");
