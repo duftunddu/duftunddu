@@ -41,7 +41,7 @@ class Fragrance_Review_Helper {
         $weather_data               =   json_encode($helper->get_weather_average_data());
         // $weather_data               =   $helper->get_weather_average_data();
 
-        // dd($fragrance_data);
+        dd($fragrance_data);
 
         // For debugging
         // $fragrance_review_helper->save_longevity_template($fragrance_data, $profile_data, $weather_data);
