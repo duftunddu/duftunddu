@@ -16,6 +16,12 @@ use App\Helper\Helper;
 use App\Helper\Store_Helper;
 use App\Helper\Fragrance_Review_Helper;
 
+use App\Profession;
+use App\Skin_Type;
+use App\Climate;
+use App\Season;
+
+
 use App\User_Fragrance_Review;
 
 use Illuminate\Http\Request;
