@@ -140,7 +140,7 @@ return [
     |
     */
 
-    'path' => '/',
+    'path' => '/;SameSite=None; secure',
 
     /*
     |--------------------------------------------------------------------------
@@ -166,7 +166,8 @@ return [
     |
     */
 
-    'secure' => env('SESSION_SECURE_COOKIE', null),
+    // 'secure' => env('SESSION_SECURE_COOKIE', null),
+    'secure' => TRUE,
 
     /*
     |--------------------------------------------------------------------------

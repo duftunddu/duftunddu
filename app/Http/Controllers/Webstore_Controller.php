@@ -227,7 +227,8 @@ class Webstore_Controller extends Controller
 
     public function webstore_call_dev($api_key, $ip_address, $brand_name, $fragrance_name, $fragrance_type, $theme){
 
-        Cookie::queue('web_call_uri', $_SERVER['REQUEST_URI'], 10080, '/;SameSite=None; secure', '', true, false);
+        Cookie::queue('web_call_uri', $_SERVER['REQUEST_URI'], 10080);
+        // Cookie::queue('web_call_uri', $_SERVER['REQUEST_URI'], 10080, '/;SameSite=None; secure', '', true, false);
 
         return redirect('/webstore_profile_view');
 
