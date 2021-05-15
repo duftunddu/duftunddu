@@ -1,6 +1,6 @@
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link href="http://127.0.0.1:8000/webstore_client_css.css" rel="stylesheet" />
+    <link href="http://127.0.0.1:8000/css/webstore_client.css" rel="stylesheet" />
     <script src="http://127.0.0.1:8000/webstore_client_js.js" defer></script>
 </head>
 
