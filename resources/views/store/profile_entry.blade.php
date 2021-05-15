@@ -43,7 +43,7 @@
 
                                 <input list="genders" id="gender" type="text" placeholder="-- Select Gender --"
                                     class="form-control @error('gender') is-invalid @enderror" name="gender"
-                                    value="{{ old('gender')}}" required />
+                                    value="{{ old('gender')}}" autocomplete="off" required />
                                 <datalist id="genders">
                                     <option value="Male"></option>
                                     <option value="Female"></option>
@@ -67,7 +67,7 @@
                             <div class="col-md-6">
                                 <input id="dob" type="date" min="1900-01-01"
                                     class="form-control @error('dob') is-invalid @enderror" name="dob"
-                                    value="{{ old('dob')}}" required>
+                                    value="{{ old('dob')}}" autocomplete="off" required>
 
                                 @error('dob')
                                 <span class="invalid-feeback" role="alert">
@@ -86,7 +86,7 @@
                                 <input list="professions" id="profession" type="text"
                                     placeholder="-- Select Profession --"
                                     class="form-control @error('profession') is-invalid @enderror" name="profession"
-                                    value="{{ old('profession')}}" required />
+                                    value="{{ old('profession')}}" autocomplete="off" required />
                                 <datalist id="professions">
                                     @foreach($professions as $profession)
                                     <option value="{{$profession->name}}"></option>
@@ -109,7 +109,7 @@
                             <div class="col-md-6">
                                 <input list="skin_types" id="skin_type" type="text" placeholder="-- Select Skin Type --"
                                     class="form-control @error('skin_type') is-invalid @enderror" name="skin_type"
-                                    value="{{ old('skin_type')}}" required />
+                                    value="{{ old('skin_type')}}" autocomplete="off" required />
                                 <datalist id="skin_types">
                                     @foreach($skin_types as $skin_type)
                                     <option value="{{$skin_type->name}}"></option>
@@ -135,7 +135,7 @@
                                 <div class="slideContainer-sweat">
                                     <input type="range" min="0" max="100" class="slider sweat"
                                         class="form-control @error('sweat') is-invalid @enderror" id="sweat"
-                                        name="sweat" value="0" value="{{ old('sweat')}}" required>
+                                        name="sweat" value="0" value="{{ old('sweat')}}" autocomplete="off" required>
                                     <label>{{_('Value: ')}}<span class="value"></span></label>
                                 </div>
 
@@ -164,11 +164,11 @@
                                 <div style="display:flex; flex-direction:row;">
                                     <input id="height_feet" type="number" step="1" min="1" max="9" placeholder="5 feet"
                                         class="form-control @error('height_feet') is-invalid @enderror"
-                                        name="height_feet" value="{{ old('height_feet')}}">
+                                        name="height_feet" value="{{ old('height_feet')}}" autocomplete="off" >
                                     <input id="height_inches" type="number" step="0.1" min="0" max="12"
                                         placeholder="7 inch"
                                         class="form-control @error('height_inches') is-invalid @enderror"
-                                        name="height_inches" value="{{ old('height_inches')}}">
+                                        name="height_inches" value="{{ old('height_inches')}}" autocomplete="off" >
                                 </div>
 
                                 @error('height_feet')
@@ -191,7 +191,7 @@
                                 <input id="height_cent" type="number" step="1" min="20" max="300"
                                     placeholder="150 centimeters"
                                     class="form-control @error('height_cent') is-invalid @enderror" name="height_cent"
-                                    value="{{ old('height_cent')}}">
+                                    value="{{ old('height_cent')}}" autocomplete="off" >
 
                                 @error('height_cent')
                                 <span class="invalid-feeback" role="alert">
@@ -217,7 +217,7 @@
                             <div class="col-md-6">
                                 <input id="kgs" type="number" step="0.01" min="15" max="500" placeholder="55 kg"
                                     class="form-control @error('kgs') is-invalid @enderror" name="kgs"
-                                    value="{{ old('kgs')}}">
+                                    value="{{ old('kgs')}}" autocomplete="off" >
 
                                 @error('kgs')
                                 <span class="invalid-feeback" role="alert">
@@ -233,7 +233,7 @@
                             <div class="col-md-6">
                                 <input id="lbs" type="number" step="0.1" min="20" max="1000" placeholder="70 lbs"
                                     class="form-control @error('lbs') is-invalid @enderror" name="lbs"
-                                    value="{{ old('lbs')}}">
+                                    value="{{ old('lbs')}}" autocomplete="off" >
 
                                 @error('lbs')
                                 <span class="invalid-feeback" role="alert">
@@ -252,7 +252,7 @@
 
                                 <input list="climates" id="climate" type="text" placeholder="-- Select Climate --"
                                     class="form-control @error('climate') is-invalid @enderror" name="climate"
-                                    value="{{ old('climate')}}" required />
+                                    value="{{ old('climate')}}" autocomplete="off" required />
                                 <datalist id="climates">
                                     @foreach($climates as $climate)
                                     <option value="{{$climate->name}}"></option>
@@ -277,7 +277,7 @@
 
                                 <input list="seasons" id="season" type="text" placeholder="-- Select Season --"
                                     class="form-control @error('season') is-invalid @enderror" name="season"
-                                    value="{{ old('season')}}" required />
+                                    value="{{ old('season')}}" autocomplete="off" required />
                                 <datalist id="seasons">
                                     @foreach($seasons as $season)
                                     <option value="{{$season->name}}"></option>

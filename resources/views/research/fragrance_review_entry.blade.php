@@ -52,7 +52,7 @@
                             <div class="col-md-6">
                                 <input list="brands" id="brand" type="text" placeholder="-- Enter Brand --"
                                     class="form-control @error('brand') is-invalid @enderror" name="brand"
-                                    value="{{ old('brand')}}" required />
+                                    value="{{ old('brand')}}" autocomplete="off" required />
                                 <datalist id="brands">
                                     @foreach($brands as $brand)
                                     <option value="{{$brand}}"></option>
@@ -75,7 +75,7 @@
                             <div class="col-md-6">
                                 <input list="fragrances" id="fragrance" type="text" placeholder="-- Enter Fragrance --"
                                     class="form-control @error('fragrance') is-invalid @enderror" name="fragrance"
-                                    value="{{ old('fragrance')}}" required />
+                                    value="{{ old('fragrance')}}" autocomplete="off" required />
                                 <datalist id="fragrances">
                                     @foreach($fragrances as $fragrance)
                                     <option value="{{$fragrance}}"></option>
@@ -100,7 +100,7 @@
 
                                 <input type="time" data-time-open-on-focus="true" id="apply_time"
                                     class="form-control @error('apply_time') is-invalid @enderror" name="apply_time"
-                                    value="{{ old('apply_time')}}" required>
+                                    value="{{ old('apply_time')}}" autocomplete="off" required>
 
                                 @error('apply_time')
                                 <span class="invalid-feeback" role="alert">
@@ -120,7 +120,7 @@
 
                                 <input type="time" id="wear_off_time"
                                     class="form-control @error('wear_off_time') is-invalid @enderror"
-                                    name="wear_off_time" value="{{ old('wear_off_time')}}" required>
+                                    name="wear_off_time" value="{{ old('wear_off_time')}}" autocomplete="off" required>
 
                                 @error('wear_off_time')
                                 <span class="invalid-feeback" role="alert">
@@ -141,7 +141,7 @@
 
                                 <input id="in_out" type="number" min="0" max="100" placeholder="00"
                                     class="form-control @error('in_out') is-invalid @enderror" name="in_out"
-                                    value="{{ old('in_out')}}" required>
+                                    value="{{ old('in_out')}}" autocomplete="off" required>
 
                                 @error('in_out')
                                 <span class="invalid-feeback" role="alert">
@@ -208,7 +208,7 @@
                             <div class="col-md-6">
 
                                 <div class="slideContainer-sillage">
-                                    <input type="range" min="0" max="100" step="0.5" class="slider sillage"
+                                    <input type="range" min="0" max="300" step="0.5" class="slider sillage"
                                         class="form-control @error('sillage') is-invalid @enderror" id="sillage"
                                         name="sillage" value="0" value="{{ old('sillage')}}" required>
                                     <label>{{_('Value: ')}}<span class="value"></span></label>

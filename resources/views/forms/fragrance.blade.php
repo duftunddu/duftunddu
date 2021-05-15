@@ -168,7 +168,7 @@
                                     @if($sustainability == -1)
                                     {{-- Not Enough Data --}}
                                     <h4 class="hsl-color" data-toggle="tooltip" data-placement="top" data-html="true"
-                                        title="How much heat affects the longevity of fragrance.<br>0 = Min Effect.<br>100 = Max Effect.">
+                                        title="How much heat affects the longevity of fragrance.<br>< 0 : Lasts longer in heat.<br>> 0 : Lasts shorter in heat.">
                                         Heat Impact: <span class="lux-red">🙁</span>
                                     </h4>
                                     <small>Not Enough Information Available</small>
@@ -176,7 +176,7 @@
                                     @else
                                     {{-- Value --}}
                                     <h4 class="hsl-color" data-toggle="tooltip" data-placement="top" data-html="true"
-                                        title="How much heat affects the longevity of fragrance.<br>0 = Min Effect.<br>100 = Max Effect.">
+                                        title="How much heat affects the longevity of fragrance.<br>< 0 : Lasts longer in heat.<br>> 0 : Lasts shorter in heat.">
                                         {{-- Heat Impact: <span class="lux-red">{{ $longevity * ($sustainability/100) }} min/hr</span></h4> --}}
                                         Heat Impact: <span class="lux-red">{{$sustainability}} %</span>
                                     </h4>
