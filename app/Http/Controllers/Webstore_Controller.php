@@ -30,6 +30,7 @@ use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 
 class Webstore_Controller extends Controller
 {
@@ -614,6 +615,8 @@ class Webstore_Controller extends Controller
 
             $new->save();
         });
+
+        // $value = Cookie::get('name');
         
 
         // Return
@@ -632,8 +635,8 @@ class Webstore_Controller extends Controller
         
         // $ex = explode ("/", $arr);
         // return Webstore_Controller::show_fragrance($ex[4], $ex[5]);
-        return Webstore_Controller::show_fragrance(explode ("/", session('web_call_uri'))[4], explode ("/", session('web_call_uri'))[5]);
-        // return Webstore_Controller::show_fragrance('Hermes', "Terre d'Hermes Parfum");
+        // return Webstore_Controller::show_fragrance(explode ("/", session('web_call_uri'))[4], explode ("/", session('web_call_uri'))[5]);
+        return Webstore_Controller::show_fragrance('Hermes', "Terre d'Hermes Parfum");
     }
 
 
