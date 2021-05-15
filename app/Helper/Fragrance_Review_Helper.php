@@ -36,7 +36,7 @@ class Fragrance_Review_Helper {
         $fragrance_review_helper    =   new Fragrance_Review_Helper();
         $fragrance_data             =   json_encode($fragrance_review_helper->get_longevity_fragrance_data($fragrance_id));
         
-        if(is_null($profile_data){
+        if(is_null($profile_data)){
             $profile_data               =   $fragrance_review_helper->get_longevity_profile_data();
         }
         $profile_data               =   json_encode($profile_data);
