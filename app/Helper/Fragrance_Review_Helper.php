@@ -30,12 +30,16 @@ class Fragrance_Review_Helper {
     // }
 
     // Get Review
-    public function get_longevity($fragrance_id)
-    {   
+    public function get_longevity($fragrance_id, $profile_data = NULL)
+    {
         // Fetching Data
         $fragrance_review_helper    =   new Fragrance_Review_Helper();
         $fragrance_data             =   json_encode($fragrance_review_helper->get_longevity_fragrance_data($fragrance_id));
-        $profile_data               =   json_encode($fragrance_review_helper->get_longevity_profile_data());
+        
+        if(is_null($profile_data){
+            $profile_data               =   $fragrance_review_helper->get_longevity_profile_data();
+        }
+        $profile_data               =   json_encode($profile_data);
         
         $helper                     =   new Helper();
         $weather_data               =   json_encode($helper->get_weather_average_data());

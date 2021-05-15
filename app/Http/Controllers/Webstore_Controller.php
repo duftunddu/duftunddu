@@ -170,10 +170,6 @@ class Webstore_Controller extends Controller
             
             $domain = parse_url($api_host->website);
 
-            // dd($_SERVER['HTTP_REFERER'], $domain['host']);
-
-            // $host = Webstore_Controller::get_server_user_address();
-
             // Checking substring, don't simplify it, it might not work
             if( stripos($_SERVER['HTTP_REFERER'], $domain['host']) !== false ){
             // if( stripos($host, $domain['host']) !== false ){
@@ -204,6 +200,13 @@ class Webstore_Controller extends Controller
             // dd($_SERVER['REQUEST_URI']);
             session(['web_call_uri'=> $_SERVER['REQUEST_URI']]);
 
+
+            // Make and attach to response
+            // 10080 = Expires in a week time (minutes)
+            Cookie::queue('web_call_uri', $_SERVER['REQUEST_URI'], 10080);
+
+            // $value = Cookie::get('name');
+
             // dd(explode ("/", session('web_call_uri'))[5]);
 
 
@@ -212,7 +215,8 @@ class Webstore_Controller extends Controller
 
             // dd($api_host->id);
 
-            return Webstore_Controller::add_profile($api_host->id);
+            return redirect('/webstore_profile_view');
+            // return Webstore_Controller::add_profile($api_host->id);
         }
         else{
         // Show Fragrance
@@ -222,6 +226,10 @@ class Webstore_Controller extends Controller
     }
 
     public function webstore_call_dev($api_key, $ip_address, $brand_name, $fragrance_name, $fragrance_type, $theme){
+
+        Cookie::queue('web_call_uri', $_SERVER['REQUEST_URI'], 10080);
+
+        return redirect('/webstore_profile_view');
 
         // Gives host name
         // request()->getHost()
@@ -260,62 +268,62 @@ class Webstore_Controller extends Controller
         // dd(explode ("/", $_SERVER['REQUEST_URI'])[5]);
 
 
-        $api_key_check = Store::where('webstore', TRUE)
-        ->where('request_status', 'approved')
-        ->where('api_key', $api_key)
-        ->exists();
+        // $api_key_check = Store::where('webstore', TRUE)
+        // ->where('request_status', 'approved')
+        // ->where('api_key', $api_key)
+        // ->exists();
 
-        if(!$api_key_check){
-            return "Error: API Key Mismatch";
-        }
+        // if(!$api_key_check){
+        //     return "Error: API Key Mismatch";
+        // }
 
 
-        // Hostname Check
-        $api_host = Store::where('api_key', $api_key)->first();
+        // // Hostname Check
+        // $api_host = Store::where('api_key', $api_key)->first();
 
-        $api_host_check = FALSE;
-        if( !is_null($api_host) ){
+        // $api_host_check = FALSE;
+        // if( !is_null($api_host) ){
             
-            $domain = parse_url($api_host->website);
+        //     $domain = parse_url($api_host->website);
 
-            // dd($_SERVER['HTTP_REFERER'], $domain['host']);
+        //     // dd($_SERVER['HTTP_REFERER'], $domain['host']);
 
-            // Checking substring, don't simplify it, it might not work
-            if( stripos($_SERVER['HTTP_REFERER'], $domain['host']) !== false ){
-                $api_host_check = TRUE;
-            }
-        }
+        //     // Checking substring, don't simplify it, it might not work
+        //     if( stripos($_SERVER['HTTP_REFERER'], $domain['host']) !== false ){
+        //         $api_host_check = TRUE;
+        //     }
+        // }
 
-        if(!$api_host_check){
-            return "Error: API Host Mismatch. Please ensure that the hostname is available via reverse DNS. ";
-        }
+        // if(!$api_host_check){
+        //     return "Error: API Host Mismatch. Please ensure that the hostname is available via reverse DNS. ";
+        // }
 
-        // For debugging
-        // session()->forget('webstore_profile');
+        // // For debugging
+        // // session()->forget('webstore_profile');
 
-        if(is_null(session('webstore_profile'))){
-        // Add Profile
-            $arr = [];
-            $arr[0] = $api_key;
-            $arr[1] = $ip_address;
-            $arr[2] = $brand_name;
-            $arr[3] = $fragrance_name;
-            $arr[4] = $fragrance_type;
-            $arr[5] = $theme;
+        // if(is_null(session('webstore_profile'))){
+        // // Add Profile
+        //     $arr = [];
+        //     $arr[0] = $api_key;
+        //     $arr[1] = $ip_address;
+        //     $arr[2] = $brand_name;
+        //     $arr[3] = $fragrance_name;
+        //     $arr[4] = $fragrance_type;
+        //     $arr[5] = $theme;
 
-            // dd($_SERVER['REQUEST_URI']);
+        //     // dd($_SERVER['REQUEST_URI']);
 
-            session([ 'web_call_data' => $arr ]);
+        //     session([ 'web_call_data' => $arr ]);
 
-            // $st_controller = new Store_Controller();
-            // return $st_controller->add_profile('webstore', $api_host->id);
-            return redirect('/webstore_profile/webstore/'.$api_host->id);
-        }
-        else{
-        // Show Fragrance
+        //     // $st_controller = new Store_Controller();
+        //     // return $st_controller->add_profile('webstore', $api_host->id);
+        //     return redirect('/webstore_profile/webstore/'.$api_host->id);
+        // }
+        // else{
+        // // Show Fragrance
 
-            return Webstore_Controller::show_fragrance($brand_name, $fragrance_name);            
-        }
+        //     return Webstore_Controller::show_fragrance($brand_name, $fragrance_name);            
+        // }
     }
 
 
@@ -442,6 +450,8 @@ class Webstore_Controller extends Controller
     // Profile
     public function add_profile($store_id = NULL)
     {
+        dd(Cookie::get('web_call_uri'));
+
         $professions    =   Profession::select('name')->get();
         $skin_types     =   Skin_Type::select('name')->get();
         $climates       =   Climate::select('name')->get();
@@ -595,26 +605,31 @@ class Webstore_Controller extends Controller
         ];
 
         // Storing the profile
-        session(['webstore_profile'=> $store_profile]);
+        // session(['webstore_profile'=> $store_profile]);
 
-        DB::transaction(function () use (
-            $request, $height, $weight,
-            $profession_id, $skin_type_id, $climate_id, $season_id) {
+        // DB::transaction(function () use (
+        //     $request, $height, $weight,
+        //     $profession_id, $skin_type_id, $climate_id, $season_id) {
             
-            $new                        =       new Store_Customer_Feature_Log();
+        //     $new                        =       new Store_Customer_Feature_Log();
             
-            $new->gender                =       $request->input('gender');
-            $new->dob                   =       $request->input('dob');
-            $new->profession_id         =       $profession_id;
-            $new->skin_type_id          =       $skin_type_id;
-            $new->sweat                 =       $request->input('sweat');
-            $new->height                =       $height;
-            $new->weight                =       $weight;
-            $new->climate_id            =       $climate_id;
-            $new->season_id             =       $season_id;
+        //     $new->gender                =       $request->input('gender');
+        //     $new->dob                   =       $request->input('dob');
+        //     $new->profession_id         =       $profession_id;
+        //     $new->skin_type_id          =       $skin_type_id;
+        //     $new->sweat                 =       $request->input('sweat');
+        //     $new->height                =       $height;
+        //     $new->weight                =       $weight;
+        //     $new->climate_id            =       $climate_id;
+        //     $new->season_id             =       $season_id;
 
-            $new->save();
-        });
+        //     $new->save();
+        // });
+
+
+        // Make and attach to response
+        // 10080 = Expires in a week time (minutes)
+        Cookie::queue('webstore_profile', 'store_profile', 10080);
 
         // $value = Cookie::get('name');
         
