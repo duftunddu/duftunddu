@@ -95,7 +95,7 @@ class Search_Queries_Controller extends Controller
             ->select('fragrance.id as f_id','fragrance.name as f_name', 'fragrance_brand.id as b_id','fragrance_brand.name as b_name')
             ->paginate(10);
 
-        $params = ['searchbox' => $request->searchbox];    
+        $params = ['searchbox' => $request->searchbox];
 
         if($request->page == NULL){
             

@@ -12,7 +12,7 @@
         <div class="duftunddu-modal">
             <a href="#" class="duftunddu-modal-close" onclick="duftundduModalClose()">✕</a>
             <div class="duftunddu-modal-content">
-                <iframe src="https://duftunddu.com/webstore_call/k3dhk9843ykzw45tjhfon3kq69kqmrlltp8qgrb5/user_key/Venom/swag20/Eau de Toilette/default/" class="dnd-frame" frameborder="0"
+                <iframe src="https://duftunddu.com/webstore_call/k3dhk9843ykzw45tjhfon3kq69kqmrlltp8qgrb5/Venom/swag20/Eau de Toilette/default/" class="dnd-frame" frameborder="0"
                 sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-top-navigation"
                 allowtransparency="true"></iframe>
             </div>

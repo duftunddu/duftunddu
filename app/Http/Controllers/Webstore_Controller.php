@@ -125,7 +125,7 @@ class Webstore_Controller extends Controller
     }
 
     // Call
-    public function webstore_call($api_key, $ip_address, $brand_name, $fragrance_name, $fragrance_type, $theme){
+    public function webstore_call($api_key, $brand_name, $fragrance_name, $fragrance_type, $theme){
         // API Key Check
         // $api_key_check = Store::where('users_id', request()->user()->id)
         // ->where('webstore', TRUE)
@@ -181,56 +181,28 @@ class Webstore_Controller extends Controller
             return "Error: API Host Mismatch. Please ensure that the hostname is available via reverse DNS. ";
         }
 
-        // For debugging
-        // session()->forget('webstore_profile');
+        
+        Cookie::queue('web_call_uri', $_SERVER['REQUEST_URI'], 10080);
 
-        if(is_null(session('webstore_profile'))){
-        // Add Profile
-            // $arr = [];
-            // $arr[0] = $api_key;
-            // $arr[1] = $ip_address;
-            // $arr[2] = $brand_name;
-            // $arr[3] = $fragrance_name;
-            // $arr[4] = $fragrance_type;
-            // $arr[5] = $theme;
-
-
-            // session([ 'web_call_data' => $arr ]);
-
-            // dd($_SERVER['REQUEST_URI']);
-            session(['web_call_uri'=> $_SERVER['REQUEST_URI']]);
-
-
-            // Make and attach to response
-            // 10080 = Expires in a week time (minutes)
-            Cookie::queue('web_call_uri', $_SERVER['REQUEST_URI'], 10080);
-
-            // $value = Cookie::get('name');
-
-            // dd(explode ("/", session('web_call_uri'))[5]);
-
-
-            // $st_controller = new Store_Controller();
-            // return $st_controller->add_profile('webstore', $api_host->id);
-
-            // dd($api_host->id);
-
+        if(is_null(Cookie::get('webstore_profile'))){
             return redirect('/webstore_profile_view');
-            // return Webstore_Controller::add_profile($api_host->id);
         }
         else{
-        // Show Fragrance
-
-            return Webstore_Controller::show_fragrance($brand_name, $fragrance_name);
+            return redirect("/webstore_fragrance");
         }
+
     }
 
-    public function webstore_call_dev($api_key, $ip_address, $brand_name, $fragrance_name, $fragrance_type, $theme){
+    public function webstore_call_dev($api_key, $brand_name, $fragrance_name, $fragrance_type, $theme){
 
         Cookie::queue('web_call_uri', $_SERVER['REQUEST_URI'], 10080);
-        // Cookie::queue('web_call_uri', $_SERVER['REQUEST_URI'], 10080, '/;SameSite=None; secure', '', true, false);
 
-        return redirect('/webstore_profile_view');
+        if(is_null(Cookie::get('webstore_profile'))){
+            return redirect('/webstore_profile_view');
+        }
+        else{
+            return redirect("/webstore_fragrance");
+        }
 
         // Gives host name
         // request()->getHost()
@@ -323,136 +295,14 @@ class Webstore_Controller extends Controller
         // else{
         // // Show Fragrance
 
-        //     return Webstore_Controller::show_fragrance($brand_name, $fragrance_name);            
+        //     return Webstore_Controller::show_fragrance($brand_name, $fragrance_name);
         // }
     }
 
 
-    // Show Fragrance Review
-    public function show_fragrance($brand_name, $fragrance_name)
-    {
-        $fragrance = Fragrance::where('name', $fragrance_name)
-        ->orWhere('normal_name', $fragrance_name)
-        ->first();
-
-        $id = $fragrance->id;
-
-        if(is_null($fragrance)){
-            return 'Fragrance Not Found';
-        }
-
-        $brand = Fragrance_Brand::where('id', $fragrance->brand_id)->first()->name;
-        $type = Fragrance_Type::where('id', $fragrance->type_id)->first()->name;
-
-        
-        // Indoor Outdoor
-        $projection = User_Fragrance_Review::where('fragrance_id', $id)->get()->pluck('projection');
-        if(!$projection->isEmpty()){
-            $projection = $projection->avg();
-        }
-        else{
-            $projection = NULL;
-        }
-
-
-        $accords = DB::table('fragrance_accord')
-            ->where('fragrance_accord.fragrance_id', $id)
-            ->join('accord', 'accord.id', '=', 'fragrance_accord.accord_id')
-            ->select('accord.name')
-            ->pluck('name')
-            ->toArray();
-        
-        $notes = DB::table('fragrance_ingredient')
-            ->where('fragrance_ingredient.fragrance_id', $id)
-            ->join('ingredient', 'ingredient.id', '=', 'fragrance_ingredient.ingredient_id')
-            ->select('ingredient.name', 'fragrance_ingredient.intensity')
-            ->orderBy('intensity', 'desc')
-            ->get();
-        
-
-        // Profile
-        $frag_profile = session('webstore_profile');
-        
-        $user_gender = $frag_profile->gender;
-        
-        $fragrance_review_helper = new Fragrance_Review_Helper(); 
-
-        // return;
-
-        $sustainability = trim($fragrance_review_helper->get_sustainability($id));
-        if($sustainability != -1){
-            $sustainability *= 100;
-        }
-        
-        $longevity = $fragrance_review_helper->get_longevity($id);
-
-        $suitability = $fragrance_review_helper->get_suitability($id);
-
-        return view('webstore.fragrance',[
-            'user_gender'       =>  $user_gender,
-            'fragrance'         =>  $fragrance,
-            'brand'             =>  $brand,
-            'type'              =>  $type,
-            'projection'        =>  $projection,
-            'accords'           =>  $accords,
-            'notes'             =>  $notes,
-            'longevity'         =>  $longevity,
-            'suitability'       =>  $suitability,
-            'sustainability'    =>  $sustainability,
-        ]);
-    }
-
-    // Model
-
-    public function test_model(){
-        return view('webstore.client2');
-    }
-
-    public function webstore_client_css(){
-        return view('webstore.webstore_client_css');
-    }
-    public function webstore_client_css_css(){
-        return view('webstore.webstore_client_css.css');
-    }
-
-
-    public function webstore_client_js(){
-        return view('webstore.webstore_client_js');
-    }
-
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request) {
-
-        // $validatedData = $request->validate([ 
-        //     'accord_familiy_id' => 'required',
-        //     'name'              => 'required|unique:accord',
-        // ]);
-
-        // DB::transaction(function () use ($request) {
-
-        //         $new                = new Accord();
-        //         $new->name          = $request->input('accord_familiy_id');
-        //         $new->name          = $request->input('name');
-        //         $new->created_by    = request()->user()->id;
-        //         $new->save();
-        // });
-
-        // return redirect('/accord_entry')->with('success', 'Accord added successfully.');
-    }
-
-
-
     // Profile
     public function add_profile($store_id = NULL)
-    {
-        dd(Cookie::get('web_call_uri'));
-
+    {   
         $professions    =   Profession::select('name')->get();
         $skin_types     =   Skin_Type::select('name')->get();
         $climates       =   Climate::select('name')->get();
@@ -590,23 +440,31 @@ class Webstore_Controller extends Controller
         $season_id     = Season::where('name', $request->input('season'))->pluck('id')->first();
 
         $location = new Helper();
+
         $location = $location->get_current_location();
+        Cookie::queue('webstore_profile_location_id', json_encode($location->id), 10080);
 
         $store_profile = (object) [
             'gender'            =>      $request->input('gender'),
             'dob'               =>      $request->input('dob'),
             'profession'        =>      $request->input('profession'),
             'skin_type'         =>      $request->input('skin_type'),
-            'sweat'             =>      $request->input('sweat'),
-            'height'            =>      $height,
-            'weight'            =>      $weight,
-            'climate'           =>      $request->input('climate'),
+            'sweat'             =>      (int) $request->input('sweat'),
+            'height'            =>      (float) $height,
+            'weight'            =>      (float) $weight,
+            // 'climate'           =>      $request->input('climate'),
             'season'            =>      $request->input('season'),
-            'location_id'       =>      $location->id,
+            'fp_id'             =>      -1,
+            'fp_country'        =>      $location->country_name,
         ];
 
-        // Storing the profile
-        // session(['webstore_profile'=> $store_profile]);
+        // Storing profile
+        // $store_profile->fp_id       =   -1;
+        // $store_profile->fp_country  =   $location->country_name;
+
+        // 10080 = Expires in a week time (minutes)
+        Cookie::queue('webstore_profile', json_encode($store_profile), 10080);
+        
 
         // DB::transaction(function () use (
         //     $request, $height, $weight,
@@ -628,31 +486,140 @@ class Webstore_Controller extends Controller
         // });
 
 
-        // Make and attach to response
-        // 10080 = Expires in a week time (minutes)
-        Cookie::queue('webstore_profile', 'store_profile', 10080);
-
-        // $value = Cookie::get('name');
-        
-
-        // Return
-        // $arr = session('web_call_uri');
-        // var_dump($arr); return;
-        
-        // $wb_cont = new Webstore_Controller();
-        
-        // For dev
-        // return $wb_cont->webstore_call_dev($arr[0], $arr[1], $arr[2], $arr[3], $arr[4], $arr[5]);
-        // return $wb_cont->webstore_call($arr[0], $arr[1], $arr[2], $arr[3], $arr[4], $arr[5]);
-        // return redirect('webstore_call/'.$arr[0].'/'.$arr[1].'/'.$arr[2].'/'.$arr[3].'/'.$arr[4].'/'.$arr[5]);
-        // return redirect($arr);
-
-        // return Webstore_Controller::show_fragrance($brand_name, $fragrance_name);
-        
         // $ex = explode ("/", $arr);
         // return Webstore_Controller::show_fragrance($ex[4], $ex[5]);
         // return Webstore_Controller::show_fragrance(explode ("/", session('web_call_uri'))[4], explode ("/", session('web_call_uri'))[5]);
-        return Webstore_Controller::show_fragrance('Hermes', "Terre d'Hermes Parfum");
+        
+        // return Webstore_Controller::show_fragrance('Hermes', "Terre d'Hermes Parfum");
+        return redirect("/webstore_fragrance");
+    }
+
+
+
+    // Show Fragrance Review
+    public function show_fragrance($brand_name = NULL, $fragrance_name = NULL)
+    {
+        $web_call = NULL;
+
+        if(is_null($fragrance_name)){        
+            $web_call = explode ("/", Cookie::get('web_call_uri'));
+
+            $brand_name         =   $web_call[3];
+            $fragrance_name     =   $web_call[4];
+        }
+
+        $fragrance = Fragrance::where('name', $fragrance_name)
+        ->orWhere('normal_name', $fragrance_name)
+        ->first();
+
+        $id = $fragrance->id;
+
+        if(is_null($fragrance)){
+            return 'Fragrance Not Found';
+        }
+
+        $brand = Fragrance_Brand::where('id', $fragrance->brand_id)->first()->name;
+        $type = Fragrance_Type::where('id', $fragrance->type_id)->first()->name;
+
+        
+        // Indoor Outdoor
+        $projection = User_Fragrance_Review::where('fragrance_id', $id)->get()->pluck('projection');
+        if(!$projection->isEmpty()){
+            $projection = $projection->avg();
+        }
+        else{
+            $projection = NULL;
+        }
+
+
+        $accords = DB::table('fragrance_accord')
+            ->where('fragrance_accord.fragrance_id', $id)
+            ->join('accord', 'accord.id', '=', 'fragrance_accord.accord_id')
+            ->select('accord.name')
+            ->pluck('name')
+            ->toArray();
+        
+        $notes = DB::table('fragrance_ingredient')
+            ->where('fragrance_ingredient.fragrance_id', $id)
+            ->join('ingredient', 'ingredient.id', '=', 'fragrance_ingredient.ingredient_id')
+            ->select('ingredient.name', 'fragrance_ingredient.intensity')
+            ->orderBy('intensity', 'desc')
+            ->get();
+        
+
+        // Profile
+        $frag_profile = json_decode(Cookie::get('webstore_profile'));
+        
+        $user_gender = $frag_profile->gender;
+        
+        $fragrance_review_helper = new Fragrance_Review_Helper(); 
+
+        $sustainability = trim($fragrance_review_helper->get_sustainability($id));
+        if($sustainability != -1){
+            $sustainability *= 100;
+        }
+        
+        
+        $longevity = $fragrance_review_helper->get_longevity($id, Cookie::get('webstore_profile'), Cookie::get('webstore_profile_location_id'));
+        $suitability = $fragrance_review_helper->get_suitability($id);
+
+
+        return view('webstore.fragrance',[
+            'user_gender'       =>  $user_gender,
+            'fragrance'         =>  $fragrance,
+            'brand'             =>  $brand,
+            'type'              =>  $type,
+            'projection'        =>  $projection,
+            'accords'           =>  $accords,
+            'notes'             =>  $notes,
+            'longevity'         =>  $longevity,
+            'suitability'       =>  $suitability,
+            'sustainability'    =>  $sustainability,
+        ]);
+    }
+
+    // Model
+
+    public function test_model(){
+        return view('webstore.client2');
+    }
+
+    public function webstore_client_css(){
+        return view('webstore.webstore_client_css');
+    }
+    public function webstore_client_css_css(){
+        return view('webstore.webstore_client_css.css');
+    }
+
+
+    public function webstore_client_js(){
+        return view('webstore.webstore_client_js');
+    }
+
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request) {
+
+        // $validatedData = $request->validate([ 
+        //     'accord_familiy_id' => 'required',
+        //     'name'              => 'required|unique:accord',
+        // ]);
+
+        // DB::transaction(function () use ($request) {
+
+        //         $new                = new Accord();
+        //         $new->name          = $request->input('accord_familiy_id');
+        //         $new->name          = $request->input('name');
+        //         $new->created_by    = request()->user()->id;
+        //         $new->save();
+        // });
+
+        // return redirect('/accord_entry')->with('success', 'Accord added successfully.');
     }
 
 
