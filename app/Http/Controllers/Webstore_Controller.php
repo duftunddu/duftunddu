@@ -512,11 +512,11 @@ class Webstore_Controller extends Controller
         ->orWhere('normal_name', $fragrance_name)
         ->first();
 
-        $id = $fragrance->id;
-
         if(is_null($fragrance)){
             return 'Fragrance Not Found';
         }
+
+        $id = $fragrance->id;
 
         $brand = Fragrance_Brand::where('id', $fragrance->brand_id)->first()->name;
         $type = Fragrance_Type::where('id', $fragrance->type_id)->first()->name;
