@@ -506,6 +506,7 @@ class Webstore_Controller extends Controller
 
             $brand_name         =   $web_call[3];
             $fragrance_name     =   $web_call[4];
+            dd($fragrance_name);
         }
 
         $fragrance = Fragrance::where('name', $fragrance_name)
