@@ -504,9 +504,8 @@ class Webstore_Controller extends Controller
         if(is_null($fragrance_name)){        
             $web_call = explode ("/", Cookie::get('web_call_uri'));
 
-            $brand_name         =   $web_call[3];
-            $fragrance_name     =   $web_call[4];
-            dd($fragrance_name);
+            $brand_name         =   str_replace('%20', ' ', $web_call[3]);
+            $fragrance_name     =   str_replace('%20', ' ', $web_call[4]);
         }
 
         $fragrance = Fragrance::where('name', $fragrance_name)
