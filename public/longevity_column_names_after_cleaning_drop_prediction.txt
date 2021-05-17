@@ -4,8 +4,6 @@ weight
 temp_avg
 hum_avg
 dew_point_avg
-rain_avg
-snow_avg
 number_of_sprays
 age
 apply_time_year
@@ -58,11 +56,6 @@ bo_location_country_France
 bo_location_country_Germany
 bo_location_country_Italy
 bo_location_country_Pakistan
-apply_time_weekday_name_Friday
-apply_time_weekday_name_Saturday
-apply_time_weekday_name_Thursday
-apply_time_weekday_name_Tuesday
-apply_time_weekday_name_Wednesday
 fp_id_11
 fp_id_12
 fp_id_13
@@ -76,5 +69,4 @@ gender_Male
 skin_type_Very Oily
 season_Spring
 weather_main_Rain
-apply_time_weekday_name_Monday
 fp_id_1
