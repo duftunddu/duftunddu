@@ -164,6 +164,8 @@ def resolve_categorical_variables(df, column_names_arr):
 # %%
 df = resolve_categorical_variables(df, np.append(categorical_columns, ("fp_id")))
 
+df.drop(['uv_index_avg', 'visibility_avg', 'apply_time_minute', 'apply_time_hour', 'atm_pressure_avg', 'clouds_avg', 'temp_feels_like_avg', 'wind_speed_avg'], axis=1, inplace=True)
+
 
 # %% [markdown]
 # # Model

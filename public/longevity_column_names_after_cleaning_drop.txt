@@ -3,12 +3,6 @@ number_of_sprays
 temp_avg
 hum_avg
 dew_point_avg
-uv_index_avg
-temp_feels_like_avg
-atm_pressure_avg
-clouds_avg
-visibility_avg
-wind_speed_avg
 rain_avg
 snow_avg
 sweat
@@ -18,8 +12,6 @@ age
 apply_time_year
 apply_time_month
 apply_time_day
-apply_time_hour
-apply_time_minute
 weather_main_Clear
 weather_main_Clouds
 weather_main_Rain
@@ -49,6 +41,7 @@ fragrance_L’Ambre des Merveilles
 fragrance_Noir
 fragrance_Parfums Prestige Paris 1965
 fragrance_Pour Femme
+fragrance_Rhythm
 fragrance_Terre d'Hermes EDT
 fragrance_Terre d'Hermes Parfum
 fragrance_gender_Female
@@ -60,6 +53,7 @@ brand_Brut
 brand_Bvlgari
 brand_Guerlain
 brand_Hermes
+brand_J.
 brand_Lacoste
 brand_Mont Blanc
 brand_Versace
@@ -70,6 +64,7 @@ brand_tier_Mid
 bo_location_country_France
 bo_location_country_Germany
 bo_location_country_Italy
+bo_location_country_Pakistan
 apply_time_weekday_name_Friday
 apply_time_weekday_name_Monday
 apply_time_weekday_name_Saturday
@@ -82,4 +77,5 @@ fp_id_12
 fp_id_13
 fp_id_17
 fp_id_18
+fp_id_20
 fp_id_21
