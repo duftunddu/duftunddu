@@ -52,14 +52,14 @@ class Fragrance_Review_Helper {
             // The environment is local
 
             // If you change the filename, change below too.
-            $process = new Process([ 'C:\Anaconda3\Scripts\activate_duft_und_du.bat', 'longevity_prediction_random_forest.py',
+            $process = new Process([ 'C:\Anaconda3\Scripts\activate_duft_und_du.bat', 'longevity_prediction.py',
                 $fragrance_data, $profile_data, $weather_data], null, [ 'PYTHONHASHSEED' => "1", 'SystemRoot' => "C:\\WINDOWS", 'Home' => 'C:\\Anaconda3\\envs\\duft_und_du']);
         }
         else {
             // if (App::environment('production')) {
             // The environment is not local ...
 
-            $process = new Process([ 'python3.8', 'longevity_prediction_random_forest.py',
+            $process = new Process([ 'python3.8', 'longevity_prediction.py',
                 $fragrance_data, $profile_data, $weather_data], null, [ 'PYTHONHASHSEED'=> 1, ]);
         }
 

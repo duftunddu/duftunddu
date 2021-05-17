@@ -99,8 +99,7 @@ Route::get('/webstore_call/{api_key}/{brand}/{fragrance}/{fragrance_type}/{theme
 
 Route::get('/webstore_profile_view', "Webstore_Controller@add_profile");
 Route::get('/webstore_profile_store', "Webstore_Controller@store_profile");
-// Route::post('/webstore_profile', "Webstore_Controller@store_profile");
-// Route::post('/webstore_profile', "Controller@meow");
+
 
 Route::get('/webstore_fragrance/{brand?}/{fragrance?}', "Webstore_Controller@show_fragrance");
 
