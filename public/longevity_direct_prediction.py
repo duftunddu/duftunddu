@@ -7,6 +7,7 @@
 # ## Extraction
 
 # %%
+# get_ipython().run_line_magic("matplotlib", "inline")
 
 # %% [markdown]
 # # Write column names
@@ -20,6 +21,7 @@
 #     # return string
 #     return str1.join(s)
 
+
 # %% [markdown]
 # # Libraries Import
 
@@ -31,15 +33,18 @@ from datetime import datetime
 
 # For import export of model
 import pickle
+import json
+from sklearn.linear_model import LinearRegression
 
-# from sklearn.tree import DecisionTreeClassifier
-from sklearn.ensemble import RandomForestClassifier
-
+# %% [markdown]
+# ## For Review
 
 # %%
+
 fragrance = sys.argv[1]
 profile = sys.argv[2]
 weather = sys.argv[3]
+reviews = sys.argv[4]
 
 # with open("longevity_template.pickle", "rb") as f:
 #     fragrance, profile, weather = pickle.load(f)
@@ -52,11 +57,6 @@ fragrance_df = pd.DataFrame(data=eval(fragrance), index=[0])
 profile_df = pd.DataFrame(data=eval(profile), index=[0])
 weather_df = pd.DataFrame(data=eval(weather), index=[0])
 
-
-# %%
-# fragrance_df
-# profile_df
-# weather_df
 
 # %% [markdown]
 # #### Fixing Weather Keys
@@ -74,30 +74,92 @@ def fix_weather_keys(df):
 
 # %%
 weather_df = fix_weather_keys(weather_df)
+# weather_df
+
 
 # %%
-df = pd.concat([fragrance_df, profile_df, weather_df], axis=1)
+single_df = pd.concat([fragrance_df, profile_df, weather_df], axis=1)
+
 
 # %% [markdown]
 # ## Cleaning
 
 # %%
-# df = df[df.columns.difference(['fba_country_name', 'fba_time_zone', 'suitability', 'sustainability', 'sillage', 'like', 'users_id', 'users_check', 'fba_location_country', 'fba_location_zone'], sort=False)]
-df = df[df.columns.difference(["weather_desc"], sort=False)]
+single_df = single_df[single_df.columns.difference(["weather_desc"], sort=False)]
 
 
 # %%
-# Missing Values
-df["rain_avg"].fillna(int(0), inplace=True)
-df["snow_avg"].fillna(int(0), inplace=True)
+single_df["number_of_sprays"] = 7
+single_df["indoor_time_percentage"] = 75
+single_df["apply_time"] = datetime.now().strftime("%Y-%m-%d 12:00:00")
 
 
 # %%
-df["number_of_sprays"] = 7
-df["apply_time"] = datetime.now().strftime("%Y-%m-%d 12:00:00")
+columns_to_drop = [
+    "fragrance",
+    "fragrance_gender",
+    "fragrance_type",
+    "brand",
+    "brand_tier",
+    "uv_index_avg",
+    "visibility_avg",
+    "atm_pressure_avg",
+    "clouds_avg",
+    "temp_feels_like_avg",
+    "wind_speed_avg",
+    "rain_avg",
+    "snow_avg",
+]
+
+single_df.drop(columns_to_drop, axis=1, inplace=True)
+
+
+# %% [markdown]
+# ## Review Data
+
+# %%
+# with open("longevity_direct_template.pickle", "rb") as f:
+#     reviews = pickle.load(f)
 
 
 # %%
+# reviews_df = pd.DataFrame(json.loads(reviews[0]))
+reviews_df = pd.DataFrame(json.loads(reviews))
+
+
+# %%
+reviews_df.drop(
+    [
+        "uv_index_avg",
+        "visibility_avg",
+        "atm_pressure_avg",
+        "clouds_avg",
+        "temp_feels_like_avg",
+        "wind_speed_avg",
+        "rain_avg",
+        "snow_avg",
+        "projection",
+        "sillage",
+        "climate",
+        "like",
+    ],
+    axis=1,
+    inplace=True,
+)
+
+
+# %% [markdown]
+# ## Combining dfs
+
+# %%
+df = pd.concat([reviews_df, single_df])
+# df
+
+# %% [markdown]
+# ## Operations on full df
+
+# %%
+
 # Datetime
 df["dob"] = df["dob"].astype("datetime64[ns]")
 df["apply_time"] = df["apply_time"].astype("datetime64[ns]")
@@ -105,6 +167,7 @@ df["apply_time"] = df["apply_time"].astype("datetime64[ns]")
 
 # %%
 # Calcualting Age
+
 now = pd.to_datetime("now")
 df["age"] = (now - df["dob"]).dt.total_seconds() / (60 * 60 * 24 * 365.25)
 df.drop(["dob"], axis=1, inplace=True)
@@ -114,21 +177,15 @@ df.drop(["dob"], axis=1, inplace=True)
 # Sorting out Dates
 
 # Apply Time
-df["apply_time_year"] = df["apply_time"].dt.year
 df["apply_time_month"] = df["apply_time"].dt.month
 df["apply_time_day"] = df["apply_time"].dt.day
 df["apply_time_hour"] = df["apply_time"].dt.hour
-df["apply_time_minute"] = df["apply_time"].dt.minute
-df["apply_time_weekday_name"] = df["apply_time"].dt.day_name()
 
 # Type Cast
 df["age"] = df["age"].astype("float")
 
 # Drop Apply Time & Wear Off Time
 df.drop(["apply_time"], axis=1, inplace=True)
-
-df.drop(['uv_index_avg', 'visibility_avg', 'apply_time_minute', 'apply_time_hour', 'atm_pressure_avg', 'clouds_avg', 'temp_feels_like_avg', 'wind_speed_avg'], axis=1, inplace=True)
-df.drop(['rain_avg', 'snow_avg', 'apply_time_year', 'apply_time_weekday_name'], axis=1, inplace=True)
 
 
 # %%
@@ -137,47 +194,37 @@ df = df.convert_dtypes()
 
 
 # %%
-def resolve_categorical_variables(df, column_names_arr):
-
-    # Load dummies from training
-    with open("longevity_categorical_variables.pickle", "rb") as f:
-        cat_df = pickle.load(f)
-
-    for i in cat_df.columns:
-        df[i] = 0
-
-    # Adding the rest
-    for column_name in column_names_arr:
-
-        pred_dummies = pd.get_dummies(df[column_name], prefix=column_name)
-
-        unavailable = np.setdiff1d(
-            pred_dummies.keys(), cat_df.columns, assume_unique=True
-        )
-
-        if not unavailable:
-            df.drop(pred_dummies.keys()[0], errors="ignore", axis=1, inplace=True)
-            df = pd.concat([df, pred_dummies], axis=1)
-
-        df.drop([column_name], axis=1, inplace=True)
-
-    return df
+df = pd.get_dummies(
+    df, columns=categorical_columns, prefix=categorical_columns, prefix_sep="_"
+)
 
 
 # %%
-df = resolve_categorical_variables(df, np.append(categorical_columns, ("fp_id")))
-
-
-# %% [markdown]
-# # Model
-# %%
-with open("longevity_model.pickle", "rb") as f:
-    longevity_model = pickle.load(f)
+Y = df["longevity"]
+X = df.drop("longevity", axis=1)
 
 
 # %%
-y_pred = float(longevity_model.predict(df))
-print(y_pred)
+# Remove constant columns
+X = X.loc[:, (X != X.iloc[0]).any()]
+
+
+# %%
+# Take the last row for prediction
+X_bar = X.tail(1)
+
+# Removing fom dataset
+X = X.iloc[:-1]
+Y = Y.iloc[:-1]
+
+
+# %%
+model = LinearRegression().fit(X, Y)
+
+
+# %%
+print(model.predict(X_bar)[0])
 
 # %% [markdown]
 # # END
+

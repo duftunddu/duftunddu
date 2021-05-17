@@ -30,10 +30,67 @@ class Fragrance_Review_Helper {
     // }
 
     // Get Review
+    // public function get_longevity($fragrance_id, $profile_data = NULL, $location_id = NULL)
+    // {
+    //     // Fetching Data
+    //     $fragrance_review_helper    =   new Fragrance_Review_Helper();
+    //     dd($fragrance_review_helper->get_longevity_reviews($fragrance_id));
+
+
+    //     $fragrance_data             =   json_encode($fragrance_review_helper->get_longevity_fragrance_data($fragrance_id));
+        
+    //     if(is_null($profile_data)){
+    //         $profile_data           =   json_encode($fragrance_review_helper->get_longevity_profile_data());
+    //     }
+        
+    //     $helper                     =   new Helper();
+    //     $weather_data               =   json_encode($helper->get_weather_average_data($location_id));
+
+        
+    //     // For debugging
+    //     // $fragrance_review_helper->save_longevity_template($fragrance_data, $profile_data, $weather_data);
+
+    //     // Calculating
+    //     if (App::environment('local')) {
+    //         // The environment is local
+
+    //         // If you change the filename, change below too.
+    //         $process = new Process([ 'C:\Anaconda3\Scripts\activate_duft_und_du.bat', 'longevity_prediction.py',
+    //             $fragrance_data, $profile_data, $weather_data], null, [ 'PYTHONHASHSEED' => "1", 'SystemRoot' => "C:\\WINDOWS", 'Home' => 'C:\\Anaconda3\\envs\\duft_und_du']);
+    //     }
+    //     else {
+    //         // if (App::environment('production')) {
+    //         // The environment is not local ...
+
+    //         $process = new Process([ 'python3.8', 'longevity_prediction.py',
+    //             $fragrance_data, $profile_data, $weather_data], null, [ 'PYTHONHASHSEED'=> 1, ]);
+    //     }
+
+    //     $process->run();
+
+    //     // var_dump($process->getErrorOutput()); return;
+
+    //     // executes after the command finishes
+    //     if ( !$process->isSuccessful()) {
+    //         throw new ProcessFailedException($process);
+    //     }
+
+    //     // Change sufficient values to 5
+    //     $arr = (object) [
+    //         'value'         => (float) $process->getOutput(),
+    //         'sufficient'    => User_Fragrance_Review::where('fragrance_id', $fragrance_id)->count() > 2 ? true : false,
+    //     ];
+
+    //     return $arr;
+    // }
+
     public function get_longevity($fragrance_id, $profile_data = NULL, $location_id = NULL)
     {
         // Fetching Data
         $fragrance_review_helper    =   new Fragrance_Review_Helper();
+
+        $reviews_data               =   $fragrance_review_helper->get_longevity_reviews($fragrance_id);
+
         $fragrance_data             =   json_encode($fragrance_review_helper->get_longevity_fragrance_data($fragrance_id));
         
         if(is_null($profile_data)){
@@ -43,29 +100,55 @@ class Fragrance_Review_Helper {
         $helper                     =   new Helper();
         $weather_data               =   json_encode($helper->get_weather_average_data($location_id));
 
+
+        // Checking if enough records exist to be able to use 
+        $direct = FALSE;
+        if($reviews_data->count() > 1){
+            $direct = TRUE;
+            $reviews_data           =   json_encode($reviews_data);
+        }
+
         
         // For debugging
         // $fragrance_review_helper->save_longevity_template($fragrance_data, $profile_data, $weather_data);
+        // $fragrance_review_helper->save_longevity_direct_template($reviews_data);
+
 
         // Calculating
         if (App::environment('local')) {
             // The environment is local
 
-            // If you change the filename, change below too.
-            $process = new Process([ 'C:\Anaconda3\Scripts\activate_duft_und_du.bat', 'longevity_prediction.py',
-                $fragrance_data, $profile_data, $weather_data], null, [ 'PYTHONHASHSEED' => "1", 'SystemRoot' => "C:\\WINDOWS", 'Home' => 'C:\\Anaconda3\\envs\\duft_und_du']);
+            if($direct){
+                // If you change the filename, change below too.
+                $process = new Process([ 'C:\Anaconda3\Scripts\activate_duft_und_du.bat', 'longevity_direct_prediction.py',
+                    $fragrance_data, $profile_data, $weather_data, $reviews_data], null, 
+                    [ 'PYTHONHASHSEED' => "1", 'SystemRoot' => "C:\\WINDOWS", 'Home' => 'C:\\Anaconda3\\envs\\duft_und_du']);
+            }
+            else{
+                // If you change the filename, change below too.
+                $process = new Process([ 'C:\Anaconda3\Scripts\activate_duft_und_du.bat', 'longevity_prediction.py',
+                    $fragrance_data, $profile_data, $weather_data], null, 
+                    [ 'PYTHONHASHSEED' => "1", 'SystemRoot' => "C:\\WINDOWS", 'Home' => 'C:\\Anaconda3\\envs\\duft_und_du']);
+            }
         }
         else {
             // if (App::environment('production')) {
             // The environment is not local ...
-
-            $process = new Process([ 'python3.8', 'longevity_prediction.py',
-                $fragrance_data, $profile_data, $weather_data], null, [ 'PYTHONHASHSEED'=> 1, ]);
+            
+            if($direct){
+                $process = new Process([ 'python3.8', 'longevity_direct_prediction.py',
+                    $fragrance_data, $profile_data, $weather_data, $reviews_data], null, [ 'PYTHONHASHSEED'=> 1, ]);
+            }
+            else{
+                $process = new Process([ 'python3.8', 'longevity_prediction.py',
+                    $fragrance_data, $profile_data, $weather_data], null, [ 'PYTHONHASHSEED'=> 1, ]);
+            }
         }
 
         $process->run();
 
-        // var_dump($process->getErrorOutput()); return;
+        // dd($process->getErrorOutput());
+        // dd($process->getOutput());
 
         // executes after the command finishes
         if ( !$process->isSuccessful()) {
@@ -216,6 +299,73 @@ class Fragrance_Review_Helper {
 
     
     // Longevity
+    public function get_longevity_reviews_data_fields ()
+    {
+        $arr = [
+            'longevity', 
+            'apply_time', 
+            'indoor_time_percentage', 
+            'number_of_sprays', 
+            'projection', 
+            'user_fragrance_review.sillage as sillage', 
+            'like', 
+            'temp_avg',
+            'hum_avg', 
+            'dew_point_avg', 
+            'uv_index_avg', 
+            'temp_feels_like_avg',
+            'atm_pressure_avg', 
+            'clouds_avg', 
+            'visibility_avg', 
+            'wind_speed_avg',
+            'rain_avg', 
+            'snow_avg', 
+            'weather_main', 
+            'fragrance_profile.id as fp_id', 
+            'location.country_name as fp_country', 
+            'fragrance_profile.gender as gender', 
+            'dob', 
+            'profession.name as profession',
+            'skin_type.name as skin_type', 
+            'sweat', 
+            'height', 
+            'weight', 
+            'climate.name as climate', 
+            'season.name as season',
+        ];
+        
+        return $arr;
+    }
+
+    public function get_longevity_reviews ($fragrance_id, $profile_id = NULL)
+    {
+
+        if(is_null($profile_id)){
+            $profile_id = request()->user()->id;
+        }
+
+        $fields = Fragrance_Review_Helper::get_longevity_reviews_data_fields();
+        
+        $arr = User_Fragrance_Review::select($fields)
+            
+            ->where('user_fragrance_review.fragrance_id', $fragrance_id)
+            ->where('fragrance_profile.id', $profile_id)
+            
+            ->join('fragrance', 'fragrance.id', 'user_fragrance_review.fragrance_id')
+            ->join('users', 'users.id', 'user_fragrance_review.users_id')
+            ->join('fragrance_profile', 'fragrance_profile.users_id', 'users.id')
+            ->join('location', 'location.id', 'fragrance_profile.location_id')
+
+            ->join('skin_type', 'skin_type.id', 'fragrance_profile.skin_type_id')
+            ->join('profession', 'profession.id', 'fragrance_profile.profession_id')
+            ->join('season', 'season.id', 'fragrance_profile.season_id')
+            ->join('climate', 'climate.id', 'fragrance_profile.climate_id')
+
+            ->get();
+
+        return $arr;
+    }
+
     public function get_longevity_data_fields ()
     {
         $arr = [
@@ -337,63 +487,6 @@ class Fragrance_Review_Helper {
         ->select($fields)
         ->get();
 
-        // $all = User_Fragrance_Review::join('location as ufr_location', 'ufr_location.id', 'user_fragrance_review.location_id')
-        // ->join('users', 'users.id', 'user_fragrance_review.users_id')
-        // ->join('fragrance_profile', 'fragrance_profile.users_id', 'users.id')
-        
-        // ->join('profession', 'profession.id', 'fragrance_profile.profession_id')
-        // ->join('skin_type', 'skin_type.id', 'fragrance_profile.skin_type_id')
-        // ->join('location as fp_location', 'fp_location.id', 'fragrance_profile.location_id')
-        // ->join('climate', 'climate.id', 'fragrance_profile.climate_id')
-        // ->join('season', 'season.id', 'fragrance_profile.season_id')
-        
-        // ->join('fragrance', 'fragrance.id', 'user_fragrance_review.fragrance_id')
-        // ->join('fragrance_type', 'fragrance_type.id', 'fragrance.type_id')
-        
-        // // ->join('fragrance_ingredient', 'fragrance_ingredient.fragrance_id', 'fragrance.id')
-        // // ->join('fragrance_accord', 'fragrance_accord.fragrance_id', 'fragrance.id')
-        // // ->join('ingredient', 'ingredient.id', 'fragrance_ingredient.id')
-        // // ->join('accord', 'accord.id', 'fragrance_accord.id')
-
-        // ->join('fragrance_brand', 'fragrance_brand.id', 'fragrance.brand_id')
-        // ->join('brand_tier', 'brand_tier.id', 'fragrance_brand.tier_id')
-        // ->join('location as bo_location', 'bo_location.id', 'fragrance_brand.origin_id')
-        
-        // // ->join('fragrance_brand_availability', 'fragrance_brand_availability.brand_id', 'fragrance_brand.id')
-        // // ->join('location as fba_location', 'fba_location.id', 'fragrance_brand_availability.location_id')
-        // ->where('fragrance.id', $fragrance_id)
-        // ->select($fields)
-        // ->get();
-
-        // $all = DB::table('user_fragrance_review')
-        // ->where('fragrance.id', $fragrance_id)
-        // ->join('location as ufr_location', 'ufr_location.id', 'user_fragrance_review.location_id')
-        // ->join('users', 'users.id', 'user_fragrance_review.users_id')
-        // ->join('fragrance_profile', 'fragrance_profile.users_id', 'users.id')
-        
-        // ->join('profession', 'profession.id', 'fragrance_profile.profession_id')
-        // ->join('skin_type', 'skin_type.id', 'fragrance_profile.skin_type_id')
-        // ->join('location as fp_location', 'fp_location.id', 'fragrance_profile.location_id')
-        // ->join('climate', 'climate.id', 'fragrance_profile.climate_id')
-        // ->join('season', 'season.id', 'fragrance_profile.season_id')
-        
-        // ->join('fragrance', 'fragrance.id', 'user_fragrance_review.fragrance_id')
-        // ->join('fragrance_type', 'fragrance_type.id', 'fragrance.type_id')
-        
-        // // ->join('fragrance_ingredient', 'fragrance_ingredient.fragrance_id', 'fragrance.id')
-        // // ->join('fragrance_accord', 'fragrance_accord.fragrance_id', 'fragrance.id')
-        // // ->join('ingredient', 'ingredient.id', 'fragrance_ingredient.id')
-        // // ->join('accord', 'accord.id', 'fragrance_accord.id')
-
-        // ->join('fragrance_brand', 'fragrance_brand.id', 'fragrance.brand_id')
-        // ->join('brand_tier', 'brand_tier.id', 'fragrance_brand.tier_id')
-        // ->join('location as bo_location', 'bo_location.id', 'fragrance_brand.origin_id')
-        
-        // // ->join('fragrance_brand_availability', 'fragrance_brand_availability.brand_id', 'fragrance_brand.id')
-        // // ->join('location as fba_location', 'fba_location.id', 'fragrance_brand_availability.location_id')
-        
-        // ->select($fields)
-        // ->get();
 
         // Return
         return $all;
@@ -503,6 +596,34 @@ class Fragrance_Review_Helper {
 
             $process = new Process([ 'python3', 'longevity_template_save.py',
                 $fragrance_data, $profile_data, $weather_data], null, [ 'PYTHONHASHSEED'=> 1, ]);
+        }
+
+        $process->run();
+
+        // var_dump($process->getErrorOutput()); return;
+
+        // executes after the command finishes
+        if ( !$process->isSuccessful()) {
+            throw new ProcessFailedException($process);
+        }
+
+        // return $process->getOutput();
+    }
+
+    public function save_longevity_direct_template ($reviews_data)
+    {
+        if (App::environment('local')) {
+            // The environment is local
+
+            $process = new Process([ 'C:\Anaconda3\Scripts\activate_duft_und_du.bat', 'longevity_direct_template_save.py',
+                $reviews_data], null, [ 'PYTHONHASHSEED' => "1", 'SystemRoot' => "C:\\WINDOWS"]);
+        }
+        else {
+            // if (App::environment('production')) {
+            // The environment is not local ...
+
+            $process = new Process([ 'python3', 'longevity_direct_template_save.py',
+                $reviews_data], null, [ 'PYTHONHASHSEED'=> 1, ]);
         }
 
         $process->run();
