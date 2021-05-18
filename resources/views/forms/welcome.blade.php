@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-<title>Duft Und Du | The AI Fragrance Genie | The Fragrance Hub</title>
+<title>Duft Und Du | Fragrance & You | Get Personalized Fragrance Reviews | The AI Fragrance Genie | The Fragrance Hub</title>
 
 <head>
     <meta charset="utf-8">
@@ -33,7 +33,6 @@
         {{-- Title --}}
         <div class="title m-b-md">
             <div data-toggle="tooltip" data-placement="top" title="German For Fragrance And You">Duft Und Du</div>
-            {{-- <small class="title-mean de-gray">German for Fragrance & You</small> --}}
         </div>
 
         {{-- Typing Effect --}}
@@ -106,7 +105,6 @@
     @include('forms.about_us_content')
 </div>
 
-{{-- <script src="{{ asset('js/welcome.js') }}" defer></script> --}}
 <script src="{{ asset('js/typing_effect.js') }}" defer></script>
 
 @endsection

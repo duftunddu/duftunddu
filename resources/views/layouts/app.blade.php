@@ -12,7 +12,12 @@
         }
         gtag('js', new Date());
 
-        gtag('config', 'G-G1D0YSC2FS');
+        gtag('config', 'G-G1D0YSC2FS',{
+            'page_title' : document.title,
+            'page_location' : location.href,
+            'page_path': location.pathname,
+            'send_page_view' : true
+        });
     </script>
 
     <meta charset="utf-8">

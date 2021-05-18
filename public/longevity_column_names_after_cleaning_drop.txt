@@ -10,32 +10,20 @@ age
 apply_time_month
 apply_time_day
 weather_main_Clear
-weather_main_Clouds
 weather_main_Rain
-gender_Female
 gender_Male
-profession_Artist
-profession_Beautician
 profession_Clairvoyant
-profession_Doctor
 profession_Footballer
-profession_Marketing Agent
 profession_Student
-skin_type_Dry
 skin_type_Normal
 skin_type_Oily
-skin_type_Very Oily
-season_Spring
 season_Summer
 season_Winter
 fp_country_Pakistan
-fragrance_Bright Crystal
 fragrance_Eros Pour Femme
-fragrance_Goldea
 fragrance_Homme Exceptionnel
 fragrance_La Petite Robe Noire
 fragrance_L’Ambre des Merveilles
-fragrance_Noir
 fragrance_Parfums Prestige Paris 1965
 fragrance_Pour Femme
 fragrance_Rhythm
@@ -47,7 +35,6 @@ fragrance_gender_Unisex
 fragrance_type_Eau de Parfum
 fragrance_type_Eau de Toilette
 brand_Brut
-brand_Bvlgari
 brand_Guerlain
 brand_Hermes
 brand_J.
@@ -63,10 +50,5 @@ bo_location_country_Germany
 bo_location_country_Italy
 bo_location_country_Pakistan
 fp_id_1
-fp_id_11
 fp_id_12
-fp_id_13
-fp_id_17
-fp_id_18
 fp_id_20
-fp_id_21

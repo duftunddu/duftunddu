@@ -387,7 +387,6 @@ class Fragrance_Controller extends Controller
             }
             
             $longevity = $fragrance_review_helper->get_longevity($id);
-            // $longevity = $fragrance_review_helper->get_longevity_direct($id);
             $suitability = $fragrance_review_helper->get_suitability($id);
 
 

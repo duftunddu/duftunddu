@@ -105,7 +105,6 @@ Route::get('/webstore_fragrance/{brand?}/{fragrance?}', "Webstore_Controller@sho
 
 
 // Serve CSS Script
-// Route::get('/webstore_client_css.css', "Webstore_Controller@webstore_client_css");
 Route::get('/webstore_client_js.js', "Webstore_Controller@webstore_client_js");
 
 
