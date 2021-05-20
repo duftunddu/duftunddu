@@ -265,18 +265,6 @@ class Store_Controller extends Controller
 
             return redirect('/'.$request->input('store_type').'_fragrance/'.$frag_id);
         }
-        else{
-
-            $arr = session('web_call_data');
-
-            $wb_cont = new Webstore_Controller();
-            
-            // For dev
-            // return $wb_cont->webstore_call_dev($arr[0], $arr[1], $arr[2], $arr[3], $arr[4], $arr[5]);
-
-            return $wb_cont->webstore_call($arr[0], $arr[1], $arr[2], $arr[3], $arr[4], $arr[5]);
-        }
-        
     }
 
 
@@ -325,7 +313,6 @@ class Store_Controller extends Controller
         
         // Profile
         $frag_profile = session('store_profile');
-        // dd($frag_profile);
         $user_gender = $frag_profile->gender;
         
         $fragrance_review_helper = new Fragrance_Review_Helper(); 

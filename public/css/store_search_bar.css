@@ -1,14 +1,13 @@
 .search-box {
-    border: solid 5px black;
+    border: solid 5px var(--lux-red);
     display: inline-block;
     position: relative;
-    border-radius: 50px;
+    border-radius: 100px;
 }
 
 .search-box input[type="text"] {
-    font-family: Raleway, sans-serif;
     font-size: 20px;
-    font-weight: bold;
+    /* font-weight: bold; */
     width: 50px;
     height: 50px;
     padding: 5px 40px 5px 10px;
@@ -63,7 +62,7 @@
 .search-box button[type="reset"]:after {
     content: "";
     height: 25px;
-    border-left: solid 5px black;
+    border-left: solid 5px var(--lux-red);
     position: absolute;
     transform: rotate(-45deg);
 }

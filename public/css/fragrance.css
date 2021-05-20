@@ -179,6 +179,14 @@ hr {
     border-top: 1px solid rgba(129, 103, 169, 0.5) !important;
 }
 
+.search-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* width: 25px !important;
+    height: 25px !important; */
+}
+
 @media (max-width: 650px) {
     .doors {
         font-size: 1.27rem !important;

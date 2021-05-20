@@ -8,6 +8,7 @@
     
     {{-- Stylesheet --}}
     <link href="{{ asset('css/fragrance.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/store_search_bar.css') }}" rel="stylesheet">
     <link href="{{ asset('css/store_scroll_bar.css') }}" rel="stylesheet">
 
     @auth
@@ -17,7 +18,6 @@
             background-image: url('https://static.toiimg.com/thumb/msid-63080082,imgsize-293543,width-800,height-600,resizemode-75/63080082.jpg');
         } */
     
-
         @if(!is_null($projection))
         .outdoor {
             background: linear-gradient(90deg, rgb(247,82,124, 1) {{100 - ($projection)}}%, rgb(255, 255, 255, 1) 100%);
@@ -45,26 +45,28 @@
 
     </style>
     @endauth
+
+
 </head>
 
 
 @section('content')
 
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
 
-                {{-- <div class="card-header">{{'Fragrance: '}} {{ __($fragrance->name)}}</div> --}}
-                {{-- <div class="card-body"> --}}
-                    {{-- <h4 for="&" class="wide center">{{ __('&')}} </h4>     --}}
-                    {{-- <div class="wide center">
-                        <div class="img-ref-div center-img">
-                            <div class="reflect"></div>
-                        </div>
-                    </div> --}}
+            {{-- <div class="card-header">{{'Fragrance: '}} {{ __($fragrance->name)}}</div> --}}
+            {{-- <div class="card-body"> --}}
+                {{-- <h4 for="&" class="wide center">{{ __('&')}} </h4>     --}}
+                {{-- <div class="wide center">
+                    <div class="img-ref-div center-img">
+                        <div class="reflect"></div>
+                    </div>
+                </div> --}}
 
-
-                    <br>
+            <br>
                     
                     <div class="row-pad">
 
@@ -73,12 +75,7 @@
 
                             {{-- Heading: User Name --}}
                             <h4 for="user name" class="center lux-red">
-                            @auth
-                            {{-- {{ Auth::user()->name }} --}}
                             You
-                            @else
-                            {{ __('You')}}
-                            @endauth
                             &thinsp;
 
                             {{-- Gender Image --}}
@@ -290,14 +287,22 @@
                                 </div>
                             </div>
                         </div>
+                        
                     </div>
-                    <br>
-                    
+
+            <br>
+                
+            <div class="search-wrapper">
+                <form class="search-box search" method="GET" action="{{ url('/search_results')}}">
+                    @csrf
+                    <input type="text" id="search-input" name="searchbox" class="typeahead" placeholder=" " autocomplete="off"/>
+                    <button type="reset"></button>
+                </form>
+            </div>
+            <br>
+
         </div>
     </div>
-</div>
 
-<div id="csrf">
-    @csrf
 </div>
 @endsection

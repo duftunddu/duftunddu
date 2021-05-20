@@ -78,7 +78,7 @@
                 
                 </form>
 
-                <div class= "top-pad">        
+                <div class= "top-pad">
                     {{_('Premium Features Coming Soon')}}
                 </div>
 
