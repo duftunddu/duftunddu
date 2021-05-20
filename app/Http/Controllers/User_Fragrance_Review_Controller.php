@@ -92,13 +92,12 @@ class User_Fragrance_Review_Controller extends Controller
 
         // Longevity
         // TRUE for absolute value, so no neagtives.
-        if($wear_off_time > $apply_time){
-            $longevity = $wear_off_time->diffInMinutes($apply_time, TRUE);
+        if($apply_time > $wear_off_time){
+            $wear_off_time->addDays(1);
         }
-        else{
-            $longevity = $apply_time->diffInMinutes($wear_off_time, TRUE);
-        }
+        $longevity = $wear_off_time->diffInMinutes($apply_time, TRUE);
 
+        
         // Suitability
         // Add Suitability
         $suitability = NULL; 
