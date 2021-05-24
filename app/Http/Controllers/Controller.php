@@ -46,6 +46,19 @@ class Controller extends BaseController {
         return $cities;
     }
 
+    public function try_with_template () {
+        $accords=Accord::pluck('name')->toArray();
+
+        // $accords = implode (", ", $accords);
+
+        // $accords = Accord::where('name', 'LIKE', 'war'.'%')->pluck('name')->toArray();
+
+        // var_dump($accords); return;
+
+        return view('forms.try_with_template', [ 'accords'=> $accords]);
+    }
+
+
     public function try () {
         $accords=Accord::pluck('name')->toArray();
 

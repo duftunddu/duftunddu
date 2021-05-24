@@ -18,8 +18,6 @@ body {
     margin-top: -3rem;
     height: 91%;
     background-image: url("../images/fragrance_bottle/laura-chouette-SAfHJlAfWNs-unsplash_edited.jpg");
-    /* background-image: url("../images/fragrance_model/laura-chouette-YGuaaoNnv3c-unsplash_desktop_usable_use.jpg"); */
-    /* background-image: url("../images/fragrance_model/laura-chouette-YGuaaoNnv3c-unsplash_desktop_usable_use.webp"); */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: top right;
@@ -244,10 +242,6 @@ p {
 @media (max-width: 767px) {
     .flex-1-center {
         height: 93.2%;
-        /* background-image: url("../images/fragrance_bottle/laura-chouette-SAfHJlAfWNs-unsplash.jpg"); */
-
-        /* background-image: url("../images/fragrance_model/welcome_page_phone_3.jpg"); */
-        /* background-image: url("../images/fragrance_model/welcome_page_phone_3.webp"); */
         background-size: cover;
         background-position: bottom;
         margin-top: -2.5rem;
@@ -351,15 +345,6 @@ p {
     .flex-1-center h2 {
         margin-top: -1.3rem;
         font-size: 1.2rem;
-    }
-
-
-    .flex-2-left {
-        /* background-image: url('../images/fragrance_model/laura-chouette-o7BEFNmuDkU-unsplash_desktop_usable_use.jpg');
-        background-image: url('../images/fragrance_model/laura-chouette-o7BEFNmuDkU-unsplash_desktop_usable_use.webp');
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-position: bottom center; */
     }
 
     .flex-2-placement {

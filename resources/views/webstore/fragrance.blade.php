@@ -191,7 +191,7 @@
 
                                     <hr class="hr-purple-line">
 
-                                    <p class="de-gray right-align">v 2.0</p>
+                                    <p class="de-gray right-align">v 3.0</p>
                                     <br>
 
                                     @endauth

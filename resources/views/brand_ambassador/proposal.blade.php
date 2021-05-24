@@ -1,22 +1,26 @@
 @extends('layouts.app')
 
-<title>{{_('Brand Ambassador Proposal | The Fragrance Hub | Duft Und Du')}}</title>
+<title>Brand Ambassador | The Fragrance Hub | Duft Und Du</title>
+{{-- @section('title', 'Brand Ambassador | The Fragrance Hub | Duft Und Du') --}}
+@section('description', 'Become a Brand Ambassador by joining the Duft Und Du community. Add your fragrances to Duft Und Du and get personalized reviews for your products.')
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">    
-    @section('description', 'Become a Brand Ambassador by joining the Duft Und Du community. Add your fragrance to Duft Und Du and get personalized reviews for your products.')
+@push('head_scripts')
+<link href="{{ asset('css/button_brand_ambassador.css') }}" rel="stylesheet">
+<link href="{{ asset('css/brand_ambassador_proposal.css') }}" rel="stylesheet">
+@endpush
 
-    <!-- Styles -->
-    <link href="{{ asset('css/button_brand_ambassador.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/brand_ambassador_proposal.css') }}" rel="stylesheet">
-</head>
 
 @section('content')
 
 <div class="container">
+
+    <h1 class="title-p">Brands</h1>
+    <div class="silde-wrap">
+        <div class="sliding-background"></div>
+    </div>
+
     {{-- Accordion --}}
-    <div class="flex-1 position-ref full-height top-pad-fix">
+    <div class="flex-1 position-ref full-height">
         @include('features.feature_slider_brand_ambassador')
     </div>
 
@@ -44,9 +48,7 @@
 
                 <br>
 
-                <h2>2. Come back to </h2><a href="{{ url('#')}}">
-                    <h2>Brand Ambassador</h2>
-                </a>
+                <h2>2. Click the button below </h2>
 
                 <p>A button will show up right below. You can sign up to become a Brand Ambassador here.<br>
                     If the button doesn't show, reload the page and make sure that you are logged in your account</p>
@@ -70,10 +72,10 @@
                 <h2>3. Verification Period </h2>
 
                 <p>After the signing up process. Our team will then verify your details.<br>
-                    And after verificaiton, you can access your <a href="{{ url('ambassador_home')}}">Ambassador
+                    And after verificaiton, you can access your <a href="{{ url('/ambassador_home')}}">Ambassador
                         Dashboard</a><br>
-                    Instructions to use Ambassador Dashboard are provided <a
-                        href="{{ url('ambassador_guide')}}">here.</a></p>
+                    {{-- Instructions to use Ambassador Dashboard are provided <a
+                        href="{{ url('/ambassador_guide')}}">here.</a></p> --}}
 
                 <br>
 

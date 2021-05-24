@@ -24,7 +24,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <title>@yield('title')</title>
+    {{-- @yield('title') --}}
     <meta name="description" content="@yield('description')">
+    <meta name="keywords" content="@yield('keywords')">
     
     <link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico" />
 
@@ -41,6 +43,11 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" defer>
     <link href="{{ asset('css/app_additional.css') }}" rel="stylesheet" defer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+    @stack('head_scripts')
+    @stack('extra_scripts')
 </head>
 
 <body>
@@ -52,6 +59,8 @@
     <div id="app">
         <main class="py-4">
             @include('layouts.flash_message')
+            @yield('in_body_scripts')
+
             @yield('content')
         </main>
     </div>
@@ -61,5 +70,7 @@
 </body>
 
 <script src="{{ asset('js/layout.js') }}" defer></script>
+
+@stack('foot_scripts')
 
 </html>

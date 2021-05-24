@@ -1,8 +1,10 @@
+@push('head_scripts')
 {{-- Uses jqeury too. Currently, the jquery comes from the preloader. --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js" defer></script>
 
 <link href="{{ asset('css/feature_slider_brand_ambassador.css') }}" rel="stylesheet">
 <script src="{{ asset('js/feature_slider_brand_ambassador.js') }}"></script>
+@endpush
 
 <div id="tabs">
     <ul id="accordion">
@@ -18,16 +20,12 @@
                 <span>
                     Add and update all your fragrances to Duft Und Du for increase in sales.
                 </span>
-                {{-- <a class="para-a" href="#">Learn More</a> --}}
             </div>
         </li>
         <li>
             <a href="#tabs-2">
                 <div class="tag">
                     <div class="icon" id="icon-2">
-                        {{-- <div class="block">
-                            <div class="circle"></div>
-                        </div> --}}
                     </div>
                     <span class="heading">Track your Brand</span>
                 </div>
@@ -36,16 +34,12 @@
                 <span>
                     See how many people have searched for your brand in the past week.
                 </span>
-                {{-- <a class="para-a" href="#">Learn More</a> --}}
             </div>
         </li>
         <li>
             <a href="#tabs-3">
                 <div class="tag">
                     <div class="icon" id="icon-3">
-                        {{-- <div class="block">
-                            <div class="circle"></div>
-                        </div> --}}
                     </div>
                     <span class="heading">Advertise</span>
                 </div>
@@ -54,7 +48,6 @@
                 <span>
                     You can also opt to advertise on Duft Und Du.
                 </span>
-                {{-- <a class="para-a" href="#">Learn More</a> --}}
             </div>
         </li>
     </ul>

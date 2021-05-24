@@ -1,14 +1,14 @@
 @extends('layouts.app_store')
 
+@section('meta')
 <title>{{__($fragrance->name)}} {{(' | Duft Und Du')}}</title>
+@endsection
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+@push('head_scripts')
+
     {{-- Stylesheet --}}
     <link href="{{ asset('css/fragrance.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/store_search_bar.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/store_fragrance_search_bar.css') }}" rel="stylesheet">
     <link href="{{ asset('css/store_scroll_bar.css') }}" rel="stylesheet">
 
     @auth
@@ -46,8 +46,9 @@
     </style>
     @endauth
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js" defer></script>
 
-</head>
+@endpush
 
 
 @section('content')
@@ -188,7 +189,7 @@
 
                                     <hr class="hr-purple-line">
 
-                                    <p class="de-gray right-align">v 2.0</p>
+                                    <p class="de-gray right-align">v 3.0</p>
                                     <br>
 
                                     @endauth
@@ -291,11 +292,11 @@
                     </div>
 
             <br>
-                
+
             <div class="search-wrapper">
-                <form class="search-box search" method="GET" action="{{ url('/search_results')}}">
+                <form class="search-box search" method="POST" action="{{ url('/store_search_fragrance')}}">
                     @csrf
-                    <input type="text" id="search-input" name="searchbox" class="typeahead" placeholder=" " autocomplete="off"/>
+                    <input type="text" id="searchbox" name="searchbox" class="typeahead" placeholder=" " autocomplete="off"/>
                     <button type="reset"></button>
                 </form>
             </div>
@@ -305,4 +306,9 @@
     </div>
 
 </div>
+
+@section('foot_scripts')
+<script src="{{ asset('js/store_fragrance.js') }}" defer></script>
+@endsection
+
 @endsection

@@ -72,11 +72,8 @@ class Store_Controller extends Controller
         $helper = new Helper();
 
         if($helper->is_stock_empty($store_type, $store_id)){
-            if(strcmp($store_type, "store") == 0){
-                return redirect('/store_home')->with('error', 'Stock is empty. Add Fragrances to Stock first.');
-            }
-            // else{
-            //     return 'Stock Empty. Add fragrances from Webstore Home first';
+            // if(strcmp($store_type, "store") == 0){
+            //     return redirect('/store_home')->with('error', 'Stock is empty. Add Fragrances to Stock first.');
             // }
         }
 
@@ -263,17 +260,47 @@ class Store_Controller extends Controller
             ->where('available', TRUE)
             ->first()->id;
 
-            return redirect('/'.$request->input('store_type').'_fragrance/'.$frag_id);
+            // return redirect('/'.$request->input('store_type').'_fragrance/'.$frag_id);
+            return redirect('/store_fragrance/1');
         }
     }
 
 
+    public function fragrance_api (Request $request) {
+        $data = Fragrance::select("name")
+            ->where("normal_name","LIKE","%{$request->to_search}%")
+            ->get();
+
+        return response()->json($data);
+    }
+
+
+    // Search Fragrance
+    public function search_fragrance (Request $request)
+    {
+        // $frag_id = Store_Stock::where('store_id', Store::where('users_id', request()->user()->id)->first()->id)
+        //     ->where('available', TRUE)
+        //     ->pluck('id')
+        //     ->first();
+            
+        $frag_id = Fragrance::where('name', $request->searchbox)
+        ->orWhere('normal_name', $request->searchbox)
+        ->pluck('id')
+        ->first();
+
+        if(is_null($frag_id)){
+            return redirect('/store_home')->with('error', 'Fragrance not in stock.');
+        }
+
+        return redirect('/store_fragrance/' . $frag_id);
+    }
+
     // Show Fragrance Review
     public function show_fragrance($id)
     {
-        if(Store_Controller::is_stock_empty('store')){
-            return redirect('/store_home')->with('error', 'Stock is empty. Add Fragrances to Stock first.');
-        }
+        // if(Store_Controller::is_stock_empty('store')){
+        //     return redirect('/store_home')->with('error', 'Stock is empty. Add Fragrances to Stock first.');
+        // }
 
         // Fragrance
         $fragrance = Fragrance::where('id', $id)->first();
@@ -348,22 +375,21 @@ class Store_Controller extends Controller
         
         $frag_id = Store_Stock::where('store_id', Store::where('users_id', request()->user()->id)->where('store', TRUE)->first()->id)
         ->where('available', TRUE)
-        ->exists();
+        ->pluck('id')
+        ->first();
 
         return !$frag_id;
-        
-        // if($frag_id) {
-        //     // Empty
-        //     return FALSE;
-        // }
-        // else {
-        //     return TRUE;
-        // }
     }
 
     public function empty_stock()
     {
-        return redirect('/store_home');
+
+        $frag_id = Store_Controller::is_stock_empty();
+
+        if($frag_id)
+            return redirect('/store_home');
+        else
+            return redirect('/store_fragrance/' . $frag_id);
     }
 
 

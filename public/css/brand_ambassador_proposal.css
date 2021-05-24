@@ -2,16 +2,55 @@
     height: 90% !important;
 }
 
+.title-p {
+    margin-top: -2rem;
+    color: var(--lux-black-box);
+    font-size: 3rem;
+    font-family: 'Nunito';
+    font-variant: small-caps;
+    letter-spacing: 8px;
+    text-shadow: 22px 22px 5px var(--de-emphasize-gray);
+    text-align: center;
+}
+
+/* Pic Slider */
+.silde-wrap {
+    width: 100vw;
+    position: relative;
+    left: calc(-50vw + 50%);
+    overflow: hidden;
+}
+
+.sliding-background {
+    background: url("../images/unsorted/brands-transparent-background_edited_tile.png") repeat-x;
+    background-size: auto 100%;
+    height: 350px;
+    width: 5076px;
+    animation: slide 40s linear infinite;
+}
+
+@keyframes slide {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    100% {
+        transform: translate3d(-1692px, 0, 0);
+    }
+}
+
+/* Pic Slider End */
+
+
+/* Flex 1 */
 .flex-1 {
     font-size: 1.156rem;
 }
 
 .flex-2 {
-    /* background-image: url('../images/progress/stairs-918735_use.jpg'); */
     background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
-    /* background-size: 100% 100%; */
     background-position: center center;
 
     align-items: left;
@@ -68,10 +107,6 @@ p {
     font-size: 1.48rem;
     font-weight: 100;
     letter-spacing: 0.074rem;
-}
-
-.top-pad-fix {
-    margin-top: -3rem;
 }
 
 .m-b-md {

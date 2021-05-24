@@ -1,28 +1,19 @@
 @extends('layouts.app')
 
 <title>Duft Und Du | Fragrance & You | Get Personalized Fragrance Reviews | The AI Fragrance Genie | The Fragrance Hub</title>
+{{-- @section('title', '') --}}
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    @section('description', 'Duft Und Du gives you personalized fragrance reviews for free. Business integrations for
-    shops and online stores are also available.')
+@section('description', 'Duft Und Du gives you personalized fragrance reviews for free. Business integrations for 
+shops and online stores are also available.')
 
-    <!-- Styles -->
-    <link href="{{ asset('css/welcome.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/about_us_content.css') }}" rel="stylesheet">
+@push('head_scripts')
+<link href="{{ asset('css/welcome.css') }}" rel="stylesheet">
+<link href="{{ asset('css/about_us_content.css') }}" rel="stylesheet">
 
-    {{-- Typing Effect --}}
-    <link href="{{ asset('css/typing_effect.css') }}" rel="stylesheet">
-
-    <link href="{{ asset('css/scroll_down_button.css') }}" rel="stylesheet">
-    
-    <!-- Fonts -->
-    {{-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> --}}
-    {{-- <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" defer> --}}
-    {{-- <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet" defer> --}}
-
-</head>
+{{-- Typing Effect --}}
+<link href="{{ asset('css/typing_effect.css') }}" rel="stylesheet">
+<link href="{{ asset('css/scroll_down_button.css') }}" rel="stylesheet">
+@endpush
 
 @section('content')
 

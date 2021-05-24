@@ -43,6 +43,9 @@
     {{-- Store Scrollbar --}}
     <link href="{{ asset('css/store_scroll_bar.css') }}" rel="stylesheet">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    @stack('head_scripts')
 </head>
 
 <body>
@@ -58,5 +61,7 @@
     </div>
 
 </body>
+
+@yield('foot_scripts')
 
 </html>

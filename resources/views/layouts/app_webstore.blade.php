@@ -50,14 +50,15 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" defer></script>
     <link href="{{ asset('css/header.css') }}" rel="stylesheet">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+    @stack('head_scripts')
 </head>
 
 <body>
 
     @include('layouts.preloader')
 
-    {{-- @include('layouts.header') --}}
     <div id="app">
         <main class="py-4">
             @include('layouts.flash_message')
@@ -66,5 +67,7 @@
     </div>
 
 </body>
+
+@yield('foot_scripts')
 
 </html>

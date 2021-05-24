@@ -16,7 +16,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
 
-            <form method="POST" action="{{ url('store_register')}}">
+            <form method="POST" action="{{ url('/store_register')}}">
                 @csrf
 
                 <div class="card">

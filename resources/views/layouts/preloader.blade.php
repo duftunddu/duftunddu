@@ -1,5 +1,5 @@
 {{-- For Preloader --}}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
 
 <link href="{{ asset('css/preloader.css') }}" rel="stylesheet">
 

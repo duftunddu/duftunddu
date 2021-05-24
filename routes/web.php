@@ -27,7 +27,7 @@ Route::get('/report', 'Feedback_Comment_Controller@index');
 Route::post('/report', 'Feedback_Comment_Controller@store');
 
 // Service Registration
-Route::get('/services_register', "Services_Controller@index");
+Route::get('/services_register', "Services_Conyoller@index");
 Route::post('/services_register', "Services_Controller@store");
 
 Route::get('/about_us', function () {
@@ -79,18 +79,10 @@ Route::get('/fragrances/{brand_id}', 'Fragrance_Controller@all_fragrances');
 Route::get('/fragrance/{fragrance_id}', 'Fragrance_Controller@show');
 Route::post('/affecting_factors_data', 'Affecting_Factors_Data_Controller@store');
 
-Route::post('/cities_of_country', 'Controller@cities_of_country');
+// Route::post('/cities_of_country', 'Controller@cities_of_country');
 
 Route::get('/request_brand_view', 'Request_Brand_Controller@show');
 Route::get('/request_feature_view', 'Feature_Request_Controller@show');
-
-
-// Register Store
-Route::get('/store_register', "Store_Request_Controller@index");
-Route::post('/store_register', "Store_Request_Controller@store");
-
-Route::get('/webstore_register', "Webstore_Request_Controller@index");
-Route::post('/webstore_register', "Webstore_Request_Controller@store");
 
 
 // Webstore Call
@@ -113,6 +105,13 @@ Route::get('/webstore_client_js.js', "Webstore_Controller@webstore_client_js");
 Auth::routes(['verify' => true]);
 
 Route::group(['middleware' => ['auth']], function() {
+
+    // Register Store
+    Route::get('/store_register', "Store_Request_Controller@index");
+    Route::post('/store_register', "Store_Request_Controller@store");
+
+    Route::get('/webstore_register', "Webstore_Request_Controller@index");
+    Route::post('/webstore_register', "Webstore_Request_Controller@store");
 
 
     // new_user|user|genie_user
@@ -214,11 +213,19 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('/store_profile/{store_type}/{store_id?}', "Store_Controller@add_profile");
         Route::post('/store_profile', "Store_Controller@store_profile");
 
+        // Select Fragrance
+        Route::post('/store_search_fragrance/', "Store_Controller@search_fragrance");
+
         // Show Fragrance
-        Route::get('/store_fragrance/', "Store_Controller@empty_stock");
+        Route::get('/store_fragrance', "Store_Controller@empty_stock");
         Route::get('/store_fragrance/{fragrance_id}', "Store_Controller@show_fragrance");
         // Route::get('/fragrance/{store_type}/{fragrance_id}', "Store_Controller@show_fragrance");
         
+
+        Route::get('/store_fragrance_api', 'Store_Controller@fragrance_api');
+        Route::post('/store_search_fragrance', 'Store_Controller@search_fragrance');
+
+
         // Show Stock
         Route::get('/store_stock', "Store_Controller@show_stock");
         
@@ -390,6 +397,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::post('/fragrance_entry_admin', 'Fragrance_Controller@store');
         
         Route::get('/try', 'Controller@try');
+        Route::get('/try2', 'Controller@try_with_template');
         Route::post('/try', 'Controller@try_output');
         Route::get('/try_api', 'Controller@try_api');
 

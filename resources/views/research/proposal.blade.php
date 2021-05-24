@@ -15,7 +15,7 @@
 
 <div class="container">
     {{-- Accordion --}}
-    <div class="flex-center1 position-ref full-height top-pad-fix">
+    <div class="flex-center1 position-ref full-height">
         @include('features.feature_slider_brand_ambassador')
     </div>
 

@@ -18,14 +18,12 @@ button.custom {
 
 button.custom .before,
 button.custom .after {
-    /* content: 'Hover!'; */
     letter-spacing: 4px;
     font-size: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
     transform: translateY(-50%);
-    /* position: fixed; */
     position: absolute;
     z-index: 1;
     width: 150px;
@@ -42,14 +40,11 @@ button.custom .before {
 button.custom .after {
     width: 0px;
     overflow: hidden;
-    /* border-bottom: 2px solid rgba(0,0,0,0.9);
-	border-top: 2px solid rgba(0,0,0,0.9); */
     border-bottom: 2px solid #101820FF;
     border-top: 2px solid #101820FF;
     transform: translateY(-50%) translateX(75px);
     color: #101820FF;
     font-weight: bold;
-    /* background: rgba(255,255,255,0); */
 }
 
 button.custom:hover .before {
