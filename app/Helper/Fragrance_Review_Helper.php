@@ -349,7 +349,7 @@ class Fragrance_Review_Helper {
         $arr = User_Fragrance_Review::select($fields)
             
             ->where('user_fragrance_review.fragrance_id', $fragrance_id)
-            ->where('fragrance_profile.id', $profile_id)
+            // ->where('fragrance_profile.id', $profile_id)
             
             ->join('fragrance', 'fragrance.id', 'user_fragrance_review.fragrance_id')
             ->join('users', 'users.id', 'user_fragrance_review.users_id')
