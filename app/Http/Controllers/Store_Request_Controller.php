@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Store;
-use Helper\Helper;
+use App\Helper\Helper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
