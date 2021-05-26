@@ -256,9 +256,9 @@ class Store_Controller extends Controller
         if ( strcmp($request->input('store_type'), "store") == 0 ) {
             
             // Get first from stock
-            $frag_id = Store_Stock::where('store_id', Store::where('users_id', request()->user()->id)->first()->id)
-            ->where('available', TRUE)
-            ->first()->id;
+            // $frag_id = Store_Stock::where('store_id', Store::where('users_id', request()->user()->id)->first()->id)
+            // ->where('available', TRUE)
+            // ->first()->id;
 
             // return redirect('/'.$request->input('store_type').'_fragrance/'.$frag_id);
             return redirect('/store_fragrance/1');
@@ -289,7 +289,7 @@ class Store_Controller extends Controller
         ->first();
 
         if(is_null($frag_id)){
-            return redirect('/store_home')->with('error', 'Fragrance not in stock.');
+            return redirect()->back()->with('error', 'Fragrance not found.');
         }
 
         return redirect('/store_fragrance/' . $frag_id);
