@@ -340,9 +340,9 @@ class Fragrance_Review_Helper {
     public function get_longevity_reviews ($fragrance_id, $profile_id = NULL)
     {
 
-        if(is_null($profile_id)){
-            $profile_id = request()->user()->id;
-        }
+        // if(is_null($profile_id)){
+            // $profile_id = request()->user()->id;
+        // }
 
         $fields = Fragrance_Review_Helper::get_longevity_reviews_data_fields();
         
