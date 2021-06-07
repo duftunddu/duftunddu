@@ -73,12 +73,12 @@
 
                             {{-- Heading: User Name --}}
                             <h4 for="user name" class="center lux-red">
-                            @auth
+                            {{-- @auth --}}
                             {{-- {{ Auth::user()->name }} --}}
-                            You
-                            @else
+                            {{-- You --}}
+                            {{-- @else --}}
                             {{ __('You')}}
-                            @endauth
+                            {{-- @endauth --}}
                             &thinsp;
 
                             {{-- Gender Image --}}
@@ -102,7 +102,7 @@
                             <div class="left-border">
                                 <div class="left-top-border"></div>
                                 <div class="left">
-                                    @auth
+                                    {{-- @auth --}}
                                     
                                     {{-- Indoor vs Outdoor --}}
                                     @if(!is_null($projection))
@@ -194,14 +194,7 @@
                                     <p class="de-gray right-align">v 3.0</p>
                                     <br>
 
-                                    @endauth
-                                    @guest
-                                    <h4 class="lux-red">You are missing out on Factors Affecting Fragrance Wearability.</h4>
-                                    <h4 class="lux-red"><a href="/login">Log In</a> / <a href="/register">Sign Up</a>
-                                        to see if <span class="lux-purple">{{ __($fragrance->name)}}</span>
-                                        will suit you.</h4>
-                                    <p class="de-gray right-align">For more info, visit <a href="/faq">FAQ</a>.</p>
-                                    @endguest
+                                    {{-- @endauth --}}
 
                                 </div>
                             </div>
