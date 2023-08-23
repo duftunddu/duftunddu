@@ -1,78 +1,122 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+# Duft Und Du (Frangrance & You) 🎩
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+<br/>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⢀⣠⣴⣶⣶⣿⣿⣿⣶⣄⠀
+<br/>⠀⠀⠀⠀⠀⠀⠀⣾⣿⣿⣦⣤⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇
+<br/>⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⡟⠛⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇
+<br/>⠀⠀⠀⠀⠀⠀⣀⣈⣿⣏⣀⡀⠀⠈⠙⠻⠿⣿⣿⣿⣿⡿⠛⠀
+<br/>⠀⠀⠀⠀⠀⣾⣿⣿⣿⣿⣿⣿⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+<br/>⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+<br/>⠀⠀⠀⢀⣠⣿⣿⣿⣿⣿⣿⣿⣧⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+<br/>⠀⠀⣰⣿⠟⠋⠉⣹⣿⡏⠉⠉⠛⢿⣷⡄⠀⠀⠀⠀⠀⠀⠀⠀
+<br/>⠀⣼⣿⠃⠀⠀⣴⣿⠟⠀⠀⠀⠀⠀⢻⣿⡄⠀⠀⠀⠀⠀⠀⠀
+<br/>⢰⣿⣇⣀⣀⡸⠿⣇⣀⣀⣀⣀⣀⣀⣀⣿⣧⠀⠀⠀⠀⠀⠀⠀
+<br/>⠸⣿⣿⣿⣿⡇⠀⢻⣿⣿⣿⣿⣿⣿⣿⣿⡟⠀⠀⠀⠀⠀⠀⠀
+<br/>⠀⢻⣿⣿⣿⣿⡀⠀⠙⢿⣿⣿⣿⣿⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀
+<br/>⠀⠀⠻⣿⣿⣿⣿⣦⣤⣾⣿⣿⣿⣿⡿⠃⠀⠀⠀⠀⠀⠀⠀⠀
+<br/>⠀⠀⠀⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+<br/>⠀⠀⠀⠀⠈⠉⠉⠉⠉⠉⠉⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 
-## About Laravel
+<br/>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+# 💐✨👃👌😌
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+<br/>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+I went from providing opinions from my refined olfaction 🧐 providing reviews on YouTube, to a technocrat 😎 automating the entire process.
 
-## Learning Laravel
+This was my 2nd project using laravel, so I was quite proud of this at the time.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+<br/>
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+> ## AI-based personalized fragrance reviews and recommendations.
 
-## Laravel Sponsors
+<br/>
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Independently created, modified, tested, and maintained the code.
+Trained and deployed the AI model on minimal data that I gathered myself. Covid killed the perfume side completely, and with it, this project.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
+<br/>
 
-## Contributing
+## B2B 👔
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Designed an API to be used by fragrance webstores to show personalized fragrance reviews directly on the product page.
 
-## Code of Conduct
+<br/><br/>
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+# Everything I Developed & Learnt
 
-## Security Vulnerabilities
+-   Data Pipelines
+-   Data Analysis
+-   Brand Dashboard
+-   Disposable Email Guard
+-   Bulk Email System from Scratch
+-   CSV/Excel Import/Export
+-   Employed Conda Envs
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+<br/><br/>
 
-## License
+<details>
+  <summary><h1>Screenshots (Click on me!)</h1></summary>
+  <summary>Search</summary>
+  <img src="https://i.postimg.cc/6p5GVkcW/landing.png" name="search">
+  <summary>About Us</summary>
+  <img src="https://i.postimg.cc/vTr6XMCB/about-us.jpg" name="about-us">
+  <summary>Franrance Review Template</summary>
+  <img src="https://i.postimg.cc/bN0Q9HjT/fragrance-review-template.jpg" name="fragrance-review-template">
+  <summary>Franrance Review</summary>
+  <img src="https://i.postimg.cc/jSFCHLCc/fragrance-review.jpg" name="fragrance-review">
+  <summary>Shop</summary>
+  <img src="https://i.postimg.cc/kgfKkJGR/shop.jpg" name="shop">
+  <summary>Sign Up</summary>
+  <img src="https://i.postimg.cc/5trv2swx/sign-up.png" name="sign-up">
+  <summary>User Profile</summary>
+  <img src="https://i.postimg.cc/Bb9KxtYk/user-profile.png" name="user-profile">
+  <summary>Online Store</summary>
+  <img src="https://i.postimg.cc/RZMws6Sz/online-store.jpg" name="online-store">
+</details>
+</details>
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+<br/><br/>
+
+# Frameworks
+
+## Tech
+
+-   `Laravel`
+-   `Node(npm)`
+-   `PHP`
+-   `MySQL`
+-   `Python`
+-   `Sklearn `
+
+<br/>
+
+## Team/Efficiency
+
+-   JIRA
+-   Toggl Track
+
+<br/><br/>
+
+# Undeployed
+
+Was deployed on a VPS. Now, requires too big cache size and most of the servers I've tried face the below error, and I simply can't be bothered to deploy it as I've moved to `React`.
+
+```bash
+Error: The Serverless Function "api/index.php" is 411.26mb which exceeds the maximum size limit of 50mb.
+```
+
+<br/>⢀⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⣠⣤⣶⣶
+<br/>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⢰⣿⣿⣿⣿
+<br/>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⣀⣀⣾⣿⣿⣿⣿
+<br/>⣿⣿⣿⣿⣿⡏⠉⠛⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⣿
+<br/>⣿⣿⣿⣿⣿⣿⠀⠀⠀⠈⠛⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠛⠉⠁⠀⣿
+<br/>⣿⣿⣿⣿⣿⣿⣧⡀⠀⠀⠀⠀⠙⠿⠿⠿⠻⠿⠿⠟⠿⠛⠉⠀⠀⠀⠀⠀⣸⣿
+<br/>⣿⣿⣿⣿⣿⣿⣿⣷⣄⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⣿⣿
+<br/>⣿⣿⣿⣿⣿⣿⣿⣿⣿⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⣴⣿⣿⣿⣿
+<br/>⣿⣿⣿⣿⣿⣿⣿⣿⡟⠀⠀⢰⣹⡆⠀⠀⠀⠀⠀⠀⣭⣷⠀⠀⠀⠸⣿⣿⣿⣿
+<br/>⣿⣿⣿⣿⣿⣿⣿⣿⠃⠀⠀⠈⠉⠀⠀⠤⠄⠀⠀⠀⠉⠁⠀⠀⠀⠀⢿⣿⣿⣿
+<br/>⣿⣿⣿⣿⣿⣿⣿⣿⢾⣿⣷⠀⠀⠀⠀⡠⠤⢄⠀⠀⠀⠠⣿⣿⣷⠀⢸⣿⣿⣿
+<br/>⣿⣿⣿⣿⣿⣿⣿⣿⡀⠉⠀⠀⠀⠀⠀⢄⠀⢀⠀⠀⠀⠀⠉⠉⠁⠀⠀⣿⣿⣿
+<br/>⣿⣿⣿⣿⣿⣿⣿⣿⣧⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⣿⣿
+<br/>⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿
