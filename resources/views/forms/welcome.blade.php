@@ -3,7 +3,7 @@
 <title>Duft Und Du | Fragrance & You | Get Personalized Fragrance Reviews | The AI Fragrance Genie | The Fragrance Hub</title>
 {{-- @section('title', '') --}}
 
-@section('description', 'Duft Und Du gives you personalized fragrance reviews for free. Business integrations for 
+@section('description', 'Duft Und Du gives you personalized fragrance reviews for free. Business integrations for
 shops and online stores are also available.')
 
 @push('head_scripts')
@@ -23,7 +23,8 @@ shops and online stores are also available.')
 
         {{-- Title --}}
         <div class="title m-b-md">
-            <div data-toggle="tooltip" data-placement="top" title="German For Fragrance And You">Duft Und Du</div>
+            <!-- <div data-toggle="tooltip" data-placement="top" title="German For Fragrance And You">Duft Und Du</div> -->
+            Duft Und Du
         </div>
 
         {{-- Typing Effect --}}
@@ -58,7 +59,7 @@ shops and online stores are also available.')
 
         </div>
     </div>
-    
+
     {{-- Button: Scroll Down --}}
     <div class="scroll-down">
         <a id="scroll-link" href="#scroll-section-2"><span></span>Scroll</a>
@@ -73,16 +74,16 @@ shops and online stores are also available.')
             @include('features.services_accordion')
         </div>
     </div>
-    
+
     {{-- Button: Scroll Down --}}
     <div class="scroll-down">
-            <a class="flex-2-white" id="scroll-link" href="#scroll-section-3"><span></span>Scroll</a>
+        <a class="flex-2-white" id="scroll-link" href="#scroll-section-3"><span></span>Scroll</a>
     </div>
 
 </div>
 
 <div class="flex-3-center position-ref full-height" id="scroll-section-3">
-    
+
     @include('features.feature_slider')
 
     {{-- Button: Scroll Down --}}

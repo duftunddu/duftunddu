@@ -27,7 +27,7 @@ Route::get('/report', 'Feedback_Comment_Controller@index');
 Route::post('/report', 'Feedback_Comment_Controller@store');
 
 // Service Registration
-Route::get('/services_register', "Services_Conyoller@index");
+Route::get('/services_register', "Services_Controller@index");
 Route::post('/services_register', "Services_Controller@store");
 
 Route::get('/about_us', function () {
@@ -104,7 +104,7 @@ Route::get('/webstore_client_js.js', "Webstore_Controller@webstore_client_js");
 // Auth::routes();
 Auth::routes(['verify' => true]);
 
-Route::group(['middleware' => ['auth']], function() {
+Route::group(['middleware' => ['auth']], function () {
 
     // Register Store
     Route::get('/store_register', "Store_Request_Controller@index");
@@ -116,35 +116,34 @@ Route::group(['middleware' => ['auth']], function() {
 
     // new_user|user|genie_user
     Route::middleware(['role:new_user|user|genie_user|admin', 'verified'])->group(function () {
-        
-        // Home 
+
+        // Home
         Route::get('/home', 'HomeController@index')->name('home');
 
         // Profile Entry
         Route::get('/profile', 'Fragrance_Profile_Controller@index');
         Route::post('/profile', 'Fragrance_Profile_Controller@store');
-    
     });
 
 
     // user|genie_user
     Route::middleware(['role:user|genie_user|admin', 'verified'])->group(function () {
-        
+
         // Genie Input
         // Route::get('/genie_input/{profile_id}', 'Perceiver_Controller@index');
         // Route::post('/genie_input/{profile_id}', 'Perceiver_Controller@store');
 
-        
+
         // Genie Output
         // Route::get('/genie_output', 'Perceiver_Controller@output');
         // Route::post('/genie_output', 'Perceiver_Controller@output');
 
-        
+
         // Request Brand
         Route::get('/request_brand', 'Request_Brand_Controller@index');
         Route::post('/request_brand', 'Request_Brand_Controller@store');
         Route::post('/vote_brand', 'Request_Brand_Controller@vote');
-        
+
 
         // Request Feature
         Route::get('/request_feature_user', 'Feature_Request_By_User_Controller@index');
@@ -160,10 +159,9 @@ Route::group(['middleware' => ['auth']], function() {
 
     // user|genie_user|candidate_brand_ambassador|admin
     Route::middleware(['role:user|genie_user|candidate_brand_ambassador|admin', 'verified'])->group(function () {
-        
+
         Route::get('/brand_ambassador_register', 'Brand_Ambassador_Request_Controller@index');
         Route::post('/brand_ambassador_register', 'Brand_Ambassador_Request_Controller@store');
-
     });
 
 
@@ -171,7 +169,6 @@ Route::group(['middleware' => ['auth']], function() {
     Route::middleware(['role:candidate_brand_ambassador|new_brand_ambassador|admin', 'verified'])->group(function () {
 
         Route::get('/brand_ambassador_application_status', 'Brand_Ambassador_Request_Controller@application_status');
-
     });
 
 
@@ -180,7 +177,6 @@ Route::group(['middleware' => ['auth']], function() {
 
         Route::get('/brand_entry', 'Fragrance_Brand_Controller@index_ba');
         Route::post('/brand_entry/{brand_name}', 'Fragrance_Brand_Controller@store_ba');
-
     });
 
 
@@ -195,7 +191,6 @@ Route::group(['middleware' => ['auth']], function() {
 
         Route::get('/store_application_status', "Store_Request_Controller@show");
         Route::get('/webstore_application_status', "Webstore_Request_Controller@show");
-
     });
 
 
@@ -205,8 +200,8 @@ Route::group(['middleware' => ['auth']], function() {
 
         // Home
         Route::get('/store_home', "Store_Controller@home");
-        
-        // Call 
+
+        // Call
         Route::get('/store_call', "Store_Controller@call");
 
         // Profile
@@ -220,7 +215,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('/store_fragrance', "Store_Controller@empty_stock");
         Route::get('/store_fragrance/{fragrance_id}', "Store_Controller@show_fragrance");
         // Route::get('/fragrance/{store_type}/{fragrance_id}', "Store_Controller@show_fragrance");
-        
+
 
         Route::get('/store_fragrance_api', 'Store_Controller@fragrance_api');
         Route::post('/store_search_fragrance', 'Store_Controller@search_fragrance');
@@ -228,7 +223,7 @@ Route::group(['middleware' => ['auth']], function() {
 
         // Show Stock
         Route::get('/store_stock', "Store_Controller@show_stock");
-        
+
         // Add / Remove Stock
         Route::get('/store_add_to_stock', "Store_Controller@add_to_stock_view");
         Route::post('/store_add_to_stock', "Store_Controller@add_to_stock");
@@ -242,15 +237,15 @@ Route::group(['middleware' => ['auth']], function() {
 
     // Webstore
     Route::middleware(['role:webstore_owner|admin'])->group(function () {
-        
+
         // Home
         Route::get('/webstore_home', "Webstore_Controller@home");
-        
+
 
         // Stock Related
         // Show Stock
         Route::get('/webstore_stock', "Webstore_Controller@show_stock");
-        
+
         // Add / Remove Stock
         Route::get('/webstore_add_to_stock', "Webstore_Controller@add_to_stock_view");
         Route::post('/webstore_add_to_stock', "Webstore_Controller@add_to_stock");
@@ -266,7 +261,7 @@ Route::group(['middleware' => ['auth']], function() {
 
         Route::get('/ambassador_home', 'Brand_Ambassador_Controller@index');
 
-        // Only Admins are allowed to enter Accords and Ingredients for the time being. 
+        // Only Admins are allowed to enter Accords and Ingredients for the time being.
         // Route::get('/accord_entry', 'Accord_Controller@index_ba');
         // Route::post('/accord_entry', 'Accord_Controller@store_ba');
 
@@ -275,9 +270,8 @@ Route::group(['middleware' => ['auth']], function() {
 
         Route::get('/fragrance_entry', 'Fragrance_Controller@index_ba');
         Route::post('/fragrance_entry', 'Fragrance_Controller@store_ba');
-        
+
         Route::get('/advertise', 'Brand_Ambassador_Controller@advertise');
-        
     });
 
 
@@ -295,7 +289,7 @@ Route::group(['middleware' => ['auth']], function() {
         // Unavailable Brands & Fragrances
         Route::get('/unavailable_brands_fragrances_panel', "Unavailable_Brands_Fragrances_Controller@index");
 
-        
+
         // Add Brand
         Route::get('/add_brand_mod/{brand_name}', 'Unavailable_Brands_Fragrances_Controller@add_brand_view');
         Route::post('/add_brand_mod', 'Unavailable_Brands_Fragrances_Controller@store_brand');
@@ -303,7 +297,7 @@ Route::group(['middleware' => ['auth']], function() {
         // Add Fragrance
         Route::get('/add_fragrance_mod/{fragrance_name}', 'Unavailable_Brands_Fragrances_Controller@add_fragrance_view');
         Route::post('/add_fragrance_mod', 'Unavailable_Brands_Fragrances_Controller@store_fragrance');
-        
+
 
         // Accords & Notes
         Route::get('/accord_entry', 'Accord_Controller@index');
@@ -320,7 +314,7 @@ Route::group(['middleware' => ['auth']], function() {
         // Webstore
         // Webstore API
         Route::get('/webstore_call_dev/{api_key}/{brand}/{fragrance}/{fragrance_type}/{theme}',  "Webstore_Controller@webstore_call_dev");
-        
+
         // Webstore Client
         Route::get('/webstore_client', "Webstore_Controller@webstore_client");
         Route::get('/webstore_client_dev', "Webstore_Controller@webstore_client_dev");
@@ -329,7 +323,7 @@ Route::group(['middleware' => ['auth']], function() {
         // Route::get('/api_call', "Controller@api_call");
         // End of Webstore
 
-        
+
         // Ad
         Route::get('/ad_api', "Controller@ad_index");
         Route::get('/ad/{page_name}', function () {
@@ -343,12 +337,12 @@ Route::group(['middleware' => ['auth']], function() {
         //     return view('research.proposal');
         // });
         // Route::get('/fragrance_review_home', 'Research_Controller@index');
-        
+
         Route::get('user_fragrance_review_download', 'Admin_Controller@user_fragrance_review_show');
         Route::get('user_fragrance_review/download', 'Admin_Controller@user_fragrance_review_export');
         // End of Research
-    
-        
+
+
         // Stores  Panel
         Route::get('/store_panel', 'Admin_Controller@store_panel');
         Route::get('/store/{store_type}/{id}/{action}', 'Admin_Controller@store_panel_response');
@@ -392,10 +386,10 @@ Route::group(['middleware' => ['auth']], function() {
 
         Route::get('/brand_entry_admin', 'Fragrance_Brand_Controller@index');
         Route::post('/brand_entry_admin', 'Fragrance_Brand_Controller@store');
-        
+
         Route::get('/fragrance_entry_admin', 'Fragrance_Controller@index');
         Route::post('/fragrance_entry_admin', 'Fragrance_Controller@store');
-        
+
         Route::get('/try', 'Controller@try');
         Route::get('/try2', 'Controller@try_with_template');
         Route::post('/try', 'Controller@try_output');
@@ -408,13 +402,13 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('/admin_links', function () {
             return view('admin.links');
         });
-        
+
 
         // Individual Tests
         Route::get('/footer', function () {
             return view('layouts.footer');
         });
-        
+
         Route::get('/header', function () {
             return view('layouts.header');
         });
@@ -429,16 +423,16 @@ Route::group(['middleware' => ['auth']], function() {
 
         Route::get('/scroll_down_button', function () {
             return view('features.scroll_down_button');
-        }); 
-        
+        });
+
         Route::get('/scroll', function () {
             return view('layouts.scroll');
-        }); 
-        
+        });
+
         Route::get('range_slider', function () {
             return view('forms.range_slider');
         });
-        
+
         Route::get('feature_slider', function () {
             return view('forms.feature_slider');
         });
@@ -450,12 +444,12 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('slider_major_2', function () {
             return view('forms.slider_major_2');
         });
-        
+
         Route::get('button_hold_to_confirm', function () {
             return view('forms.button_hold_to_confirm');
         });
 
-        
+
         Route::get('button_get_wishes', function () {
             return view('forms.button_get_wishes');
         });
@@ -473,5 +467,4 @@ Route::group(['middleware' => ['auth']], function() {
         });
         // End of Individual Tests
     });
-
 });
