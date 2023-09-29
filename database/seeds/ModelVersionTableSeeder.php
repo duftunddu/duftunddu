@@ -12,10 +12,10 @@ class ModelVersionTableSeeder extends Seeder
      */
     public function run()
     {
-        $first = Model_Version::firstOrCreate([
-            'users_id'  => 1,
-            'type'      => 'affecting_factors',
-            'version'   => 1,
-        ]);
+        // $first = Model_Version::firstOrCreate([
+        //     'users_id'  => 1,
+        //     'type'      => 'affecting_factors',
+        //     'version'   => 1,
+        // ]);
     }
 }
