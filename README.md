@@ -1,41 +1,24 @@
 # Duft Und Du (Frangrance & You) 🎩
 
-<br/>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⢀⣠⣴⣶⣶⣿⣿⣿⣶⣄⠀
-<br/>⠀⠀⠀⠀⠀⠀⠀⣾⣿⣿⣦⣤⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇
-<br/>⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⡟⠛⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇
-<br/>⠀⠀⠀⠀⠀⠀⣀⣈⣿⣏⣀⡀⠀⠈⠙⠻⠿⣿⣿⣿⣿⡿⠛⠀
-<br/>⠀⠀⠀⠀⠀⣾⣿⣿⣿⣿⣿⣿⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-<br/>⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-<br/>⠀⠀⠀⢀⣠⣿⣿⣿⣿⣿⣿⣿⣧⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-<br/>⠀⠀⣰⣿⠟⠋⠉⣹⣿⡏⠉⠉⠛⢿⣷⡄⠀⠀⠀⠀⠀⠀⠀⠀
-<br/>⠀⣼⣿⠃⠀⠀⣴⣿⠟⠀⠀⠀⠀⠀⢻⣿⡄⠀⠀⠀⠀⠀⠀⠀
-<br/>⢰⣿⣇⣀⣀⡸⠿⣇⣀⣀⣀⣀⣀⣀⣀⣿⣧⠀⠀⠀⠀⠀⠀⠀
-<br/>⠸⣿⣿⣿⣿⡇⠀⢻⣿⣿⣿⣿⣿⣿⣿⣿⡟⠀⠀⠀⠀⠀⠀⠀
-<br/>⠀⢻⣿⣿⣿⣿⡀⠀⠙⢿⣿⣿⣿⣿⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀
-<br/>⠀⠀⠻⣿⣿⣿⣿⣦⣤⣾⣿⣿⣿⣿⡿⠃⠀⠀⠀⠀⠀⠀⠀⠀
-<br/>⠀⠀⠀⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-<br/>⠀⠀⠀⠀⠈⠉⠉⠉⠉⠉⠉⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+# Meta
 
-<br/>
+I went from providing reviews on YouTube, to automating the entire process.
+This was my FYP, and my 2nd project using laravel.
 
-# 💐✨👃👌😌
+> ## Provides AI-powered personalized fragrance reviews and recommendations.
 
-<br/>
+# Installation
 
-I went from providing opinions from my refined olfaction 🧐 providing reviews on YouTube, to a technocrat 😎 automating the entire process.
+```sh
+npm install
+```
 
-This was my 2nd project using laravel, so I was quite proud of this at the time.
+# Local Server
 
-<br/>
+```sh
+npm run dev
+```
 
-> ## AI-based personalized fragrance reviews and recommendations.
-
-<br/>
-
-Independently created, modified, tested, and maintained the code.
-Trained and deployed the AI model on minimal data that I gathered myself. Covid killed the perfume side completely, and with it, this project.
-
-<br/>
 
 ## B2B 👔
 
@@ -102,9 +85,11 @@ Designed an API to be used by fragrance webstores to show personalized fragrance
 
 Was deployed on a VPS. Now, requires too big cache size and most of the servers I've tried face the below error, and I simply can't be bothered to deploy it as I've moved to `React`.
 
-```bash
-Error: The Serverless Function "api/index.php" is 411.26mb which exceeds the maximum size limit of 50mb.
-```
+<br/>
+
+Independently created, modified, tested, and maintained the code.
+Trained and deployed the AI model on minimal data that I gathered myself. Covid killed the perfume side completely, and with it, this project.
+
 
 <br/>⢀⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⣠⣤⣶⣶
 <br/>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⢰⣿⣿⣿⣿
