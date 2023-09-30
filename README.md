@@ -5,20 +5,20 @@
 I went from providing reviews on YouTube, to automating the entire process.
 This was my FYP, and my 2nd project using laravel.
 
+<br/>
+
+Independently created, modified, tested, and maintained the code.
+Trained and deployed the AI model on minimal data that I gathered myself. Covid killed the perfume side completely, and with it, this project.
+
 > ## Provides AI-powered personalized fragrance reviews and recommendations.
 
-# Installation
+<br/>
 
-```sh
-npm install
-```
+> All data was live. There's no dummy data. 🤭
+>
+> But you can still waste your time by setting up a local server.
 
-# Local Server
-
-```sh
-npm run dev
-```
-
+<br/>
 
 ## B2B 👔
 
@@ -26,15 +26,36 @@ Designed an API to be used by fragrance webstores to show personalized fragrance
 
 <br/><br/>
 
+# Frameworks
+
+## Tech
+
+-   `Laravel`
+-   `Node(npm)`
+-   `PHP`
+-   `MySQL`
+-   `Python`
+-   `Sklearn`
+
+<br/>
+
+## Team/Efficiency
+
+-   JIRA
+-   Toggl Track
+
+<br/><br/>
+
 # Everything I Developed & Learnt
 
--   Data Pipelines
+-   End-to-end Data Pipelines
 -   Data Analysis
 -   Brand Dashboard
 -   Disposable Email Guard
 -   Bulk Email System from Scratch
 -   CSV/Excel Import/Export
--   Employed Conda Envs
+-   Conda Envs
+-   Merchant APIs
 
 <br/><br/>
 
@@ -61,35 +82,154 @@ Designed an API to be used by fragrance webstores to show personalized fragrance
 
 <br/><br/>
 
-# Frameworks
+# Setting up Local Server
 
-## Tech
+## 1. Install NVM
 
--   `Laravel`
--   `Node(npm)`
--   `PHP`
--   `MySQL`
--   `Python`
--   `Sklearn `
+Follow this [guide](https://www.freecodecamp.org/news/node-version-manager-nvm-install-guide/) to set up NVM.
+
+[Stack overflow](https://stackoverflow.com/questions/74548318/how-to-resolve-error-error0308010cdigital-envelope-routinesunsupported-no) thread on the same topic: No need for it, it's only here as a backup.
 
 <br/>
 
-## Team/Efficiency
+NVM can also be found here. Click on Download now, and download and install the setup:
 
--   JIRA
--   Toggl Track
+[Github | Corey Butler | nvm-windows](https://github.com/coreybutler/nvm-windows#readme)
+
+<br/>
+
+## 2. Use Node Version 16
+
+Restart your code editor after installing.
+
+Find the current version of node by:
+
+```sh
+nvm current
+```
+
+copy and paste in place of X.Y.Z to make your current version the default one:
+
+```sh
+nvm alias default vX.Y.Z
+```
+
+Example:
+
+```sh
+nvm alias default v18.17.1
+```
+
+Install node 16:
+
+```sh
+nvm install 16.0.0
+```
+
+List the installed node versions:
+
+```sh
+nvm list
+```
+
+Use node 16:
+
+```sh
+nvm use 16.0.0
+```
+
+Again to check:
+
+```sh
+nvm current
+```
+
+<br/>
+
+## 3. Install WAMP, XAMP or LAMP
+
+Install [wamp](wamp.org)
+
+You may need to do either or both of these, depending on what you are using:
+
+Add or remove from system path in environment variables:
+
+```c
+C:\xampp\php
+```
+
+Add or remove from system path:
+
+```c
+C:\wamp64\bin\php\php7.4.33\
+```
+
+<br/>
+
+## 4. Install Laravel
+
+```php
+composer global require laravel/installer
+composer update --no-scripts
+```
+
+<br/>
+
+## 5. Set up Local Repository
+
+Download the repo, and do the following:
+
+-   Create database in phpmyadmin.
+-   Create .env file from the example.env file in the repo.
+-   Set database variable in .env.
+
+<br/>
+
+In case you need any new env vars, you can find them here:  
+[Example laravel env](https://github.com/laravel/laravel/blob/master/.env.example)
+
+<br/>
+
+## 6. Install npm modules
+
+```sh
+npm install
+```
+
+<br/>
+
+## 7. Run the following commands
+
+```php
+php artisan cache:clear
+php artisan config:clear
+composer install
+composer dump-autoload
+php artisan key:generate
+php artisan config:cache
+```
+
+Run migrations and seed the db:
+
+```php
+php artisan migrate:refresh
+php artisan db:seed
+```
+
+## 8. Start local server
+
+```php
+php artisan serve
+```
+
+It'll be served at:
+http://localhost:8000
 
 <br/><br/>
 
-# Undeployed
+# No Live Deployment
 
-Was deployed on a VPS. Now, requires too big cache size and most of the servers I've tried face the below error, and I simply can't be bothered to deploy it as I've moved to `React`.
-
-<br/>
-
-Independently created, modified, tested, and maintained the code.
-Trained and deployed the AI model on minimal data that I gathered myself. Covid killed the perfume side completely, and with it, this project.
-
+Was deployed on a VPS. Requires too big cache size for serverless, and I simply can't be bothered to deploy it as I've moved to `React`.
 
 <br/>⢀⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⣠⣤⣶⣶
 <br/>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⢰⣿⣿⣿⣿
