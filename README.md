@@ -22,7 +22,7 @@ Trained and deployed the AI model on minimal data that I gathered myself. Covid 
 
 ## B2B 👔
 
-Designed an API to be used by fragrance webstores to show personalized fragrance reviews directly on the product page.
+Designed APIs to be used by fragrance webstores to show personalized fragrance reviews directly on the product page.
 
 <br/><br/>
 
@@ -56,6 +56,12 @@ Designed an API to be used by fragrance webstores to show personalized fragrance
 -   CSV/Excel Import/Export
 -   Conda Envs
 -   Merchant APIs
+
+<br/><br/>
+
+# Video
+
+[![Watch the video](https://img.youtube.com/vi/nF8kMjy6sg8/maxresdefault.jpg)](https://youtu.be/nF8kMjy6sg8)
 
 <br/><br/>
 
