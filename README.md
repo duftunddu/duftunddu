@@ -2,15 +2,15 @@
 
 # Meta
 
-I went from providing reviews on YouTube, to automating the entire process.
-This was my FYP, and my 2nd project using laravel.
+> ## (Used to) Provide AI-powered personalized fragrance reviews and recommendations.
 
 <br/>
 
+I went from providing reviews on YouTube, to automating the entire process.
+This was my FYP, and my 2nd project using laravel.
+
 Independently created, modified, tested, and maintained the code.
 Trained and deployed the AI model on minimal data that I gathered myself. Covid killed the perfume side completely, and with it, this project.
-
-> ## Provides AI-powered personalized fragrance reviews and recommendations.
 
 <br/>
 
